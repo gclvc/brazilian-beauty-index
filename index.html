@@ -1,692 +1,1454 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Brazilian Beauty Index — The Hub for Brazilian Beauty</title>
-  <meta name="description" content="The definitive index of Brazilian beauty — hair care, skincare, nails, makeup and wellness. For professionals, distributors and beauty lovers worldwide.">
+  <title>Brazilian Beauty Index — Portal de Beleza Brasileira</title>
+  <meta name="description" content="O portal de referência em beleza brasileira. Hair care, skincare, tutoriais, reviews de produtos e as marcas mais importantes do Brasil.">
   <link rel="canonical" href="https://www.brazilianbeautyindex.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Brazilian Beauty Index">
-  <meta property="og:description" content="The definitive hub for Brazilian beauty — brands, techniques, ingredients and distribution.">
+  <meta property="og:title" content="Brazilian Beauty Index — Portal de Beleza Brasileira">
+  <meta property="og:description" content="Hair care, skincare, tutoriais e as marcas brasileiras mais importantes. Conteúdo editorial de alto nível.">
   <meta property="og:url" content="https://www.brazilianbeautyindex.com/">
   <meta property="og:image" content="https://www.brazilianbeautyindex.com/assets/images/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0D3224">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Brazilian Beauty Index","url":"https://www.brazilianbeautyindex.com","description":"The definitive index of Brazilian beauty brands, techniques and professionals."}</script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Brazilian Beauty Index","url":"https://www.brazilianbeautyindex.com","description":"O portal de referência em beleza brasileira — hair care, skincare, tutoriais e marcas.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.brazilianbeautyindex.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+  </script>
+
   <style>
-:root{
-  --white:#FFFFFF;
-  --ivory:#F9F7F4;
-  --ivory-2:#F0EDE7;
-  --ivory-3:#E8E3DA;
-  --green:#0D3224;
-  --green-2:#174D38;
-  --green-3:#0A2419;
-  --gold:#C9962A;
-  --gold-l:#E0B84A;
-  --gold-bg:rgba(201,150,42,.08);
-  --terra:#C4563A;
-  --text:#1A1A1A;
-  --text-2:rgba(26,26,26,.52);
-  --text-3:rgba(26,26,26,.30);
-  --border:rgba(26,26,26,.08);
-  --border-2:rgba(26,26,26,.14);
-  --f-serif:'Cormorant Garamond',Georgia,serif;
-  --f-sans:'DM Sans',system-ui,sans-serif;
-  --r:6px;
-  --r2:12px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--f-sans);color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--f-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
 
-.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 40px}
+    /* ─── TOKENS ───────────────────────────────────────────────── */
+    :root {
+      --white: #FFFFFF;
+      --ivory: #F8F6F2;
+      --cream: #F2EEE8;
+      --green: #0D3224;
+      --green-2: #174D38;
+      --gold: #C9962A;
+      --terra: #C4563A;
+      --text: #111111;
+      --text-2: rgba(17,17,17,.58);
+      --text-3: rgba(17,17,17,.35);
+      --border: rgba(17,17,17,.08);
+      --border-2: rgba(17,17,17,.15);
+      --f-serif: 'Cormorant Garamond', Georgia, serif;
+      --f-sans: 'DM Sans', system-ui, sans-serif;
+    }
 
-/* ── TYPOGRAPHY UTILS ── */
-.label{font-family:var(--f-sans);font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--text-3)}
-.label-gold{color:var(--gold)}
-.divider-gold{width:24px;height:1px;background:var(--gold);margin:14px 0 22px}
-.big-h{font-family:var(--f-serif);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:var(--text)}
-em{font-style:italic}
+    /* ─── UTILITIES ────────────────────────────────────────────── */
+    .label {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--f-sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .badge-hair    { background: rgba(13,50,36,.10); color: var(--green); }
+    .badge-gold    { background: rgba(201,150,42,.12); color: var(--gold); }
+    .badge-terra   { background: rgba(196,86,58,.12); color: var(--terra); }
+    .badge-novidades { background: rgba(17,17,17,.06); color: var(--text-2); }
+    .badge-ingredientes { background: rgba(201,150,42,.12); color: var(--gold); }
+    .badge-review  { background: rgba(13,50,36,.10); color: var(--green); }
+    .badge-tutorial { background: rgba(201,150,42,.12); color: var(--gold); }
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:13px 28px;border-radius:2px;cursor:pointer;transition:all .22s}
-.btn svg{transition:transform .22s;flex-shrink:0}
-.btn:hover svg{transform:translateX(3px)}
-.btn-dark{background:var(--green);color:var(--white)}
-.btn-dark:hover{background:var(--green-2)}
-.btn-gold{background:var(--gold);color:var(--white)}
-.btn-gold:hover{background:var(--gold-l)}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border-2)}
-.btn-outline:hover{border-color:var(--text);background:var(--ivory)}
-.btn-outline-white{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
-.btn-outline-white:hover{border-color:rgba(255,255,255,.7)}
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; }
+    .section-header-left { display: flex; flex-direction: column; gap: 4px; }
+    .section-header h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; }
+    .see-all {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 1px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity .2s;
+    }
+    .see-all:hover { opacity: .65; }
 
-/* ── NAV ── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s}
-#nav.top{background:transparent}
-#nav.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-i{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:var(--f-serif);font-size:17px;font-weight:400;letter-spacing:.02em;color:var(--text);display:flex;align-items:center;gap:6px;transition:color .2s}
-#nav.top .nav-logo{color:var(--white)}
-.nav-logo-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-links a{font-size:12px;font-weight:400;letter-spacing:.04em;color:rgba(255,255,255,.75);transition:color .2s}
-#nav.scrolled .nav-links a{color:var(--text-2)}
-.nav-links a:hover{color:var(--white)}
-#nav.scrolled .nav-links a:hover{color:var(--text)}
-.nav-cta-wrap{display:flex;gap:10px}
-.nav-mob{display:none;flex-direction:column;gap:5px;padding:4px;border:none;background:none;cursor:pointer}
-.nav-mob span{width:22px;height:1.5px;display:block;transition:.25s}
-#nav.top .nav-mob span{background:var(--white)}
-#nav.scrolled .nav-mob span{background:var(--text)}
-.mmenu{display:none;position:fixed;inset:0;background:var(--green-3);z-index:99;padding:90px 40px 40px;flex-direction:column}
-.mmenu.on{display:flex}
-.mmenu a{font-family:var(--f-serif);font-size:28px;font-weight:300;color:var(--white);padding:18px 0;border-bottom:1px solid rgba(255,255,255,.07);transition:color .2s}
-.mmenu a:hover{color:var(--gold)}
-.mmenu .btn{margin-top:32px;align-self:flex-start}
+    /* gradient placeholders */
+    .img-ph { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 60%, var(--gold) 100%); border-radius: 3px; flex-shrink: 0; }
+    .img-ph-2 { width: 100%; background: linear-gradient(135deg, #1A4B36 0%, #0D3224 50%, #C9962A 100%); border-radius: 3px; flex-shrink: 0; }
+    .img-ph-3 { width: 100%; background: linear-gradient(135deg, #C9962A 0%, #E0B84A 40%, #0D3224 100%); border-radius: 3px; flex-shrink: 0; }
+    .img-ph-4 { width: 100%; background: linear-gradient(135deg, #C4563A 0%, #C9962A 60%, #1A4B36 100%); border-radius: 3px; flex-shrink: 0; }
 
-/* ── HERO ── */
-#hero{min-height:100vh;background:var(--green-3);display:flex;align-items:center;position:relative;overflow:hidden}
-.hero-blob{position:absolute;inset:0;pointer-events:none}
-.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero-content{position:relative;z-index:2;padding:120px 0 80px;max-width:900px}
-.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:40px}
-.hero-eyebrow hr{width:36px;border:none;border-top:1px solid rgba(201,150,42,.5)}
-.hero-eyebrow span{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.hero-h{font-family:var(--f-serif);font-weight:300;font-size:clamp(52px,7vw,96px);line-height:1.04;letter-spacing:-.02em;color:var(--white);margin-bottom:32px}
-.hero-h em{color:var(--gold);font-style:italic}
-.hero-sub{font-size:16px;font-weight:300;line-height:1.75;color:rgba(255,255,255,.55);max-width:520px;margin-bottom:48px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.hero-strip{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,150,42,.4),transparent)}
+    /* ─── TOP BAR ──────────────────────────────────────────────── */
+    .top-bar {
+      height: 32px;
+      background: var(--ivory);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .top-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-brand {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-2);
+    }
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .top-bar-right a {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      transition: color .2s;
+    }
+    .top-bar-right a:hover { color: var(--green); }
 
-/* ── TICKER ── */
-#ticker{background:var(--ivory);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:14px 0}
-.ticker-track{display:flex;gap:0;white-space:nowrap;animation:tick 40s linear infinite}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.t-item{display:inline-flex;align-items:center;gap:20px;padding:0 32px;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3)}
-.t-mark{width:3px;height:3px;border-radius:50%;background:var(--gold)}
+    /* ─── MAIN NAV ─────────────────────────────────────────────── */
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: box-shadow .25s;
+    }
+    .main-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
+    .main-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-family: var(--f-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--green);
+      white-space: nowrap;
+      flex-shrink: 0;
+      letter-spacing: -.01em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .nav-search {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--text-2);
+      transition: color .2s;
+    }
+    .nav-search:hover { color: var(--green); }
+    .nav-search svg { width: 16px; height: 16px; }
+    .btn-subscribe {
+      background: var(--green);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 8px 18px;
+      border-radius: 3px;
+      transition: background .2s;
+    }
+    .btn-subscribe:hover { background: var(--green-2); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all .3s;
+    }
+    /* mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 88px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--white);
+      z-index: 200;
+      padding: 32px 24px;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; gap: 0; }
+    .mobile-menu a {
+      font-family: var(--f-serif);
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--text);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
 
-/* ── CATEGORIES ── */
-#categories{background:var(--white);padding:112px 0}
-.cats-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:64px;gap:24px;flex-wrap:wrap}
-.cats-top .big-h{font-size:clamp(36px,4.5vw,58px)}
-.cat-list{display:flex;flex-direction:column;gap:0}
-.cat-row{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .22s;text-decoration:none;color:var(--text)}
-.cat-row:first-child{border-top:1px solid var(--border)}
-.cat-row:hover .cat-row-name{color:var(--green)}
-.cat-row:hover .cat-row-arrow{transform:translateX(4px);opacity:1}
-.cat-num{font-family:var(--f-serif);font-size:13px;font-weight:300;color:var(--text-3)}
-.cat-row-name{font-family:var(--f-serif);font-size:clamp(22px,2.8vw,34px);font-weight:300;transition:color .22s}
-.cat-row-sub{font-size:12px;color:var(--text-3);letter-spacing:.04em}
-.cat-row-arrow{opacity:.3;transition:all .22s}
-.cat-row-arrow svg{width:20px;height:20px;stroke:var(--green);fill:none;stroke-width:1.5}
+    /* ─── SECONDARY NAV ────────────────────────────────────────── */
+    .secondary-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .secondary-nav::-webkit-scrollbar { display: none; }
+    .secondary-nav .container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      white-space: nowrap;
+    }
+    .tag-pill {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      padding: 5px 12px;
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .tag-pill:hover { border-color: var(--green); color: var(--green); background: rgba(13,50,36,.04); }
 
-/* ── FEATURED ── */
-#featured{background:var(--ivory);padding:112px 0}
-.feat-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2px}
-.feat-main{background:var(--white);padding:56px 48px;display:flex;flex-direction:column;justify-content:flex-end;min-height:520px;position:relative;overflow:hidden;border:1px solid var(--border)}
-.feat-main-img{position:absolute;inset:0;background:linear-gradient(160deg,var(--green-3) 0%,#1a3d2a 100%);opacity:.96}
-.feat-main-content{position:relative;z-index:2}
-.feat-tag{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
-.feat-main h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(24px,2.8vw,36px);color:var(--white);line-height:1.25;margin-bottom:14px}
-.feat-main p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:28px}
-.feat-meta{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em}
-.feat-side{display:flex;flex-direction:column;gap:2px}
-.feat-card{background:var(--white);padding:36px 36px;border:1px solid var(--border);transition:border-color .2s;flex:1;display:flex;flex-direction:column}
-.feat-card:hover{border-color:var(--border-2)}
-.feat-card h3{font-family:var(--f-serif);font-weight:300;font-size:clamp(18px,1.8vw,23px);color:var(--text);line-height:1.3;margin-bottom:10px;flex:1}
-.feat-card p{font-size:13px;color:var(--text-2);line-height:1.65;margin-bottom:18px}
-.feat-card .feat-meta{color:var(--text-3)}
-.feat-read{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:6px;transition:gap .2s;margin-top:auto}
-.feat-read:hover{gap:10px}
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: var(--white);
+      padding: 40px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 32px;
+      align-items: start;
+    }
+    .hero-featured .img-ph { height: 480px; }
+    .hero-featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      margin-top: 16px;
+    }
+    .hero-featured-title {
+      font-family: var(--f-serif);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .hero-featured-title a:hover { opacity: .75; }
+    .hero-featured-excerpt {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-byline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+    .article-byline span { color: var(--text-3); }
+    .byline-dot { width: 3px; height: 3px; background: var(--text-3); border-radius: 50%; }
 
-/* ── BRANDS ── */
-#brands{background:var(--white);padding:112px 0}
-.brands-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:72px}
-.brands-top .big-h{font-size:clamp(36px,4.5vw,58px)}
-.brands-top p{font-size:15px;line-height:1.75;color:var(--text-2)}
-.brands-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.brand-tile{background:var(--white);padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:background .2s;cursor:pointer}
-.brand-tile:hover{background:var(--ivory)}
-.brand-tile.own{background:var(--green);color:var(--white)}
-.brand-tile.own:hover{background:var(--green-2)}
-.brand-mark{height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.brand-mark-text{font-family:var(--f-serif);font-weight:300;color:var(--text);line-height:1}
-.brand-tile.own .brand-mark-text{color:var(--white)}
-.brand-tile-name{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-2);margin-bottom:4px}
-.brand-tile.own .brand-tile-name{color:rgba(255,255,255,.6)}
-.brand-tile-cat{font-size:10px;color:var(--text-3);letter-spacing:.04em}
-.brand-tile.own .brand-tile-cat{color:rgba(255,255,255,.35)}
-.brand-own-badge{font-size:8px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:6px}
-.brands-footer{display:flex;justify-content:space-between;align-items:center;margin-top:32px;flex-wrap:wrap;gap:16px}
+    /* right stack cards */
+    .hero-stack { display: flex; flex-direction: column; gap: 0; }
+    .hero-stack-card {
+      display: flex;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .hero-stack-card:first-child { padding-top: 0; }
+    .hero-stack-card:last-child { border-bottom: none; }
+    .hero-stack-thumb {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      border-radius: 3px;
+    }
+    .hero-stack-content { flex: 1; min-width: 0; }
+    .hero-stack-content .badge { margin-bottom: 7px; }
+    .hero-stack-title {
+      font-family: var(--f-serif);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .hero-stack-title a:hover { opacity: .7; }
+    .hero-stack-date { font-size: 11px; color: var(--text-3); }
 
-/* ── INGREDIENTS ── */
-#ingredients{background:var(--ivory);padding:112px 0}
-.ing-top{margin-bottom:72px}
-.ing-top .big-h{font-size:clamp(36px,4.5vw,58px);margin-bottom:16px}
-.ing-top p{font-size:15px;color:var(--text-2);max-width:540px;line-height:1.75}
-.ing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-2);border:1px solid var(--border-2)}
-.ing-tile{background:var(--ivory);padding:40px 32px;transition:background .22s}
-.ing-tile:hover{background:var(--white)}
-.ing-emoji{font-size:32px;margin-bottom:16px;display:block}
-.ing-name{font-family:var(--f-serif);font-size:22px;font-weight:400;color:var(--text);margin-bottom:6px;line-height:1.2}
-.ing-latin{font-size:10px;font-weight:400;font-style:italic;color:var(--gold);letter-spacing:.04em;margin-bottom:14px;display:block}
-.ing-desc{font-size:13px;color:var(--text-2);line-height:1.7}
-.ing-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
-.ing-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);padding:4px 10px;border:1px solid var(--border-2);border-radius:100px}
+    /* ─── CATEGORY STRIP ───────────────────────────────────────── */
+    .category-strip {
+      background: var(--ivory);
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-strip .container {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .cat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 16px 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-align: center;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .cat-card:hover { border-color: var(--green); box-shadow: 0 2px 8px rgba(13,50,36,.08); }
+    .cat-icon { font-size: 20px; line-height: 1; }
+    .cat-name {
+      font-family: var(--f-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cat-count { font-size: 10px; color: var(--text-3); letter-spacing: .04em; }
 
-/* ── STATS ── */
-#stats{background:var(--white);padding:96px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center}
-.stat-item{padding:0 32px;border-right:1px solid var(--border)}
-.stat-item:last-child{border-right:none}
-.stat-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(48px,6vw,72px);color:var(--text);line-height:1;margin-bottom:10px;display:flex;align-items:baseline;justify-content:center;gap:4px}
-.stat-num em{font-style:normal;font-size:.55em;color:var(--gold)}
-.stat-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3)}
+    /* ─── ARTICLE GRID (Novidades) ─────────────────────────────── */
+    .novidades { background: var(--white); padding: 64px 0; }
+    .article-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .article-card { display: flex; flex-direction: column; gap: 12px; }
+    .article-card-img { height: 200px; border-radius: 3px; overflow: hidden; }
+    .article-card-img .img-ph, .article-card-img .img-ph-2,
+    .article-card-img .img-ph-3, .article-card-img .img-ph-4 { height: 100%; }
+    .article-card .badge { display: block; width: fit-content; }
+    .article-card-title {
+      font-family: var(--f-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .article-card-title a:hover { opacity: .7; }
+    .article-card-excerpt {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-card-date { font-size: 11px; color: var(--text-3); margin-top: auto; }
 
-/* ── ARTICLES ── */
-#latest{background:var(--ivory-2,#F0EDE7);padding:112px 0}
-.latest-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:64px;gap:24px;flex-wrap:wrap}
-.latest-top .big-h{font-size:clamp(34px,4vw,52px)}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.article-tile{background:var(--white);padding:40px 36px;display:flex;flex-direction:column;transition:background .2s}
-.article-tile:hover{background:var(--ivory)}
-.article-cat{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
-.article-title{font-family:var(--f-serif);font-weight:300;font-size:clamp(19px,1.8vw,23px);color:var(--text);line-height:1.3;margin-bottom:12px;flex:1}
-.article-excerpt{font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:20px}
-.article-meta{font-size:10px;color:var(--text-3);letter-spacing:.04em;margin-top:auto}
-.article-divider{width:20px;height:1px;background:var(--gold);margin-bottom:14px}
+    /* ─── SEU CABELO ───────────────────────────────────────────── */
+    .seu-cabelo { background: var(--cream); padding: 64px 0; }
+    .article-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .article-card-lg { display: flex; flex-direction: column; gap: 14px; }
+    .article-card-lg-img { height: 240px; border-radius: 4px; overflow: hidden; }
+    .article-card-lg-img .img-ph, .article-card-lg-img .img-ph-2,
+    .article-card-lg-img .img-ph-3 { height: 100%; }
+    .article-card-lg-title {
+      font-family: var(--f-serif);
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .article-card-lg-title a:hover { opacity: .7; }
+    .article-card-lg-excerpt {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .read-more {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+      transition: gap .2s;
+    }
+    .read-more:hover { gap: 8px; }
 
-/* ── DIST CTA ── */
-#dist-cta{background:var(--green-3);padding:96px 0;position:relative;overflow:hidden}
-.dist-cta-blob{position:absolute;right:-10%;top:-20%;width:600px;height:600px;pointer-events:none;opacity:.08}
-.dist-cta-inner{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;position:relative;z-index:2}
-.dist-cta-inner h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(30px,4vw,52px);color:var(--white);line-height:1.15}
-.dist-cta-inner h2 em{color:var(--gold)}
-.dist-cta-inner p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;margin-top:12px;max-width:500px}
-.dist-cta-actions{display:flex;flex-direction:column;gap:12px;align-items:center;flex-shrink:0}
+    /* ─── NEWSLETTER ───────────────────────────────────────────── */
+    .newsletter {
+      background: var(--green);
+      padding: 64px 0;
+    }
+    .newsletter .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .newsletter h2 {
+      font-family: var(--f-serif);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      max-width: 580px;
+    }
+    .newsletter-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.6);
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 460px;
+      margin-top: 8px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: var(--white);
+      border: none;
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-family: var(--f-sans);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+    }
+    .newsletter-form input::placeholder { color: var(--text-3); }
+    .btn-subscribe-gold {
+      background: var(--gold);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: 12px 24px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: opacity .2s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--f-sans);
+    }
+    .btn-subscribe-gold:hover { opacity: .88; }
+    .newsletter-social-proof {
+      font-size: 11px;
+      color: rgba(255,255,255,.35);
+      margin-top: 8px;
+      letter-spacing: .04em;
+    }
+    .newsletter-success {
+      display: none;
+      font-size: 14px;
+      color: rgba(255,255,255,.85);
+      padding: 12px 20px;
+      background: rgba(255,255,255,.1);
+      border-radius: 3px;
+      max-width: 460px;
+      text-align: center;
+    }
 
-/* ── FORM SECTION ── */
-#contact-form{background:var(--white);padding:112px 0}
-.form-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.form-text .big-h{font-size:clamp(34px,4vw,52px);margin-bottom:16px}
-.form-text p{font-size:15px;line-height:1.75;color:var(--text-2);margin-bottom:32px}
-.form-bullets{display:flex;flex-direction:column;gap:16px}
-.form-bullet{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--text-2);line-height:1.6}
-.form-bullet::before{content:'—';color:var(--gold);flex-shrink:0;font-family:var(--f-serif);font-size:16px}
-.form-block{background:var(--ivory);padding:48px;border:1px solid var(--border)}
-.form-block h3{font-family:var(--f-serif);font-weight:300;font-size:26px;margin-bottom:6px}
-.form-block p{font-size:13px;color:var(--text-2);margin-bottom:32px}
-.f-field{margin-bottom:18px}
-.f-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:7px}
-.f-input{width:100%;border:1px solid var(--border-2);border-bottom:1.5px solid var(--border-2);background:var(--white);padding:11px 0 11px 0;font-size:14px;font-family:var(--f-sans);color:var(--text);outline:none;transition:border-color .2s;border-radius:0;border-left:none;border-right:none;border-top:none}
-.f-input:focus{border-color:var(--green)}
-.f-input::placeholder{color:var(--text-3)}
-select.f-input{cursor:pointer;background:transparent;border:1px solid var(--border-2);padding:11px 14px;border-radius:0}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f-submit{width:100%;padding:16px;background:var(--green);color:var(--white);border:none;cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-family:var(--f-sans);transition:background .2s;margin-top:8px}
-.f-submit:hover{background:var(--green-2)}
-.f-note{font-size:10px;color:var(--text-3);text-align:center;margin-top:12px;letter-spacing:.04em}
+    /* ─── TUTORIAIS ────────────────────────────────────────────── */
+    .tutoriais { background: var(--white); padding: 64px 0; }
+    .tutorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .tutorial-featured {
+      background: var(--green);
+      border-radius: 4px;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 420px;
+      justify-content: flex-end;
+    }
+    .tutorial-featured .badge-tutorial-inv {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      background: rgba(201,150,42,.25);
+      color: var(--gold);
+      width: fit-content;
+    }
+    .tutorial-featured-title {
+      font-family: var(--f-serif);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.25;
+    }
+    .tutorial-featured-excerpt {
+      font-size: 13px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.65;
+    }
+    .btn-gold-outline {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 3px;
+      width: fit-content;
+      transition: all .2s;
+    }
+    .btn-gold-outline:hover { background: var(--gold); color: var(--white); }
 
-/* ── ADVERTISE ── */
-#advertise{background:var(--ivory);padding:80px 0;border-top:1px solid var(--border)}
-.adv-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
-.adv-text h3{font-family:var(--f-serif);font-weight:300;font-size:clamp(22px,2.8vw,34px);margin-bottom:8px}
-.adv-text p{font-size:14px;color:var(--text-2);max-width:500px;line-height:1.7}
-.adv-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .tutorial-stack { display: flex; flex-direction: column; gap: 0; }
+    .tutorial-card-sm {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      transition: border-color .2s;
+    }
+    .tutorial-card-sm:last-child { margin-bottom: 0; }
+    .tutorial-card-sm:hover { border-color: var(--border-2); }
+    .tutorial-card-sm-title {
+      font-family: var(--f-serif);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .tutorial-card-sm-title a:hover { opacity: .7; }
+    .tutorial-read-time { font-size: 11px; color: var(--text-3); }
 
-/* ── FOOTER ── */
-#footer{background:var(--green-3);padding:64px 0 40px}
-.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:28px}
-.f-brand{font-family:var(--f-serif);font-weight:300;font-size:22px;color:var(--white);margin-bottom:12px;letter-spacing:.02em}
-.f-brand em{font-style:italic;color:var(--gold)}
-.f-desc{font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;margin-bottom:24px}
-.f-col h5{font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:16px}
-.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.f-col ul a{font-size:13px;color:rgba(255,255,255,.45);transition:color .2s}
-.f-col ul a:hover{color:var(--white)}
-.f-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.f-bot p{font-size:11px;color:rgba(255,255,255,.2)}
-.f-legal{display:flex;gap:20px}
-.f-legal a{font-size:11px;color:rgba(255,255,255,.2);transition:color .2s}
-.f-legal a:hover{color:rgba(255,255,255,.5)}
+    /* ─── PRODUTOS ─────────────────────────────────────────────── */
+    .produtos { background: var(--ivory); padding: 64px 0; }
+    .produto-scroll-track { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .produto-scroll-track::-webkit-scrollbar { display: none; }
+    .produto-row {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 8px;
+    }
+    .produto-card {
+      flex: 0 0 220px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .produto-card:hover { border-color: var(--border-2); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .produto-card-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 3px;
+      overflow: hidden;
+      align-self: center;
+    }
+    .produto-brand {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .produto-name {
+      font-family: var(--f-serif);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .produto-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .produto-link {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--green);
+      border-bottom: 1px solid rgba(13,50,36,.3);
+      padding-bottom: 1px;
+      width: fit-content;
+      transition: border-color .2s;
+    }
+    .produto-link:hover { border-color: var(--green); }
 
-/* ── SCROLL PROGRESS ── */
-#bar{position:fixed;top:0;left:0;right:0;height:1.5px;background:var(--gold);transform-origin:left;transform:scaleX(0);z-index:200;will-change:transform}
+    /* ─── MARCAS ───────────────────────────────────────────────── */
+    .marcas { background: var(--white); padding: 56px 0; }
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 28px;
+    }
+    .brand-cell {
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      transition: background .2s, color .2s;
+      cursor: pointer;
+    }
+    .brand-cell:hover { background: var(--green); }
+    .brand-cell:hover .brand-cell-name { color: var(--white); }
+    .brand-cell-name {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      text-align: center;
+      transition: color .2s;
+    }
+    .brand-cell-submit {
+      padding: 24px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed var(--border-2);
+      background: rgba(249,247,244,.6);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .brand-cell-submit:hover { border-color: var(--green); background: rgba(13,50,36,.03); }
+    .brand-cell-submit-text {
+      font-size: 12px;
+      color: var(--text-3);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .brand-cell-submit:hover .brand-cell-submit-text { color: var(--green); }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .ing-grid{grid-template-columns:repeat(2,1fr)}
-  .brands-grid{grid-template-columns:repeat(3,1fr)}
-  .feat-grid{grid-template-columns:1fr}
-  .feat-main{min-height:380px}
-  .feat-side{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
-  .form-inner{grid-template-columns:1fr;gap:48px}
-  .brands-top{grid-template-columns:1fr}
-}
-@media(max-width:900px){
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .stat-item:nth-child(2){border-right:none}
-  .stat-item:nth-child(3){border-top:1px solid var(--border)}
-  .stat-item:nth-child(4){border-top:1px solid var(--border);border-right:none}
-  .stats-inner .stat-item{padding:36px 24px}
-  .dist-cta-inner{grid-template-columns:1fr;gap:32px}
-  .articles-grid{grid-template-columns:1fr 1fr}
-  .cat-row{grid-template-columns:48px 1fr auto}
-}
-@media(max-width:768px){
-  .wrap{padding:0 24px}
-  .nav-links,.nav-cta-wrap{display:none}
-  .nav-mob{display:flex}
-  .hero-content{padding:100px 0 72px}
-  .cat-row-sub{display:none}
-  .brands-grid{grid-template-columns:repeat(2,1fr)}
-  .feat-side{grid-template-columns:1fr}
-  .articles-grid{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr;gap:28px}
-  .adv-inner{flex-direction:column;align-items:flex-start}
-  .stats-inner{grid-template-columns:1fr 1fr}
-  #categories,#featured,#brands,#ingredients,#latest,#contact-form{padding:80px 0}
-  .nav-i{height:58px}
-}
+    /* ─── PARTNER CTA ──────────────────────────────────────────── */
+    .partner-cta {
+      background: var(--cream);
+      padding: 56px 0;
+      border-top: 1px solid var(--border);
+    }
+    .partner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .partner-label { margin-bottom: 8px; }
+    .partner-h3 {
+      font-family: var(--f-serif);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .partner-p {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .btn-green {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 12px 24px;
+      border-radius: 3px;
+      transition: background .2s;
+    }
+    .btn-green:hover { background: var(--green-2); }
+    .partner-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .benefit-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 12px 20px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .benefit-check {
+      width: 20px;
+      height: 20px;
+      background: var(--green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--green);
+      padding: 56px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 32px;
+    }
+    .footer-brand-col {}
+    .footer-logo {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 220px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social-link {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.6);
+      font-size: 12px;
+      transition: all .2s;
+    }
+    .footer-social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,.6);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .04em;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a {
+      font-size: 11px;
+      color: rgba(255,255,255,.3);
+      transition: color .2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,.6); }
+
+    /* ─── SCROLL REVEAL ────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+      .footer-brand-col { grid-column: 1 / -1; }
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-featured .img-ph { height: 320px; }
+      .hero-right { display: none; }
+      .category-strip .container { grid-template-columns: repeat(3, 1fr); }
+      .brand-grid { grid-template-columns: repeat(3, 1fr); }
+      .partner-grid { grid-template-columns: 1fr; gap: 32px; }
+      .tutorial-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .btn-subscribe { display: none; }
+      .article-grid { grid-template-columns: 1fr; }
+      .article-grid-3 { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .category-strip .container { grid-template-columns: repeat(2, 1fr); }
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-featured .img-ph { height: 260px; }
+    }
   </style>
 </head>
-<body x-data="{mob:false}" @keydown.escape="mob=false">
 
-<div id="bar"></div>
+<body x-data="{ mobileOpen: false }">
 
-<!-- NAV -->
-<nav id="nav" class="top">
-  <div class="wrap">
-    <div class="nav-i">
-      <a href="/" class="nav-logo">Brazilian<em style="font-style:italic;color:var(--gold)">Beauty</em><span class="nav-logo-dot"></span>Index</a>
+  <!-- ── TOP BAR ─────────────────────────────────────────────── -->
+  <div class="top-bar">
+    <div class="container">
+      <span class="top-bar-brand">🌿 Brazilian Beauty Index</span>
+      <div class="top-bar-right">
+        <a href="/newsletter">Newsletter</a>
+        <a href="/parceiros">Parceiros</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN NAV ────────────────────────────────────────────── -->
+  <nav class="main-nav" id="mainNav">
+    <div class="container">
+      <a href="/" class="nav-logo">Brazilian Beauty Index</a>
       <ul class="nav-links">
-        <li><a href="/hair/">Hair</a></li>
-        <li><a href="/skin/">Skin</a></li>
-        <li><a href="/brands/">Brands</a></li>
-        <li><a href="/blog/">Editorial</a></li>
-        <li><a href="/distribution/">Distribution</a></li>
+        <li><a href="/novidades">Novidades</a></li>
+        <li><a href="/hair-care">Hair Care</a></li>
+        <li><a href="/produtos">Produtos</a></li>
+        <li><a href="/solucoes">Soluções</a></li>
+        <li><a href="/seu-cabelo">Seu Cabelo</a></li>
+        <li><a href="/tutoriais">Tutoriais</a></li>
+        <li><a href="/marcas">Marcas</a></li>
       </ul>
-      <div class="nav-cta-wrap">
-        <a href="/distribution/" class="btn btn-gold" style="padding:10px 22px;font-size:10px">Partner With Us <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <div class="nav-right">
+        <a href="/busca" class="nav-search" aria-label="Buscar">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
+          </svg>
+        </a>
+        <a href="/newsletter" class="btn-subscribe">Subscribe</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="nav-mob" @click="mob=!mob" :aria-expanded="mob">
-        <span :style="mob?'transform:rotate(45deg) translate(4px,4.5px)':''"></span>
-        <span :style="mob?'opacity:0':''"></span>
-        <span :style="mob?'transform:rotate(-45deg) translate(4px,-4.5px)':''"></span>
-      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/novidades">Novidades</a>
+    <a href="/hair-care">Hair Care</a>
+    <a href="/produtos">Produtos</a>
+    <a href="/solucoes">Soluções</a>
+    <a href="/seu-cabelo">Seu Cabelo</a>
+    <a href="/tutoriais">Tutoriais</a>
+    <a href="/marcas">Marcas</a>
+    <a href="/newsletter">Newsletter</a>
+  </div>
+
+  <!-- ── SECONDARY NAV ───────────────────────────────────────── -->
+  <div class="secondary-nav">
+    <div class="container">
+      <a href="/tag/keratin" class="tag-pill">#keratin</a>
+      <a href="/tag/smoothing" class="tag-pill">#smoothing</a>
+      <a href="/tag/brae" class="tag-pill">#braé</a>
+      <a href="/tag/cadiveu" class="tag-pill">#cadiveu</a>
+      <a href="/tag/inoar" class="tag-pill">#inoar</a>
+      <a href="/tag/acai" class="tag-pill">#açaí</a>
+      <a href="/tag/tutorials" class="tag-pill">#tutorials</a>
+      <a href="/tag/reviews" class="tag-pill">#reviews</a>
+      <a href="/tag/progressiva" class="tag-pill">#progressiva</a>
+      <a href="/tag/botox-capilar" class="tag-pill">#botox-capilar</a>
+      <a href="/tag/ingredientes" class="tag-pill">#ingredientes</a>
+      <a href="/tag/honma" class="tag-pill">#honma</a>
     </div>
   </div>
-</nav>
 
-<!-- MOBILE MENU -->
-<div class="mmenu" :class="mob?'on':''">
-  <a href="/hair/" @click="mob=false">Hair Care</a>
-  <a href="/skin/" @click="mob=false">Skin</a>
-  <a href="/brands/" @click="mob=false">Brands</a>
-  <a href="/blog/" @click="mob=false">Editorial</a>
-  <a href="/distribution/" @click="mob=false">Distribution</a>
-  <a href="/advertise/" @click="mob=false">Advertise</a>
-  <a href="/distribution/" class="btn btn-gold" @click="mob=false" style="margin-top:28px">Partner With Us →</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <svg class="hero-blob" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1200 -100 C1400 100 1500 400 1350 600 C1200 800 900 950 700 820 C500 690 400 500 500 300 C600 100 1000 -300 1200 -100Z" fill="rgba(201,150,42,0.06)"/>
-    <path d="M-100 200 C100 0 350 50 400 250 C450 450 300 700 100 750 C-100 800 -300 600 -100 200Z" fill="rgba(255,255,255,0.04)"/>
-  </svg>
-  <div class="hero-noise"></div>
-  <div class="wrap">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <hr>
-        <span>The Brazilian Beauty Reference</span>
-      </div>
-      <h1 class="hero-h" id="hero-h">
-        Where Brazil<br>
-        Meets the <em>World</em><br>
-        of Beauty.
-      </h1>
-      <p class="hero-sub" id="hero-sub">The definitive index of Brazilian beauty — from Amazon rainforest ingredients to professional salon brands trusted by stylists across Europe.</p>
-      <div class="hero-actions" id="hero-actions">
-        <a href="/brands/" class="btn btn-gold">Explore Brands <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <a href="/distribution/" class="btn btn-outline-white">For Distributors</a>
-      </div>
-    </div>
-  </div>
-  <div class="hero-strip"></div>
-</section>
-
-<!-- TICKER -->
-<div id="ticker">
-  <div class="ticker-track">
-    <span class="t-item">Hair Care <span class="t-mark"></span></span>
-    <span class="t-item">Keratin Treatments <span class="t-mark"></span></span>
-    <span class="t-item">Brazilian Skincare <span class="t-mark"></span></span>
-    <span class="t-item">Nail Art <span class="t-mark"></span></span>
-    <span class="t-item">Açaí Beauty <span class="t-mark"></span></span>
-    <span class="t-item">Professional Makeup <span class="t-mark"></span></span>
-    <span class="t-item">Wellness Rituals <span class="t-mark"></span></span>
-    <span class="t-item">EU Distribution <span class="t-mark"></span></span>
-    <span class="t-item">Amazon Ingredients <span class="t-mark"></span></span>
-    <span class="t-item">B-Beauty Movement <span class="t-mark"></span></span>
-    <span class="t-item">Hair Care <span class="t-mark"></span></span>
-    <span class="t-item">Keratin Treatments <span class="t-mark"></span></span>
-    <span class="t-item">Brazilian Skincare <span class="t-mark"></span></span>
-    <span class="t-item">Nail Art <span class="t-mark"></span></span>
-    <span class="t-item">Açaí Beauty <span class="t-mark"></span></span>
-    <span class="t-item">Professional Makeup <span class="t-mark"></span></span>
-    <span class="t-item">Wellness Rituals <span class="t-mark"></span></span>
-    <span class="t-item">EU Distribution <span class="t-mark"></span></span>
-    <span class="t-item">Amazon Ingredients <span class="t-mark"></span></span>
-    <span class="t-item">B-Beauty Movement <span class="t-mark"></span></span>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section id="categories">
-  <div class="wrap">
-    <div class="cats-top">
-      <div>
-        <span class="label">Explore</span>
-        <div class="divider-gold"></div>
-        <h2 class="big-h">Brazilian Beauty,<br><em>Every Dimension</em></h2>
-      </div>
-      <a href="/blog/" class="btn btn-outline">View All Editorial →</a>
-    </div>
-    <div class="cat-list">
-      <a href="/hair/" class="cat-row"><span class="cat-num">01</span><div><div class="cat-row-name">Hair Care</div><div class="cat-row-sub">Keratin · Smoothing · Repair · Colour</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-      <a href="/skin/" class="cat-row"><span class="cat-num">02</span><div><div class="cat-row-name">Skincare</div><div class="cat-row-sub">Serums · Masks · Glow · Ingredients</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-      <a href="/nails/" class="cat-row"><span class="cat-num">03</span><div><div class="cat-row-name">Nails</div><div class="cat-row-sub">Gel · Art · Nail Care · Treatments</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-      <a href="/makeup/" class="cat-row"><span class="cat-num">04</span><div><div class="cat-row-name">Makeup</div><div class="cat-row-sub">Looks · Brands · Techniques · Trends</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-      <a href="/body/" class="cat-row"><span class="cat-num">05</span><div><div class="cat-row-name">Body &amp; Wellness</div><div class="cat-row-sub">Wax · Oils · Rituals · Spa</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-      <a href="/distribution/" class="cat-row"><span class="cat-num">06</span><div><div class="cat-row-name">Distribution</div><div class="cat-row-sub">Import · Wholesale · EU/UK Compliance</div></div><span class="cat-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED ARTICLES -->
-<section id="featured">
-  <div class="wrap">
-    <div style="margin-bottom:48px">
-      <span class="label">Featured</span>
-      <div class="divider-gold"></div>
-      <h2 class="big-h" style="font-size:clamp(34px,4vw,52px)">From the <em>Index</em></h2>
-    </div>
-    <div class="feat-grid">
-      <div class="feat-main">
-        <div class="feat-main-img"></div>
-        <div class="feat-main-content">
-          <span class="feat-tag">Hair Care</span>
-          <h2>Cadiveu Professional: The Complete Guide for European Salons</h2>
-          <p>Since 1997, Cadiveu has been setting the standard for Brazilian professional hair care. Everything distributors and salon owners need to know.</p>
-          <div class="feat-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div>
-          <a href="/blog/cadiveu-professional-guide" class="btn btn-gold" style="margin-top:24px;font-size:10px;padding:11px 24px">Read Article →</a>
-        </div>
-      </div>
-      <div class="feat-side">
-        <div class="feat-card">
-          <span class="feat-tag">Ingredients</span>
-          <div class="article-divider"></div>
-          <h3>Açaí in Beauty: Why the Amazon Superfruit Is Reshaping Skincare</h3>
-          <p>Antioxidant-rich, deeply nourishing, naturally Brazilian — açaí is moving from smoothie bowls to high-end serums.</p>
-          <div class="feat-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div>
-          <a href="/blog/acai-in-beauty" class="feat-read">Read <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-        <div class="feat-card">
-          <span class="feat-tag" style="color:var(--terra)">Distribution</span>
-          <div class="article-divider" style="background:var(--terra)"></div>
-          <h3>Importing Brazilian Cosmetics to the EU: The CPNP Checklist</h3>
-          <p>The regulatory path from São Paulo to a European salon shelf, explained step by step for importers.</p>
-          <div class="feat-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div>
-          <a href="/blog/import-brazilian-cosmetics-eu-cpnp" class="feat-read" style="color:var(--terra)">Read <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section id="brands">
-  <div class="wrap">
-    <div class="brands-top">
-      <div>
-        <span class="label">Brand Index</span>
-        <div class="divider-gold"></div>
-        <h2 class="big-h">The Brands <em>Defining</em><br>Brazilian Beauty</h2>
-      </div>
-      <p>From professional keratin systems to skincare innovations — ten Brazilian brands distributed across Europe and the UK from our London and Lisbon warehouses.</p>
-    </div>
-    <div class="brands-grid">
-      <div class="brand-tile own"><div class="brand-mark"><div class="brand-mark-text" style="font-size:26px;color:var(--white)">Piur</div></div><div class="brand-tile-name">Piur Professional</div><div class="brand-tile-cat">Keratin · Nano</div><div class="brand-own-badge">Our Brand</div></div>
-      <div class="brand-tile own"><div class="brand-mark"><div class="brand-mark-text" style="font-size:22px;color:var(--white)">Lavi</div></div><div class="brand-tile-name">Lavi</div><div class="brand-tile-cat">Smoothing · Care</div><div class="brand-own-badge">Our Brand</div></div>
-      <a href="/brands/brae/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:26px">Braé</div></div><div class="brand-tile-name">Braé Hair Care</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/cadiveu/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:18px">Cadiveu</div></div><div class="brand-tile-name">Cadiveu Pro</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/inoar/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:20px">INOAR</div></div><div class="brand-tile-name">Inoar Professional</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/honma/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:16px">Honma Tokyo</div></div><div class="brand-tile-name">Honma Tokyo</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/salvatore/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:16px">Salvatore</div></div><div class="brand-tile-name">Salvatore</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/robson/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:13px">Robson Peluquero</div></div><div class="brand-tile-name">Robson Peluquero</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/tanino/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:16px">Tanino</div></div><div class="brand-tile-name">Tanino Therapy</div><div class="brand-tile-cat">Hair</div></a>
-      <a href="/brands/onyx/" class="brand-tile"><div class="brand-mark"><div class="brand-mark-text" style="font-size:18px">Onyx</div></div><div class="brand-tile-name">Onyx</div><div class="brand-tile-cat">Hair</div></a>
-    </div>
-    <div class="brands-footer">
-      <p style="font-size:12px;color:var(--text-3)">10 brands · EU & UK warehouse stock · CPNP-compliant</p>
-      <a href="/brands/" class="btn btn-outline">Full Brand Index →</a>
-    </div>
-  </div>
-</section>
-
-<!-- INGREDIENTS -->
-<section id="ingredients">
-  <div class="wrap">
-    <div class="ing-top">
-      <span class="label">The Amazon Advantage</span>
-      <div class="divider-gold"></div>
-      <h2 class="big-h">Ingredients the World<br><em>Can't Replicate</em></h2>
-      <p>The Amazon rainforest produces some of the most potent natural ingredients in beauty. Brazilian brands have built their formulas around them for decades.</p>
-    </div>
-    <div class="ing-grid">
-      <div class="ing-tile"><span class="ing-emoji">🫐</span><div class="ing-name">Açaí</div><span class="ing-latin">Euterpe oleracea</span><div class="ing-desc">One of the highest ORAC scores ever recorded. Protects against oxidative stress and adds depth to hair colour and skin tone.</div><div class="ing-tags"><span class="ing-tag">Antioxidant</span><span class="ing-tag">Skincare</span><span class="ing-tag">Hair</span></div></div>
-      <div class="ing-tile"><span class="ing-emoji">🌴</span><div class="ing-name">Buriti Oil</div><span class="ing-latin">Mauritia flexuosa</span><div class="ing-desc">The richest natural source of beta-carotene. Found in premium body and hair oils for deep nourishment and golden luminosity.</div><div class="ing-tags"><span class="ing-tag">Beta-carotene</span><span class="ing-tag">Body</span><span class="ing-tag">Shine</span></div></div>
-      <div class="ing-tile"><span class="ing-emoji">🥥</span><div class="ing-name">Cupuaçu Butter</div><span class="ing-latin">Theobroma grandiflorum</span><div class="ing-desc">Holds 240% its weight in water. Exceptional emollient for moisturisers, conditioners and lip treatments.</div><div class="ing-tags"><span class="ing-tag">Moisturising</span><span class="ing-tag">Skincare</span><span class="ing-tag">Lip</span></div></div>
-      <div class="ing-tile"><span class="ing-emoji">🌰</span><div class="ing-name">Brazil Nut Oil</div><span class="ing-latin">Bertholletia excelsa</span><div class="ing-desc">Exceptionally high in selenium. Regenerates skin barrier, softens hair cuticle and protects against environmental damage.</div><div class="ing-tags"><span class="ing-tag">Selenium</span><span class="ing-tag">Repair</span><span class="ing-tag">Barrier</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section id="stats">
-  <div class="wrap">
-    <div class="stats-inner">
-      <div class="stat-item"><div class="stat-num">10<em>+</em></div><div class="stat-label">Brands Indexed</div></div>
-      <div class="stat-item"><div class="stat-num">50<em>+</em></div><div class="stat-label">Countries Covered</div></div>
-      <div class="stat-item"><div class="stat-num">30<em>+</em></div><div class="stat-label">Editorial Articles</div></div>
-      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">EU & UK Warehouses</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- LATEST ARTICLES -->
-<section id="latest">
-  <div class="wrap">
-    <div class="latest-top">
-      <div>
-        <span class="label">Latest</span>
-        <div class="divider-gold"></div>
-        <h2 class="big-h">From the <em>Editorial</em></h2>
-      </div>
-      <a href="/blog/" class="btn btn-outline">All Articles →</a>
-    </div>
-    <div class="articles-grid">
-      <a href="/blog/cadiveu-professional-guide" class="article-tile"><span class="article-cat">Hair Care</span><div class="article-divider"></div><div class="article-title">Cadiveu Professional: The Complete Guide for European Salons</div><div class="article-excerpt">Everything distributors and salon owners need to know before stocking Brazil's most iconic keratin brand.</div><div class="article-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div></a>
-      <a href="/blog/acai-in-beauty" class="article-tile"><span class="article-cat" style="color:var(--gold)">Ingredients</span><div class="article-divider" style="background:var(--gold)"></div><div class="article-title">Açaí in Beauty: Why the Amazon Superfruit Is Reshaping Skincare</div><div class="article-excerpt">From smoothie bowls to high-end serums — how Brazil's most famous fruit became a global beauty staple.</div><div class="article-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div></a>
-      <a href="/blog/import-brazilian-cosmetics-eu-cpnp" class="article-tile"><span class="article-cat" style="color:var(--terra)">Distribution</span><div class="article-divider" style="background:var(--terra)"></div><div class="article-title">Importing Brazilian Cosmetics to the EU: The CPNP Checklist</div><div class="article-excerpt">The regulatory path from São Paulo to a European salon shelf, explained step by step.</div><div class="article-meta">BBI Editorial &nbsp;·&nbsp; May 2026</div></a>
-    </div>
-  </div>
-</section>
-
-<!-- DIST CTA -->
-<section id="dist-cta">
-  <svg class="dist-cta-blob" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path d="M300 50 C450 50 550 150 550 300 C550 450 450 550 300 550 C150 550 50 450 50 300 C50 150 150 50 300 50Z" fill="var(--gold)"/></svg>
-  <div class="wrap">
-    <div class="dist-cta-inner">
-      <div>
-        <span class="label" style="color:rgba(255,255,255,.35)">For Professionals</span>
-        <div class="divider-gold"></div>
-        <h2>Source Brazilian Beauty<br><em>Direct</em></h2>
-        <p>Whether you're a distributor, salon chain or importer — we connect you directly with the brands, the stock and the documentation you need to trade in the EU and UK.</p>
-      </div>
-      <div class="dist-cta-actions">
-        <a href="/distribution/" class="btn btn-gold">Request Introduction <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <a href="/blog/" class="btn btn-outline-white" style="font-size:10px;padding:10px 22px">Read the Index</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT FORM -->
-<section id="contact-form">
-  <div class="wrap">
-    <div class="form-inner">
-      <div class="form-text">
-        <span class="label">Get in Touch</span>
-        <div class="divider-gold"></div>
-        <h2 class="big-h">Request a<br><em>Brand Introduction</em></h2>
-        <p>Tell us about your business and we'll match you with the right Brazilian brands for your market and category.</p>
-        <div class="form-bullets">
-          <div class="form-bullet">EU & UK warehouse stock ready to ship</div>
-          <div class="form-bullet">CPNP-compliant products, full documentation</div>
-          <div class="form-bullet">Flexible MOQ — salons to territory distributors</div>
-          <div class="form-bullet">10+ premium brands, one supplier</div>
-        </div>
-      </div>
-      <div class="form-block" x-data="leadForm()">
-        <h3>Start the conversation</h3>
-        <p>We respond within 24 hours.</p>
-        <div x-show="!ok">
-          <div class="f-row">
-            <div class="f-field"><label class="f-label">First Name *</label><input class="f-input" x-model="name" placeholder="Emma" type="text"></div>
-            <div class="f-field"><label class="f-label">Company *</label><input class="f-input" x-model="company" placeholder="Nova Group" type="text"></div>
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- featured left -->
+        <div class="hero-featured reveal">
+          <a href="/blog/guia-completo-keratin-treatments-2026">
+            <div class="img-ph" style="height:480px;"></div>
+          </a>
+          <div class="hero-featured-meta">
+            <span class="badge badge-hair">Hair Care</span>
           </div>
-          <div class="f-field"><label class="f-label">Email *</label><input class="f-input" x-model="email" placeholder="hello@novagroup.co.uk" type="email"></div>
-          <div class="f-field"><label class="f-label">Phone *</label><input class="f-input" x-model="phone" placeholder="+44 7700 900000" type="tel"></div>
-          <div class="f-field"><label class="f-label">Country *</label>
-            <select class="f-input" x-model="country">
-              <option value="">Select…</option>
-              <option>United Kingdom</option><option>Ireland</option><option>Portugal</option><option>Spain</option><option>France</option><option>Germany</option><option>Italy</option><option>Netherlands</option><option>Belgium</option><option>Brazil</option><option>United States</option><option>Australia</option><option>Other</option>
-            </select>
+          <h1 class="hero-featured-title">
+            <a href="/blog/guia-completo-keratin-treatments-2026">The Complete Guide to Brazilian Keratin Treatments: Everything Your Salon Needs to Know in 2026</a>
+          </h1>
+          <p class="hero-featured-excerpt">Da formalina à queratina vegetal, os tratamentos alisantes brasileiros evoluíram drasticamente. Aqui está tudo o que precisa de saber antes de escolher o protocolo certo.</p>
+          <div class="article-byline">
+            <span>Por Mariana Costa</span>
+            <span class="byline-dot"></span>
+            <span>18 mai 2026</span>
+            <span class="byline-dot"></span>
+            <span>12 min de leitura</span>
           </div>
-          <div class="f-field"><label class="f-label">Category Interest</label>
-            <select class="f-input" x-model="category">
-              <option value="">All categories</option>
-              <option>Hair Care</option><option>Skincare</option><option>Makeup</option><option>Nails</option><option>Body Care</option><option>Wellness</option>
-            </select>
+        </div>
+
+        <!-- stack right -->
+        <div class="hero-stack hero-right reveal" style="transition-delay:.1s;">
+          <div class="hero-stack-card">
+            <div class="hero-stack-thumb img-ph-3" style="width:80px;height:80px;"></div>
+            <div class="hero-stack-content">
+              <span class="badge badge-ingredientes">Ingredientes</span>
+              <h3 class="hero-stack-title"><a href="/blog/acai-na-cosmetica">Açaí na Cosmética: O Superfrutro Amazônico que Tomou o Mundo</a></h3>
+              <span class="hero-stack-date">15 mai 2026</span>
+            </div>
           </div>
-          <div x-show="err" style="background:#fef2f2;border:1px solid #fecaca;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#dc2626" x-text="err"></div>
-          <button class="f-submit" @click="submit()" :disabled="loading" x-text="loading?'Sending…':'Send Introduction Request'"></button>
-          <p class="f-note">We never share your details.</p>
+          <div class="hero-stack-card">
+            <div class="hero-stack-thumb img-ph-2" style="width:80px;height:80px;"></div>
+            <div class="hero-stack-content">
+              <span class="badge badge-novidades">Novidades</span>
+              <h3 class="hero-stack-title"><a href="/blog/cpnp-guia-importacao-europa">CPNP na Prática: Guia Completo para Importar Cosméticos Brasileiros para a Europa</a></h3>
+              <span class="hero-stack-date">12 mai 2026</span>
+            </div>
+          </div>
+          <div class="hero-stack-card">
+            <div class="hero-stack-thumb img-ph-4" style="width:80px;height:80px;"></div>
+            <div class="hero-stack-content">
+              <span class="badge badge-hair">Hair Care</span>
+              <h3 class="hero-stack-title"><a href="/blog/brae-hair-care-guia-completo">Braé Hair Care: O Guia Completo das Linhas e Como Escolher a Certa</a></h3>
+              <span class="hero-stack-date">10 mai 2026</span>
+            </div>
+          </div>
         </div>
-        <div x-show="ok" style="text-align:center;padding:40px 0">
-          <div style="font-size:40px;margin-bottom:16px">🌿</div>
-          <h4 style="font-family:var(--f-serif);font-weight:300;font-size:22px;margin-bottom:8px">You're on the list.</h4>
-          <p style="font-size:14px;color:var(--text-2)">We'll be in touch within 24 hours with a personalised brand introduction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CATEGORY STRIP ─────────────────────────────────────── -->
+  <section class="category-strip">
+    <div class="container">
+      <a href="/hair-care" class="cat-card reveal" style="transition-delay:.0s;">
+        <span class="cat-icon">🌿</span>
+        <span class="cat-name">Hair Care</span>
+        <span class="cat-count">24 artigos</span>
+      </a>
+      <a href="/skincare" class="cat-card reveal" style="transition-delay:.05s;">
+        <span class="cat-icon">✨</span>
+        <span class="cat-name">Skincare</span>
+        <span class="cat-count">8 artigos</span>
+      </a>
+      <a href="/produtos" class="cat-card reveal" style="transition-delay:.1s;">
+        <span class="cat-icon">🛁</span>
+        <span class="cat-name">Produtos</span>
+        <span class="cat-count">31 artigos</span>
+      </a>
+      <a href="/tutoriais" class="cat-card reveal" style="transition-delay:.15s;">
+        <span class="cat-icon">📖</span>
+        <span class="cat-name">Tutoriais</span>
+        <span class="cat-count">12 artigos</span>
+      </a>
+      <a href="/solucoes" class="cat-card reveal" style="transition-delay:.2s;">
+        <span class="cat-icon">💡</span>
+        <span class="cat-name">Soluções</span>
+        <span class="cat-count">17 artigos</span>
+      </a>
+      <a href="/marcas" class="cat-card reveal" style="transition-delay:.25s;">
+        <span class="cat-icon">🏷️</span>
+        <span class="cat-name">Marcas</span>
+        <span class="cat-count">19 artigos</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── NOVIDADES ──────────────────────────────────────────── -->
+  <section class="novidades">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="label">NOVIDADES</span>
+          <h2>Últimas do Portal</h2>
+        </div>
+        <a href="/novidades" class="see-all">Ver todos →</a>
+      </div>
+      <div class="article-grid">
+        <article class="article-card reveal">
+          <div class="article-card-img"><div class="img-ph" style="height:200px;"></div></div>
+          <span class="badge badge-hair">Hair Care</span>
+          <h3 class="article-card-title"><a href="/blog/brae-revival-lancamento">Braé Lança Linha Revival: Reconstrução Molecular para Cabelos Danificados</a></h3>
+          <p class="article-card-excerpt">A nova linha da Braé promete resultados visíveis em 3 aplicações, com tecnologia de reconstrução da fibra capilar de dentro para fora.</p>
+          <span class="article-card-date">19 mai 2026</span>
+        </article>
+        <article class="article-card reveal" style="transition-delay:.07s;">
+          <div class="article-card-img"><div class="img-ph-2" style="height:200px;"></div></div>
+          <span class="badge badge-novidades">Novidades</span>
+          <h3 class="article-card-title"><a href="/blog/cadiveu-brasil-cacau-certificacao-eu">Cadiveu Brasil Cacau Recebe Certificação EU — O Que Muda para Salões</a></h3>
+          <p class="article-card-excerpt">O tratamento de chocolate mais vendido do Brasil agora tem certificação europeia. Entenda o que isso significa para profissionais e importadores.</p>
+          <span class="article-card-date">16 mai 2026</span>
+        </article>
+        <article class="article-card reveal" style="transition-delay:.14s;">
+          <div class="article-card-img"><div class="img-ph-3" style="height:200px;"></div></div>
+          <span class="badge badge-ingredientes">Ingredientes</span>
+          <h3 class="article-card-title"><a href="/blog/ingredientes-amazonicos-hair-care">5 Ingredientes Amazônicos que Estão Dominando o Mercado de Hair Care</a></h3>
+          <p class="article-card-excerpt">Do buriti ao murumuru, os ativos da floresta amazônica conquistaram formuladores de todo o mundo. Conheça cada um deles.</p>
+          <span class="article-card-date">14 mai 2026</span>
+        </article>
+        <article class="article-card reveal" style="transition-delay:.21s;">
+          <div class="article-card-img"><div class="img-ph-4" style="height:200px;"></div></div>
+          <span class="badge badge-review">Reviews</span>
+          <h3 class="article-card-title"><a href="/blog/inoar-ghair-review-30-dias">Review: Testamos o G.Hair da INOAR por 30 Dias</a></h3>
+          <p class="article-card-excerpt">Aplicamos o tratamento de queratina mais popular do Brasil e acompanhámos os resultados semana a semana. Eis o veredicto honesto.</p>
+          <span class="article-card-date">11 mai 2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SEU CABELO ─────────────────────────────────────────── -->
+  <section class="seu-cabelo">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="label">SEU CABELO</span>
+          <h2>Seu Cabelo, Nossa Especialidade</h2>
+        </div>
+        <a href="/seu-cabelo" class="see-all">Ver todos →</a>
+      </div>
+      <div class="article-grid-3">
+        <article class="article-card-lg reveal">
+          <div class="article-card-lg-img"><div class="img-ph" style="height:240px;"></div></div>
+          <span class="badge badge-hair">SEU CABELO</span>
+          <h3 class="article-card-lg-title"><a href="/blog/cacheado-com-progressiva">Cabelo Cacheado com Progressiva: Funciona? Especialistas Respondem</a></h3>
+          <p class="article-card-lg-excerpt">A grande questão das cacheadas: é possível fazer progressiva sem destruir os cachos? Ouvimos três especialistas com opiniões diferentes.</p>
+          <a href="/blog/cacheado-com-progressiva" class="read-more">Ler mais →</a>
+        </article>
+        <article class="article-card-lg reveal" style="transition-delay:.08s;">
+          <div class="article-card-lg-img"><div class="img-ph-2" style="height:240px;"></div></div>
+          <span class="badge badge-hair">SEU CABELO</span>
+          <h3 class="article-card-lg-title"><a href="/blog/escolher-tratamento-keratin-tipo-cabelo">Como Escolher o Melhor Tratamento Keratin para Seu Tipo de Cabelo</a></h3>
+          <p class="article-card-lg-excerpt">Nem toda progressiva é igual. Este guia visual ajuda a identificar o protocolo certo — seja para liso, ondulado ou cacheado.</p>
+          <a href="/blog/escolher-tratamento-keratin-tipo-cabelo" class="read-more">Ler mais →</a>
+        </article>
+        <article class="article-card-lg reveal" style="transition-delay:.16s;">
+          <div class="article-card-lg-img"><div class="img-ph-3" style="height:240px;"></div></div>
+          <span class="badge badge-hair">SEU CABELO</span>
+          <h3 class="article-card-lg-title"><a href="/blog/loiro-danificado-brae-blonde-repair">Loiro e Danificado: O Protocolo Completo de Recuperação com Braé Blonde Repair</a></h3>
+          <p class="article-card-lg-excerpt">8 semanas, um protocolo rigoroso e resultados que surpreenderam até as especialistas. Acompanhe a transformação passo a passo.</p>
+          <a href="/blog/loiro-danificado-brae-blonde-repair" class="read-more">Ler mais →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER ─────────────────────────────────────────── -->
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <h2>Conteúdo de beleza brasileira direto no seu email.</h2>
+      <p class="newsletter-sub">Novidades, tutoriais e análises de produtos toda semana. Zero spam.</p>
+      <form class="newsletter-form" id="newsletterForm" novalidate>
+        <input type="email" id="emailInput" placeholder="O seu melhor email" autocomplete="email" required>
+        <button type="submit" class="btn-subscribe-gold">Assinar</button>
+      </form>
+      <div class="newsletter-success" id="newsletterSuccess">
+        Bem-vinda! Vai receber o próximo número em breve. 🌿
+      </div>
+      <span class="newsletter-social-proof">📧 Mais de 1.200 leitores</span>
+    </div>
+  </section>
+
+  <!-- ── TUTORIAIS ──────────────────────────────────────────── -->
+  <section class="tutoriais">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:28px;">
+        <div class="section-header-left">
+          <span class="label">TUTORIAIS</span>
+          <h2>Aprenda com os Melhores</h2>
+        </div>
+        <a href="/tutoriais" class="see-all">Ver todos →</a>
+      </div>
+      <div class="tutorial-grid">
+        <div class="tutorial-featured reveal">
+          <span class="badge-tutorial-inv">TUTORIAL</span>
+          <h3 class="tutorial-featured-title">Passo a Passo: Como Aplicar Progressiva Brasileira em Casa (e Quando Ir ao Salão)</h3>
+          <p class="tutorial-featured-excerpt">Um guia completo para quem quer entender o processo — desde a preparação do cabelo até aos cuidados pós-tratamento. Com dicas de quais etapas só um profissional deve fazer.</p>
+          <a href="/tutoriais/progressiva-em-casa" class="btn-gold-outline">Ver Tutorial</a>
+        </div>
+        <div class="tutorial-stack reveal" style="transition-delay:.1s;">
+          <div class="tutorial-card-sm">
+            <span class="badge badge-tutorial">TUTORIAL</span>
+            <h4 class="tutorial-card-sm-title"><a href="/tutoriais/manutencao-progressiva-casa">Como Fazer Manutenção da Progressiva em Casa</a></h4>
+            <span class="tutorial-read-time">8 min de leitura</span>
+          </div>
+          <div class="tutorial-card-sm">
+            <span class="badge badge-tutorial">TUTORIAL</span>
+            <h4 class="tutorial-card-sm-title"><a href="/tutoriais/hidratacao-profunda-protocolo-semanal">Hidratação Profunda: O Protocolo Semanal de 3 Etapas</a></h4>
+            <span class="tutorial-read-time">6 min de leitura</span>
+          </div>
+          <div class="tutorial-card-sm">
+            <span class="badge badge-tutorial">TUTORIAL</span>
+            <h4 class="tutorial-card-sm-title"><a href="/tutoriais/botox-vs-progressiva">Botox Capilar vs Progressiva: Quando Usar Cada Um</a></h4>
+            <span class="tutorial-read-time">10 min de leitura</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ADVERTISE -->
-<section id="advertise">
-  <div class="wrap">
-    <div class="adv-inner">
-      <div class="adv-text">
-        <h3>Reach Brazil's Most Engaged<br><em>Beauty Audience in Europe</em></h3>
-        <p>Sponsored content, brand features and display advertising — connecting brands with distributors and buyers across the EU and UK.</p>
+  <!-- ── PRODUTOS ───────────────────────────────────────────── -->
+  <section class="produtos">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="label">PRODUTOS</span>
+          <h2>Em Destaque</h2>
+        </div>
+        <a href="/produtos" class="see-all">Ver todos →</a>
       </div>
-      <div class="adv-actions">
-        <a href="/advertise/" class="btn btn-dark">Download Media Kit →</a>
-        <a href="mailto:advertise@brazilianbeautyindex.com" class="btn btn-outline" style="font-size:10px">advertise@brazilianbeautyindex.com</a>
+      <div class="produto-scroll-track reveal">
+        <div class="produto-row">
+          <div class="produto-card">
+            <div class="produto-card-img"><div class="img-ph" style="height:160px;width:160px;"></div></div>
+            <span class="produto-brand">Braé</span>
+            <h4 class="produto-name">Revival Mask</h4>
+            <p class="produto-desc">Máscara de reconstrução molecular com queratina vegetal e proteínas de seda.</p>
+            <a href="/produtos/brae-revival-mask" class="produto-link">Ver Análise →</a>
+          </div>
+          <div class="produto-card">
+            <div class="produto-card-img"><div class="img-ph-2" style="height:160px;width:160px;"></div></div>
+            <span class="produto-brand">Cadiveu</span>
+            <h4 class="produto-name">Brasil Cacau</h4>
+            <p class="produto-desc">O tratamento de chocolate mais reconhecido do Brasil, agora com certificação europeia.</p>
+            <a href="/produtos/cadiveu-brasil-cacau" class="produto-link">Ver Análise →</a>
+          </div>
+          <div class="produto-card">
+            <div class="produto-card-img"><div class="img-ph-3" style="height:160px;width:160px;"></div></div>
+            <span class="produto-brand">INOAR</span>
+            <h4 class="produto-name">G.Hair</h4>
+            <p class="produto-desc">A progressiva de queratina mais vendida do Brasil. Resultados em 90 minutos.</p>
+            <a href="/produtos/inoar-ghair" class="produto-link">Ver Análise →</a>
+          </div>
+          <div class="produto-card">
+            <div class="produto-card-img"><div class="img-ph-4" style="height:160px;width:160px;"></div></div>
+            <span class="produto-brand">Honma Tokyo</span>
+            <h4 class="produto-name">H-Brush</h4>
+            <p class="produto-desc">Tecnologia nano-keratin para alisamento suave e duradouro sem formol.</p>
+            <a href="/produtos/honma-h-brush" class="produto-link">Ver Análise →</a>
+          </div>
+          <div class="produto-card">
+            <div class="produto-card-img"><div class="img-ph" style="height:160px;width:160px;background:linear-gradient(135deg,#174D38 0%,#C9962A 100%);"></div></div>
+            <span class="produto-brand">Piur</span>
+            <h4 class="produto-name">Nano Keratin</h4>
+            <p class="produto-desc">Nano queratina de alta penetração para fios ultra-finos e sensibilizados.</p>
+            <a href="/produtos/piur-nano-keratin" class="produto-link">Ver Análise →</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer id="footer">
-  <div class="wrap">
-    <div class="footer-inner">
-      <div>
-        <div class="f-brand">Brazilian<em>Beauty</em>Index</div>
-        <p class="f-desc">The definitive index of Brazilian beauty — brands, ingredients, techniques and distribution for professionals worldwide.</p>
-        <a href="/distribution/" class="btn btn-gold" style="font-size:10px;padding:10px 22px">Partner With Us →</a>
+  <!-- ── MARCAS ─────────────────────────────────────────────── -->
+  <section class="marcas">
+    <div class="container">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
+        <div>
+          <span class="label">DIRECTÓRIO</span>
+        </div>
       </div>
-      <div class="f-col"><h5>Categories</h5><ul><li><a href="/hair/">Hair Care</a></li><li><a href="/skin/">Skincare</a></li><li><a href="/nails/">Nails</a></li><li><a href="/makeup/">Makeup</a></li><li><a href="/body/">Body</a></li><li><a href="/wellness/">Wellness</a></li></ul></div>
-      <div class="f-col"><h5>Index</h5><ul><li><a href="/brands/">Brand Index</a></li><li><a href="/blog/">Editorial</a></li><li><a href="/distribution/">Distribution</a></li><li><a href="/advertise/">Advertise</a></li><li><a href="/about/">About</a></li></ul></div>
-      <div class="f-col"><h5>Contact</h5><ul><li><a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a></li><li><a href="/distribution/">Partner Enquiry</a></li><li><a href="/advertise/">Media Enquiry</a></li></ul></div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
+        <h2 style="font-family:var(--f-serif);font-weight:300;font-size:clamp(28px,4vw,38px);line-height:1.15;">Marcas Brasileiras</h2>
+        <a href="/marcas" class="see-all">Ver directório →</a>
+      </div>
+      <div class="brand-grid reveal">
+        <a href="/marcas/brae" class="brand-cell"><span class="brand-cell-name">Braé</span></a>
+        <a href="/marcas/cadiveu" class="brand-cell"><span class="brand-cell-name">Cadiveu</span></a>
+        <a href="/marcas/inoar" class="brand-cell"><span class="brand-cell-name">INOAR</span></a>
+        <a href="/marcas/honma-tokyo" class="brand-cell"><span class="brand-cell-name">Honma Tokyo</span></a>
+        <a href="/marcas/salvatore" class="brand-cell"><span class="brand-cell-name">Salvatore</span></a>
+        <a href="/marcas/robson-peluquero" class="brand-cell"><span class="brand-cell-name">Robson Peluquero</span></a>
+        <a href="/marcas/tanino" class="brand-cell"><span class="brand-cell-name">Tanino</span></a>
+        <a href="/marcas/piur" class="brand-cell"><span class="brand-cell-name">Piur</span></a>
+        <a href="/marcas/lavi" class="brand-cell"><span class="brand-cell-name">Lavi</span></a>
+        <a href="/marcas/onyx" class="brand-cell"><span class="brand-cell-name">Onyx</span></a>
+        <a href="/parceiros/registar-marca" class="brand-cell-submit" style="grid-column:span 1;">
+          <span class="brand-cell-submit-text">+ Submit<br>Your Brand</span>
+        </a>
+      </div>
     </div>
-    <div class="f-bot">
-      <p>© 2026 Brazilian Beauty Index · brazilianbeautyindex.com</p>
-      <div class="f-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+  </section>
+
+  <!-- ── PARTNER CTA ────────────────────────────────────────── -->
+  <section class="partner-cta">
+    <div class="container">
+      <div class="partner-grid">
+        <div class="reveal">
+          <span class="label partner-label">PARCEIROS</span>
+          <h3 class="partner-h3">É uma marca brasileira?<br>Apareça aqui.</h3>
+          <p class="partner-p">Registe a sua marca no Brazilian Beauty Index e apareça nos nossos artigos, reviews e comparativos. Alcance profissionais e consumidores que já estão à procura dos seus produtos.</p>
+          <a href="/parceiros/registar-marca" class="btn-green">Registar Marca</a>
+        </div>
+        <div class="partner-benefits reveal" style="transition-delay:.1s;">
+          <div class="benefit-pill">
+            <span class="benefit-check">✓</span>
+            <span>Perfil editorial dedicado</span>
+          </div>
+          <div class="benefit-pill">
+            <span class="benefit-check">✓</span>
+            <span>Links directos para o seu site</span>
+          </div>
+          <div class="benefit-pill">
+            <span class="benefit-check">✓</span>
+            <span>Código de desconto exclusivo para leitores</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-document.addEventListener('alpine:init',()=>{
-  Alpine.data('leadForm',()=>({
-    name:'',company:'',email:'',phone:'',country:'',category:'',
-    loading:false,ok:false,err:'',
-    async submit(){
-      if(!this.name||!this.company||!this.email||!this.phone||!this.country){this.err='Please fill all required fields.';return;}
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)){this.err='Please enter a valid email.';return;}
-      this.loading=true;this.err='';
-      try{
-        const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:this.name,company:this.company,email:this.email,phone:this.phone,country:this.country,inquiry_type:'distribution',message:this.category?'Interest: '+this.category:''})});
-        const d=await r.json();
-        if(d.ok){this.ok=true;}else{this.err=d.error||'Something went wrong.';}
-      }catch{this.err='Network error. Email hello@brazilianbeautyindex.com';}
-      this.loading=false;
-    }
-  }));
-});
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo">Brazilian Beauty Index</div>
+          <p class="footer-desc">O portal de referência em beleza brasileira — hair care, skincare, tutoriais e o directório completo de marcas.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/brazilianbeautyindex" class="footer-social-link" aria-label="Instagram">IG</a>
+            <a href="https://pinterest.com/brazilianbeautyindex" class="footer-social-link" aria-label="Pinterest">PT</a>
+            <a href="https://tiktok.com/@brazilianbeautyindex" class="footer-social-link" aria-label="TikTok">TT</a>
+            <a href="https://youtube.com/@brazilianbeautyindex" class="footer-social-link" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Editorias</div>
+          <ul class="footer-links">
+            <li><a href="/hair-care">Hair Care</a></li>
+            <li><a href="/skincare">Skincare</a></li>
+            <li><a href="/tutoriais">Tutoriais</a></li>
+            <li><a href="/seu-cabelo">Seu Cabelo</a></li>
+            <li><a href="/solucoes">Soluções</a></li>
+            <li><a href="/reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Marcas</div>
+          <ul class="footer-links">
+            <li><a href="/marcas/brae">Braé</a></li>
+            <li><a href="/marcas/cadiveu">Cadiveu</a></li>
+            <li><a href="/marcas/inoar">INOAR</a></li>
+            <li><a href="/marcas/honma-tokyo">Honma Tokyo</a></li>
+            <li><a href="/marcas">Ver todas →</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Parceiros</div>
+          <ul class="footer-links">
+            <li><a href="/parceiros">Parceiros</a></li>
+            <li><a href="/parceiros/registar-marca">Registar Marca</a></li>
+            <li><a href="/anunciar">Anunciar</a></li>
+            <li><a href="/media-kit">Media Kit</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contacto</div>
+          <ul class="footer-links">
+            <li><a href="/sobre">Sobre Nós</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/newsletter">Newsletter</a></li>
+            <li><a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Brazilian Beauty Index. Todos os direitos reservados.</span>
+        <div class="footer-legal">
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos</a>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-// Nav state
-const nav=document.getElementById('nav');
-function updateNav(){
-  if(window.scrollY>60){nav.classList.replace('top','scrolled')||nav.classList.add('scrolled');}
-  else{nav.classList.replace('scrolled','top')||nav.classList.add('top');}
-}
-window.addEventListener('scroll',updateNav,{passive:true});
-updateNav();
+  <!-- ── SCRIPTS ────────────────────────────────────────────── -->
+  <script src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-// Scroll progress
-gsap.registerPlugin(ScrollTrigger);
-gsap.to('#bar',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:0}});
+  <script>
+    // ── sticky nav shadow ──────────────────────────────────────
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
 
-// Hero entrance
-const tl=gsap.timeline({delay:.08});
-tl.fromTo('#hero-h',{opacity:0,y:48},{opacity:1,y:0,duration:.9,ease:'power3.out'})
-  .fromTo('#hero-sub',{opacity:0,y:24},{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.5')
-  .fromTo('#hero-actions',{opacity:0,y:16},{opacity:1,y:0,duration:.6,ease:'power2.out'},'-=.4');
+    // ── mobile hamburger ───────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
 
-// Scroll reveals
-gsap.utils.toArray('.cat-row,.brand-tile,.article-tile,.ing-tile,.feat-card,.feat-main,.stat-item').forEach((el,i)=>{
-  gsap.fromTo(el,{opacity:0,y:24},{opacity:1,y:0,duration:.65,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 90%'},delay:(i%4)*.06});
-});
-</script>
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+      const spans = hamburger.querySelectorAll('span');
+      if (menuOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(4px, 4.5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(4px, -4.5px)';
+      } else {
+        spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      }
+    });
+
+    // ── newsletter form ────────────────────────────────────────
+    const form = document.getElementById('newsletterForm');
+    const successMsg = document.getElementById('newsletterSuccess');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      if (!email || !email.includes('@')) return;
+      // store locally, no real API yet
+      try { localStorage.setItem('bbi_subscriber', email); } catch(err) {}
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    });
+
+    // ── GSAP scroll reveals ────────────────────────────────────
+    gsap.registerPlugin(ScrollTrigger);
+
+    const revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach(el => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          once: true
+        }
+      });
+    });
+
+    // ── secondary nav active pill on scroll ───────────────────
+    // lightweight tag highlight stub for future impl
+  </script>
 </body>
 </html>
