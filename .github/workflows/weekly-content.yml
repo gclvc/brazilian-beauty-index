@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Number of articles to generate'
+        description: 'Number of articles to generate (use 999 for all pending)'
         default: '2'
       tier:
         description: 'Tier filter (1, 2, 3, or leave empty for all)'

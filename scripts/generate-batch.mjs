@@ -32,25 +32,77 @@ const tierOnly = args.includes('--tier')    ? parseInt(args[args.indexOf('--tier
 const dryRun   = args.includes('--dry-run');
 
 // ── System prompt ─────────────────────────────────────────────────────────────
+// ── Site monetization map ─────────────────────────────────────────────────────
+// Used to inject the right CTA links per article type
+const SITE_MAP = {
+  brae: {
+    buy:  'https://braehaircare.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',
+    b2b:  'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',
+    name_buy: 'Braé Hair Care UK',
+    name_b2b: 'BM Supplier',
+  },
+  cadiveu:   { buy: 'https://keratinandcare.com?utm_source=bbi&utm_medium=blog&utm_campaign=', b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=', name_buy: 'Keratin and Care', name_b2b: 'BM Supplier' },
+  honma:     { buy: 'https://keratinandcare.com?utm_source=bbi&utm_medium=blog&utm_campaign=', b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=', name_buy: 'Keratin and Care', name_b2b: 'BM Supplier' },
+  piur:      { buy: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'BM Supplier', name_b2b: 'BM Supplier' },
+  lavi:      { buy: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'BM Supplier', name_b2b: 'BM Supplier' },
+  salvatore: { buy: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'BM Supplier', name_b2b: 'BM Supplier' },
+  tanino:    { buy: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'BM Supplier', name_b2b: 'BM Supplier' },
+  robson:    { buy: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'BM Supplier', name_b2b: 'BM Supplier' },
+  default:   { buy: 'https://keratinandcare.com?utm_source=bbi&utm_medium=blog&utm_campaign=', b2b: 'https://bmsupplier.co.uk?utm_source=bbi&utm_medium=blog&utm_campaign=',  name_buy: 'Keratin and Care', name_b2b: 'BM Supplier' },
+};
+
+function getSiteLinks(topic) {
+  const kw = (topic.keyword + ' ' + topic.title).toLowerCase();
+  let brand = 'default';
+  if (kw.includes('braé') || kw.includes('brae')) brand = 'brae';
+  else if (kw.includes('cadiveu')) brand = 'cadiveu';
+  else if (kw.includes('honma')) brand = 'honma';
+  else if (kw.includes('piur')) brand = 'piur';
+  else if (kw.includes('lavi')) brand = 'lavi';
+  else if (kw.includes('salvatore')) brand = 'salvatore';
+  else if (kw.includes('tanino')) brand = 'tanino';
+  else if (kw.includes('robson')) brand = 'robson';
+  const s = SITE_MAP[brand];
+  const slug = topic.slug || 'article';
+  return {
+    buyUrl:  s.buy  + slug,
+    b2bUrl:  s.b2b  + slug,
+    buyName: s.name_buy,
+    b2bName: s.name_b2b,
+    isPro: kw.includes('salon') || kw.includes('distribut') || kw.includes('professional') || kw.includes('import'),
+  };
+}
+
 const SYSTEM = `You are a senior editor at Brazilian Beauty Index — the definitive English-language reference for Brazilian beauty. You write for salon professionals, beauty distributors and beauty enthusiasts in the UK and Europe.
 
 WRITING STYLE — ANTI-AI MANDATORY:
 - Write like an experienced trade journalist, not like an AI generating content
 - Vary sentence length dramatically. Use fragments intentionally.
 - Start 20–30% of sentences with "But", "And", "So", "Because", "Yet", "That's"
-- NEVER use: "comprehensive", "robust", "cutting-edge", "leverage", "seamlessly", "Furthermore", "Moreover", "Additionally" as fillers, "In conclusion", "To summarise", "It's worth noting", "It's important to remember", "delve", "explore", "In the world of [topic]"
-- Include one specific concrete detail per section (real country, real regulation, real product name, real price range, real timeframe)
+- NEVER use: "comprehensive", "robust", "cutting-edge", "leverage", "seamlessly", "Furthermore", "Moreover", "Additionally" as fillers, "In conclusion", "To summarise", "It's worth noting", "delve", "explore", "In the world of [topic]"
+- Include one specific concrete detail per section (real price range, real country, real product name, real timeframe)
 - State opinions directly: "This is the stronger option", "Most salons get this wrong"
 - Vary paragraph length: some 1 sentence, some 4 sentences. Never uniform
 - End without restating everything. Close with a forward-looking sentence
 
+AI SEARCH OPTIMIZATION (Perplexity, ChatGPT, Claude, Google AI Overviews):
+- First paragraph answers the keyword query directly in 2 sentences — this becomes the AI snippet
+- Each H2 section starts with a direct, citable factual statement
+- FAQ section: 4+ questions with direct 1-2 sentence answers (critical for AI citations)
+- Use HTML comparison tables where relevant: <table><thead>...</thead><tbody>...</tbody></table>
+- Include numbered AND bulleted lists per article
+
 CONTENT RULES:
 - Focus on Brazilian beauty: hair care, skincare, nails, makeup, body, wellness, ingredients
-- Be specific about brands, products, regulations, markets (EU, UK, Brazil)
-- Include at least one FAQ section (H2: Frequently Asked Questions) with 3-4 real questions
-- Target the primary keyword naturally throughout the article
-- Internal link suggestion: mention 1-2 related articles that could be linked
-- Word count: 900–1400 words
+- Be specific: brands, product names, treatment durations, price ranges, regulations
+- Include at least one FAQ section (H2: Frequently Asked Questions) with 4 real questions
+- Target the primary keyword naturally throughout
+- Add 2-3 internal blog links using: <a href="/blog/[related-slug]">[anchor text]</a>
+  Related slugs to link: cadiveu-professional-guide, brae-hair-care-complete-guide,
+  honma-tokyo-brand-guide, brazilian-keratin-treatment-guide-2026,
+  keratin-treatment-vs-brazilian-blowout, how-long-does-keratin-treatment-last,
+  what-is-hair-botox, damaged-hair-recovery-brazilian
+- Word count: 1000–1400 words
 
 OUTPUT FORMAT — respond with ONLY valid JSON, no markdown fences:
 {
@@ -80,7 +132,23 @@ async function generateArticle(topic) {
       system:     SYSTEM,
       messages: [{
         role:    'user',
-        content: `Write a full editorial article for Brazilian Beauty Index.\n\nTitle: "${topic.title}"\nPrimary keyword: "${topic.keyword}"\nCategory: ${topic.category}\n\nRemember: anti-AI writing style mandatory. 900-1400 words. Include FAQ section.`,
+        content: `Write a full editorial article for Brazilian Beauty Index.
+
+Title: "${topic.title}"
+Primary keyword: "${topic.keyword}"
+Category: ${topic.category}
+Tier: ${topic.tier} (${topic.tier === 1 ? 'brand-specific' : topic.tier === 2 ? 'category/general' : 'how-to/comparison'})
+
+LINK REQUIREMENTS FOR THIS ARTICLE:
+${getSiteLinks(topic).isPro
+  ? `- This is a professional/salon/distributor article. Include a CTA linking to: <a href="${getSiteLinks(topic).b2bUrl}">${getSiteLinks(topic).b2bName}</a> for professional accounts or distribution.
+- Also link to: <a href="https://pro.keratinandcare.com?utm_source=bbi&utm_medium=blog&utm_campaign=${topic.slug}">Keratin and Care Professional</a> for salon registration.`
+  : `- Include a natural CTA linking to: <a href="${getSiteLinks(topic).buyUrl}">${getSiteLinks(topic).buyName}</a> where readers can buy/stock these products.
+- Also reference: <a href="${getSiteLinks(topic).b2bUrl}">${getSiteLinks(topic).b2bName}</a> for professional/wholesale accounts.`
+}
+- All links must feel 100% editorial and natural — never forced sales pitches.
+
+Remember: anti-AI writing style mandatory. 1000-1400 words. Include FAQ section with 4 questions.`,
       }],
     }),
   });
