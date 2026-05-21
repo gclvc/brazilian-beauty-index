@@ -935,7 +935,7 @@
             <p class="section-eyebrow">More from the Index</p>
             <div class="related-grid">
               <template x-for="r in related" :key="r.slug">
-                <a :href="'/blog/post.html?slug=' + r.slug" class="post-card">
+                <a :href="'/blog/' + r.slug" class="post-card">
                   <div class="card-top-bar" :class="barClass(r.category)"></div>
                   <div class="card-body">
                     <p class="card-category" x-text="categoryLabel(r.category)"></p>
@@ -1071,10 +1071,15 @@
 
         /* ── init ── */
         async init() {
+          // Slug from query param (?slug=xxx) OR from pathname (/blog/my-slug)
           var params = new URLSearchParams(window.location.search);
-          var slug   = params.get('slug');
+          var slug   = params.get('slug')
+                    || window.location.pathname.split('/').filter(Boolean).pop();
 
-          if (!slug) { this.notFound = true; this.loading = false; return; }
+          // Ignore generic file names
+          if (!slug || slug === 'post' || slug === 'post.html' || slug === 'blog') {
+            this.notFound = true; this.loading = false; return;
+          }
 
           var posts = [];
           try {
