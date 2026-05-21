@@ -1,0 +1,26 @@
+name: Weekly Newsletter
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # Every Monday at 08:00 UTC
+  workflow_dispatch:        # Manual trigger from GitHub UI
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Send newsletter
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY:    ${{ secrets.RESEND_API_KEY }}
+          BBI_SUPABASE_URL:  ${{ secrets.BBI_SUPABASE_URL }}
+          BBI_SUPABASE_KEY:  ${{ secrets.BBI_SUPABASE_KEY }}
+          BBI_FROM_EMAIL:    ${{ secrets.BBI_FROM_EMAIL }}
+          BBI_NOTIFY_EMAIL:  ${{ secrets.BBI_NOTIFY_EMAIL }}
+        run: node scripts/generate-newsletter.mjs
