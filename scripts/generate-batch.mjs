@@ -94,25 +94,41 @@ AI SEARCH OPTIMIZATION (Perplexity, ChatGPT, Claude, Google AI Overviews):
 
 CONTENT RULES:
 - Focus on Brazilian beauty: hair care, skincare, nails, makeup, body, wellness, ingredients
-- Be specific: brands, product names, treatment durations, price ranges, regulations
-- Include at least one FAQ section (H2: Frequently Asked Questions) with 4 real questions
-- Target the primary keyword naturally throughout
-- Add 2-3 internal blog links using: <a href="/blog/[related-slug]">[anchor text]</a>
-  Related slugs to link: cadiveu-professional-guide, brae-hair-care-complete-guide,
+- Be specific: brands, product names, treatment durations, price ranges, EU/UK regulations
+- Include at least one FAQ section (H2: Frequently Asked Questions) with 4 real questions from People Also Ask
+- Target the primary keyword naturally (first 100 characters of body, H1, 2 H2s, naturally throughout)
+- Add 2-3 internal blog links: <a href="/blog/[slug]">[anchor text]</a>
+  Available slugs: cadiveu-professional-guide, brae-hair-care-complete-guide,
   honma-tokyo-brand-guide, brazilian-keratin-treatment-guide-2026,
   keratin-treatment-vs-brazilian-blowout, how-long-does-keratin-treatment-last,
-  what-is-hair-botox, damaged-hair-recovery-brazilian
-- Word count: 1000–1400 words
+  what-is-hair-botox, damaged-hair-recovery-brazilian, cadiveu-brasil-cacau-complete-guide,
+  cadiveu-plastica-dos-fios-guide, best-brazilian-keratin-treatments-ranked
+- Word count: 1100–1500 words (match format to type: pillar 1500, comparison 1300, tutorial 1200, review 1200)
+
+POST STRUCTURE (follow this template):
+1. Hook (2-3 sentences) + primary keyword in first 100 chars
+2. Direct answer to query in 40-60 words (featured snippet bait)
+3. H2 sections (5-7) each starting with a citable factual statement
+4. Comparison table (HTML) where relevant — tables get featured snippets
+5. Numbered OR bulleted list in at least 2 sections
+6. H2: Frequently Asked Questions (4 questions, 40-60 word answers each)
+7. H2: Bottom Line (clear recommendation + product link)
+8. Author note at end: <p class="author-note"><strong>BBI Editorial</strong> — Brazilian Beauty Index distributes Braé, Cadiveu, Honma Tokyo, Salvatore, Piur and Lavi across the UK and EU. All reviews are based on direct product experience.</p>
+
+E-E-A-T SIGNALS (include in every article):
+- Mention "UK importer" or "EU distributor" context where natural
+- Include at least one specific data point (price range, treatment duration, percentage)
+- Note "Last reviewed: May 2026" at end of content in <p class="last-updated">Last reviewed: May 2026</p>
 
 OUTPUT FORMAT — respond with ONLY valid JSON, no markdown fences:
 {
   "title": "Exact article title (max 80 chars)",
   "seo_title": "SEO title with keyword | Brazilian Beauty Index",
-  "seo_description": "Meta description 130-155 chars with primary keyword",
-  "excerpt": "2 compelling sentences for card display",
+  "seo_description": "Meta description 130-155 chars with primary keyword and implicit CTA",
+  "excerpt": "2 compelling sentences for card display — hook + direct value",
   "category": "hair|skincare|nails|makeup|body|wellness|distribution|ingredients",
   "tags": ["tag1", "tag2", "tag3"],
-  "content": "<h2>Section</h2><p>...</p>"
+  "content": "<p>[hook + featured snippet bait]</p><h2>...</h2>...<p class='last-updated'>Last reviewed: May 2026</p>"
 }`;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
