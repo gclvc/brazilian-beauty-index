@@ -1,3 +1,27 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+
+# AI crawlers - explicitly allowed for maximum AI search visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 Sitemap: https://www.brazilianbeautyindex.com/sitemap.xml

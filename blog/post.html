@@ -3,263 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Dynamic title/description set by Alpine in init() -->
   <title>Article — Brazilian Beauty Index</title>
-  <meta name="description" content="">
+  <meta id="desc" name="description" content="">
+
+  <!-- Canonical (set dynamically) -->
+  <link id="canonical" rel="canonical" href="https://www.brazilianbeautyindex.com/blog/post.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta id="og-title" property="og:title" content="Brazilian Beauty Index">
+  <meta id="og-desc" property="og:description" content="">
+  <meta id="og-url" property="og:url" content="https://www.brazilianbeautyindex.com/blog/post.html">
+  <meta property="og:site_name" content="Brazilian Beauty Index">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta id="tw-title" name="twitter:title" content="Brazilian Beauty Index">
+  <meta id="tw-desc" name="twitter:description" content="">
+
+  <!-- Fonts: Cormorant Garamond + DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- JSON-LD placeholder — updated by Alpine on load -->
+  <script id="ld-article" type="application/ld+json">{"@context":"https://schema.org"}</script>
+  <script id="ld-breadcrumb" type="application/ld+json">{"@context":"https://schema.org"}</script>
+  <script id="ld-faq" type="application/ld+json">{"@context":"https://schema.org"}</script>
+
   <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────── */
     :root {
-      --g: #0D3224;
-      --g2: #174D38;
-      --g3: #0A2419;
-      --gold: #C9962A;
-      --gold-l: #E0B84A;
-      --terra: #D4603A;
-      --cream: #FAF8F2;
-      --cream-2: #F0EDE4;
-      --text: #1A1A1A;
-      --text-2: rgba(26,26,26,.62);
-      --text-3: rgba(26,26,26,.38);
-      --border: rgba(26,26,26,.08);
-      --f-serif: 'Playfair Display', Georgia, serif;
-      --f-sans: 'Inter', system-ui, sans-serif;
+      --green:    #0D3224;
+      --green-2:  #174D38;
+      --gold:     #C9962A;
+      --gold-l:   #E0B84A;
+      --terra:    #C4563A;
+      --white:    #FFFFFF;
+      --ivory:    #F8F6F2;
+      --cream:    #F2EEE8;
+      --text:     #111111;
+      --text-2:   rgba(17,17,17,.58);
+      --text-3:   rgba(17,17,17,.35);
+      --border:   rgba(17,17,17,.08);
+      --border-2: rgba(17,17,17,.15);
+      --f-serif:  'Cormorant Garamond', Georgia, serif;
+      --f-sans:   'DM Sans', system-ui, sans-serif;
+      --max-prose: 720px;
     }
 
+    /* ─── RESET ──────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: var(--f-sans);
+      font-size: 16px;
+      line-height: 1.6;
       color: var(--text);
-      background: var(--cream);
+      background: var(--ivory);
       -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
 
-    /* ── NAV ── */
-    .nav {
+    /* ─── READING PROGRESS BAR ───────────────────────────────────── */
+    #progress-bar {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 66px;
-      background: var(--g);
-      z-index: 100;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--gold);
+      z-index: 9999;
+      transition: width .1s linear;
+    }
+
+    /* ─── STICKY NAV ─────────────────────────────────────────────── */
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .main-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
-      padding: 0 32px;
-      gap: 32px;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
     }
-
     .nav-logo {
       font-family: var(--f-serif);
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--green);
       white-space: nowrap;
       flex-shrink: 0;
+      letter-spacing: -.01em;
     }
-
-    .nav-logo span { color: var(--gold); }
-
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      list-style: none;
-      margin-left: auto;
+      gap: 22px;
     }
-
     .nav-links a {
       font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,.75);
-      text-decoration: none;
-      letter-spacing: .02em;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
       transition: color .2s;
     }
-
-    .nav-links a:hover { color: #fff; }
-
-    .btn-nav {
-      background: var(--gold);
-      color: #fff !important;
-      padding: 8px 18px;
-      border-radius: 6px;
-      font-weight: 600 !important;
-      font-size: 13px !important;
-      transition: background .2s !important;
-      white-space: nowrap;
+    .nav-links a:hover { color: var(--green); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
     }
-
-    .btn-nav:hover { background: var(--gold-l) !important; color: var(--g) !important; }
-
-    /* hamburger */
-    .hamburger {
+    .btn-subscribe {
+      background: var(--green);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 8px 16px;
+      border-radius: 3px;
+      transition: background .2s;
+    }
+    .btn-subscribe:hover { background: var(--green-2); }
+    .nav-hamburger {
       display: none;
       flex-direction: column;
       gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      margin-left: auto;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
     }
-
-    .hamburger span {
+    .nav-hamburger span {
       display: block;
-      width: 22px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all .3s;
     }
 
     /* mobile menu */
-    .mmenu {
+    .mobile-menu {
       display: none;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--g3);
-      z-index: 200;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
+      top: 56px; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 300;
+      padding: 32px 24px;
+      overflow-y: auto;
     }
-
-    .mmenu.open { display: flex; }
-
-    .mmenu a {
+    .mobile-menu.open { display: flex; flex-direction: column; }
+    .mobile-menu a {
       font-family: var(--f-serif);
-      font-size: 26px;
-      color: #fff;
-      text-decoration: none;
-      opacity: .85;
-      transition: opacity .2s;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
+    .mobile-menu a:last-child { border-bottom: none; }
 
-    .mmenu a:hover { opacity: 1; }
-
-    .mmenu-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 28px;
-      cursor: pointer;
-      line-height: 1;
+    /* ─── BREADCRUMB ─────────────────────────────────────────────── */
+    .breadcrumb-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
     }
-
-    .mmenu-partner {
-      background: var(--gold);
-      color: #fff !important;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-family: var(--f-sans) !important;
-      font-size: 15px !important;
-      font-weight: 600;
-    }
-
-    /* ── SPINNER ── */
-    .spinner-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 66px);
-      margin-top: 66px;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--cream-2);
-      border-top-color: var(--g);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── NOT FOUND ── */
-    .not-found {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 66px);
-      margin-top: 66px;
-      text-align: center;
-      padding: 32px;
-      gap: 20px;
-    }
-
-    .not-found h2 {
-      font-family: var(--f-serif);
-      font-size: 32px;
-      color: var(--g);
-    }
-
-    .not-found p { color: var(--text-2); font-size: 16px; }
-
-    .back-link {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      transition: color .2s;
-    }
-
-    .back-link:hover { color: var(--g); }
-
-    /* ── ARTICLE HEADER ── */
-    .article-header {
-      margin-top: 66px;
-      background: var(--g);
-      min-height: 320px;
-      padding: 100px 32px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-
-    .article-header-inner {
-      max-width: 720px;
-      width: 100%;
+    .breadcrumb-bar .container {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 24px;
     }
-
     .breadcrumb {
-      font-size: 11px;
-      color: rgba(250,248,242,.55);
-      letter-spacing: .04em;
-      margin-bottom: 18px;
       display: flex;
-      gap: 8px;
       align-items: center;
       flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .02em;
     }
-
     .breadcrumb a {
-      color: rgba(250,248,242,.55);
-      text-decoration: none;
+      color: var(--text-3);
       transition: color .2s;
     }
+    .breadcrumb a:hover { color: var(--green); }
+    .breadcrumb-sep { color: var(--border-2); font-size: 10px; }
+    .breadcrumb-current { color: var(--text-2); }
 
-    .breadcrumb a:hover { color: rgba(250,248,242,.9); }
-
-    .breadcrumb-sep {
-      color: rgba(250,248,242,.3);
-      font-size: 10px;
+    /* ─── ARTICLE HEADER ─────────────────────────────────────────── */
+    .article-header {
+      background: var(--green);
+      padding: 56px 24px 52px;
     }
-
-    .article-category-tag {
+    .article-header-inner {
+      max-width: var(--max-prose);
+      margin: 0 auto;
+    }
+    .article-category-badge {
       display: inline-block;
       background: var(--gold);
-      color: #fff;
-      font-size: 10px;
+      color: var(--white);
+      font-family: var(--f-sans);
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -267,230 +228,376 @@
       border-radius: 100px;
       margin-bottom: 20px;
     }
-
-    .article-title {
+    .article-h1 {
       font-family: var(--f-serif);
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.15;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--white);
       margin-bottom: 24px;
+      letter-spacing: -.01em;
     }
-
     .article-meta {
       display: flex;
-      gap: 6px;
       align-items: center;
-      font-size: 13px;
-      color: rgba(250,248,242,.55);
+      gap: 6px;
+      font-family: var(--f-sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
       flex-wrap: wrap;
     }
-
-    .article-meta span + span::before {
-      content: '·';
-      margin-right: 6px;
+    .meta-dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      flex-shrink: 0;
     }
 
-    /* ── ARTICLE BODY ── */
+    /* ─── ARTICLE BODY WRAP ──────────────────────────────────────── */
     .article-body-wrap {
-      background: var(--cream);
-      padding: 72px 32px;
+      padding: 0 24px 80px;
+      background: var(--ivory);
     }
-
     .article-body {
-      max-width: 720px;
+      max-width: var(--max-prose);
       margin: 0 auto;
     }
 
-    /* Prose typography applied via x-html content */
-    .article-body :deep(p),
+    /* ─── TL;DR BOX ──────────────────────────────────────────────── */
+    .tldr-box {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 24px 28px;
+      margin: 32px 0 40px;
+    }
+    .tldr-label {
+      font-family: var(--f-sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .tldr-text {
+      font-family: var(--f-serif);
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* ─── PROSE ──────────────────────────────────────────────────── */
+    .prose { font-family: var(--f-sans); }
+
     .prose p {
       font-size: 17px;
       line-height: 1.8;
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 22px;
+      color: var(--text);
     }
-
-    .article-body :deep(h2),
     .prose h2 {
       font-family: var(--f-serif);
       font-size: 28px;
-      color: var(--g);
-      margin: 40px 0 16px;
+      font-weight: 300;
+      color: var(--green);
+      margin: 44px 0 18px;
       line-height: 1.2;
+      letter-spacing: -.01em;
     }
-
-    .article-body :deep(h3),
     .prose h3 {
-      font-size: 20px;
+      font-family: var(--f-sans);
+      font-size: 18px;
       font-weight: 600;
       color: var(--text);
-      margin: 28px 0 12px;
-      line-height: 1.3;
+      margin: 30px 0 12px;
+      line-height: 1.35;
     }
-
-    .article-body :deep(blockquote),
+    .prose h4 {
+      font-family: var(--f-sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-2);
+      margin: 24px 0 10px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
     .prose blockquote {
       border-left: 3px solid var(--gold);
-      padding: 12px 20px;
-      background: var(--cream-2);
+      padding: 14px 22px;
+      background: var(--cream);
+      font-family: var(--f-serif);
       font-style: italic;
-      margin: 24px 0;
-      color: var(--text-2);
+      font-size: 20px;
+      line-height: 1.55;
+      margin: 30px 0;
+      color: var(--green);
+      border-radius: 0 4px 4px 0;
     }
-
-    .article-body :deep(ul),
-    .article-body :deep(ol),
-    .prose ul,
-    .prose ol {
-      margin: 0 0 20px 20px;
+    .prose ul {
+      margin: 0 0 22px 0;
+      padding: 0;
+      list-style: none;
     }
-
-    .article-body :deep(li),
-    .prose li {
+    .prose ul li {
       font-size: 17px;
       line-height: 1.8;
-      color: #333;
-      margin-bottom: 6px;
+      color: var(--text);
+      padding-left: 22px;
+      margin-bottom: 8px;
+      position: relative;
     }
-
-    .article-body :deep(a),
+    .prose ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    .prose ol {
+      margin: 0 0 22px 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: prose-ol;
+    }
+    .prose ol li {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text);
+      padding-left: 28px;
+      margin-bottom: 8px;
+      position: relative;
+      counter-increment: prose-ol;
+    }
+    .prose ol li::before {
+      content: counter(prose-ol) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 15px;
+    }
     .prose a {
-      color: var(--g);
+      color: var(--green);
       text-decoration: underline;
       text-underline-offset: 3px;
+      text-decoration-color: rgba(13,50,36,.3);
+      transition: text-decoration-color .2s;
     }
-
-    .article-body :deep(img),
+    .prose a:hover { text-decoration-color: var(--green); }
+    .prose strong { font-weight: 600; }
+    .prose em { font-style: italic; }
     .prose img {
       width: 100%;
-      border-radius: 8px;
-      margin: 24px 0;
+      border-radius: 6px;
+      margin: 28px 0;
+    }
+    .prose hr {
+      border: none;
+      border-top: 1px solid var(--border-2);
+      margin: 40px 0;
     }
 
-    .article-body :deep(strong),
-    .prose strong {
+    /* FAQ schema markup styles */
+    .prose [itemtype="https://schema.org/FAQPage"] { margin: 40px 0; }
+    .prose [itemprop="mainEntity"] {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .prose [itemprop="mainEntity"]:last-child { border-bottom: none; }
+    .prose [itemprop="name"] {
+      font-family: var(--f-sans);
+      font-size: 17px;
       font-weight: 600;
+      color: var(--green);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .prose [itemprop="text"] {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.75;
     }
 
-    /* ── CTA BOX ── */
-    .cta-box {
-      max-width: 720px;
-      margin: 48px auto 0;
-      background: var(--g);
-      border-radius: 16px;
-      padding: 32px 36px;
+    /* ─── INLINE LINK BOX ────────────────────────────────────────── */
+    .inline-link-box {
+      background: rgba(13,50,36,.04);
+      border: 1px solid rgba(13,50,36,.1);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .inline-link-box-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      flex-shrink: 0;
+    }
+    .inline-link-box a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(13,50,36,.25);
+      transition: text-decoration-color .2s;
+    }
+    .inline-link-box a:hover { text-decoration-color: var(--green); }
+
+    /* ─── MID-ARTICLE CTA ────────────────────────────────────────── */
+    .cta-mid {
+      background: var(--green);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 44px 0;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
-
-    .cta-box h4 {
+    .cta-mid h4 {
       font-family: var(--f-serif);
       font-size: 22px;
-      color: #fff;
-      font-weight: 700;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.25;
     }
-
-    .cta-box p {
-      font-size: 15px;
-      color: rgba(255,255,255,.65);
+    .cta-mid p {
+      font-size: 14px;
+      color: rgba(255,255,255,.6);
       line-height: 1.6;
     }
-
     .btn-gold {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--gold);
-      color: #fff;
+      color: var(--white);
       font-family: var(--f-sans);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 8px;
+      letter-spacing: .03em;
+      padding: 11px 22px;
+      border-radius: 4px;
       text-decoration: none;
       transition: background .2s;
       align-self: flex-start;
     }
+    .btn-gold:hover { background: var(--gold-l); color: var(--green); text-decoration: none; }
 
-    .btn-gold:hover { background: var(--gold-l); color: var(--g); }
-
-    /* ── RELATED ARTICLES ── */
-    .related-section {
-      max-width: 720px;
-      margin: 64px auto 0;
-      padding: 0 0 72px;
+    /* ─── SOCIAL SHARE ───────────────────────────────────────────── */
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 0;
+      flex-wrap: wrap;
     }
+    .share-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-right: 4px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-2);
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      padding: 7px 14px;
+      background: var(--white);
+      transition: all .2s;
+      min-height: 36px;
+    }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn:hover { border-color: var(--green); color: var(--green); background: rgba(13,50,36,.03); }
+    .share-btn.copied { border-color: var(--gold); color: var(--gold); }
 
-    .related-label {
-      font-size: 11px;
+    /* ─── RELATED ARTICLES ───────────────────────────────────────── */
+    .related-section {
+      max-width: var(--max-prose);
+      margin: 64px auto 0;
+    }
+    .section-eyebrow {
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: .16em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 24px;
     }
-
     .related-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
-
-    /* ── CARD (reused) ── */
     .post-card {
-      background: #fff;
+      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 6px;
       overflow: hidden;
-      text-decoration: none;
-      color: inherit;
       display: flex;
       flex-direction: column;
+      text-decoration: none;
+      color: inherit;
       transition: box-shadow .25s, transform .25s;
     }
-
     .post-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+      box-shadow: 0 6px 28px rgba(0,0,0,.09);
       transform: translateY(-3px);
     }
-
     .card-top-bar { height: 3px; flex-shrink: 0; }
-    .bar-hair-care { background: var(--g); }
-    .bar-skincare { background: var(--g2); }
-    .bar-ingredients { background: var(--gold); }
+    .bar-hair-care    { background: var(--green); }
+    .bar-skincare     { background: var(--green-2); }
+    .bar-ingredients  { background: var(--gold); }
     .bar-distribution { background: var(--terra); }
-    .bar-makeup { background: #9B4F8E; }
-    .bar-nails { background: #C84B6E; }
-    .bar-default { background: var(--g); }
-
+    .bar-makeup       { background: #9B4F8E; }
+    .bar-nails        { background: #C84B6E; }
+    .bar-default      { background: var(--green); }
     .card-body {
-      padding: 18px 18px 20px;
+      padding: 16px 16px 18px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-
     .card-category {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
-
     .card-title {
       font-family: var(--f-serif);
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 400;
       line-height: 1.35;
       color: var(--text);
       margin-bottom: 8px;
     }
-
     .card-excerpt {
       font-size: 12px;
-      line-height: 1.6;
+      line-height: 1.55;
       color: var(--text-2);
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -499,61 +606,151 @@
       flex: 1;
       margin-bottom: 12px;
     }
-
     .card-meta {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-3);
       display: flex;
-      gap: 6px;
+      gap: 5px;
+      align-items: center;
     }
+    .card-meta-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--text-3); }
 
-    .card-meta span + span::before {
-      content: '·';
-      margin-right: 6px;
+    /* ─── NEWSLETTER CTA ─────────────────────────────────────────── */
+    .newsletter-section {
+      max-width: var(--max-prose);
+      margin: 56px auto 0;
+      background: var(--cream);
+      border: 1px solid var(--border-2);
+      border-radius: 8px;
+      padding: 36px 36px;
     }
-
-    /* ── BACK TO TOP ── */
-    .back-to-top {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--g);
-      color: #fff;
+    .newsletter-section h3 {
+      font-family: var(--f-serif);
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--green);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .newsletter-section p {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      font-family: var(--f-sans);
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid var(--border-2);
+      border-radius: 4px;
+      padding: 11px 16px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .newsletter-input:focus { border-color: var(--green); }
+    .newsletter-input::placeholder { color: var(--text-3); }
+    .btn-newsletter {
+      background: var(--green);
+      color: var(--white);
+      font-family: var(--f-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      padding: 11px 22px;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+      min-height: 44px;
+    }
+    .btn-newsletter:hover { background: var(--green-2); }
+    .newsletter-success {
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 500;
+      padding: 10px 0;
+    }
+
+    /* ─── LOADING / 404 ──────────────────────────────────────────── */
+    .state-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      padding: 48px 24px;
+      gap: 20px;
+      text-align: center;
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 2.5px solid var(--border-2);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin .65s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .not-found-heading {
+      font-family: var(--f-serif);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--green);
+    }
+    .not-found-sub { font-size: 15px; color: var(--text-2); }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--green);
+      border-bottom: 1px solid rgba(13,50,36,.25);
+      padding-bottom: 1px;
+      transition: opacity .2s;
+    }
+    .back-link:hover { opacity: .7; }
+
+    /* ─── BACK TO TOP ────────────────────────────────────────────── */
+    #back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,.25);
-      transition: background .2s, transform .2s;
-      z-index: 90;
+      box-shadow: 0 4px 18px rgba(0,0,0,.22);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
     }
-
-    .back-to-top:hover {
-      background: var(--g2);
-      transform: translateY(-2px);
+    #back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
+    #back-to-top:hover { background: var(--green-2); transform: translateY(-2px); }
+    #back-to-top svg { width: 18px; height: 18px; }
 
-    .back-to-top svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Show back-to-top only on mobile via CSS override — desktop also shows */
-    @media (min-width: 769px) {
-      .back-to-top { display: flex; }
-    }
-
-    /* ── FOOTER ── */
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
     .footer {
-      background: var(--g);
-      padding: 48px 32px;
-      color: rgba(255,255,255,.65);
+      background: var(--green);
+      padding: 48px 24px 40px;
+      margin-top: 80px;
     }
-
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
@@ -563,146 +760,190 @@
       gap: 20px;
       text-align: center;
     }
-
     .footer-brand {
       font-family: var(--f-serif);
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--white);
     }
-
     .footer-brand span { color: var(--gold); }
-
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 20px;
+      gap: 6px 18px;
       justify-content: center;
-      list-style: none;
     }
-
     .footer-links a {
-      font-size: 13px;
-      color: rgba(255,255,255,.55);
-      text-decoration: none;
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
       transition: color .2s;
     }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,.3); }
 
-    .footer-links a:hover { color: #fff; }
-
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(255,255,255,.35);
-    }
-
-    /* ── RESPONSIVE ── */
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .nav { padding: 0 20px; gap: 0; }
-
-      .article-header { padding: 80px 20px 48px; }
-      .article-body-wrap { padding: 48px 20px; }
-      .cta-box { padding: 24px 20px; margin-top: 36px; }
-      .related-section { padding: 0 0 56px; margin-top: 48px; }
+      .nav-links, .nav-right { display: none; }
+      .nav-hamburger { display: flex; }
+      .article-header { padding: 44px 20px 40px; }
+      .article-body-wrap { padding: 0 20px 56px; }
+      .cta-mid { padding: 24px 20px; }
       .related-grid { grid-template-columns: 1fr; }
+      .newsletter-section { padding: 28px 20px; }
+      .share-row { gap: 8px; }
+    }
+    @media (min-width: 769px) {
+      #back-to-top { display: flex; }
     }
   </style>
 </head>
-<body x-data="{ scrollY: 0 }" @scroll.window="scrollY = window.scrollY">
 
-  <!-- MOBILE MENU OVERLAY -->
-  <div class="mmenu" id="mmenu">
-    <button class="mmenu-close" onclick="closeMmenu()">&#x2715;</button>
+<body>
+  <!-- Reading progress bar -->
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <a href="/">Home</a>
     <a href="/hair/">Hair</a>
     <a href="/skin/">Skin</a>
     <a href="/brands/">Brands</a>
     <a href="/blog/">Editorial</a>
     <a href="/distribution/">Distribution</a>
-    <a href="/distribution/" class="mmenu-partner">Partner With Us</a>
+    <a href="/distribution/" style="color:var(--gold);font-weight:600;">Partner With Us</a>
   </div>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="/" class="nav-logo">Brazilian <span>Beauty</span> Index</a>
-    <ul class="nav-links">
-      <li><a href="/hair/">Hair</a></li>
-      <li><a href="/skin/">Skin</a></li>
-      <li><a href="/brands/">Brands</a></li>
-      <li><a href="/blog/">Editorial</a></li>
-      <li><a href="/distribution/">Distribution</a></li>
-      <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
-    </ul>
-    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+  <!-- Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Brazilian Beauty Index</a>
+      <div class="nav-links" role="list">
+        <a href="/hair/" role="listitem">Hair</a>
+        <a href="/skin/" role="listitem">Skin</a>
+        <a href="/brands/" role="listitem">Brands</a>
+        <a href="/blog/" role="listitem">Editorial</a>
+        <a href="/distribution/" role="listitem">Distribution</a>
+      </div>
+      <div class="nav-right">
+        <a href="/distribution/" class="btn-subscribe">Partner With Us</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- APP ROOT -->
+  <!-- Alpine app root -->
   <div x-data="postApp()" x-init="init()">
 
-    <!-- LOADING -->
-    <div class="spinner-wrap" x-show="loading">
-      <div class="spinner"></div>
+    <!-- LOADING STATE -->
+    <div class="state-wrap" x-show="loading" x-cloak>
+      <div class="spinner" role="status" aria-label="Loading article"></div>
     </div>
 
-    <!-- NOT FOUND -->
-    <div class="not-found" x-show="!loading && notFound">
-      <h2>Article not found</h2>
-      <p>The article you are looking for doesn't exist or has been moved.</p>
-      <a href="/blog/" class="back-link">← Back to Blog</a>
+    <!-- 404 STATE -->
+    <div class="state-wrap" x-show="!loading && notFound" x-cloak role="main">
+      <h1 class="not-found-heading">Article not found</h1>
+      <p class="not-found-sub">The article you are looking for does not exist or has been moved.</p>
+      <a href="/blog/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2L3 7l5 5"/></svg>
+        Back to Blog
+      </a>
     </div>
 
-    <!-- ARTICLE -->
+    <!-- ARTICLE STATE -->
     <template x-if="!loading && !notFound && post">
-      <div>
+      <main role="main">
 
-        <!-- ARTICLE HEADER -->
-        <header class="article-header">
-          <div class="article-header-inner">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar">
+          <div class="container">
             <nav class="breadcrumb" aria-label="Breadcrumb">
               <a href="/">Home</a>
-              <span class="breadcrumb-sep">›</span>
-              <a href="/blog/">Blog</a>
-              <span class="breadcrumb-sep">›</span>
-              <span x-text="post.category_label || post.category"></span>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <a href="/blog/">Editorial</a>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <a :href="'/blog/?category=' + post.category" x-text="categoryLabel(post.category)"></a>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <span class="breadcrumb-current" x-text="post.title" aria-current="page"></span>
             </nav>
-            <span class="article-category-tag" x-text="post.category_label || post.category"></span>
-            <h1 class="article-title" x-text="post.title"></h1>
+          </div>
+        </div>
+
+        <!-- Article header -->
+        <header class="article-header">
+          <div class="article-header-inner">
+            <span class="article-category-badge" x-text="categoryLabel(post.category)"></span>
+            <h1 class="article-h1" x-text="post.title"></h1>
             <div class="article-meta">
-              <span x-text="post.author"></span>
+              <span x-text="post.author || 'BBI Editorial'"></span>
+              <span class="meta-dot" aria-hidden="true"></span>
               <span x-text="formatDate(post.date)"></span>
+              <span class="meta-dot" aria-hidden="true"></span>
               <span x-text="readTime(post.content) + ' min read'"></span>
             </div>
           </div>
         </header>
 
-        <!-- ARTICLE BODY WRAP -->
+        <!-- Article body -->
         <div class="article-body-wrap">
           <div class="article-body">
-            <article class="prose" x-html="post.content"></article>
+
+            <!-- TL;DR box — key for AI search (direct answer upfront) -->
+            <div class="tldr-box" role="note" aria-label="Article summary">
+              <p class="tldr-label">The Short Answer</p>
+              <p class="tldr-text" x-text="post.excerpt"></p>
+            </div>
+
+            <!-- Prose content -->
+            <article class="prose" x-html="processedContent()" aria-label="Article body"></article>
+
+            <!-- Social share -->
+            <div class="share-row" aria-label="Share this article">
+              <span class="share-label">Share</span>
+
+              <button class="share-btn" @click="shareTwitter()" aria-label="Share on X / Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.836L2.25 2.25H8.08l4.259 5.633 5.905-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+                X / Twitter
+              </button>
+
+              <button class="share-btn" @click="shareWhatsApp()" aria-label="Share on WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </button>
+
+              <button class="share-btn" :class="copied && 'copied'" @click="copyLink()" aria-label="Copy link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                <span x-text="copied ? 'Copied!' : 'Copy link'"></span>
+              </button>
+            </div>
+
+          </div><!-- /article-body -->
+
+          <!-- Mid-article CTA: BM Supplier -->
+          <div class="cta-mid" style="max-width:var(--max-prose);margin-left:auto;margin-right:auto;">
+            <h4>Source these brands through BM Supplier</h4>
+            <p>BM Supplier distributes Brazilian professional hair care brands to salons and distributors across Europe. Direct access to CPNP-compliant stock, fast EU delivery, and dedicated account management.</p>
+            <a href="https://bmsupplier.co.uk" class="btn-gold" target="_blank" rel="noopener">
+              Visit BM Supplier
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+            </a>
           </div>
 
-          <!-- CTA BOX -->
-          <div class="cta-box">
-            <h4>Interested in stocking this brand?</h4>
-            <p>We connect European retailers and distributors with the best Brazilian beauty brands. Tell us what you are looking for.</p>
-            <a href="/distribution/" class="btn-gold">Request an Introduction →</a>
-          </div>
-
-          <!-- RELATED ARTICLES -->
+          <!-- Related articles -->
           <div class="related-section" x-show="related.length > 0">
-            <p class="related-label">More from the Index</p>
+            <p class="section-eyebrow">More from the Index</p>
             <div class="related-grid">
               <template x-for="r in related" :key="r.slug">
                 <a :href="'/blog/post.html?slug=' + r.slug" class="post-card">
                   <div class="card-top-bar" :class="barClass(r.category)"></div>
                   <div class="card-body">
-                    <p class="card-category" x-text="r.category_label || r.category"></p>
+                    <p class="card-category" x-text="categoryLabel(r.category)"></p>
                     <h3 class="card-title" x-text="r.title"></h3>
                     <p class="card-excerpt" x-text="r.excerpt"></p>
                     <div class="card-meta">
-                      <span x-text="r.author"></span>
+                      <span x-text="r.author || 'BBI Editorial'"></span>
+                      <span class="card-meta-dot" aria-hidden="true"></span>
                       <span x-text="formatDate(r.date)"></span>
                     </div>
                   </div>
@@ -711,350 +952,377 @@
             </div>
           </div>
 
-        </div><!-- /article-body-wrap -->
+          <!-- Newsletter CTA -->
+          <div class="newsletter-section" aria-label="Newsletter signup">
+            <h3>Stay ahead of Brazilian beauty</h3>
+            <p>Weekly intelligence on brands, ingredients, regulations and distribution — direct to your inbox.</p>
+            <div x-show="!newsletterDone">
+              <form class="newsletter-form" @submit.prevent="subscribeNewsletter()">
+                <input
+                  class="newsletter-input"
+                  type="email"
+                  x-model="newsletterEmail"
+                  placeholder="your@email.com"
+                  required
+                  aria-label="Email address"
+                  autocomplete="email"
+                >
+                <button class="btn-newsletter" type="submit" :disabled="newsletterLoading">
+                  <span x-text="newsletterLoading ? 'Subscribing…' : 'Subscribe'"></span>
+                </button>
+              </form>
+            </div>
+            <p class="newsletter-success" x-show="newsletterDone" role="status">
+              You are on the list. Welcome to the Index.
+            </p>
+          </div>
 
-      </div>
+        </div><!-- /article-body-wrap -->
+      </main>
     </template>
 
-  </div><!-- /app root -->
+  </div><!-- /Alpine root -->
 
-  <!-- BACK TO TOP -->
-  <button
-    class="back-to-top"
-    x-show="scrollY > 400"
-    x-transition:enter="transition ease-out duration-200"
-    x-transition:enter-start="opacity-0 translate-y-2"
-    x-transition:enter-end="opacity-100 translate-y-0"
-    x-transition:leave="transition ease-in duration-150"
-    x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0"
-    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
-    aria-label="Back to top"
-  >
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="4 13 10 7 16 13"></polyline>
+  <!-- Back to top -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="3 12 9 6 15 12"/>
     </svg>
   </button>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
-      <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/brands/">Brands</a></li>
-        <li><a href="/distribution/">Distribution</a></li>
-        <li><a href="/advertise/">Advertise</a></li>
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/terms/">Terms</a></li>
-      </ul>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/brands/">Brands</a>
+        <a href="/blog/">Editorial</a>
+        <a href="/distribution/">Distribution</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </nav>
       <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Mobile menu
-    function openMmenu() {
-      document.getElementById('mmenu').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMmenu() {
-      document.getElementById('mmenu').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+    /* ─── MOBILE NAV ─────────────────────────────────────────── */
+    (function () {
+      var btn    = document.getElementById('hamburger-btn');
+      var menu   = document.getElementById('mobile-menu');
+      var isOpen = false;
 
-    // Alpine component
+      function toggle() {
+        isOpen = !isOpen;
+        menu.classList.toggle('open', isOpen);
+        btn.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
+
+      btn.addEventListener('click', toggle);
+
+      // close on outside click
+      document.addEventListener('click', function (e) {
+        if (isOpen && !menu.contains(e.target) && !btn.contains(e.target)) toggle();
+      });
+    }());
+
+    /* ─── NAV SHADOW ON SCROLL ───────────────────────────────── */
+    (function () {
+      var nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+    }());
+
+    /* ─── READING PROGRESS BAR ───────────────────────────────── */
+    (function () {
+      var bar = document.getElementById('progress-bar');
+      window.addEventListener('scroll', function () {
+        var docH  = document.documentElement.scrollHeight - window.innerHeight;
+        var pct   = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        bar.style.width = Math.min(pct, 100) + '%';
+      }, { passive: true });
+    }());
+
+    /* ─── BACK TO TOP ────────────────────────────────────────── */
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }());
+
+    /* ─── ALPINE COMPONENT ───────────────────────────────────── */
     function postApp() {
       return {
         post: null,
         loading: true,
         notFound: false,
         related: [],
+        copied: false,
+        newsletterEmail: '',
+        newsletterLoading: false,
+        newsletterDone: false,
 
+        /* ── init ── */
         async init() {
-          const params = new URLSearchParams(window.location.search);
-          const slug = params.get('slug');
+          var params = new URLSearchParams(window.location.search);
+          var slug   = params.get('slug');
 
-          if (!slug) {
-            this.notFound = true;
-            this.loading = false;
-            return;
-          }
+          if (!slug) { this.notFound = true; this.loading = false; return; }
 
+          var posts = [];
           try {
-            const res = await fetch('/blog/posts.json');
-            let posts = [];
-            if (res.ok) {
-              posts = await res.json();
-            } else {
-              posts = this._demoData();
-            }
+            var res = await fetch('/blog/posts.json');
+            if (res.ok) posts = await res.json();
+          } catch (_) {}
 
-            const found = posts.find(p => p.slug === slug);
+          var found = posts.find(function (p) { return p.slug === slug; });
 
-            if (!found) {
-              // Try demo data
-              const demo = this._demoData();
-              const demoFound = demo.find(p => p.slug === slug);
-              if (demoFound) {
-                this.post = demoFound;
-                this.related = this._findRelated(demo, demoFound);
-              } else {
-                this.notFound = true;
-              }
-            } else {
-              this.post = found;
-              this.related = this._findRelated(posts, found);
-            }
-
-            if (this.post) {
-              // Update document title and meta description
-              document.title = this.post.seo_title || this.post.title + ' — Brazilian Beauty Index';
-              const metaDesc = document.querySelector('meta[name="description"]');
-              if (metaDesc) {
-                metaDesc.setAttribute('content', this.post.seo_description || this.post.excerpt || '');
-              }
-
-              this.$nextTick(() => {
-                gsap.fromTo('.article-header', { opacity: 0, y: 16 }, {
-                  opacity: 1, y: 0,
-                  duration: 0.6,
-                  ease: 'power2.out'
-                });
-                gsap.fromTo('.prose', { opacity: 0, y: 12 }, {
-                  opacity: 1, y: 0,
-                  duration: 0.5,
-                  delay: 0.2,
-                  ease: 'power2.out'
-                });
-              });
-            }
-          } catch (err) {
-            // Try demo data on error
-            const demo = this._demoData();
-            const found = demo.find(p => p.slug === slug);
-            if (found) {
-              this.post = found;
-              this.related = this._findRelated(demo, found);
-            } else {
-              this.notFound = true;
-            }
+          if (found) {
+            this.post    = found;
+            this.related = this._findRelated(posts, found);
+          } else {
+            this.notFound = true;
           }
 
           this.loading = false;
+
+          if (this.post) {
+            // ── SEO tags ──
+            var p = this.post;
+            var titleText = p.seo_title || (p.title + ' — Brazilian Beauty Index');
+            document.title = titleText;
+
+            var descEl = document.getElementById('desc');
+            if (descEl) descEl.setAttribute('content', p.seo_description || p.excerpt || '');
+
+            var ogT = document.getElementById('og-title');
+            var ogD = document.getElementById('og-desc');
+            var ogU = document.getElementById('og-url');
+            var twT = document.getElementById('tw-title');
+            var twD = document.getElementById('tw-desc');
+            if (ogT) ogT.setAttribute('content', titleText);
+            if (ogD) ogD.setAttribute('content', p.seo_description || p.excerpt || '');
+            if (ogU) ogU.setAttribute('content', window.location.href);
+            if (twT) twT.setAttribute('content', titleText);
+            if (twD) twD.setAttribute('content', p.seo_description || p.excerpt || '');
+
+            var canEl = document.getElementById('canonical');
+            if (canEl) canEl.setAttribute('href', window.location.origin + window.location.pathname + '?slug=' + p.slug);
+
+            // ── JSON-LD ──
+            this._injectJsonLd(p);
+          }
         },
 
+        /* ── processed content: add internal links ── */
+        processedContent() {
+          if (!this.post || !this.post.content) return '';
+          var html = this.post.content;
+
+          // Braé → braehaircare.co.uk (first occurrence, case-insensitive)
+          html = this._linkFirst(html, /Bra[eé]\b/i, function (m) {
+            return '<a href="https://braehaircare.co.uk" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          // Cadiveu → bmsupplier.co.uk/brands/cadiveu
+          html = this._linkFirst(html, /Cadiveu/i, function (m) {
+            return '<a href="https://bmsupplier.co.uk/brands/cadiveu" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          // Honma → bmsupplier
+          html = this._linkFirst(html, /Honma/i, function (m) {
+            return '<a href="https://bmsupplier.co.uk/brands/honma" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          // Salvatore → bmsupplier
+          html = this._linkFirst(html, /Salvatore/i, function (m) {
+            return '<a href="https://bmsupplier.co.uk/brands/salvatore" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          // "keratin" → keratinandcare.com (first mention not already linked)
+          html = this._linkFirst(html, /\bkeratin\b/i, function (m) {
+            return '<a href="https://keratinandcare.com" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          // "professional" → pro.keratinandcare.com (first mention)
+          html = this._linkFirst(html, /\bprofessional\b/i, function (m) {
+            return '<a href="https://pro.keratinandcare.com" target="_blank" rel="noopener">' + m + '</a>';
+          });
+
+          return html;
+        },
+
+        /* ── helper: link first text occurrence outside existing tags ── */
+        _linkFirst(html, regex, replacer) {
+          var done = false;
+          // Split on tags, only replace in text nodes
+          return html.replace(/(<[^>]+>)|([^<]+)/g, function (full, tag, text) {
+            if (tag) return tag;  // skip tag nodes
+            if (!done && regex.test(text)) {
+              done = true;
+              return text.replace(regex, function (m) { return replacer(m); });
+            }
+            return text;
+          });
+        },
+
+        /* ── related posts ── */
         _findRelated(posts, current) {
-          // Same category first, then others, max 2
-          const sameCat = posts.filter(p => p.slug !== current.slug && p.category === current.category);
-          const others = posts.filter(p => p.slug !== current.slug && p.category !== current.category);
-          return [...sameCat, ...others].slice(0, 2);
+          var sameCat = posts.filter(function (p) {
+            return p.slug !== current.slug && p.category === current.category;
+          });
+          var others  = posts.filter(function (p) {
+            return p.slug !== current.slug && p.category !== current.category;
+          });
+          return sameCat.concat(others).slice(0, 3);
         },
 
-        barClass(category) {
-          const map = {
-            'hair-care': 'bar-hair-care',
-            'skincare': 'bar-skincare',
-            'ingredients': 'bar-ingredients',
-            'distribution': 'bar-distribution',
-            'makeup': 'bar-makeup',
-            'nails': 'bar-nails',
+        /* ── JSON-LD injection ── */
+        _injectJsonLd(p) {
+          var base     = 'https://www.brazilianbeautyindex.com';
+          var url      = base + '/blog/post.html?slug=' + p.slug;
+          var catLabel = this.categoryLabel(p.category);
+
+          // Article
+          var article = {
+            '@context': 'https://schema.org',
+            '@type':    'Article',
+            headline:   p.title,
+            description: p.seo_description || p.excerpt || '',
+            author: { '@type': 'Organization', name: 'BBI Editorial' },
+            publisher: {
+              '@type': 'Organization',
+              name:    'Brazilian Beauty Index',
+              url:     base,
+              logo:    { '@type': 'ImageObject', url: base + '/assets/images/logo.png' }
+            },
+            datePublished:  p.date || '',
+            dateModified:   p.updated || p.date || '',
+            url:            url,
+            mainEntityOfPage: { '@type': 'WebPage', '@id': url }
           };
-          return map[category] || 'bar-default';
+
+          // BreadcrumbList
+          var breadcrumb = {
+            '@context': 'https://schema.org',
+            '@type':    'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home',        item: base + '/' },
+              { '@type': 'ListItem', position: 2, name: 'Editorial',   item: base + '/blog/' },
+              { '@type': 'ListItem', position: 3, name: catLabel,      item: base + '/blog/?category=' + p.category },
+              { '@type': 'ListItem', position: 4, name: p.title,       item: url }
+            ]
+          };
+
+          var ldArt  = document.getElementById('ld-article');
+          var ldBc   = document.getElementById('ld-breadcrumb');
+          if (ldArt)  ldArt.textContent  = JSON.stringify(article);
+          if (ldBc)   ldBc.textContent   = JSON.stringify(breadcrumb);
+
+          // FAQPage — detect <h2> containing FAQ or Question
+          if (p.content && /(<h2[^>]*>[^<]*(?:FAQ|Question|Frequently)[^<]*<\/h2>)/i.test(p.content)) {
+            var faqItems = [];
+            var qPattern = /<h[23][^>]*>([^<]+)<\/h[23]>\s*<p>([^<]+(?:<[^/][^>]*>[^<]*<\/[^>]+>[^<]*)*)<\/p>/g;
+            var match;
+            while ((match = qPattern.exec(p.content)) !== null) {
+              faqItems.push({
+                '@type': 'Question',
+                name:    match[1].replace(/<[^>]+>/g, '').trim(),
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text:    match[2].replace(/<[^>]+>/g, '').trim()
+                }
+              });
+            }
+            if (faqItems.length > 0) {
+              var faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems };
+              var ldFaq = document.getElementById('ld-faq');
+              if (ldFaq) ldFaq.textContent = JSON.stringify(faqSchema);
+            }
+          }
         },
 
-        formatDate(dateStr) {
-          if (!dateStr) return '';
-          const d = new Date(dateStr);
+        /* ── social share ── */
+        shareTwitter() {
+          var txt = encodeURIComponent((this.post && this.post.title) || 'Brazilian Beauty Index');
+          var url = encodeURIComponent(window.location.href);
+          window.open('https://twitter.com/intent/tweet?text=' + txt + '&url=' + url, '_blank', 'noopener,width=560,height=420');
+        },
+        shareWhatsApp() {
+          var txt = encodeURIComponent(((this.post && this.post.title) || 'Brazilian Beauty Index') + ' — ' + window.location.href);
+          window.open('https://wa.me/?text=' + txt, '_blank', 'noopener');
+        },
+        copyLink() {
+          var self = this;
+          navigator.clipboard.writeText(window.location.href).then(function () {
+            self.copied = true;
+            setTimeout(function () { self.copied = false; }, 2000);
+          });
+        },
+
+        /* ── newsletter ── */
+        async subscribeNewsletter() {
+          if (!this.newsletterEmail) return;
+          this.newsletterLoading = true;
+          try {
+            await fetch('/api/subscribe', {
+              method:  'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body:    JSON.stringify({ email: this.newsletterEmail, source: 'blog-post' })
+            });
+          } catch (_) {}
+          this.newsletterLoading = false;
+          this.newsletterDone    = true;
+        },
+
+        /* ── helpers ── */
+        categoryLabel(cat) {
+          var map = {
+            'hair-care':    'Hair Care',
+            'skincare':     'Skincare',
+            'ingredients':  'Ingredients',
+            'distribution': 'Distribution',
+            'makeup':       'Makeup',
+            'nails':        'Nails',
+            'tutorials':    'Tutorials',
+            'news':         'News'
+          };
+          return map[cat] || (cat ? cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' ') : 'Editorial');
+        },
+
+        barClass(cat) {
+          var map = {
+            'hair-care':    'bar-hair-care',
+            'skincare':     'bar-skincare',
+            'ingredients':  'bar-ingredients',
+            'distribution': 'bar-distribution',
+            'makeup':       'bar-makeup',
+            'nails':        'bar-nails'
+          };
+          return map[cat] || 'bar-default';
+        },
+
+        formatDate(str) {
+          if (!str) return '';
+          var d = new Date(str);
           return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         },
 
         readTime(content) {
           if (!content) return 1;
-          const text = content.replace(/<[^>]+>/g, ' ');
-          const words = text.trim().split(/\s+/).length;
-          return Math.max(1, Math.round(words / 200));
-        },
-
-        _demoData() {
-          return [
-            {
-              slug: 'keratin-guide-european-salons',
-              title: 'The Complete Guide to Brazilian Keratin for European Salons',
-              seo_title: 'Brazilian Keratin for European Salons — Complete Guide | Brazilian Beauty Index',
-              seo_description: 'Everything salon owners need to know about stocking and retailing Brazilian keratin treatments in Europe — from regulations to consultation scripts.',
-              excerpt: 'Everything salon owners need to know about stocking and retailing Brazilian keratin treatments — from formaldehyde regulations to client consultation scripts.',
-              category: 'hair-care',
-              category_label: 'Hair Care',
-              author: 'Isabela Ramos',
-              date: '2026-05-10',
-              content: `<p>Brazilian keratin treatments have transformed how salons across Europe approach smoothing services. Once a niche import, they are now a staple offering at premium salons from London to Milan. Yet many salon owners still carry misconceptions — about ingredients, regulations and how to communicate these treatments to clients.</p>
-
-<h2>What is a Brazilian Keratin Treatment?</h2>
-
-<p>At its core, a Brazilian keratin treatment deposits a keratin-based formula into the hair's cortex, then seals it with heat. The result is reduced frizz, enhanced shine and significantly reduced blow-dry time — typically for three to five months.</p>
-
-<blockquote>The right keratin treatment doesn't just smooth hair. It changes how a client experiences their morning routine for months.</blockquote>
-
-<p>The term "Brazilian keratin" covers a broad spectrum of formulations. At one end are traditional treatments that may contain low levels of formaldehyde-releasing ingredients. At the other are entirely formaldehyde-free options that use alternative cross-linking agents.</p>
-
-<h2>EU Regulations You Must Know</h2>
-
-<p>Under EU Cosmetics Regulation 1223/2009, formaldehyde in hair straightening products is permitted up to a maximum of 0.2% (as preservative). Products with formaldehyde content above this threshold are prohibited from the EU market.</p>
-
-<p>Key regulatory points for salon buyers:</p>
-
-<ul>
-  <li>Always request the Safety Data Sheet (SDS) from your supplier</li>
-  <li>Verify the INCI ingredient list for methylene glycol, formalin, or methanediol — all release formaldehyde</li>
-  <li>Ensure adequate salon ventilation when applying any keratin treatment</li>
-  <li>UK post-Brexit rules mirror EU regulations on this category as of 2026</li>
-</ul>
-
-<h2>Selecting the Right Product for Your Salon</h2>
-
-<p>When evaluating Brazilian keratin brands for your service menu, consider three factors: result longevity, ease of application, and client experience during the service. Top Brazilian brands have invested heavily in formaldehyde-free formulations that achieve comparable results to traditional treatments.</p>
-
-<h3>Questions to Ask Your Distributor</h3>
-
-<p>Before committing to a brand, ask: What is the active smoothing agent? Is there a EU Cosmetics Notification Portal (CPNP) registration? Does the brand offer training certification? What is the recommended application protocol for different hair types?</p>
-
-<p>Brands that cannot answer these questions confidently are not ready for the professional market.</p>
-
-<h2>Client Consultation Script</h2>
-
-<p>A strong consultation is the difference between a loyal keratin client and a one-time service. The key questions to cover: hair history (previous chemical treatments), current hair condition, lifestyle expectations (swimming, heat styling frequency), and desired result level.</p>
-
-<blockquote>Under-promise on frizz reduction, over-deliver on shine. Clients who expect 100% straight hair from a smoothing treatment will be disappointed. Clients who expect 70% frizz reduction and three months of easy mornings become advocates.</blockquote>
-
-<p>With the right brand partner and a solid consultation process, keratin services can represent 20–35% of a salon's chemical revenue. The Brazilian brands leading this category have decades of formulation expertise — and the European market is only beginning to access it.</p>`
-            },
-            {
-              slug: 'cupuacu-butter-skincare',
-              title: 'Cupuaçu Butter: The Amazonian Ingredient Reshaping EU Skincare',
-              seo_title: 'Cupuaçu Butter in EU Skincare — Ingredient Profile | Brazilian Beauty Index',
-              seo_description: 'Native to the Amazon rainforest, cupuaçu butter delivers unmatched moisture retention. We explore why European formulators are finally taking notice.',
-              excerpt: 'Native to the Amazon rainforest, cupuaçu butter delivers unmatched moisture retention. We explore why European formulators are finally taking notice.',
-              category: 'ingredients',
-              category_label: 'Ingredients',
-              author: 'Dr. Ana Ferreira',
-              date: '2026-05-03',
-              content: `<p>Cupuaçu butter — extracted from the seeds of <em>Theobroma grandiflorum</em>, a tree native to the Amazon basin — has been used in Brazilian beauty formulations for decades. Its extraordinary water absorption capacity (up to 440% of its weight) and rich fatty acid profile make it one of the most versatile raw materials in cosmetic formulation.</p>
-
-<h2>Fatty Acid Profile</h2>
-
-<p>The butter's efficacy stems from its unique composition. Unlike shea or mango butter, cupuaçu contains significant quantities of phytosterols alongside its oleic (35–50%), stearic (30–40%), and arachidic acid content. This combination delivers both immediate emolliency and longer-term barrier support.</p>
-
-<blockquote>Cupuaçu's water absorption is genuinely exceptional. In comparative studies it outperforms lanolin — without the animal-derived concerns that complicate lanolin's clean beauty positioning.</blockquote>
-
-<h2>Applications in EU Cosmetics</h2>
-
-<p>European formulators are incorporating cupuaçu butter across several categories: leave-in hair conditioners, body butters, lip treatments, and — increasingly — facial moisturisers targeting very dry or eczema-prone skin.</p>
-
-<p>At 2–10% inclusion rates it functions as a primary emollient. At higher levels (10–30%) it becomes a structuring agent for anhydrous stick and balm formats.</p>
-
-<h2>Sustainability Credentials</h2>
-
-<p>For brands communicating sustainability narratives, cupuaçu offers strong credentials. The tree is an important component of agroforestry systems in the Amazon, providing economic alternative to deforestation. COSMOS and Ecocert certification pathways are available for certified organic supply chains.</p>`
-            },
-            {
-              slug: 'distribution-beauty-uk',
-              title: 'How to Get Your Brazilian Beauty Brand Into UK Retailers',
-              seo_title: 'Getting Brazilian Beauty Into UK Retail — Distribution Guide | Brazilian Beauty Index',
-              seo_description: 'A step-by-step breakdown of import regulations, distributor relationships, and the commercial levers that make or break a brand launch in the UK market.',
-              excerpt: 'A step-by-step breakdown of import regulations, distributor relationships, and the commercial levers that make or break a brand launch in the UK market.',
-              category: 'distribution',
-              category_label: 'Distribution',
-              author: 'Marcus Chen',
-              date: '2026-04-28',
-              content: `<p>Entering the UK retail market is one of the most commercially significant steps a Brazilian beauty brand can take. The UK is the fourth largest beauty market globally, and its consumers have demonstrated consistent appetite for prestige international brands with authentic heritage stories.</p>
-
-<h2>Regulatory Requirements Post-Brexit</h2>
-
-<p>Since January 2021, cosmetics products sold in Great Britain must be registered on the SCPN (Submit Cosmetic Product Notification) portal, distinct from the EU CPNP. This means Brazilian brands must complete two separate notification processes if targeting both markets.</p>
-
-<p>Each product requires: responsible person designation (a UK-based legal entity), product information file, safety assessment by a qualified assessor, and SCPN registration before sale.</p>
-
-<h2>Finding the Right Distribution Partner</h2>
-
-<p>The UK has several specialist beauty distributors with existing Brazilian connections. The right partner depends on your brand tier: mass-market, professional (salon/spa), or prestige retail.</p>
-
-<blockquote>The most common mistake Brazilian brands make in UK market entry is choosing a distributor based on enthusiasm rather than existing retail relationships. Ask specifically: which buyers do you have active relationships with at the accounts we are targeting?</blockquote>
-
-<h2>Commercial Structure</h2>
-
-<p>Typical UK distributor margins run 40–50% on recommended retail. Factor this alongside your production cost, shipping, duties (UK Global Tariff for most cosmetics: 0–6.5%), and UK VAT (20%) when building your commercial model.</p>`
-            },
-            {
-              slug: 'brazilian-spf-market',
-              title: 'Why Brazilian SPF Formulas Are 10 Years Ahead of the EU',
-              excerpt: 'Brazil approved UV filters the EU still hasn\'t cleared. Here\'s why that matters for sunscreen innovation, and which brands are leading the charge.',
-              category: 'skincare',
-              category_label: 'Skincare',
-              author: 'Luíza Souza',
-              date: '2026-04-20',
-              content: `<p>Brazil's ANVISA regulatory framework has long approved next-generation UV filters that remain in regulatory limbo within the EU. Filters such as Tinosorb M, Tinosorb S, and Mexoryl SX have been available to Brazilian formulators for over a decade, enabling lighter textures, higher SPF values and better photostability than European formulas built from the same legacy filter palette.</p>
-
-<h2>The Filter Gap</h2>
-
-<p>The EU Cosmetics Regulation restricts sunscreen active ingredients to a positive list under Annex VI. While applications to add newer filters have been submitted, the review process — complicated by post-Brexit divergence between UK and EU authorities — has stalled progress. The result: EU consumers have largely been receiving inferior sun protection technology.</p>
-
-<blockquote>Brazilian sunscreens feel like skincare. EU sunscreens often still feel like 1990s mineral sunblock. The formulation gap is real, and it is getting wider.</blockquote>
-
-<h2>Opportunity for UK and EU Distribution</h2>
-
-<p>Brands selling Brazilian SPFs in Europe navigate this by focusing on products formulated for the EU-approved filter list while maintaining the texture and sensory superiority that Brazilian formulation expertise enables. The commercial opportunity is substantial: consumers increasingly seek premium sun care, and Brazilian brands can command it.</p>`
-            },
-            {
-              slug: 'progressive-brush-explained',
-              title: 'Progressive Brush vs. Keratin: Understanding the Difference',
-              excerpt: 'Two treatments often confused, two completely different results. We break down the chemistry and help your team give clients the right recommendation.',
-              category: 'hair-care',
-              category_label: 'Hair Care',
-              author: 'Isabela Ramos',
-              date: '2026-04-15',
-              content: `<p>Walk into any Brazilian salon and you will find both progressive brush (escova progressiva) and keratin treatments on the service menu — often with clients and even some stylists unclear on which is which. They look similar on the surface. The chemistry, longevity and client experience are substantially different.</p>
-
-<h2>The Key Difference</h2>
-
-<p>A progressive brush treatment works primarily through heat and the physical straightening action of blow-drying and flat-ironing. The product applied — typically containing formaldehyde or an alternative cross-linker — temporarily restructures the hair's hydrogen bonds. The effect is more dramatic straightening, typically lasting 6–10 weeks.</p>
-
-<p>A keratin treatment, by contrast, replenishes the hair's natural protein structure and creates a smoothing film around each strand. The result is not straightening but conditioning: reduced frizz, improved manageability, and enhanced shine. Duration is longer — typically 3–5 months.</p>
-
-<blockquote>Use this framing with clients: progressive brush is for those who want straighter. Keratin is for those who want better.</blockquote>
-
-<h2>When to Recommend Each</h2>
-
-<p>Progressive brush suits clients with strong, resilient hair who want maximum frizz elimination and are willing to accept some structural compromise. Keratin suits clients with damaged, color-treated or fine hair who want a conditioning service with smoothing as a secondary benefit.</p>`
-            },
-            {
-              slug: 'nail-polish-brazil-trends',
-              title: '2026 Nail Trends Direct from São Paulo Fashion Week',
-              excerpt: 'Bold chromes, jelly finishes and micro-French tips dominated SPFW runways. We report back with the shade names, brand credits, and buy links.',
-              category: 'nails',
-              category_label: 'Nails',
-              author: 'Valentina Costa',
-              date: '2026-04-01',
-              content: `<p>São Paulo Fashion Week consistently sets nail trends that arrive in European salons 6–12 months later. SPFW 2026 was no exception, showcasing an exceptionally diverse palette — from hyper-minimal glass nails to maximalist chrome-on-chrome layering.</p>
-
-<h2>The Five Trends to Stock</h2>
-
-<p><strong>Glass nails:</strong> Ultra-thin, clear gels with a wet-look top coat created a translucent effect that dominated backstage. Brazilian gel brands led this with specifically formulated "glassy" builders.</p>
-
-<p><strong>Earthy chromes:</strong> Terra cotta, burnt amber and warm sand in chrome finishes. Brazilian brands have been ahead on this palette, and it translates directly to European autumn/winter.</p>
-
-<p><strong>Micro-French 2.0:</strong> The micro-French tip — a hairline of white, gold or coloured — applied with extreme precision using ultra-fine brushes. More wearable than full French, more interesting than a plain nude.</p>
-
-<blockquote>The Brazilian nail market is the most technically sophisticated in Latin America. The brands exporting to Europe now are bringing formulations and trend intelligence that European consumers will be asking for within a season.</blockquote>
-
-<h2>Brands to Watch</h2>
-
-<p>Three Brazilian nail brands showed exceptionally strong SPFW presence this season. All three have existing EU distribution relationships or are actively seeking partners. Contact us for introductions.</p>`
-            }
-          ];
+          var words = content.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length;
+          return Math.max(1, Math.ceil(words / 200));
         }
       };
     }
   </script>
+
 </body>
 </html>

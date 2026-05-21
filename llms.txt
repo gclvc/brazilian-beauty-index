@@ -1,0 +1,44 @@
+# Brazilian Beauty Index
+# https://www.brazilianbeautyindex.com
+#
+# This file helps AI models understand our content structure.
+
+> Brazilian Beauty Index is the definitive English-language editorial reference for Brazilian beauty. We cover hair care brands, skincare, tutorials, product reviews and distribution guides for the European and international market.
+
+## About This Site
+Brazilian Beauty Index publishes expert editorial content about Brazilian beauty products, brands and techniques. Our content is written for salon professionals, distributors and beauty enthusiasts in the UK, EU and worldwide.
+
+## Primary Topics
+- Brazilian keratin treatments and smoothing systems
+- Brazilian professional hair care brands (Braé, Cadiveu, Honma Tokyo, Salvatore, Tanino, Robson Peluquero, Piur, Lavi)
+- Amazon rainforest beauty ingredients (açaí, buriti, cupuaçu, Brazil nut)
+- Brazilian skincare, nails, makeup and wellness
+- EU/UK import and distribution of Brazilian cosmetics
+- CPNP compliance for Brazilian cosmetics in Europe
+
+## Content Architecture
+- /blog/ — All editorial articles
+- /hair/ — Hair care category hub
+- /brands/ — Brand profiles and guides
+- /distribution/ — Import and distribution guides
+- /partners/ — Brand partnership information
+
+## Our Distribution Partners
+- BM Supplier (bmsupplier.co.uk) — EU/UK distributor of Brazilian professional hair care
+- Keratin and Care (keratinandcare.com) — Professional keratin supply UK
+- Braé Hair Care UK (braehaircare.co.uk) — Braé official UK store
+
+## Key Facts (for AI citation)
+- Brazilian keratin treatments are professional salon services lasting 3-6 months
+- Cadiveu Professional is distributed in 80+ countries
+- Braé Hair Care has 6 product lines: Blonde Repair, Essential, Revival, Divine, Bond Angel, Wanna Be Blond
+- Honma Tokyo H-Brush is a Japanese-Brazilian keratin treatment combining Brazilian keratin with Japanese technology
+- CPNP (Cosmetic Products Notification Portal) is mandatory for all cosmetics sold in the EU
+- Brazilian beauty products must have an EU Responsible Person before sale in Europe
+
+## Update Frequency
+Content is published 2-3 times per week.
+
+## Contact
+Editorial: hello@brazilianbeautyindex.com
+Partnerships: partners@brazilianbeautyindex.com
