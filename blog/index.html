@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial — Brazilian Beauty Index</title>
+  <meta name="description" content="Guides, insights and industry news from the world of Brazilian beauty.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root {
+      --g: #0D3224;
+      --g2: #174D38;
+      --g3: #0A2419;
+      --gold: #C9962A;
+      --gold-l: #E0B84A;
+      --terra: #D4603A;
+      --cream: #FAF8F2;
+      --cream-2: #F0EDE4;
+      --text: #1A1A1A;
+      --text-2: rgba(26,26,26,.62);
+      --text-3: rgba(26,26,26,.38);
+      --border: rgba(26,26,26,.08);
+      --f-serif: 'Playfair Display', Georgia, serif;
+      --f-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-sans);
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 66px;
+      background: var(--g);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      font-family: var(--f-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .btn-nav {
+      background: var(--gold);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background .2s !important;
+      white-space: nowrap;
+    }
+
+    .btn-nav:hover { background: var(--gold-l) !important; color: var(--g) !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: auto;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+
+    /* mobile menu overlay */
+    .mmenu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--g3);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mmenu.open { display: flex; }
+
+    .mmenu a {
+      font-family: var(--f-serif);
+      font-size: 26px;
+      color: #fff;
+      text-decoration: none;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+
+    .mmenu a:hover { opacity: 1; }
+
+    .mmenu-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mmenu-partner {
+      background: var(--gold);
+      color: #fff !important;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-family: var(--f-sans) !important;
+      font-size: 15px !important;
+      font-weight: 600;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 66px;
+      background: var(--cream-2);
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-label {
+      font-family: var(--f-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--f-serif);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── TAG FILTER ── */
+    .tag-bar {
+      position: sticky;
+      top: 66px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      z-index: 90;
+      padding: 0 32px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .tag-bar::-webkit-scrollbar { display: none; }
+
+    .tag-inner {
+      display: flex;
+      gap: 8px;
+      padding: 14px 0;
+      min-width: max-content;
+    }
+
+    .tag-pill {
+      font-family: var(--f-sans);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-2);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .2s;
+    }
+
+    .tag-pill:hover {
+      border-color: var(--g);
+      color: var(--g);
+    }
+
+    .tag-pill.active {
+      background: var(--g);
+      color: #fff;
+      border-color: var(--g);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 32px 72px;
+    }
+
+    /* ── GRID ── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ── CARD ── */
+    .post-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .post-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+      transform: translateY(-3px);
+    }
+
+    .card-top-bar {
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    .bar-hair-care { background: var(--g); }
+    .bar-skincare { background: var(--g2); }
+    .bar-ingredients { background: var(--gold); }
+    .bar-distribution { background: var(--terra); }
+    .bar-makeup { background: #9B4F8E; }
+    .bar-nails { background: #C84B6E; }
+    .bar-default { background: var(--g); }
+
+    .card-body {
+      padding: 20px 20px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: var(--f-serif);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .card-excerpt {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-2);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--text-3);
+      display: flex;
+      gap: 6px;
+    }
+
+    .card-meta span + span::before {
+      content: '·';
+      margin-right: 6px;
+    }
+
+    /* ── SKELETON ── */
+    .skeleton-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .skeleton-bar {
+      height: 3px;
+      background: #e0e0e0;
+    }
+
+    .skeleton-body {
+      padding: 20px;
+    }
+
+    .skeleton-line {
+      height: 12px;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: pulse 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .skeleton-line.w-60 { width: 60%; }
+    .skeleton-line.w-80 { width: 80%; }
+    .skeleton-line.w-90 { width: 90%; }
+    .skeleton-line.w-40 { width: 40%; }
+    .skeleton-line.h-20 { height: 20px; }
+    .skeleton-line.h-16 { height: 16px; }
+
+    @keyframes pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── LOAD MORE ── */
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .btn-ghost {
+      font-family: var(--f-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--g);
+      background: transparent;
+      border: 1.5px solid var(--g);
+      padding: 12px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: .02em;
+      transition: all .2s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--g);
+      color: #fff;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-2);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state p { font-size: 15px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--g);
+      padding: 48px 32px;
+      color: rgba(255,255,255,.65);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: var(--f-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-brand span { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav { padding: 0 20px; gap: 0; }
+
+      .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tag-bar { padding: 0 16px; }
+      .main { padding: 32px 16px 56px; }
+    }
+
+    @media (max-width: 480px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mmenu" id="mmenu">
+    <button class="mmenu-close" onclick="closeMmenu()">&#x2715;</button>
+    <a href="/hair/">Hair</a>
+    <a href="/skin/">Skin</a>
+    <a href="/brands/">Brands</a>
+    <a href="/blog/">Editorial</a>
+    <a href="/distribution/">Distribution</a>
+    <a href="/distribution/" class="mmenu-partner">Partner With Us</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">Brazilian <span>Beauty</span> Index</a>
+    <ul class="nav-links">
+      <li><a href="/hair/">Hair</a></li>
+      <li><a href="/skin/">Skin</a></li>
+      <li><a href="/brands/">Brands</a></li>
+      <li><a href="/blog/">Editorial</a></li>
+      <li><a href="/distribution/">Distribution</a></li>
+      <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
+    </ul>
+    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-label">Editorial</p>
+    <h1 class="hero-title">The <em style="font-style:italic;color:var(--g)">Index</em></h1>
+    <p class="hero-sub">Guides, insights and industry news from the world of Brazilian beauty.</p>
+  </section>
+
+  <!-- TAG FILTER -->
+  <div class="tag-bar" x-data="blogApp()" id="blog-app-root">
+    <div class="tag-inner">
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'all' }"
+        @click="setTag('all')">All</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'hair-care' }"
+        @click="setTag('hair-care')">Hair Care</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'skincare' }"
+        @click="setTag('skincare')">Skincare</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'ingredients' }"
+        @click="setTag('ingredients')">Ingredients</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'distribution' }"
+        @click="setTag('distribution')">Distribution</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'makeup' }"
+        @click="setTag('makeup')">Makeup</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'nails' }"
+        @click="setTag('nails')">Nails</button>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div style="position:relative;">
+      <!-- This is placed outside the sticky bar; Alpine scope flows from here -->
+    </div>
+  </div>
+
+  <!-- ARTICLE GRID (Alpine scope extends from root) -->
+  <main class="main" x-data x-bind="$store ? {} : {}" id="blog-grid-host">
+    <div x-data="blogApp()">
+
+      <!-- Loading skeletons -->
+      <div class="posts-grid" x-show="loading">
+        <template x-for="i in 3" :key="i">
+          <div class="skeleton-card">
+            <div class="skeleton-bar"></div>
+            <div class="skeleton-body">
+              <div class="skeleton-line w-40" style="margin-bottom:14px;"></div>
+              <div class="skeleton-line w-90 h-20" style="margin-bottom:8px;"></div>
+              <div class="skeleton-line w-80 h-16" style="margin-bottom:8px;"></div>
+              <div class="skeleton-line w-60" style="margin-top:16px;"></div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Posts grid -->
+      <div class="posts-grid" x-show="!loading">
+        <template x-for="post in paginatedPosts" :key="post.slug">
+          <a :href="'/blog/post.html?slug=' + post.slug" class="post-card">
+            <div class="card-top-bar" :class="barClass(post.category)"></div>
+            <div class="card-body">
+              <p class="card-category" x-text="post.category_label || post.category"></p>
+              <h2 class="card-title" x-text="post.title"></h2>
+              <p class="card-excerpt" x-text="post.excerpt"></p>
+              <div class="card-meta">
+                <span x-text="post.author"></span>
+                <span x-text="formatDate(post.date)"></span>
+              </div>
+            </div>
+          </a>
+        </template>
+
+        <!-- Empty state -->
+        <div class="empty-state" x-show="!loading && filteredPosts.length === 0">
+          <p>No articles found for this category yet.</p>
+        </div>
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap" x-show="!loading && hasMore">
+        <button class="btn-ghost" @click="loadMore()">Load More Articles</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/brands/">Brands</a></li>
+        <li><a href="/distribution/">Distribution</a></li>
+        <li><a href="/advertise/">Advertise</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function openMmenu() {
+      document.getElementById('mmenu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMmenu() {
+      document.getElementById('mmenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Alpine component
+    function blogApp() {
+      return {
+        posts: [],
+        loading: true,
+        activeTag: 'all',
+        page: 1,
+        perPage: 6,
+
+        async init() {
+          try {
+            const res = await fetch('/blog/posts.json');
+            if (res.ok) {
+              this.posts = await res.json();
+            } else {
+              // Fallback demo data so the page is never blank
+              this.posts = this._demoData();
+            }
+          } catch {
+            this.posts = this._demoData();
+          }
+          this.loading = false;
+          this.$nextTick(() => {
+            gsap.fromTo('.post-card', { opacity: 0, y: 20 }, {
+              opacity: 1, y: 0,
+              duration: 0.5,
+              stagger: 0.07,
+              ease: 'power2.out'
+            });
+          });
+        },
+
+        setTag(tag) {
+          this.activeTag = tag;
+          this.page = 1;
+        },
+
+        get filteredPosts() {
+          if (this.activeTag === 'all') return this.posts;
+          return this.posts.filter(p => p.category === this.activeTag);
+        },
+
+        get paginatedPosts() {
+          return this.filteredPosts.slice(0, this.page * this.perPage);
+        },
+
+        get hasMore() {
+          return this.paginatedPosts.length < this.filteredPosts.length;
+        },
+
+        loadMore() {
+          this.page++;
+        },
+
+        barClass(category) {
+          const map = {
+            'hair-care': 'bar-hair-care',
+            'skincare': 'bar-skincare',
+            'ingredients': 'bar-ingredients',
+            'distribution': 'bar-distribution',
+            'makeup': 'bar-makeup',
+            'nails': 'bar-nails',
+          };
+          return map[category] || 'bar-default';
+        },
+
+        formatDate(dateStr) {
+          if (!dateStr) return '';
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        },
+
+        _demoData() {
+          return [
+            { slug: 'keratin-guide-european-salons', title: 'The Complete Guide to Brazilian Keratin for European Salons', excerpt: 'Everything salon owners need to know about stocking and retailing Brazilian keratin treatments — from formaldehyde regulations to client consultation scripts.', category: 'hair-care', category_label: 'Hair Care', author: 'Isabela Ramos', date: '2026-05-10' },
+            { slug: 'cupuacu-butter-skincare', title: 'Cupuaçu Butter: The Amazonian Ingredient Reshaping EU Skincare', excerpt: 'Native to the Amazon rainforest, cupuaçu butter delivers unmatched moisture retention. We explore why European formulators are finally taking notice.', category: 'ingredients', category_label: 'Ingredients', author: 'Dr. Ana Ferreira', date: '2026-05-03' },
+            { slug: 'distribution-beauty-uk', title: 'How to Get Your Brazilian Beauty Brand Into UK Retailers', excerpt: 'A step-by-step breakdown of import regulations, distributor relationships, and the commercial levers that make or break a brand launch in the UK market.', category: 'distribution', category_label: 'Distribution', author: 'Marcus Chen', date: '2026-04-28' },
+            { slug: 'brazilian-spf-market', title: 'Why Brazilian SPF Formulas Are 10 Years Ahead of the EU', excerpt: 'Brazil approved UV filters the EU still hasn\'t cleared. Here\'s why that matters for sunscreen innovation, and which brands are leading the charge.', category: 'skincare', category_label: 'Skincare', author: 'Luíza Souza', date: '2026-04-20' },
+            { slug: 'progressive-brush-explained', title: 'Progressive Brush vs. Keratin: Understanding the Difference', excerpt: 'Two treatments often confused, two completely different results. We break down the chemistry and help your team give clients the right recommendation.', category: 'hair-care', category_label: 'Hair Care', author: 'Isabela Ramos', date: '2026-04-15' },
+            { slug: 'mango-oil-profile', title: 'Mango Butter in Beauty: Full Ingredient Profile', excerpt: 'Rich in oleic and stearic acids, mango butter is a Brazilian staple with remarkable emollient properties. Here\'s everything formulators need to know.', category: 'ingredients', category_label: 'Ingredients', author: 'Dr. Ana Ferreira', date: '2026-04-08' },
+            { slug: 'nail-polish-brazil-trends', title: '2026 Nail Trends Direct from São Paulo Fashion Week', excerpt: 'Bold chromes, jelly finishes and micro-French tips dominated SPFW runways. We report back with the shade names, brand credits, and buy links.', category: 'nails', category_label: 'Nails', author: 'Valentina Costa', date: '2026-04-01' },
+            { slug: 'makeup-setting-humidity', title: 'Setting Sprays Engineered for Humidity: Brazilian Formulas Tested', excerpt: 'Six Brazilian setting sprays put through a 32°C/80% humidity chamber. Which survived? Results inside, plus the humidity-lock technology explained.', category: 'makeup', category_label: 'Makeup', author: 'Valentina Costa', date: '2026-03-22' }
+          ];
+        }
+      };
+    }
+  </script>
+</body>
+</html>

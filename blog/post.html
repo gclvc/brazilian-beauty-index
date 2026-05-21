@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — Brazilian Beauty Index</title>
+  <meta name="description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root {
+      --g: #0D3224;
+      --g2: #174D38;
+      --g3: #0A2419;
+      --gold: #C9962A;
+      --gold-l: #E0B84A;
+      --terra: #D4603A;
+      --cream: #FAF8F2;
+      --cream-2: #F0EDE4;
+      --text: #1A1A1A;
+      --text-2: rgba(26,26,26,.62);
+      --text-3: rgba(26,26,26,.38);
+      --border: rgba(26,26,26,.08);
+      --f-serif: 'Playfair Display', Georgia, serif;
+      --f-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-sans);
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 66px;
+      background: var(--g);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      gap: 32px;
+    }
+
+    .nav-logo {
+      font-family: var(--f-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .btn-nav {
+      background: var(--gold);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background .2s !important;
+      white-space: nowrap;
+    }
+
+    .btn-nav:hover { background: var(--gold-l) !important; color: var(--g) !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: auto;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    /* mobile menu */
+    .mmenu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--g3);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mmenu.open { display: flex; }
+
+    .mmenu a {
+      font-family: var(--f-serif);
+      font-size: 26px;
+      color: #fff;
+      text-decoration: none;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+
+    .mmenu a:hover { opacity: 1; }
+
+    .mmenu-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mmenu-partner {
+      background: var(--gold);
+      color: #fff !important;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-family: var(--f-sans) !important;
+      font-size: 15px !important;
+      font-weight: 600;
+    }
+
+    /* ── SPINNER ── */
+    .spinner-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 66px);
+      margin-top: 66px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--cream-2);
+      border-top-color: var(--g);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── NOT FOUND ── */
+    .not-found {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 66px);
+      margin-top: 66px;
+      text-align: center;
+      padding: 32px;
+      gap: 20px;
+    }
+
+    .not-found h2 {
+      font-family: var(--f-serif);
+      font-size: 32px;
+      color: var(--g);
+    }
+
+    .not-found p { color: var(--text-2); font-size: 16px; }
+
+    .back-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: color .2s;
+    }
+
+    .back-link:hover { color: var(--g); }
+
+    /* ── ARTICLE HEADER ── */
+    .article-header {
+      margin-top: 66px;
+      background: var(--g);
+      min-height: 320px;
+      padding: 100px 32px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .article-header-inner {
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-size: 11px;
+      color: rgba(250,248,242,.55);
+      letter-spacing: .04em;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb a {
+      color: rgba(250,248,242,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .breadcrumb a:hover { color: rgba(250,248,242,.9); }
+
+    .breadcrumb-sep {
+      color: rgba(250,248,242,.3);
+      font-size: 10px;
+    }
+
+    .article-category-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .article-title {
+      font-family: var(--f-serif);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(250,248,242,.55);
+      flex-wrap: wrap;
+    }
+
+    .article-meta span + span::before {
+      content: '·';
+      margin-right: 6px;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body-wrap {
+      background: var(--cream);
+      padding: 72px 32px;
+    }
+
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Prose typography applied via x-html content */
+    .article-body :deep(p),
+    .prose p {
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .article-body :deep(h2),
+    .prose h2 {
+      font-family: var(--f-serif);
+      font-size: 28px;
+      color: var(--g);
+      margin: 40px 0 16px;
+      line-height: 1.2;
+    }
+
+    .article-body :deep(h3),
+    .prose h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 28px 0 12px;
+      line-height: 1.3;
+    }
+
+    .article-body :deep(blockquote),
+    .prose blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 12px 20px;
+      background: var(--cream-2);
+      font-style: italic;
+      margin: 24px 0;
+      color: var(--text-2);
+    }
+
+    .article-body :deep(ul),
+    .article-body :deep(ol),
+    .prose ul,
+    .prose ol {
+      margin: 0 0 20px 20px;
+    }
+
+    .article-body :deep(li),
+    .prose li {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .article-body :deep(a),
+    .prose a {
+      color: var(--g);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .article-body :deep(img),
+    .prose img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+
+    .article-body :deep(strong),
+    .prose strong {
+      font-weight: 600;
+    }
+
+    /* ── CTA BOX ── */
+    .cta-box {
+      max-width: 720px;
+      margin: 48px auto 0;
+      background: var(--g);
+      border-radius: 16px;
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cta-box h4 {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .cta-box p {
+      font-size: 15px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--f-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s;
+      align-self: flex-start;
+    }
+
+    .btn-gold:hover { background: var(--gold-l); color: var(--g); }
+
+    /* ── RELATED ARTICLES ── */
+    .related-section {
+      max-width: 720px;
+      margin: 64px auto 0;
+      padding: 0 0 72px;
+    }
+
+    .related-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── CARD (reused) ── */
+    .post-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .post-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+      transform: translateY(-3px);
+    }
+
+    .card-top-bar { height: 3px; flex-shrink: 0; }
+    .bar-hair-care { background: var(--g); }
+    .bar-skincare { background: var(--g2); }
+    .bar-ingredients { background: var(--gold); }
+    .bar-distribution { background: var(--terra); }
+    .bar-makeup { background: #9B4F8E; }
+    .bar-nails { background: #C84B6E; }
+    .bar-default { background: var(--g); }
+
+    .card-body {
+      padding: 18px 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: var(--f-serif);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card-excerpt {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-2);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+      margin-bottom: 12px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: var(--text-3);
+      display: flex;
+      gap: 6px;
+    }
+
+    .card-meta span + span::before {
+      content: '·';
+      margin-right: 6px;
+    }
+
+    /* ── BACK TO TOP ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--g);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      transition: background .2s, transform .2s;
+      z-index: 90;
+    }
+
+    .back-to-top:hover {
+      background: var(--g2);
+      transform: translateY(-2px);
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Show back-to-top only on mobile via CSS override — desktop also shows */
+    @media (min-width: 769px) {
+      .back-to-top { display: flex; }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--g);
+      padding: 48px 32px;
+      color: rgba(255,255,255,.65);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: var(--f-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-brand span { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav { padding: 0 20px; gap: 0; }
+
+      .article-header { padding: 80px 20px 48px; }
+      .article-body-wrap { padding: 48px 20px; }
+      .cta-box { padding: 24px 20px; margin-top: 36px; }
+      .related-section { padding: 0 0 56px; margin-top: 48px; }
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body x-data="{ scrollY: 0 }" @scroll.window="scrollY = window.scrollY">
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mmenu" id="mmenu">
+    <button class="mmenu-close" onclick="closeMmenu()">&#x2715;</button>
+    <a href="/hair/">Hair</a>
+    <a href="/skin/">Skin</a>
+    <a href="/brands/">Brands</a>
+    <a href="/blog/">Editorial</a>
+    <a href="/distribution/">Distribution</a>
+    <a href="/distribution/" class="mmenu-partner">Partner With Us</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">Brazilian <span>Beauty</span> Index</a>
+    <ul class="nav-links">
+      <li><a href="/hair/">Hair</a></li>
+      <li><a href="/skin/">Skin</a></li>
+      <li><a href="/brands/">Brands</a></li>
+      <li><a href="/blog/">Editorial</a></li>
+      <li><a href="/distribution/">Distribution</a></li>
+      <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
+    </ul>
+    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- APP ROOT -->
+  <div x-data="postApp()" x-init="init()">
+
+    <!-- LOADING -->
+    <div class="spinner-wrap" x-show="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- NOT FOUND -->
+    <div class="not-found" x-show="!loading && notFound">
+      <h2>Article not found</h2>
+      <p>The article you are looking for doesn't exist or has been moved.</p>
+      <a href="/blog/" class="back-link">← Back to Blog</a>
+    </div>
+
+    <!-- ARTICLE -->
+    <template x-if="!loading && !notFound && post">
+      <div>
+
+        <!-- ARTICLE HEADER -->
+        <header class="article-header">
+          <div class="article-header-inner">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="/">Home</a>
+              <span class="breadcrumb-sep">›</span>
+              <a href="/blog/">Blog</a>
+              <span class="breadcrumb-sep">›</span>
+              <span x-text="post.category_label || post.category"></span>
+            </nav>
+            <span class="article-category-tag" x-text="post.category_label || post.category"></span>
+            <h1 class="article-title" x-text="post.title"></h1>
+            <div class="article-meta">
+              <span x-text="post.author"></span>
+              <span x-text="formatDate(post.date)"></span>
+              <span x-text="readTime(post.content) + ' min read'"></span>
+            </div>
+          </div>
+        </header>
+
+        <!-- ARTICLE BODY WRAP -->
+        <div class="article-body-wrap">
+          <div class="article-body">
+            <article class="prose" x-html="post.content"></article>
+          </div>
+
+          <!-- CTA BOX -->
+          <div class="cta-box">
+            <h4>Interested in stocking this brand?</h4>
+            <p>We connect European retailers and distributors with the best Brazilian beauty brands. Tell us what you are looking for.</p>
+            <a href="/distribution/" class="btn-gold">Request an Introduction →</a>
+          </div>
+
+          <!-- RELATED ARTICLES -->
+          <div class="related-section" x-show="related.length > 0">
+            <p class="related-label">More from the Index</p>
+            <div class="related-grid">
+              <template x-for="r in related" :key="r.slug">
+                <a :href="'/blog/post.html?slug=' + r.slug" class="post-card">
+                  <div class="card-top-bar" :class="barClass(r.category)"></div>
+                  <div class="card-body">
+                    <p class="card-category" x-text="r.category_label || r.category"></p>
+                    <h3 class="card-title" x-text="r.title"></h3>
+                    <p class="card-excerpt" x-text="r.excerpt"></p>
+                    <div class="card-meta">
+                      <span x-text="r.author"></span>
+                      <span x-text="formatDate(r.date)"></span>
+                    </div>
+                  </div>
+                </a>
+              </template>
+            </div>
+          </div>
+
+        </div><!-- /article-body-wrap -->
+
+      </div>
+    </template>
+
+  </div><!-- /app root -->
+
+  <!-- BACK TO TOP -->
+  <button
+    class="back-to-top"
+    x-show="scrollY > 400"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 translate-y-2"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="Back to top"
+  >
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="4 13 10 7 16 13"></polyline>
+    </svg>
+  </button>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/brands/">Brands</a></li>
+        <li><a href="/distribution/">Distribution</a></li>
+        <li><a href="/advertise/">Advertise</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function openMmenu() {
+      document.getElementById('mmenu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMmenu() {
+      document.getElementById('mmenu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Alpine component
+    function postApp() {
+      return {
+        post: null,
+        loading: true,
+        notFound: false,
+        related: [],
+
+        async init() {
+          const params = new URLSearchParams(window.location.search);
+          const slug = params.get('slug');
+
+          if (!slug) {
+            this.notFound = true;
+            this.loading = false;
+            return;
+          }
+
+          try {
+            const res = await fetch('/blog/posts.json');
+            let posts = [];
+            if (res.ok) {
+              posts = await res.json();
+            } else {
+              posts = this._demoData();
+            }
+
+            const found = posts.find(p => p.slug === slug);
+
+            if (!found) {
+              // Try demo data
+              const demo = this._demoData();
+              const demoFound = demo.find(p => p.slug === slug);
+              if (demoFound) {
+                this.post = demoFound;
+                this.related = this._findRelated(demo, demoFound);
+              } else {
+                this.notFound = true;
+              }
+            } else {
+              this.post = found;
+              this.related = this._findRelated(posts, found);
+            }
+
+            if (this.post) {
+              // Update document title and meta description
+              document.title = this.post.seo_title || this.post.title + ' — Brazilian Beauty Index';
+              const metaDesc = document.querySelector('meta[name="description"]');
+              if (metaDesc) {
+                metaDesc.setAttribute('content', this.post.seo_description || this.post.excerpt || '');
+              }
+
+              this.$nextTick(() => {
+                gsap.fromTo('.article-header', { opacity: 0, y: 16 }, {
+                  opacity: 1, y: 0,
+                  duration: 0.6,
+                  ease: 'power2.out'
+                });
+                gsap.fromTo('.prose', { opacity: 0, y: 12 }, {
+                  opacity: 1, y: 0,
+                  duration: 0.5,
+                  delay: 0.2,
+                  ease: 'power2.out'
+                });
+              });
+            }
+          } catch (err) {
+            // Try demo data on error
+            const demo = this._demoData();
+            const found = demo.find(p => p.slug === slug);
+            if (found) {
+              this.post = found;
+              this.related = this._findRelated(demo, found);
+            } else {
+              this.notFound = true;
+            }
+          }
+
+          this.loading = false;
+        },
+
+        _findRelated(posts, current) {
+          // Same category first, then others, max 2
+          const sameCat = posts.filter(p => p.slug !== current.slug && p.category === current.category);
+          const others = posts.filter(p => p.slug !== current.slug && p.category !== current.category);
+          return [...sameCat, ...others].slice(0, 2);
+        },
+
+        barClass(category) {
+          const map = {
+            'hair-care': 'bar-hair-care',
+            'skincare': 'bar-skincare',
+            'ingredients': 'bar-ingredients',
+            'distribution': 'bar-distribution',
+            'makeup': 'bar-makeup',
+            'nails': 'bar-nails',
+          };
+          return map[category] || 'bar-default';
+        },
+
+        formatDate(dateStr) {
+          if (!dateStr) return '';
+          const d = new Date(dateStr);
+          return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        },
+
+        readTime(content) {
+          if (!content) return 1;
+          const text = content.replace(/<[^>]+>/g, ' ');
+          const words = text.trim().split(/\s+/).length;
+          return Math.max(1, Math.round(words / 200));
+        },
+
+        _demoData() {
+          return [
+            {
+              slug: 'keratin-guide-european-salons',
+              title: 'The Complete Guide to Brazilian Keratin for European Salons',
+              seo_title: 'Brazilian Keratin for European Salons — Complete Guide | Brazilian Beauty Index',
+              seo_description: 'Everything salon owners need to know about stocking and retailing Brazilian keratin treatments in Europe — from regulations to consultation scripts.',
+              excerpt: 'Everything salon owners need to know about stocking and retailing Brazilian keratin treatments — from formaldehyde regulations to client consultation scripts.',
+              category: 'hair-care',
+              category_label: 'Hair Care',
+              author: 'Isabela Ramos',
+              date: '2026-05-10',
+              content: `<p>Brazilian keratin treatments have transformed how salons across Europe approach smoothing services. Once a niche import, they are now a staple offering at premium salons from London to Milan. Yet many salon owners still carry misconceptions — about ingredients, regulations and how to communicate these treatments to clients.</p>
+
+<h2>What is a Brazilian Keratin Treatment?</h2>
+
+<p>At its core, a Brazilian keratin treatment deposits a keratin-based formula into the hair's cortex, then seals it with heat. The result is reduced frizz, enhanced shine and significantly reduced blow-dry time — typically for three to five months.</p>
+
+<blockquote>The right keratin treatment doesn't just smooth hair. It changes how a client experiences their morning routine for months.</blockquote>
+
+<p>The term "Brazilian keratin" covers a broad spectrum of formulations. At one end are traditional treatments that may contain low levels of formaldehyde-releasing ingredients. At the other are entirely formaldehyde-free options that use alternative cross-linking agents.</p>
+
+<h2>EU Regulations You Must Know</h2>
+
+<p>Under EU Cosmetics Regulation 1223/2009, formaldehyde in hair straightening products is permitted up to a maximum of 0.2% (as preservative). Products with formaldehyde content above this threshold are prohibited from the EU market.</p>
+
+<p>Key regulatory points for salon buyers:</p>
+
+<ul>
+  <li>Always request the Safety Data Sheet (SDS) from your supplier</li>
+  <li>Verify the INCI ingredient list for methylene glycol, formalin, or methanediol — all release formaldehyde</li>
+  <li>Ensure adequate salon ventilation when applying any keratin treatment</li>
+  <li>UK post-Brexit rules mirror EU regulations on this category as of 2026</li>
+</ul>
+
+<h2>Selecting the Right Product for Your Salon</h2>
+
+<p>When evaluating Brazilian keratin brands for your service menu, consider three factors: result longevity, ease of application, and client experience during the service. Top Brazilian brands have invested heavily in formaldehyde-free formulations that achieve comparable results to traditional treatments.</p>
+
+<h3>Questions to Ask Your Distributor</h3>
+
+<p>Before committing to a brand, ask: What is the active smoothing agent? Is there a EU Cosmetics Notification Portal (CPNP) registration? Does the brand offer training certification? What is the recommended application protocol for different hair types?</p>
+
+<p>Brands that cannot answer these questions confidently are not ready for the professional market.</p>
+
+<h2>Client Consultation Script</h2>
+
+<p>A strong consultation is the difference between a loyal keratin client and a one-time service. The key questions to cover: hair history (previous chemical treatments), current hair condition, lifestyle expectations (swimming, heat styling frequency), and desired result level.</p>
+
+<blockquote>Under-promise on frizz reduction, over-deliver on shine. Clients who expect 100% straight hair from a smoothing treatment will be disappointed. Clients who expect 70% frizz reduction and three months of easy mornings become advocates.</blockquote>
+
+<p>With the right brand partner and a solid consultation process, keratin services can represent 20–35% of a salon's chemical revenue. The Brazilian brands leading this category have decades of formulation expertise — and the European market is only beginning to access it.</p>`
+            },
+            {
+              slug: 'cupuacu-butter-skincare',
+              title: 'Cupuaçu Butter: The Amazonian Ingredient Reshaping EU Skincare',
+              seo_title: 'Cupuaçu Butter in EU Skincare — Ingredient Profile | Brazilian Beauty Index',
+              seo_description: 'Native to the Amazon rainforest, cupuaçu butter delivers unmatched moisture retention. We explore why European formulators are finally taking notice.',
+              excerpt: 'Native to the Amazon rainforest, cupuaçu butter delivers unmatched moisture retention. We explore why European formulators are finally taking notice.',
+              category: 'ingredients',
+              category_label: 'Ingredients',
+              author: 'Dr. Ana Ferreira',
+              date: '2026-05-03',
+              content: `<p>Cupuaçu butter — extracted from the seeds of <em>Theobroma grandiflorum</em>, a tree native to the Amazon basin — has been used in Brazilian beauty formulations for decades. Its extraordinary water absorption capacity (up to 440% of its weight) and rich fatty acid profile make it one of the most versatile raw materials in cosmetic formulation.</p>
+
+<h2>Fatty Acid Profile</h2>
+
+<p>The butter's efficacy stems from its unique composition. Unlike shea or mango butter, cupuaçu contains significant quantities of phytosterols alongside its oleic (35–50%), stearic (30–40%), and arachidic acid content. This combination delivers both immediate emolliency and longer-term barrier support.</p>
+
+<blockquote>Cupuaçu's water absorption is genuinely exceptional. In comparative studies it outperforms lanolin — without the animal-derived concerns that complicate lanolin's clean beauty positioning.</blockquote>
+
+<h2>Applications in EU Cosmetics</h2>
+
+<p>European formulators are incorporating cupuaçu butter across several categories: leave-in hair conditioners, body butters, lip treatments, and — increasingly — facial moisturisers targeting very dry or eczema-prone skin.</p>
+
+<p>At 2–10% inclusion rates it functions as a primary emollient. At higher levels (10–30%) it becomes a structuring agent for anhydrous stick and balm formats.</p>
+
+<h2>Sustainability Credentials</h2>
+
+<p>For brands communicating sustainability narratives, cupuaçu offers strong credentials. The tree is an important component of agroforestry systems in the Amazon, providing economic alternative to deforestation. COSMOS and Ecocert certification pathways are available for certified organic supply chains.</p>`
+            },
+            {
+              slug: 'distribution-beauty-uk',
+              title: 'How to Get Your Brazilian Beauty Brand Into UK Retailers',
+              seo_title: 'Getting Brazilian Beauty Into UK Retail — Distribution Guide | Brazilian Beauty Index',
+              seo_description: 'A step-by-step breakdown of import regulations, distributor relationships, and the commercial levers that make or break a brand launch in the UK market.',
+              excerpt: 'A step-by-step breakdown of import regulations, distributor relationships, and the commercial levers that make or break a brand launch in the UK market.',
+              category: 'distribution',
+              category_label: 'Distribution',
+              author: 'Marcus Chen',
+              date: '2026-04-28',
+              content: `<p>Entering the UK retail market is one of the most commercially significant steps a Brazilian beauty brand can take. The UK is the fourth largest beauty market globally, and its consumers have demonstrated consistent appetite for prestige international brands with authentic heritage stories.</p>
+
+<h2>Regulatory Requirements Post-Brexit</h2>
+
+<p>Since January 2021, cosmetics products sold in Great Britain must be registered on the SCPN (Submit Cosmetic Product Notification) portal, distinct from the EU CPNP. This means Brazilian brands must complete two separate notification processes if targeting both markets.</p>
+
+<p>Each product requires: responsible person designation (a UK-based legal entity), product information file, safety assessment by a qualified assessor, and SCPN registration before sale.</p>
+
+<h2>Finding the Right Distribution Partner</h2>
+
+<p>The UK has several specialist beauty distributors with existing Brazilian connections. The right partner depends on your brand tier: mass-market, professional (salon/spa), or prestige retail.</p>
+
+<blockquote>The most common mistake Brazilian brands make in UK market entry is choosing a distributor based on enthusiasm rather than existing retail relationships. Ask specifically: which buyers do you have active relationships with at the accounts we are targeting?</blockquote>
+
+<h2>Commercial Structure</h2>
+
+<p>Typical UK distributor margins run 40–50% on recommended retail. Factor this alongside your production cost, shipping, duties (UK Global Tariff for most cosmetics: 0–6.5%), and UK VAT (20%) when building your commercial model.</p>`
+            },
+            {
+              slug: 'brazilian-spf-market',
+              title: 'Why Brazilian SPF Formulas Are 10 Years Ahead of the EU',
+              excerpt: 'Brazil approved UV filters the EU still hasn\'t cleared. Here\'s why that matters for sunscreen innovation, and which brands are leading the charge.',
+              category: 'skincare',
+              category_label: 'Skincare',
+              author: 'Luíza Souza',
+              date: '2026-04-20',
+              content: `<p>Brazil's ANVISA regulatory framework has long approved next-generation UV filters that remain in regulatory limbo within the EU. Filters such as Tinosorb M, Tinosorb S, and Mexoryl SX have been available to Brazilian formulators for over a decade, enabling lighter textures, higher SPF values and better photostability than European formulas built from the same legacy filter palette.</p>
+
+<h2>The Filter Gap</h2>
+
+<p>The EU Cosmetics Regulation restricts sunscreen active ingredients to a positive list under Annex VI. While applications to add newer filters have been submitted, the review process — complicated by post-Brexit divergence between UK and EU authorities — has stalled progress. The result: EU consumers have largely been receiving inferior sun protection technology.</p>
+
+<blockquote>Brazilian sunscreens feel like skincare. EU sunscreens often still feel like 1990s mineral sunblock. The formulation gap is real, and it is getting wider.</blockquote>
+
+<h2>Opportunity for UK and EU Distribution</h2>
+
+<p>Brands selling Brazilian SPFs in Europe navigate this by focusing on products formulated for the EU-approved filter list while maintaining the texture and sensory superiority that Brazilian formulation expertise enables. The commercial opportunity is substantial: consumers increasingly seek premium sun care, and Brazilian brands can command it.</p>`
+            },
+            {
+              slug: 'progressive-brush-explained',
+              title: 'Progressive Brush vs. Keratin: Understanding the Difference',
+              excerpt: 'Two treatments often confused, two completely different results. We break down the chemistry and help your team give clients the right recommendation.',
+              category: 'hair-care',
+              category_label: 'Hair Care',
+              author: 'Isabela Ramos',
+              date: '2026-04-15',
+              content: `<p>Walk into any Brazilian salon and you will find both progressive brush (escova progressiva) and keratin treatments on the service menu — often with clients and even some stylists unclear on which is which. They look similar on the surface. The chemistry, longevity and client experience are substantially different.</p>
+
+<h2>The Key Difference</h2>
+
+<p>A progressive brush treatment works primarily through heat and the physical straightening action of blow-drying and flat-ironing. The product applied — typically containing formaldehyde or an alternative cross-linker — temporarily restructures the hair's hydrogen bonds. The effect is more dramatic straightening, typically lasting 6–10 weeks.</p>
+
+<p>A keratin treatment, by contrast, replenishes the hair's natural protein structure and creates a smoothing film around each strand. The result is not straightening but conditioning: reduced frizz, improved manageability, and enhanced shine. Duration is longer — typically 3–5 months.</p>
+
+<blockquote>Use this framing with clients: progressive brush is for those who want straighter. Keratin is for those who want better.</blockquote>
+
+<h2>When to Recommend Each</h2>
+
+<p>Progressive brush suits clients with strong, resilient hair who want maximum frizz elimination and are willing to accept some structural compromise. Keratin suits clients with damaged, color-treated or fine hair who want a conditioning service with smoothing as a secondary benefit.</p>`
+            },
+            {
+              slug: 'nail-polish-brazil-trends',
+              title: '2026 Nail Trends Direct from São Paulo Fashion Week',
+              excerpt: 'Bold chromes, jelly finishes and micro-French tips dominated SPFW runways. We report back with the shade names, brand credits, and buy links.',
+              category: 'nails',
+              category_label: 'Nails',
+              author: 'Valentina Costa',
+              date: '2026-04-01',
+              content: `<p>São Paulo Fashion Week consistently sets nail trends that arrive in European salons 6–12 months later. SPFW 2026 was no exception, showcasing an exceptionally diverse palette — from hyper-minimal glass nails to maximalist chrome-on-chrome layering.</p>
+
+<h2>The Five Trends to Stock</h2>
+
+<p><strong>Glass nails:</strong> Ultra-thin, clear gels with a wet-look top coat created a translucent effect that dominated backstage. Brazilian gel brands led this with specifically formulated "glassy" builders.</p>
+
+<p><strong>Earthy chromes:</strong> Terra cotta, burnt amber and warm sand in chrome finishes. Brazilian brands have been ahead on this palette, and it translates directly to European autumn/winter.</p>
+
+<p><strong>Micro-French 2.0:</strong> The micro-French tip — a hairline of white, gold or coloured — applied with extreme precision using ultra-fine brushes. More wearable than full French, more interesting than a plain nude.</p>
+
+<blockquote>The Brazilian nail market is the most technically sophisticated in Latin America. The brands exporting to Europe now are bringing formulations and trend intelligence that European consumers will be asking for within a season.</blockquote>
+
+<h2>Brands to Watch</h2>
+
+<p>Three Brazilian nail brands showed exceptionally strong SPFW presence this season. All three have existing EU distribution relationships or are actively seeking partners. Contact us for introductions.</p>`
+            }
+          ];
+        }
+      };
+    }
+  </script>
+</body>
+</html>
