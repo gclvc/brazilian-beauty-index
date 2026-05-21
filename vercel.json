@@ -1,6 +1,33 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/anunciar",             "destination": "/advertise/",      "permanent": false },
+    { "source": "/busca",                "destination": "/blog/",           "permanent": false },
+    { "source": "/contacto",             "destination": "/#contact",        "permanent": false },
+    { "source": "/cookies",              "destination": "/privacy/",        "permanent": false },
+    { "source": "/privacidade",          "destination": "/privacy/",        "permanent": false },
+    { "source": "/hair-care",            "destination": "/hair/",           "permanent": true  },
+    { "source": "/hair-care/:path*",     "destination": "/hair/",           "permanent": true  },
+    { "source": "/skincare",             "destination": "/skin/",           "permanent": true  },
+    { "source": "/reviews",              "destination": "/blog/",           "permanent": false },
+    { "source": "/newsletter",           "destination": "/#newsletter",     "permanent": false },
+    { "source": "/partners",             "destination": "/partners/",       "permanent": false },
+    { "source": "/media-kit",            "destination": "/advertise/",      "permanent": false },
+    { "source": "/produtos",             "destination": "/blog/",           "permanent": false },
+    { "source": "/produtos/:path*",      "destination": "/blog/",           "permanent": false },
+    { "source": "/partners/registar-marca", "destination": "/partners/",   "permanent": false },
+    { "source": "/brands/brae",          "destination": "/blog/brae-hair-care-complete-guide", "permanent": false },
+    { "source": "/brands/cadiveu",       "destination": "/blog/cadiveu-professional-guide",    "permanent": false },
+    { "source": "/brands/honma-tokyo",   "destination": "/blog/honma-tokyo-brand-guide",       "permanent": false },
+    { "source": "/brands/inoar",         "destination": "/blog/",           "permanent": false },
+    { "source": "/brands/piur",          "destination": "/blog/piur-professional-nano-keratin","permanent": false },
+    { "source": "/brands/salvatore",     "destination": "/blog/salvatore-professional-guide",  "permanent": false },
+    { "source": "/brands/tanino",        "destination": "/blog/tanino-therapy-complete-guide",  "permanent": false },
+    { "source": "/brands/robson-peluquero","destination":"/blog/robson-peluquero-brand-guide", "permanent": false },
+    { "source": "/brands/lavi",          "destination": "/blog/lavi-hair-care-guide",           "permanent": false },
+    { "source": "/brands/onyx",          "destination": "/brands/",         "permanent": false }
+  ],
   "rewrites": [
     { "source": "/blog/:slug", "destination": "/blog/post.html?slug=:slug" },
     { "source": "/hair/:slug", "destination": "/blog/post.html?slug=:slug" }

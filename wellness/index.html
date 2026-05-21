@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Wellness — Brazilian Beauty Index</title>
+  <meta name="description" content="Brazilian wellness rituals, ingredients and spa guides.">
+  <link rel="canonical" href="https://www.brazilianbeautyindex.com/wellness/">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--g:#0D3224;--gold:#C9962A;--ivory:#F9F7F4;--text:#111;--text-2:rgba(17,17,17,.55);--border:rgba(17,17,17,.08);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',system-ui,sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--f-sans);background:#fff;color:var(--text);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    nav{background:var(--g);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .logo{font-family:var(--f-serif);font-size:18px;color:#fff;font-weight:400}
+    .logo em{color:var(--gold);font-style:italic}
+    .nav-links{display:flex;gap:24px}
+    .nav-links a{font-size:12px;color:rgba(255,255,255,.7);transition:color .2s}
+    .nav-links a:hover{color:#fff}
+    .hero{background:var(--g);padding:64px 32px 48px;text-align:center}
+    .hero .label{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+    .hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(36px,5vw,56px);color:#fff;line-height:1.15}
+    .hero h1 em{color:var(--gold);font-style:italic}
+    .hero p{font-size:15px;color:rgba(255,255,255,.55);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:60px 0}
+    .card{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:transform .2s,border-color .2s}
+    .card:hover{transform:translateY(-3px);border-color:rgba(13,50,36,.2)}
+    .card-img{height:200px;background:linear-gradient(135deg,var(--g),#174D38,var(--gold));position:relative}
+    .card-img img{width:100%;height:100%;object-fit:cover}
+    .card-body{padding:20px}
+    .card-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+    .card-title{font-family:var(--f-serif);font-weight:300;font-size:19px;line-height:1.3;margin-bottom:8px}
+    .card-excerpt{font-size:13px;color:var(--text-2);line-height:1.65;margin-bottom:14px}
+    .card-meta{font-size:10px;color:rgba(17,17,17,.3)}
+    .loading{text-align:center;padding:80px;font-size:14px;color:var(--text-2)}
+    .empty{text-align:center;padding:80px;font-family:var(--f-serif);font-size:24px;font-weight:300;color:var(--text-2)}
+    footer{background:#0A2419;padding:32px;text-align:center}
+    footer p{font-size:12px;color:rgba(255,255,255,.3)}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+  </style>
+</head>
+<body x-data="catPage()" x-cloak>
+<nav>
+  <a href="/" class="logo">Brazilian<em>Beauty</em>Index</a>
+  <div class="nav-links">
+    <a href="/hair/">Hair</a><a href="/skin/">Skin</a>
+    <a href="/brands/">Brands</a><a href="/blog/">Editorial</a>
+    <a href="/distribution/">Distribution</a>
+  </div>
+</nav>
+<div class="hero">
+  <span class="label">Wellness</span>
+  <h1>Brazilian <em>Wellness</em></h1>
+  <p>Rituals, botanicals and the holistic beauty approach rooted in Brazilian rainforest traditions.</p>
+</div>
+<div class="wrap">
+  <div x-show="loading" class="loading">Loading articles…</div>
+  <div x-show="!loading && posts.length === 0" class="empty">No articles yet — check back soon.</div>
+  <div class="grid" x-show="!loading && posts.length > 0">
+    <template x-for="p in posts" :key="p.slug">
+      <a :href="'/blog/' + p.slug" class="card">
+        <div class="card-img">
+          <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" loading="lazy" style="display:none" @load="$el.style.display='block'">
+        </div>
+        <div class="card-body">
+          <span class="card-cat" x-text="p.category?.replace('-',' ').toUpperCase() || 'Wellness'"></span>
+          <div class="card-title" x-text="p.title"></div>
+          <div class="card-excerpt" x-text="p.excerpt?.slice(0,100) + '...'"></div>
+          <div class="card-meta" x-text="p.author + ' · ' + p.date"></div>
+        </div>
+      </a>
+    </template>
+  </div>
+</div>
+<footer><p>© 2026 Brazilian Beauty Index · brazilianbeautyindex.com</p></footer>
+<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<script>
+function catPage() {
+  return {
+    loading: true,
+    posts: [],
+    async init() {
+      const r = await fetch('/blog/posts.json');
+      const all = await r.json();
+      const cat = 'wellness';
+      this.posts = cat === 'all'
+        ? all
+        : all.filter(p => p.category === cat || p.tags?.includes(cat));
+      this.loading = false;
+    }
+  };
+}
+</script>
+</body>
+</html>

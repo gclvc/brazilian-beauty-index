@@ -984,57 +984,44 @@
     </div>
   </div>
 
-  <!-- ── HERO ───────────────────────────────────────────────── -->
-  <section class="hero">
+  <!-- ── HERO (dynamic from posts.json) ──────────────────────── -->
+  <section class="hero" x-data="heroSection()">
     <div class="container">
-      <div class="hero-grid">
+      <div class="hero-grid" x-show="featured">
         <!-- featured left -->
         <div class="hero-featured reveal">
-          <a href="/blog/guia-completo-keratin-treatments-2026">
-            <div class="img-ph" style="height:480px;"></div>
+          <a :href="'/blog/' + featured?.slug">
+            <div class="img-ph" style="height:480px;" x-show="!featured?.featured_image"></div>
+            <img x-show="featured?.featured_image" :src="featured?.featured_image" :alt="featured?.title" style="height:480px;width:100%;object-fit:cover;border-radius:4px;" loading="eager">
           </a>
           <div class="hero-featured-meta">
-            <span class="badge badge-hair">Hair Care</span>
+            <span class="badge badge-hair" x-text="featured?.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
           </div>
           <h1 class="hero-featured-title">
-            <a href="/blog/guia-completo-keratin-treatments-2026">The Complete Guide to Brazilian Keratin Treatments: Everything Your Salon Needs to Know in 2026</a>
+            <a :href="'/blog/' + featured?.slug" x-text="featured?.title"></a>
           </h1>
-          <p class="hero-featured-excerpt">Da formalina à queratina vegetal, os tratamentos alisantes brasileiros evoluíram drasticamente. Aqui está tudo o que precisa de saber antes de escolher o protocolo certo.</p>
+          <p class="hero-featured-excerpt" x-text="featured?.excerpt"></p>
           <div class="article-byline">
-            <span>Por Mariana Costa</span>
+            <span x-text="featured?.author || 'BBI Editorial'"></span>
             <span class="byline-dot"></span>
-            <span>18 mai 2026</span>
-            <span class="byline-dot"></span>
-            <span>12 min de leitura</span>
+            <span x-text="featured?.date"></span>
           </div>
         </div>
-
         <!-- stack right -->
         <div class="hero-stack hero-right reveal" style="transition-delay:.1s;">
-          <div class="hero-stack-card">
-            <div class="hero-stack-thumb img-ph-3" style="width:80px;height:80px;"></div>
-            <div class="hero-stack-content">
-              <span class="badge badge-ingredientes">Ingredientes</span>
-              <h3 class="hero-stack-title"><a href="/blog/acai-na-cosmetica">Açaí na Cosmética: O Superfrutro Amazônico que Tomou o Mundo</a></h3>
-              <span class="hero-stack-date">15 mai 2026</span>
+          <template x-for="post in stack" :key="post.slug">
+            <div class="hero-stack-card">
+              <div class="hero-stack-thumb" style="width:80px;height:80px;flex-shrink:0;">
+                <div class="img-ph-3" style="width:80px;height:80px;" x-show="!post.featured_image"></div>
+                <img x-show="post.featured_image" :src="post.featured_image" :alt="post.title" style="width:80px;height:80px;object-fit:cover;border-radius:4px;" loading="lazy">
+              </div>
+              <div class="hero-stack-content">
+                <span class="badge badge-hair" x-text="post.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
+                <h3 class="hero-stack-title"><a :href="'/blog/' + post.slug" x-text="post.title"></a></h3>
+                <span class="hero-stack-date" x-text="post.date"></span>
+              </div>
             </div>
-          </div>
-          <div class="hero-stack-card">
-            <div class="hero-stack-thumb img-ph-2" style="width:80px;height:80px;"></div>
-            <div class="hero-stack-content">
-              <span class="badge badge-news">News</span>
-              <h3 class="hero-stack-title"><a href="/blog/cpnp-guia-importacao-europa">CPNP na Prática: Guia Completo para Importar Cosméticos Brasileiros para a Europa</a></h3>
-              <span class="hero-stack-date">12 mai 2026</span>
-            </div>
-          </div>
-          <div class="hero-stack-card">
-            <div class="hero-stack-thumb img-ph-4" style="width:80px;height:80px;"></div>
-            <div class="hero-stack-content">
-              <span class="badge badge-hair">Hair Care</span>
-              <h3 class="hero-stack-title"><a href="/blog/brae-hair-care-guia-completo">Braé Hair Care: O Guia Completo das Linhas e Como Escolher a Certa</a></h3>
-              <span class="hero-stack-date">10 mai 2026</span>
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>
@@ -1043,114 +1030,69 @@
   <!-- ── CATEGORY STRIP ─────────────────────────────────────── -->
   <section class="category-strip">
     <div class="container">
-      <a href="/hair-care" class="cat-card reveal" style="transition-delay:.0s;">
-        <span class="cat-icon">🌿</span>
-        <span class="cat-name">Hair Care</span>
-        <span class="cat-count">24 artigos</span>
-      </a>
-      <a href="/skincare" class="cat-card reveal" style="transition-delay:.05s;">
-        <span class="cat-icon">✨</span>
-        <span class="cat-name">Skincare</span>
-        <span class="cat-count">8 artigos</span>
-      </a>
-      <a href="/produtos" class="cat-card reveal" style="transition-delay:.1s;">
-        <span class="cat-icon">🛁</span>
-        <span class="cat-name">Produtos</span>
-        <span class="cat-count">31 artigos</span>
-      </a>
-      <a href="/tutorials" class="cat-card reveal" style="transition-delay:.15s;">
-        <span class="cat-icon">📖</span>
-        <span class="cat-name">Tutorials</span>
-        <span class="cat-count">12 artigos</span>
-      </a>
-      <a href="/solutions" class="cat-card reveal" style="transition-delay:.2s;">
-        <span class="cat-icon">💡</span>
-        <span class="cat-name">Solutions</span>
-        <span class="cat-count">17 artigos</span>
-      </a>
-      <a href="/brands" class="cat-card reveal" style="transition-delay:.25s;">
-        <span class="cat-icon">🏷️</span>
-        <span class="cat-name">Marcas</span>
-        <span class="cat-count">19 artigos</span>
-      </a>
+      <a href="/hair/" class="cat-card reveal" style="transition-delay:.0s;"><span class="cat-icon">🌿</span><span class="cat-name">Hair Care</span><span class="cat-count">Keratin &amp; Smoothing</span></a>
+      <a href="/skin/" class="cat-card reveal" style="transition-delay:.05s;"><span class="cat-icon">✨</span><span class="cat-name">Skincare</span><span class="cat-count">Amazon Ingredients</span></a>
+      <a href="/blog/" class="cat-card reveal" style="transition-delay:.1s;"><span class="cat-icon">📖</span><span class="cat-name">Tutorials</span><span class="cat-count">Step by Step</span></a>
+      <a href="/brands/" class="cat-card reveal" style="transition-delay:.15s;"><span class="cat-icon">🏷️</span><span class="cat-name">Brands</span><span class="cat-count">Brand Guides</span></a>
+      <a href="/distribution/" class="cat-card reveal" style="transition-delay:.2s;"><span class="cat-icon">🚚</span><span class="cat-name">Distribution</span><span class="cat-count">B2B &amp; Import</span></a>
+      <a href="/nails/" class="cat-card reveal" style="transition-delay:.25s;"><span class="cat-icon">💅</span><span class="cat-name">Nails</span><span class="cat-count">Nail Art &amp; Care</span></a>
     </div>
   </section>
 
-  <!-- ── NOVIDADES ──────────────────────────────────────────── -->
-  <section class="novidades">
+  <!-- ── LATEST ARTICLES (dynamic) ────────────────────────── -->
+  <section class="novidades" x-data="latestPosts()">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left">
-          <span class="label">NOVIDADES</span>
-          <h2>Latest from the Portal</h2>
+          <span class="label">LATEST</span>
+          <h2>From the Editorial</h2>
         </div>
-        <a href="/news" class="see-all">See all →</a>
+        <a href="/blog/" class="see-all">See all →</a>
       </div>
       <div class="article-grid">
-        <article class="article-card reveal">
-          <div class="article-card-img"><div class="img-ph" style="height:200px;"></div></div>
-          <span class="badge badge-hair">Hair Care</span>
-          <h3 class="article-card-title"><a href="/blog/brae-revival-lancamento">Braé Launches Revival Line: Molecular Reconstruction for Damaged Hair</a></h3>
-          <p class="article-card-excerpt">A nova linha da Braé promete resultados visíveis em 3 aplicações, com tecnologia de reconstrução da fibra capilar de dentro para fora.</p>
-          <span class="article-card-date">19 mai 2026</span>
-        </article>
-        <article class="article-card reveal" style="transition-delay:.07s;">
-          <div class="article-card-img"><div class="img-ph-2" style="height:200px;"></div></div>
-          <span class="badge badge-news">News</span>
-          <h3 class="article-card-title"><a href="/blog/cadiveu-brasil-cacau-certificacao-eu">Cadiveu Brasil Cacau Receives EU Certification — What Changes for Salons</a></h3>
-          <p class="article-card-excerpt">O tratamento de chocolate mais vendido do Brasil agora tem certificação europeia. Entenda o que isso significa para profissionais e importadores.</p>
-          <span class="article-card-date">16 mai 2026</span>
-        </article>
-        <article class="article-card reveal" style="transition-delay:.14s;">
-          <div class="article-card-img"><div class="img-ph-3" style="height:200px;"></div></div>
-          <span class="badge badge-ingredientes">Ingredientes</span>
-          <h3 class="article-card-title"><a href="/blog/ingredientes-amazonicos-hair-care">5 Amazon Ingredients Dominating the Hair Care Market</a></h3>
-          <p class="article-card-excerpt">Do buriti ao murumuru, os ativos da floresta amazônica conquistaram formuladores de todo o mundo. Conheça cada um deles.</p>
-          <span class="article-card-date">14 mai 2026</span>
-        </article>
-        <article class="article-card reveal" style="transition-delay:.21s;">
-          <div class="article-card-img"><div class="img-ph-4" style="height:200px;"></div></div>
-          <span class="badge badge-review">Reviews</span>
-          <h3 class="article-card-title"><a href="/blog/inoar-ghair-review-30-dias">Review: We Tested INOAR G.Hair for 30 Days</a></h3>
-          <p class="article-card-excerpt">Aplicamos o tratamento de queratina mais popular do Brasil e acompanhámos os resultados semana a semana. Eis o veredicto honesto.</p>
-          <span class="article-card-date">11 mai 2026</span>
-        </article>
+        <template x-for="(p,i) in latest" :key="p.slug">
+          <article class="article-card reveal" :style="'transition-delay:' + (i*0.07) + 's'">
+            <a :href="'/blog/' + p.slug">
+              <div class="article-card-img">
+                <div class="img-ph" style="height:200px;" x-show="!p.featured_image"></div>
+                <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" style="height:200px;width:100%;object-fit:cover;" loading="lazy">
+              </div>
+            </a>
+            <span class="badge badge-hair" x-text="p.category?.replace('-',' ').toUpperCase() || 'HAIR'"></span>
+            <h3 class="article-card-title"><a :href="'/blog/' + p.slug" x-text="p.title"></a></h3>
+            <p class="article-card-excerpt" x-text="p.excerpt?.slice(0,110) + '...'"></p>
+            <span class="article-card-date" x-text="p.date"></span>
+          </article>
+        </template>
       </div>
     </div>
   </section>
 
-  <!-- ── SEU CABELO ─────────────────────────────────────────── -->
-  <section class="seu-cabelo">
+  <!-- ── YOUR HAIR (dynamic, hair category) ─────────────────── -->
+  <section class="seu-cabelo" x-data="hairPosts()">
     <div class="container">
       <div class="section-header">
         <div class="section-header-left">
-          <span class="label">SEU CABELO</span>
+          <span class="label">YOUR HAIR</span>
           <h2>Your Hair, Our Expertise</h2>
         </div>
-        <a href="/hair" class="see-all">See all →</a>
+        <a href="/hair/" class="see-all">See all →</a>
       </div>
       <div class="article-grid-3">
-        <article class="article-card-lg reveal">
-          <div class="article-card-lg-img"><div class="img-ph" style="height:240px;"></div></div>
-          <span class="badge badge-hair">SEU CABELO</span>
-          <h3 class="article-card-lg-title"><a href="/blog/curly-hair-keratin-treatment">Curly Hair with Keratin Treatment: Does It Work? Experts Answer</a></h3>
-          <p class="article-card-lg-excerpt">A grande questão das cacheadas: é possível fazer progressiva sem destruir os cachos? Ouvimos três especialistas com opiniões diferentes.</p>
-          <a href="/blog/curly-hair-keratin-treatment" class="read-more">Read more →</a>
-        </article>
-        <article class="article-card-lg reveal" style="transition-delay:.08s;">
-          <div class="article-card-lg-img"><div class="img-ph-2" style="height:240px;"></div></div>
-          <span class="badge badge-hair">SEU CABELO</span>
-          <h3 class="article-card-lg-title"><a href="/blog/how-to-choose-keratin-treatment">How to Choose the Best Keratin Treatment for Your Hair Type</a></h3>
-          <p class="article-card-lg-excerpt">Nem toda progressiva é igual. Este guia visual ajuda a identificar o protocolo certo — seja para liso, ondulado ou cacheado.</p>
-          <a href="/blog/how-to-choose-keratin-treatment" class="read-more">Read more →</a>
-        </article>
-        <article class="article-card-lg reveal" style="transition-delay:.16s;">
-          <div class="article-card-lg-img"><div class="img-ph-3" style="height:240px;"></div></div>
-          <span class="badge badge-hair">SEU CABELO</span>
-          <h3 class="article-card-lg-title"><a href="/blog/blonde-damaged-brae-blonde-repair">Blonde and Damaged: The Complete Recovery Protocol with Braé Blonde Repair</a></h3>
-          <p class="article-card-lg-excerpt">8 semanas, um protocolo rigoroso e resultados que surpreenderam até as especialistas. Acompanhe a transformação passo a passo.</p>
-          <a href="/blog/blonde-damaged-brae-blonde-repair" class="read-more">Read more →</a>
-        </article>
+        <template x-for="(p,i) in posts" :key="p.slug">
+          <article class="article-card-lg reveal" :style="'transition-delay:' + (i*0.08) + 's'">
+            <a :href="'/blog/' + p.slug">
+              <div class="article-card-lg-img">
+                <div class="img-ph" style="height:240px;" x-show="!p.featured_image"></div>
+                <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" style="height:240px;width:100%;object-fit:cover;" loading="lazy">
+              </div>
+            </a>
+            <span class="badge badge-hair">YOUR HAIR</span>
+            <h3 class="article-card-lg-title"><a :href="'/blog/' + p.slug" x-text="p.title"></a></h3>
+            <p class="article-card-lg-excerpt" x-text="p.excerpt?.slice(0,120) + '...'"></p>
+            <a :href="'/blog/' + p.slug" class="read-more">Read more →</a>
+          </article>
+        </template>
       </div>
     </div>
   </section>
@@ -1447,8 +1389,49 @@
       });
     });
 
-    // ── secondary nav active pill on scroll ───────────────────
-    // lightweight tag highlight stub for future impl
+    // ── Dynamic article sections ──────────────────────────────
+    let _postsCache = null;
+    async function getPosts() {
+      if (_postsCache) return _postsCache;
+      const r = await fetch('/blog/posts.json');
+      _postsCache = await r.json();
+      return _postsCache;
+    }
+
+    function heroSection() {
+      return {
+        featured: null, stack: [],
+        async init() {
+          const posts = await getPosts();
+          this.featured = posts[0] || null;
+          this.stack = posts.slice(1, 4);
+        }
+      };
+    }
+
+    function latestPosts() {
+      return {
+        latest: [],
+        async init() {
+          const posts = await getPosts();
+          this.latest = posts.slice(0, 4);
+        }
+      };
+    }
+
+    function hairPosts() {
+      return {
+        posts: [],
+        async init() {
+          const all = await getPosts();
+          const hair = all.filter(p => p.category === 'hair' || p.category === 'hair-care');
+          this.posts = hair.slice(0, 3);
+          if (this.posts.length < 3) {
+            this.posts = all.slice(0, 3); // fallback to latest
+          }
+        }
+      };
+    }
   </script>
 </body>
 </html>

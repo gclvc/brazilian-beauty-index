@@ -6,7 +6,7 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "brae-hair-care-complete-guide"
   },
   {
@@ -16,8 +16,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "brae-blonde-repair-review"
+    "status": "done",
+    "slug": "brae-blonde-repair-review",
+    "generated_at": "2026-05-21T23:38:20.621Z"
   },
   {
     "id": 3,
@@ -26,8 +27,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "brae-revival-reconstruction"
+    "status": "done",
+    "slug": "brae-revival-reconstruction",
+    "generated_at": "2026-05-21T23:39:07.995Z"
   },
   {
     "id": 4,
@@ -76,7 +78,7 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "cadiveu-brasil-cacau-complete-guide"
   },
   {
@@ -86,7 +88,7 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "cadiveu-plastica-dos-fios-guide"
   },
   {
@@ -106,7 +108,7 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "honma-tokyo-brand-guide"
   },
   {
@@ -116,8 +118,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "honma-tokyo-h-brush-guide"
+    "status": "done",
+    "slug": "honma-tokyo-h-brush-guide",
+    "generated_at": "2026-05-21T23:40:00.749Z"
   },
   {
     "id": 13,
@@ -146,8 +149,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "salvatore-professional-guide"
+    "status": "done",
+    "slug": "salvatore-professional-guide",
+    "generated_at": "2026-05-21T23:40:55.312Z"
   },
   {
     "id": 16,
@@ -166,8 +170,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "tanino-therapy-complete-guide"
+    "status": "done",
+    "slug": "tanino-therapy-complete-guide",
+    "generated_at": "2026-05-21T23:41:50.064Z"
   },
   {
     "id": 18,
@@ -186,8 +191,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "piur-professional-nano-keratin"
+    "status": "done",
+    "slug": "piur-professional-nano-keratin",
+    "generated_at": "2026-05-21T23:42:40.317Z"
   },
   {
     "id": 20,
@@ -206,7 +212,7 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "brazilian-keratin-treatment-guide-2026"
   },
   {
@@ -216,7 +222,7 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "brazilian-blowout-complete-guide"
   },
   {
@@ -226,7 +232,7 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "best-brazilian-keratin-treatments-ranked"
   },
   {
@@ -236,8 +242,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "keratin-treatment-uk-guide"
+    "status": "done",
+    "slug": "keratin-treatment-uk-guide",
+    "generated_at": "2026-05-21T23:43:28.522Z"
   },
   {
     "id": 25,
@@ -246,7 +253,7 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "what-is-hair-botox"
   },
   {
@@ -266,8 +273,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "best-keratin-for-damaged-hair"
+    "status": "done",
+    "slug": "best-keratin-for-damaged-hair",
+    "generated_at": "2026-05-21T23:44:24.992Z"
   },
   {
     "id": 28,
@@ -296,8 +304,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "keratin-treatment-cost-uk-eu"
+    "status": "done",
+    "slug": "keratin-treatment-cost-uk-eu",
+    "generated_at": "2026-05-21T23:45:16.514Z"
   },
   {
     "id": 31,
@@ -306,7 +315,7 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "keratin-treatment-vs-brazilian-blowout"
   },
   {
@@ -316,8 +325,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "cadiveu-vs-brae-comparison"
+    "status": "done",
+    "slug": "cadiveu-vs-brae-comparison",
+    "generated_at": "2026-05-21T23:46:06.445Z"
   },
   {
     "id": 33,
@@ -326,8 +336,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "brasil-cacau-vs-plastica-dos-fios"
+    "status": "done",
+    "slug": "brasil-cacau-vs-plastica-dos-fios",
+    "generated_at": "2026-05-21T23:46:52.833Z"
   },
   {
     "id": 34,
@@ -336,8 +347,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "keratin-vs-hair-botox"
+    "status": "done",
+    "slug": "keratin-vs-hair-botox",
+    "generated_at": "2026-05-21T23:47:38.100Z"
   },
   {
     "id": 35,
@@ -356,7 +368,7 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "how-long-does-keratin-treatment-last"
   },
   {
@@ -366,8 +378,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "how-to-maintain-keratin-treatment"
+    "status": "done",
+    "slug": "how-to-maintain-keratin-treatment",
+    "generated_at": "2026-05-21T23:48:24.931Z"
   },
   {
     "id": 38,
@@ -376,8 +389,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "keratin-treatment-curly-hair"
+    "status": "done",
+    "slug": "keratin-treatment-curly-hair",
+    "generated_at": "2026-05-21T23:49:13.070Z"
   },
   {
     "id": 39,
@@ -396,8 +410,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "does-keratin-treatment-damage-hair"
+    "status": "done",
+    "slug": "does-keratin-treatment-damage-hair",
+    "generated_at": "2026-05-21T23:50:02.160Z"
   },
   {
     "id": 41,
@@ -406,8 +421,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "how-to-apply-keratin-treatment"
+    "status": "done",
+    "slug": "how-to-apply-keratin-treatment",
+    "generated_at": "2026-05-21T23:50:58.281Z"
   },
   {
     "id": 42,
@@ -426,8 +442,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "best-keratin-blonde-hair"
+    "status": "error",
+    "slug": "best-keratin-blonde-hair",
+    "error": "Expected ',' or '}' after property value in JSON at position 5984 (line 1 column 5985)"
   },
   {
     "id": 44,
@@ -466,8 +483,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "brazilian-keratin-at-home"
+    "status": "done",
+    "slug": "brazilian-keratin-at-home",
+    "generated_at": "2026-05-21T23:52:42.700Z"
   },
   {
     "id": 48,
@@ -476,7 +494,7 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "damaged-hair-recovery-brazilian"
   },
   {
@@ -496,8 +514,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "brazilian-beauty-brands-uk-guide"
+    "status": "done",
+    "slug": "brazilian-beauty-brands-uk-guide",
+    "generated_at": "2026-05-21T23:53:36.580Z"
   },
   {
     "id": 51,
@@ -506,8 +525,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "best-brazilian-hair-products-2026-salon-s"
+    "status": "done",
+    "slug": "best-brazilian-hair-products-2026-salon-s",
+    "generated_at": "2026-05-21T23:54:30.004Z"
   },
   {
     "id": 52,
@@ -516,8 +536,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "7-signs-your-hair-needs-a-keratin-treatme"
+    "status": "done",
+    "slug": "7-signs-your-hair-needs-a-keratin-treatme",
+    "generated_at": "2026-05-21T23:55:19.535Z"
   },
   {
     "id": 53,
