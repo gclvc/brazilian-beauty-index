@@ -40,10 +40,7 @@ jobs:
             node scripts/generate-batch.mjs --limit $LIMIT
           fi
 
-      - name: Commit new articles
-        run: |
-          git config user.name "BBI Content Bot"
-          git config user.email "bot@brazilianbeautyindex.com"
-          git add blog/posts.json topics.json
-          git diff --staged --quiet || git commit -m "content: automated batch generation [skip ci]"
-          git push
+      - name: Run post-publish pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/post-publish.mjs
