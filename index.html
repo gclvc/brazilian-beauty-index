@@ -79,90 +79,41 @@
     .badge-hair    { background: rgba(13,50,36,.10); color: var(--green); }
     .badge-gold    { background: rgba(201,150,42,.12); color: var(--gold); }
     .badge-terra   { background: rgba(196,86,58,.12); color: var(--terra); }
-    .badge-news { background: rgba(17,17,17,.06); color: var(--text-2); }
+    .badge-news    { background: rgba(17,17,17,.06); color: var(--text-2); }
     .badge-ingredientes { background: rgba(201,150,42,.12); color: var(--gold); }
     .badge-review  { background: rgba(13,50,36,.10); color: var(--green); }
     .badge-tutorial { background: rgba(201,150,42,.12); color: var(--gold); }
 
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 16px; }
-    .section-header-left { display: flex; flex-direction: column; gap: 4px; }
-    .section-header h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; }
-    .see-all {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--green);
-      border-bottom: 1px solid var(--green);
-      padding-bottom: 1px;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: opacity .2s;
-    }
-    .see-all:hover { opacity: .65; }
 
     /* gradient placeholders */
-    .img-ph { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 60%, var(--gold) 100%); border-radius: 3px; flex-shrink: 0; }
-    .img-ph-2 { width: 100%; background: linear-gradient(135deg, #1A4B36 0%, #0D3224 50%, #C9962A 100%); border-radius: 3px; flex-shrink: 0; }
-    .img-ph-3 { width: 100%; background: linear-gradient(135deg, #C9962A 0%, #E0B84A 40%, #0D3224 100%); border-radius: 3px; flex-shrink: 0; }
-    .img-ph-4 { width: 100%; background: linear-gradient(135deg, #C4563A 0%, #C9962A 60%, #1A4B36 100%); border-radius: 3px; flex-shrink: 0; }
-
-    /* ─── TOP BAR ──────────────────────────────────────────────── */
-    .top-bar {
-      height: 32px;
-      background: var(--ivory);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-    }
-    .top-bar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .top-bar-brand {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-2);
-    }
-    .top-bar-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .top-bar-right a {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-2);
-      transition: color .2s;
-    }
-    .top-bar-right a:hover { color: var(--green); }
+    .img-ph   { width: 100%; background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 60%, var(--gold) 100%); border-radius: 2px; flex-shrink: 0; }
+    .img-ph-2 { width: 100%; background: linear-gradient(135deg, #1A4B36 0%, #0D3224 50%, #C9962A 100%); border-radius: 2px; flex-shrink: 0; }
+    .img-ph-3 { width: 100%; background: linear-gradient(135deg, #C9962A 0%, #E0B84A 40%, #0D3224 100%); border-radius: 2px; flex-shrink: 0; }
+    .img-ph-4 { width: 100%; background: linear-gradient(135deg, #C4563A 0%, #C9962A 60%, #1A4B36 100%); border-radius: 2px; flex-shrink: 0; }
 
     /* ─── MAIN NAV ─────────────────────────────────────────────── */
     .main-nav {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      background: var(--green);
+      height: 64px;
       position: sticky;
       top: 0;
       z-index: 100;
       transition: box-shadow .25s;
     }
-    .main-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
+    .main-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.22); }
     .main-nav .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
+      height: 100%;
       gap: 20px;
     }
     .nav-logo {
       font-family: var(--f-serif);
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 400;
-      color: var(--green);
+      color: var(--white);
       white-space: nowrap;
       flex-shrink: 0;
       letter-spacing: -.01em;
@@ -170,16 +121,16 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
     }
     .nav-links a {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 400;
-      color: var(--text);
+      color: rgba(255,255,255,.7);
       white-space: nowrap;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover { color: var(--white); }
     .nav-right {
       display: flex;
       align-items: center;
@@ -192,22 +143,23 @@
       justify-content: center;
       width: 32px;
       height: 32px;
-      color: var(--text-2);
+      color: rgba(255,255,255,.7);
       transition: color .2s;
     }
-    .nav-search:hover { color: var(--green); }
+    .nav-search:hover { color: var(--white); }
     .nav-search svg { width: 16px; height: 16px; }
-    .btn-subscribe {
-      background: var(--green);
-      color: var(--white);
-      font-size: 12px;
+    .btn-newsletter {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: .04em;
       padding: 8px 18px;
-      border-radius: 3px;
-      transition: background .2s;
+      border-radius: 2px;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
     }
-    .btn-subscribe:hover { background: var(--green-2); }
+    .btn-newsletter:hover { background: var(--gold); color: var(--white); }
     .nav-hamburger {
       display: none;
       flex-direction: column;
@@ -222,194 +174,253 @@
       display: block;
       width: 20px;
       height: 1.5px;
-      background: var(--text);
+      background: var(--white);
       transition: all .3s;
     }
-    /* mobile menu */
+
+    /* ─── MOBILE MENU ──────────────────────────────────────────── */
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 88px;
+      top: 64px;
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--white);
+      background: var(--green);
       z-index: 200;
-      padding: 32px 24px;
+      padding: 40px 32px;
       overflow-y: auto;
     }
     .mobile-menu.open { display: flex; flex-direction: column; gap: 0; }
     .mobile-menu a {
       font-family: var(--f-serif);
-      font-size: 26px;
+      font-size: 30px;
       font-weight: 300;
-      color: var(--text);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      color: rgba(255,255,255,.85);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      transition: color .2s;
     }
     .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--white); }
 
-    /* ─── SECONDARY NAV ────────────────────────────────────────── */
-    .secondary-nav {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .secondary-nav::-webkit-scrollbar { display: none; }
-    .secondary-nav .container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      white-space: nowrap;
-    }
-    .tag-pill {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-2);
-      padding: 5px 12px;
-      border: 1px solid var(--border-2);
-      border-radius: 100px;
-      transition: all .2s;
-      white-space: nowrap;
-    }
-    .tag-pill:hover { border-color: var(--green); color: var(--green); background: rgba(13,50,36,.04); }
-
-    /* ─── HERO ─────────────────────────────────────────────────── */
+    /* ─── HERO (full-bleed editorial) ──────────────────────────── */
     .hero {
-      background: var(--white);
-      padding: 40px 0 48px;
-      border-bottom: 1px solid var(--border);
+      position: relative;
+      width: 100%;
+      height: 85vh;
+      min-height: 540px;
+      overflow: hidden;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 60% 40%;
-      gap: 32px;
-      align-items: start;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--green) 0%, #1a4b38 40%, #2a6b50 70%, var(--gold) 100%);
     }
-    .hero-featured .img-ph { height: 480px; }
-    .hero-featured-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      margin-top: 16px;
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .hero-featured-title {
-      font-family: var(--f-serif);
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      color: var(--text);
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.72) 100%);
     }
-    .hero-featured-title a:hover { opacity: .75; }
-    .hero-featured-excerpt {
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.65;
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 48px;
+      max-width: 728px;
+    }
+    .hero-category-label {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 16px;
+      display: block;
+    }
+    .hero-headline {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .hero-excerpt {
+      font-family: var(--f-sans);
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,.78);
+      line-height: 1.55;
+      max-width: 520px;
+      margin-bottom: 20px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .article-byline {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .hero-byline {
+      font-family: var(--f-sans);
       font-size: 12px;
-      color: var(--text-3);
+      color: rgba(255,255,255,.5);
     }
-    .article-byline span { color: var(--text-3); }
-    .byline-dot { width: 3px; height: 3px; background: var(--text-3); border-radius: 50%; }
-
-    /* right stack cards */
-    .hero-stack { display: flex; flex-direction: column; gap: 0; }
-    .hero-stack-card {
+    .hero-read-link {
+      position: absolute;
+      bottom: 48px;
+      right: 48px;
+      font-family: var(--f-sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      opacity: .7;
+      transition: opacity .2s;
       display: flex;
-      gap: 14px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: flex-start;
-    }
-    .hero-stack-card:first-child { padding-top: 0; }
-    .hero-stack-card:last-child { border-bottom: none; }
-    .hero-stack-thumb {
-      width: 80px;
-      height: 80px;
-      flex-shrink: 0;
-      border-radius: 3px;
-    }
-    .hero-stack-content { flex: 1; min-width: 0; }
-    .hero-stack-content .badge { margin-bottom: 7px; }
-    .hero-stack-title {
-      font-family: var(--f-serif);
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.3;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .hero-stack-title a:hover { opacity: .7; }
-    .hero-stack-date { font-size: 11px; color: var(--text-3); }
-
-    /* ─── CATEGORY STRIP ───────────────────────────────────────── */
-    .category-strip {
-      background: var(--ivory);
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .category-strip .container {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
-    }
-    .cat-card {
-      display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 6px;
-      padding: 16px 8px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      text-align: center;
-      transition: all .2s;
-      cursor: pointer;
     }
-    .cat-card:hover { border-color: var(--green); box-shadow: 0 2px 8px rgba(13,50,36,.08); }
-    .cat-icon { font-size: 20px; line-height: 1; }
-    .cat-name {
+    .hero-read-link:hover { opacity: 1; }
+
+    /* ─── EDITION MARKER ───────────────────────────────────────── */
+    .edition-marker {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .edition-marker span {
+      font-family: var(--f-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .edition-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      display: block;
+      white-space: normal;
+    }
+
+    /* ─── SECTION RULE ─────────────────────────────────────────── */
+    .section-rule {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .section-rule::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgba(13,50,36,.15);
+    }
+    .section-rule-label {
+      position: relative;
+      background: var(--white);
+      padding: 0 20px;
       font-family: var(--f-serif);
       font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
     }
-    .cat-count { font-size: 10px; color: var(--text-3); letter-spacing: .04em; }
-
-    /* ─── ARTICLE GRID (News) ─────────────────────────────── */
-    .novidades { background: var(--white); padding: 64px 0; }
-    .article-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-    .article-card { display: flex; flex-direction: column; gap: 12px; }
-    .article-card-img { height: 200px; border-radius: 3px; overflow: hidden; }
-    .article-card-img .img-ph, .article-card-img .img-ph-2,
-    .article-card-img .img-ph-3, .article-card-img .img-ph-4 { height: 100%; }
-    .article-card .badge { display: block; width: fit-content; }
-    .article-card-title {
+    .section-rule-label-serif {
+      position: relative;
+      background: var(--white);
+      padding: 0 20px;
       font-family: var(--f-serif);
-      font-size: 17px;
+      font-style: italic;
+      font-size: 42px;
       font-weight: 300;
-      line-height: 1.3;
-      color: var(--text);
+      color: var(--green);
+      letter-spacing: normal;
+      text-transform: none;
     }
-    .article-card-title a:hover { opacity: .7; }
-    .article-card-excerpt {
+
+    /* ─── THE EDIT SECTION ─────────────────────────────────────── */
+    .the-edit {
+      background: var(--white);
+      padding: 64px 0 72px;
+    }
+    .edit-see-all {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 40px;
+    }
+    .see-all {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 1px;
+      white-space: nowrap;
+      transition: opacity .2s;
+    }
+    .see-all:hover { opacity: .65; }
+
+    /* Asymmetric main row */
+    .edit-main-row {
+      display: grid;
+      grid-template-columns: 58% 40%;
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+
+    /* Big card */
+    .edit-big-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .edit-big-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .edit-big-card-img img,
+    .edit-big-card-img .img-ph,
+    .edit-big-card-img .img-ph-2 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .edit-big-card-img:hover img,
+    .edit-big-card-img:hover .img-ph,
+    .edit-big-card-img:hover .img-ph-2 {
+      transform: scale(1.02);
+    }
+    .edit-big-card-title {
+      font-family: var(--f-serif);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .edit-big-card-title a:hover { opacity: .72; }
+    .edit-big-card-excerpt {
       font-size: 13px;
       color: var(--text-2);
       line-height: 1.6;
@@ -418,31 +429,244 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .article-card-date { font-size: 11px; color: var(--text-3); margin-top: auto; }
+    .edit-big-card-meta {
+      font-size: 11px;
+      color: var(--text-3);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .meta-dot {
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: var(--text-3);
+    }
 
-    /* ─── SEU CABELO ───────────────────────────────────────────── */
-    .seu-cabelo { background: var(--cream); padding: 64px 0; }
-    .article-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .article-card-lg { display: flex; flex-direction: column; gap: 14px; }
-    .article-card-lg-img { height: 240px; border-radius: 4px; overflow: hidden; }
-    .article-card-lg-img .img-ph, .article-card-lg-img .img-ph-2,
-    .article-card-lg-img .img-ph-3 { height: 100%; }
-    .article-card-lg-title {
+    /* Stacked right column */
+    .edit-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+    .edit-stack-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .edit-stack-img {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .edit-stack-img img,
+    .edit-stack-img .img-ph-3,
+    .edit-stack-img .img-ph-4 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .edit-stack-img:hover img,
+    .edit-stack-img:hover .img-ph-3,
+    .edit-stack-img:hover .img-ph-4 {
+      transform: scale(1.02);
+    }
+    .edit-stack-content { flex: 1; min-width: 0; }
+    .edit-stack-title {
       font-family: var(--f-serif);
-      font-size: 20px;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.28;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .edit-stack-title a:hover { opacity: .7; }
+    .edit-stack-date { font-size: 11px; color: var(--text-3); }
+
+    /* Editor's pick — wide bottom card */
+    .editors-pick {
+      background: var(--ivory);
+      border-radius: 2px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      border-left: 2px solid var(--gold);
+    }
+    .editors-pick-tag {
+      font-family: var(--f-sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .editors-pick-title {
+      font-family: var(--f-serif);
+      font-size: 22px;
       font-weight: 300;
       line-height: 1.25;
       color: var(--text);
     }
-    .article-card-lg-title a:hover { opacity: .7; }
-    .article-card-lg-excerpt {
+    .editors-pick-title a:hover { opacity: .75; }
+    .editors-pick-excerpt {
       font-size: 13px;
       color: var(--text-2);
-      line-height: 1.65;
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+    .editors-pick-meta { font-size: 11px; color: var(--text-3); margin-top: 12px; }
+    .editors-pick-right {
+      flex-shrink: 0;
+    }
+    .editors-pick-right .img-ph-2 {
+      width: 160px;
+      height: 120px;
+      border-radius: 2px;
+    }
+
+    /* ─── GREEN FEATURE BAND ───────────────────────────────────── */
+    .feature-band {
+      background: var(--green);
+      padding: 72px 0;
+    }
+    .feature-band .container {
+      display: grid;
+      grid-template-columns: 1fr 60%;
+      gap: 0;
+      align-items: center;
+    }
+    .feature-band-text {
+      padding-right: 64px;
+    }
+    .feature-band-gold-line {
+      width: 36px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+    .feature-band-headline {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .feature-band-excerpt {
+      font-size: 14px;
+      color: rgba(255,255,255,.65);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .feature-band-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap .2s;
+    }
+    .feature-band-link:hover { gap: 10px; }
+    .feature-band-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .feature-band-img img,
+    .feature-band-img .img-ph-2 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── HAIR CARE SECTION ────────────────────────────────────── */
+    .hair-section {
+      background: var(--cream);
+      padding: 72px 0;
+    }
+    .hair-section-rule::before { background: rgba(13,50,36,.12); }
+    .hair-section-rule .section-rule-label-serif {
+      background: var(--cream);
+    }
+    .hair-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .hair-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hair-card-img-tall {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .hair-card-img-tall img,
+    .hair-card-img-tall .img-ph,
+    .hair-card-img-tall .img-ph-3 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .hair-card-img-tall:hover img,
+    .hair-card-img-tall:hover .img-ph,
+    .hair-card-img-tall:hover .img-ph-3 {
+      transform: scale(1.02);
+    }
+    .hair-card-img-landscape {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .hair-card-img-landscape img,
+    .hair-card-img-landscape .img-ph-2 {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .hair-card-img-landscape:hover img,
+    .hair-card-img-landscape:hover .img-ph-2 {
+      transform: scale(1.02);
+    }
+    .hair-card-title {
+      font-family: var(--f-serif);
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text);
+    }
+    .hair-card-title a:hover { opacity: .72; }
+    .hair-card-excerpt {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .hair-card-meta {
+      font-size: 11px;
+      color: var(--text-3);
     }
     .read-more {
       font-size: 12px;
@@ -456,341 +680,135 @@
     }
     .read-more:hover { gap: 8px; }
 
+    /* ─── BRAND DIRECTORY ──────────────────────────────────────── */
+    .brand-directory {
+      background: var(--white);
+      padding: 72px 0;
+    }
+    .brand-dir-label {
+      font-family: var(--f-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .brand-dir-heading {
+      font-family: var(--f-serif);
+      font-weight: 300;
+      font-size: clamp(28px,4vw,38px);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .brand-flex {
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    .brand-item {
+      flex: 0 0 20%;
+      padding: 20px 16px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--text);
+      transition: border-color .3s, color .3s;
+    }
+    .brand-item:hover { border-color: var(--green); color: var(--green); }
+    .brand-dir-footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .brand-dir-footer a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green);
+      border-bottom: 1px solid rgba(13,50,36,.3);
+      padding-bottom: 1px;
+      transition: border-color .2s;
+    }
+    .brand-dir-footer a:hover { border-color: var(--green); }
+
     /* ─── NEWSLETTER ───────────────────────────────────────────── */
     .newsletter {
-      background: var(--green);
-      padding: 64px 0;
+      background: var(--cream);
+      padding: 80px 0;
     }
     .newsletter .container {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .newsletter h2 {
+    .newsletter-headline {
       font-family: var(--f-serif);
-      font-size: clamp(28px, 4vw, 42px);
+      font-style: italic;
+      font-size: clamp(32px, 4.5vw, 56px);
       font-weight: 300;
-      color: var(--white);
-      line-height: 1.2;
-      max-width: 580px;
+      color: var(--text);
+      line-height: 1.15;
     }
     .newsletter-sub {
       font-size: 14px;
-      color: rgba(255,255,255,.6);
+      color: var(--text-2);
       max-width: 420px;
       line-height: 1.6;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
     .newsletter-form {
       display: flex;
       gap: 10px;
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
       margin-top: 8px;
     }
     .newsletter-form input {
       flex: 1;
       background: var(--white);
-      border: none;
-      border-radius: 3px;
+      border: 1px solid var(--border-2);
+      border-radius: 2px;
       padding: 12px 16px;
       font-family: var(--f-sans);
       font-size: 14px;
       color: var(--text);
       outline: none;
+      transition: border-color .2s;
     }
+    .newsletter-form input:focus { border-color: var(--green); }
     .newsletter-form input::placeholder { color: var(--text-3); }
     .btn-subscribe-gold {
-      background: var(--gold);
+      background: var(--green);
       color: var(--white);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: .04em;
       padding: 12px 24px;
-      border-radius: 3px;
+      border-radius: 2px;
       white-space: nowrap;
-      transition: opacity .2s;
+      transition: background .2s;
       cursor: pointer;
       border: none;
       font-family: var(--f-sans);
     }
-    .btn-subscribe-gold:hover { opacity: .88; }
-    .newsletter-social-proof {
-      font-size: 11px;
-      color: rgba(255,255,255,.35);
-      margin-top: 8px;
-      letter-spacing: .04em;
-    }
+    .btn-subscribe-gold:hover { background: var(--green-2); }
     .newsletter-success {
       display: none;
       font-size: 14px;
-      color: rgba(255,255,255,.85);
+      color: var(--text-2);
       padding: 12px 20px;
-      background: rgba(255,255,255,.1);
-      border-radius: 3px;
-      max-width: 460px;
-      text-align: center;
-    }
-
-    /* ─── TUTORIAIS ────────────────────────────────────────────── */
-    .tutoriais { background: var(--white); padding: 64px 0; }
-    .tutorial-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    .tutorial-featured {
-      background: var(--green);
-      border-radius: 4px;
-      padding: 40px 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-height: 420px;
-      justify-content: flex-end;
-    }
-    .tutorial-featured .badge-tutorial-inv {
-      display: inline-block;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: 3px 8px;
+      background: rgba(13,50,36,.06);
       border-radius: 2px;
-      background: rgba(201,150,42,.25);
-      color: var(--gold);
-      width: fit-content;
-    }
-    .tutorial-featured-title {
-      font-family: var(--f-serif);
-      font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.25;
-    }
-    .tutorial-featured-excerpt {
-      font-size: 13px;
-      color: rgba(255,255,255,.65);
-      line-height: 1.65;
-    }
-    .btn-gold-outline {
-      display: inline-block;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      border-radius: 3px;
-      width: fit-content;
-      transition: all .2s;
-    }
-    .btn-gold-outline:hover { background: var(--gold); color: var(--white); }
-
-    .tutorial-stack { display: flex; flex-direction: column; gap: 0; }
-    .tutorial-card-sm {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 20px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      margin-bottom: 12px;
-      transition: border-color .2s;
-    }
-    .tutorial-card-sm:last-child { margin-bottom: 0; }
-    .tutorial-card-sm:hover { border-color: var(--border-2); }
-    .tutorial-card-sm-title {
-      font-family: var(--f-serif);
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 1.3;
-      color: var(--text);
-    }
-    .tutorial-card-sm-title a:hover { opacity: .7; }
-    .tutorial-read-time { font-size: 11px; color: var(--text-3); }
-
-    /* ─── PRODUTOS ─────────────────────────────────────────────── */
-    .produtos { background: var(--ivory); padding: 64px 0; }
-    .produto-scroll-track { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-    .produto-scroll-track::-webkit-scrollbar { display: none; }
-    .produto-row {
-      display: flex;
-      gap: 16px;
-      padding-bottom: 8px;
-    }
-    .produto-card {
-      flex: 0 0 220px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .produto-card:hover { border-color: var(--border-2); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-    .produto-card-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 3px;
-      overflow: hidden;
-      align-self: center;
-    }
-    .produto-brand {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--text-3);
-    }
-    .produto-name {
-      font-family: var(--f-serif);
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.3;
-      color: var(--text);
-    }
-    .produto-desc {
-      font-size: 12px;
-      color: var(--text-2);
-      line-height: 1.55;
-      flex: 1;
-    }
-    .produto-link {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--green);
-      border-bottom: 1px solid rgba(13,50,36,.3);
-      padding-bottom: 1px;
-      width: fit-content;
-      transition: border-color .2s;
-    }
-    .produto-link:hover { border-color: var(--green); }
-
-    /* ─── MARCAS ───────────────────────────────────────────────── */
-    .marcas { background: var(--white); padding: 56px 0; }
-    .brand-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 28px;
-    }
-    .brand-cell {
-      padding: 24px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--white);
-      transition: background .2s, color .2s;
-      cursor: pointer;
-    }
-    .brand-cell:hover { background: var(--green); }
-    .brand-cell:hover .brand-cell-name { color: var(--white); }
-    .brand-cell-name {
-      font-family: var(--f-serif);
-      font-size: 22px;
-      font-weight: 300;
-      color: var(--text);
+      max-width: 480px;
       text-align: center;
-      transition: color .2s;
-    }
-    .brand-cell-submit {
-      padding: 24px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed var(--border-2);
-      background: rgba(249,247,244,.6);
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .brand-cell-submit:hover { border-color: var(--green); background: rgba(13,50,36,.03); }
-    .brand-cell-submit-text {
-      font-size: 12px;
-      color: var(--text-3);
-      text-align: center;
-      line-height: 1.5;
-    }
-    .brand-cell-submit:hover .brand-cell-submit-text { color: var(--green); }
-
-    /* ─── PARTNER CTA ──────────────────────────────────────────── */
-    .partner-cta {
-      background: var(--cream);
-      padding: 56px 0;
-      border-top: 1px solid var(--border);
-    }
-    .partner-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .partner-label { margin-bottom: 8px; }
-    .partner-h3 {
-      font-family: var(--f-serif);
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-    .partner-p {
-      font-size: 14px;
-      color: var(--text-2);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-    .btn-green {
-      display: inline-block;
-      background: var(--green);
-      color: var(--white);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: .04em;
-      padding: 12px 24px;
-      border-radius: 3px;
-      transition: background .2s;
-    }
-    .btn-green:hover { background: var(--green-2); }
-    .partner-benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .benefit-pill {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 12px 20px;
-      font-size: 13px;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .benefit-check {
-      width: 20px;
-      height: 20px;
-      background: var(--green);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      flex-shrink: 0;
+      border: 1px solid rgba(13,50,36,.12);
     }
 
     /* ─── FOOTER ───────────────────────────────────────────────── */
@@ -806,7 +824,6 @@
       border-bottom: 1px solid rgba(255,255,255,.1);
       margin-bottom: 32px;
     }
-    .footer-brand-col {}
     .footer-logo {
       font-family: var(--f-serif);
       font-size: 22px;
@@ -881,72 +898,63 @@
 
     /* ─── RESPONSIVE ───────────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-band .container { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
       .footer-brand-col { grid-column: 1 / -1; }
+      .brand-item { flex: 0 0 25%; }
     }
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-featured .img-ph { height: 320px; }
-      .hero-right { display: none; }
-      .category-strip .container { grid-template-columns: repeat(3, 1fr); }
-      .brand-grid { grid-template-columns: repeat(3, 1fr); }
-      .partner-grid { grid-template-columns: 1fr; gap: 32px; }
-      .tutorial-grid { grid-template-columns: 1fr; }
+      .edit-main-row { grid-template-columns: 1fr; }
+      .hair-grid { grid-template-columns: 1fr 1fr; }
+      .feature-band .container { grid-template-columns: 1fr; }
+      .feature-band-text { padding-right: 0; margin-bottom: 32px; }
+      .brand-item { flex: 0 0 33.333%; }
+      .editors-pick { flex-direction: column; align-items: flex-start; }
+      .editors-pick-right { display: none; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .btn-subscribe { display: none; }
-      .article-grid { grid-template-columns: 1fr; }
-      .article-grid-3 { grid-template-columns: 1fr; }
+      .btn-newsletter { display: none; }
+      .hero { height: 60vh; min-height: 420px; }
+      .hero-content { padding: 28px 24px; }
+      .hero-read-link { bottom: 28px; right: 24px; }
+      .hair-grid { grid-template-columns: 1fr; }
+      .brand-item { flex: 0 0 50%; }
       .newsletter-form { flex-direction: column; }
       .footer-top { grid-template-columns: 1fr 1fr; }
+      .edit-stack-img { width: 80px; height: 80px; }
     }
     @media (max-width: 480px) {
-      .category-strip .container { grid-template-columns: repeat(2, 1fr); }
-      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-headline { font-size: 36px; }
+      .brand-item { flex: 0 0 50%; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .hero-featured .img-ph { height: 260px; }
     }
   </style>
 </head>
 
 <body x-data="{ mobileOpen: false }">
 
-  <!-- ── TOP BAR ─────────────────────────────────────────────── -->
-  <div class="top-bar">
-    <div class="container">
-      <span class="top-bar-brand">🌿 Brazilian Beauty Index</span>
-      <div class="top-bar-right">
-        <a href="/newsletter">Newsletter</a>
-        <a href="/partners">Partners</a>
-      </div>
-    </div>
-  </div>
-
   <!-- ── MAIN NAV ────────────────────────────────────────────── -->
   <nav class="main-nav" id="mainNav">
     <div class="container">
       <a href="/" class="nav-logo">Brazilian Beauty Index</a>
       <ul class="nav-links">
-        <li><a href="/news">News</a></li>
-        <li><a href="/hair-care">Hair Care</a></li>
-        <li><a href="/produtos">Produtos</a></li>
-        <li><a href="/solutions">Solutions</a></li>
+        <li><a href="/hair-care">Hair</a></li>
+        <li><a href="/produtos">Ingredients</a></li>
+        <li><a href="/brands">Brands</a></li>
+        <li><a href="/solutions">For Salons</a></li>
         <li><a href="/hair">Your Hair</a></li>
-        <li><a href="/tutorials">Tutorials</a></li>
-        <li><a href="/brands">Marcas</a></li>
       </ul>
       <div class="nav-right">
-        <a href="/busca" class="nav-search" aria-label="Buscar">
+        <a href="/busca" class="nav-search" aria-label="Search">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <circle cx="11" cy="11" r="7"></circle>
             <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
           </svg>
         </a>
-        <a href="/newsletter" class="btn-subscribe">Subscribe</a>
+        <a href="/newsletter" class="btn-newsletter">Newsletter</a>
         <button class="nav-hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -956,143 +964,213 @@
 
   <!-- mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/news">News</a>
-    <a href="/hair-care">Hair Care</a>
-    <a href="/produtos">Produtos</a>
-    <a href="/solutions">Solutions</a>
+    <a href="/hair-care">Hair</a>
+    <a href="/produtos">Ingredients</a>
+    <a href="/brands">Brands</a>
+    <a href="/solutions">For Salons</a>
     <a href="/hair">Your Hair</a>
-    <a href="/tutorials">Tutorials</a>
-    <a href="/brands">Marcas</a>
     <a href="/newsletter">Newsletter</a>
   </div>
 
-  <!-- ── SECONDARY NAV ───────────────────────────────────────── -->
-  <div class="secondary-nav">
-    <div class="container">
-      <a href="/tag/keratin" class="tag-pill">#keratin</a>
-      <a href="/tag/smoothing" class="tag-pill">#smoothing</a>
-      <a href="/tag/brae" class="tag-pill">#braé</a>
-      <a href="/tag/cadiveu" class="tag-pill">#cadiveu</a>
-      <a href="/tag/inoar" class="tag-pill">#inoar</a>
-      <a href="/tag/acai" class="tag-pill">#açaí</a>
-      <a href="/tag/tutorials" class="tag-pill">#tutorials</a>
-      <a href="/tag/reviews" class="tag-pill">#reviews</a>
-      <a href="/tag/progressiva" class="tag-pill">#progressiva</a>
-      <a href="/tag/botox-capilar" class="tag-pill">#botox-capilar</a>
-      <a href="/tag/ingredientes" class="tag-pill">#ingredientes</a>
-      <a href="/tag/honma" class="tag-pill">#honma</a>
+  <!-- ── HERO (full-bleed, dynamic from posts.json) ──────────── -->
+  <section class="hero" x-data="heroSection()">
+    <div class="hero-bg">
+      <img x-show="featured && featured.featured_image" :src="featured?.featured_image" :alt="featured?.title" loading="eager">
     </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" x-show="featured">
+      <span class="hero-category-label" x-text="featured?.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
+      <h1 class="hero-headline">
+        <a :href="'/blog/' + featured?.slug" x-text="featured?.title"></a>
+      </h1>
+      <p class="hero-excerpt" x-text="featured?.excerpt"></p>
+      <span class="hero-byline" x-text="(featured?.author || 'BBI Editorial') + '  ·  ' + (featured?.date || '')"></span>
+    </div>
+    <a class="hero-read-link" :href="'/blog/' + featured?.slug" x-show="featured">Read <span>&#8594;</span></a>
+  </section>
+
+  <!-- ── EDITION MARKER ─────────────────────────────────────── -->
+  <div class="edition-marker">
+    <span>Vol. I · May 2026</span>
+    <span class="edition-line"></span>
+    <span>107 Articles</span>
   </div>
 
-  <!-- ── HERO (dynamic from posts.json) ──────────────────────── -->
-  <section class="hero" x-data="heroSection()">
+  <!-- ── THE EDIT (dynamic) ─────────────────────────────────── -->
+  <section class="the-edit" x-data="latestPosts()">
     <div class="container">
-      <div class="hero-grid" x-show="featured">
-        <!-- featured left -->
-        <div class="hero-featured reveal">
-          <a :href="'/blog/' + featured?.slug">
-            <div class="img-ph" style="height:480px;" x-show="!featured?.featured_image"></div>
-            <img x-show="featured?.featured_image" :src="featured?.featured_image" :alt="featured?.title" style="height:480px;width:100%;object-fit:cover;border-radius:4px;" loading="eager">
-          </a>
-          <div class="hero-featured-meta">
-            <span class="badge badge-hair" x-text="featured?.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
-          </div>
-          <h1 class="hero-featured-title">
-            <a :href="'/blog/' + featured?.slug" x-text="featured?.title"></a>
-          </h1>
-          <p class="hero-featured-excerpt" x-text="featured?.excerpt"></p>
-          <div class="article-byline">
-            <span x-text="featured?.author || 'BBI Editorial'"></span>
-            <span class="byline-dot"></span>
-            <span x-text="featured?.date"></span>
-          </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;">
+        <div class="section-rule" style="flex:1;margin-bottom:0;">
+          <span class="section-rule-label">The Edit</span>
         </div>
-        <!-- stack right -->
-        <div class="hero-stack hero-right reveal" style="transition-delay:.1s;">
-          <template x-for="post in stack" :key="post.slug">
-            <div class="hero-stack-card">
-              <div class="hero-stack-thumb" style="width:80px;height:80px;flex-shrink:0;">
-                <div class="img-ph-3" style="width:80px;height:80px;" x-show="!post.featured_image"></div>
-                <img x-show="post.featured_image" :src="post.featured_image" :alt="post.title" style="width:80px;height:80px;object-fit:cover;border-radius:4px;" loading="lazy">
-              </div>
-              <div class="hero-stack-content">
-                <span class="badge badge-hair" x-text="post.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
-                <h3 class="hero-stack-title"><a :href="'/blog/' + post.slug" x-text="post.title"></a></h3>
-                <span class="hero-stack-date" x-text="post.date"></span>
-              </div>
+        <a href="/blog/" class="see-all" style="margin-left:24px;flex-shrink:0;">See all &#8594;</a>
+      </div>
+
+      <!-- asymmetric main row -->
+      <div class="edit-main-row" x-show="latest.length" x-cloak>
+        <!-- big left card -->
+        <article class="edit-big-card" x-show="latest[0]">
+          <a :href="'/blog/' + latest[0]?.slug">
+            <div class="edit-big-card-img">
+              <div class="img-ph" x-show="!latest[0]?.featured_image"></div>
+              <img x-show="latest[0]?.featured_image" :src="latest[0]?.featured_image" :alt="latest[0]?.title" loading="lazy">
             </div>
-          </template>
-        </div>
-      </div>
-    </div>
-  </section>
+          </a>
+          <span class="badge badge-hair" x-text="latest[0]?.category?.replace('-',' ').toUpperCase() || 'HAIR CARE'"></span>
+          <h2 class="edit-big-card-title">
+            <a :href="'/blog/' + latest[0]?.slug" x-text="latest[0]?.title"></a>
+          </h2>
+          <p class="edit-big-card-excerpt" x-text="latest[0]?.excerpt?.slice(0,130) + '...'"></p>
+          <div class="edit-big-card-meta">
+            <span x-text="latest[0]?.author || 'BBI Editorial'"></span>
+            <span class="meta-dot"></span>
+            <span x-text="latest[0]?.date"></span>
+          </div>
+        </article>
 
-  <!-- ── CATEGORY STRIP ─────────────────────────────────────── -->
-  <section class="category-strip">
-    <div class="container">
-      <a href="/hair/" class="cat-card reveal" style="transition-delay:.0s;"><span class="cat-icon">🌿</span><span class="cat-name">Hair Care</span><span class="cat-count">Keratin &amp; Smoothing</span></a>
-      <a href="/skin/" class="cat-card reveal" style="transition-delay:.05s;"><span class="cat-icon">✨</span><span class="cat-name">Skincare</span><span class="cat-count">Amazon Ingredients</span></a>
-      <a href="/blog/" class="cat-card reveal" style="transition-delay:.1s;"><span class="cat-icon">📖</span><span class="cat-name">Tutorials</span><span class="cat-count">Step by Step</span></a>
-      <a href="/brands/" class="cat-card reveal" style="transition-delay:.15s;"><span class="cat-icon">🏷️</span><span class="cat-name">Brands</span><span class="cat-count">Brand Guides</span></a>
-      <a href="/distribution/" class="cat-card reveal" style="transition-delay:.2s;"><span class="cat-icon">🚚</span><span class="cat-name">Distribution</span><span class="cat-count">B2B &amp; Import</span></a>
-      <a href="/nails/" class="cat-card reveal" style="transition-delay:.25s;"><span class="cat-icon">💅</span><span class="cat-name">Nails</span><span class="cat-count">Nail Art &amp; Care</span></a>
-    </div>
-  </section>
-
-  <!-- ── LATEST ARTICLES (dynamic) ────────────────────────── -->
-  <section class="novidades" x-data="latestPosts()">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header-left">
-          <span class="label">LATEST</span>
-          <h2>From the Editorial</h2>
-        </div>
-        <a href="/blog/" class="see-all">See all →</a>
-      </div>
-      <div class="article-grid">
-        <template x-for="(p,i) in latest" :key="p.slug">
-          <article class="article-card reveal" :style="'transition-delay:' + (i*0.07) + 's'">
-            <a :href="'/blog/' + p.slug">
-              <div class="article-card-img">
-                <div class="img-ph" style="height:200px;" x-show="!p.featured_image"></div>
-                <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" style="height:200px;width:100%;object-fit:cover;" loading="lazy">
+        <!-- right stacked cards -->
+        <div class="edit-stack">
+          <article class="edit-stack-card" x-show="latest[1]">
+            <a :href="'/blog/' + latest[1]?.slug">
+              <div class="edit-stack-img">
+                <div class="img-ph-3" x-show="!latest[1]?.featured_image"></div>
+                <img x-show="latest[1]?.featured_image" :src="latest[1]?.featured_image" :alt="latest[1]?.title" loading="lazy">
               </div>
             </a>
-            <span class="badge badge-hair" x-text="p.category?.replace('-',' ').toUpperCase() || 'HAIR'"></span>
-            <h3 class="article-card-title"><a :href="'/blog/' + p.slug" x-text="p.title"></a></h3>
-            <p class="article-card-excerpt" x-text="p.excerpt?.slice(0,110) + '...'"></p>
-            <span class="article-card-date" x-text="p.date"></span>
+            <div class="edit-stack-content">
+              <span class="badge badge-hair" style="margin-bottom:8px;display:block;" x-text="latest[1]?.category?.replace('-',' ').toUpperCase() || 'HAIR'"></span>
+              <h3 class="edit-stack-title"><a :href="'/blog/' + latest[1]?.slug" x-text="latest[1]?.title"></a></h3>
+              <span class="edit-stack-date" x-text="latest[1]?.date"></span>
+            </div>
           </article>
-        </template>
+          <article class="edit-stack-card" x-show="latest[2]">
+            <a :href="'/blog/' + latest[2]?.slug">
+              <div class="edit-stack-img">
+                <div class="img-ph-4" x-show="!latest[2]?.featured_image"></div>
+                <img x-show="latest[2]?.featured_image" :src="latest[2]?.featured_image" :alt="latest[2]?.title" loading="lazy">
+              </div>
+            </a>
+            <div class="edit-stack-content">
+              <span class="badge badge-hair" style="margin-bottom:8px;display:block;" x-text="latest[2]?.category?.replace('-',' ').toUpperCase() || 'HAIR'"></span>
+              <h3 class="edit-stack-title"><a :href="'/blog/' + latest[2]?.slug" x-text="latest[2]?.title"></a></h3>
+              <span class="edit-stack-date" x-text="latest[2]?.date"></span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- editor's pick — post[3] -->
+      <article class="editors-pick" x-show="latest[3]" x-cloak>
+        <div style="flex:1;min-width:0;">
+          <span class="editors-pick-tag">Editor's Pick</span>
+          <h3 class="editors-pick-title">
+            <a :href="'/blog/' + latest[3]?.slug" x-text="latest[3]?.title"></a>
+          </h3>
+          <p class="editors-pick-excerpt" x-text="latest[3]?.excerpt?.slice(0,140) + '...'"></p>
+          <div class="editors-pick-meta">
+            <span x-text="(latest[3]?.author || 'BBI Editorial') + '  ·  ' + (latest[3]?.date || '')"></span>
+          </div>
+        </div>
+        <div class="editors-pick-right">
+          <div class="img-ph-2" style="width:160px;height:120px;border-radius:2px;" x-show="!latest[3]?.featured_image"></div>
+          <img x-show="latest[3]?.featured_image" :src="latest[3]?.featured_image" :alt="latest[3]?.title" style="width:160px;height:120px;object-fit:cover;border-radius:2px;" loading="lazy">
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── GREEN FEATURE BAND (hair posts[0]) ─────────────────── -->
+  <section class="feature-band" x-data="hairPosts()">
+    <div class="container">
+      <div class="feature-band-text">
+        <div class="feature-band-gold-line"></div>
+        <h2 class="feature-band-headline" x-text="posts[0]?.title || 'The Science of Brazilian Keratin'"></h2>
+        <p class="feature-band-excerpt" x-text="(posts[0]?.excerpt?.slice(0,160) + '...') || 'From Amazonian botanicals to professional treatments — understanding what actually works on the strand.'"></p>
+        <a :href="posts[0]?.slug ? '/blog/' + posts[0].slug : '/hair/'" class="feature-band-link">Read more &#8594;</a>
+      </div>
+      <div class="feature-band-img">
+        <img x-show="posts[0]?.featured_image" :src="posts[0]?.featured_image" :alt="posts[0]?.title" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div x-show="!posts[0]?.featured_image" style="width:100%;height:100%;background:linear-gradient(135deg,#174D38 0%,#0D3224 50%,#C9962A 100%);"></div>
       </div>
     </div>
   </section>
 
-  <!-- ── YOUR HAIR (dynamic, hair category) ─────────────────── -->
-  <section class="seu-cabelo" x-data="hairPosts()">
+  <!-- ── HAIR CARE SECTION (dynamic) ────────────────────────── -->
+  <section class="hair-section" x-data="hairPosts()">
     <div class="container">
-      <div class="section-header">
-        <div class="section-header-left">
-          <span class="label">YOUR HAIR</span>
-          <h2>Your Hair, Our Expertise</h2>
-        </div>
-        <a href="/hair/" class="see-all">See all →</a>
+      <div class="section-rule hair-section-rule" style="margin-bottom:40px;">
+        <span class="section-rule-label-serif" style="background:var(--cream);">Hair Care</span>
       </div>
-      <div class="article-grid-3">
-        <template x-for="(p,i) in posts" :key="p.slug">
-          <article class="article-card-lg reveal" :style="'transition-delay:' + (i*0.08) + 's'">
-            <a :href="'/blog/' + p.slug">
-              <div class="article-card-lg-img">
-                <div class="img-ph" style="height:240px;" x-show="!p.featured_image"></div>
-                <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" style="height:240px;width:100%;object-fit:cover;" loading="lazy">
-              </div>
-            </a>
-            <span class="badge badge-hair">YOUR HAIR</span>
-            <h3 class="article-card-lg-title"><a :href="'/blog/' + p.slug" x-text="p.title"></a></h3>
-            <p class="article-card-lg-excerpt" x-text="p.excerpt?.slice(0,120) + '...'"></p>
-            <a :href="'/blog/' + p.slug" class="read-more">Read more →</a>
-          </article>
-        </template>
+      <a href="/hair/" class="see-all" style="display:block;text-align:right;margin-bottom:28px;margin-top:-24px;">See all &#8594;</a>
+      <div class="hair-grid">
+        <!-- tall card, post 0 -->
+        <article class="hair-card" x-show="posts[0]" x-cloak>
+          <a :href="'/blog/' + posts[0]?.slug">
+            <div class="hair-card-img-tall">
+              <div class="img-ph" x-show="!posts[0]?.featured_image"></div>
+              <img x-show="posts[0]?.featured_image" :src="posts[0]?.featured_image" :alt="posts[0]?.title" loading="lazy">
+            </div>
+          </a>
+          <span class="badge badge-hair">Hair Care</span>
+          <h3 class="hair-card-title"><a :href="'/blog/' + posts[0]?.slug" x-text="posts[0]?.title"></a></h3>
+          <p class="hair-card-excerpt" x-text="posts[0]?.excerpt?.slice(0,120) + '...'"></p>
+          <a :href="'/blog/' + posts[0]?.slug" class="read-more">Read more &#8594;</a>
+        </article>
+
+        <!-- landscape mid card, post 1 -->
+        <article class="hair-card" x-show="posts[1]" x-cloak>
+          <a :href="'/blog/' + posts[1]?.slug">
+            <div class="hair-card-img-landscape">
+              <div class="img-ph-2" x-show="!posts[1]?.featured_image"></div>
+              <img x-show="posts[1]?.featured_image" :src="posts[1]?.featured_image" :alt="posts[1]?.title" loading="lazy">
+            </div>
+          </a>
+          <span class="badge badge-hair">Hair Care</span>
+          <h3 class="hair-card-title"><a :href="'/blog/' + posts[1]?.slug" x-text="posts[1]?.title"></a></h3>
+          <p class="hair-card-excerpt" x-text="posts[1]?.excerpt?.slice(0,160) + '...'"></p>
+          <span class="hair-card-meta" x-text="posts[1]?.date"></span>
+          <a :href="'/blog/' + posts[1]?.slug" class="read-more">Read more &#8594;</a>
+        </article>
+
+        <!-- tall card, post 2 -->
+        <article class="hair-card" x-show="posts[2]" x-cloak>
+          <a :href="'/blog/' + posts[2]?.slug">
+            <div class="hair-card-img-tall">
+              <div class="img-ph-3" x-show="!posts[2]?.featured_image"></div>
+              <img x-show="posts[2]?.featured_image" :src="posts[2]?.featured_image" :alt="posts[2]?.title" loading="lazy">
+            </div>
+          </a>
+          <span class="badge badge-hair">Hair Care</span>
+          <h3 class="hair-card-title"><a :href="'/blog/' + posts[2]?.slug" x-text="posts[2]?.title"></a></h3>
+          <p class="hair-card-excerpt" x-text="posts[2]?.excerpt?.slice(0,120) + '...'"></p>
+          <a :href="'/blog/' + posts[2]?.slug" class="read-more">Read more &#8594;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BRAND DIRECTORY ────────────────────────────────────── -->
+  <section class="brand-directory">
+    <div class="container">
+      <span class="brand-dir-label">Directory</span>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
+        <h2 class="brand-dir-heading" style="margin-bottom:0;">Brazilian Brands</h2>
+        <a href="/brands" class="see-all">See all &#8594;</a>
+      </div>
+      <div class="brand-flex reveal">
+        <a href="/brands/brae" class="brand-item">Bra&eacute;</a>
+        <a href="/brands/cadiveu" class="brand-item">Cadiveu</a>
+        <a href="/brands/inoar" class="brand-item">INOAR</a>
+        <a href="/brands/honma-tokyo" class="brand-item">Honma Tokyo</a>
+        <a href="/brands/salvatore" class="brand-item">Salvatore</a>
+        <a href="/brands/robson-peluquero" class="brand-item">Robson Peluquero</a>
+        <a href="/brands/tanino" class="brand-item">Tanino</a>
+        <a href="/brands/piur" class="brand-item">Piur</a>
+        <a href="/brands/lavi" class="brand-item">Lavi</a>
+        <a href="/brands/onyx" class="brand-item">Onyx</a>
+      </div>
+      <div class="brand-dir-footer">
+        <a href="/brands">&#8594; See all brands</a>
       </div>
     </div>
   </section>
@@ -1100,163 +1178,14 @@
   <!-- ── NEWSLETTER ─────────────────────────────────────────── -->
   <section class="newsletter" id="newsletter">
     <div class="container">
-      <h2>Brazilian beauty content straight to your inbox.</h2>
-      <p class="newsletter-sub">News, tutorials and product reviews every week. Zero spam.</p>
+      <h2 class="newsletter-headline">Stay ahead of the edit.</h2>
+      <p class="newsletter-sub">Weekly guides, product reviews and salon intel — direct to your inbox.</p>
       <form class="newsletter-form" id="newsletterForm" novalidate>
-        <input type="email" id="emailInput" placeholder="Your best email" autocomplete="email" required>
+        <input type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required>
         <button type="submit" class="btn-subscribe-gold">Subscribe</button>
       </form>
       <div class="newsletter-success" id="newsletterSuccess">
-        You're in! You'll receive the next edition soon. 🌿
-      </div>
-      <span class="newsletter-social-proof">📧 Over 1,200 readers</span>
-    </div>
-  </section>
-
-  <!-- ── TUTORIAIS ──────────────────────────────────────────── -->
-  <section class="tutoriais">
-    <div class="container">
-      <div class="section-header" style="margin-bottom:28px;">
-        <div class="section-header-left">
-          <span class="label">TUTORIAIS</span>
-          <h2>Learn from the Best</h2>
-        </div>
-        <a href="/tutorials" class="see-all">See all →</a>
-      </div>
-      <div class="tutorial-grid">
-        <div class="tutorial-featured reveal">
-          <span class="badge-tutorial-inv">TUTORIAL</span>
-          <h3 class="tutorial-featured-title">Step by Step: How to Apply Brazilian Keratin at Home (and When to Go to the Salon)</h3>
-          <p class="tutorial-featured-excerpt">Um guia completo para quem quer entender o processo — desde a preparação do cabelo até aos cuidados pós-tratamento. Com dicas de quais etapas só um profissional deve fazer.</p>
-          <a href="/tutorials/keratin-treatment-at-home" class="btn-gold-outline">Watch Tutorial</a>
-        </div>
-        <div class="tutorial-stack reveal" style="transition-delay:.1s;">
-          <div class="tutorial-card-sm">
-            <span class="badge badge-tutorial">TUTORIAL</span>
-            <h4 class="tutorial-card-sm-title"><a href="/tutorials/manutencao-progressiva-casa">How to Maintain Your Keratin Treatment at Home</a></h4>
-            <span class="tutorial-read-time">8 min de leitura</span>
-          </div>
-          <div class="tutorial-card-sm">
-            <span class="badge badge-tutorial">TUTORIAL</span>
-            <h4 class="tutorial-card-sm-title"><a href="/tutorials/deep-hydration-protocol-protocolo-semanal">Deep Hydration: The 3-Step Weekly Protocol</a></h4>
-            <span class="tutorial-read-time">6 min de leitura</span>
-          </div>
-          <div class="tutorial-card-sm">
-            <span class="badge badge-tutorial">TUTORIAL</span>
-            <h4 class="tutorial-card-sm-title"><a href="/tutorials/hair-botox-vs-keratin">Hair Botox vs Keratin: When to Use Each</a></h4>
-            <span class="tutorial-read-time">10 min de leitura</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PRODUTOS ───────────────────────────────────────────── -->
-  <section class="produtos">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header-left">
-          <span class="label">PRODUTOS</span>
-          <h2>Featured Products</h2>
-        </div>
-        <a href="/produtos" class="see-all">See all →</a>
-      </div>
-      <div class="produto-scroll-track reveal">
-        <div class="produto-row">
-          <div class="produto-card">
-            <div class="produto-card-img"><div class="img-ph" style="height:160px;width:160px;"></div></div>
-            <span class="produto-brand">Braé</span>
-            <h4 class="produto-name">Revival Mask</h4>
-            <p class="produto-desc">Máscara de reconstrução molecular com queratina vegetal e proteínas de seda.</p>
-            <a href="/produtos/brae-revival-mask" class="produto-link">Read Review →</a>
-          </div>
-          <div class="produto-card">
-            <div class="produto-card-img"><div class="img-ph-2" style="height:160px;width:160px;"></div></div>
-            <span class="produto-brand">Cadiveu</span>
-            <h4 class="produto-name">Brasil Cacau</h4>
-            <p class="produto-desc">O tratamento de chocolate mais reconhecido do Brasil, agora com certificação europeia.</p>
-            <a href="/produtos/cadiveu-brasil-cacau" class="produto-link">Read Review →</a>
-          </div>
-          <div class="produto-card">
-            <div class="produto-card-img"><div class="img-ph-3" style="height:160px;width:160px;"></div></div>
-            <span class="produto-brand">INOAR</span>
-            <h4 class="produto-name">G.Hair</h4>
-            <p class="produto-desc">A progressiva de queratina mais vendida do Brasil. Resultados em 90 minutos.</p>
-            <a href="/produtos/inoar-ghair" class="produto-link">Read Review →</a>
-          </div>
-          <div class="produto-card">
-            <div class="produto-card-img"><div class="img-ph-4" style="height:160px;width:160px;"></div></div>
-            <span class="produto-brand">Honma Tokyo</span>
-            <h4 class="produto-name">H-Brush</h4>
-            <p class="produto-desc">Tecnologia nano-keratin para alisamento suave e duradouro sem formol.</p>
-            <a href="/produtos/honma-h-brush" class="produto-link">Read Review →</a>
-          </div>
-          <div class="produto-card">
-            <div class="produto-card-img"><div class="img-ph" style="height:160px;width:160px;background:linear-gradient(135deg,#174D38 0%,#C9962A 100%);"></div></div>
-            <span class="produto-brand">Piur</span>
-            <h4 class="produto-name">Nano Keratin</h4>
-            <p class="produto-desc">Nano queratina de alta penetração para fios ultra-finos e sensibilizados.</p>
-            <a href="/produtos/piur-nano-keratin" class="produto-link">Read Review →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── MARCAS ─────────────────────────────────────────────── -->
-  <section class="marcas">
-    <div class="container">
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
-        <div>
-          <span class="label">DIRECTÓRIO</span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:0;">
-        <h2 style="font-family:var(--f-serif);font-weight:300;font-size:clamp(28px,4vw,38px);line-height:1.15;">Brazilian Brands</h2>
-        <a href="/brands" class="see-all">Ver directório →</a>
-      </div>
-      <div class="brand-grid reveal">
-        <a href="/brands/brae" class="brand-cell"><span class="brand-cell-name">Braé</span></a>
-        <a href="/brands/cadiveu" class="brand-cell"><span class="brand-cell-name">Cadiveu</span></a>
-        <a href="/brands/inoar" class="brand-cell"><span class="brand-cell-name">INOAR</span></a>
-        <a href="/brands/honma-tokyo" class="brand-cell"><span class="brand-cell-name">Honma Tokyo</span></a>
-        <a href="/brands/salvatore" class="brand-cell"><span class="brand-cell-name">Salvatore</span></a>
-        <a href="/brands/robson-peluquero" class="brand-cell"><span class="brand-cell-name">Robson Peluquero</span></a>
-        <a href="/brands/tanino" class="brand-cell"><span class="brand-cell-name">Tanino</span></a>
-        <a href="/brands/piur" class="brand-cell"><span class="brand-cell-name">Piur</span></a>
-        <a href="/brands/lavi" class="brand-cell"><span class="brand-cell-name">Lavi</span></a>
-        <a href="/brands/onyx" class="brand-cell"><span class="brand-cell-name">Onyx</span></a>
-        <a href="/partners/registar-marca" class="brand-cell-submit" style="grid-column:span 1;">
-          <span class="brand-cell-submit-text">+ Submit<br>Your Brand</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PARTNER CTA ────────────────────────────────────────── -->
-  <section class="partner-cta">
-    <div class="container">
-      <div class="partner-grid">
-        <div class="reveal">
-          <span class="label partner-label">PARCEIROS</span>
-          <h3 class="partner-h3">A Brazilian beauty brand?<br>Get featured here.</h3>
-          <p class="partner-p">Register your brand on Brazilian Beauty Index and appear in our articles, reviews and comparisons. Reach professionals and consumers who are already looking for your products.</p>
-          <a href="/partners/registar-marca" class="btn-green">Register Your Brand</a>
-        </div>
-        <div class="partner-benefits reveal" style="transition-delay:.1s;">
-          <div class="benefit-pill">
-            <span class="benefit-check">✓</span>
-            <span>Dedicated editorial profile</span>
-          </div>
-          <div class="benefit-pill">
-            <span class="benefit-check">✓</span>
-            <span>Links directos para o seu site</span>
-          </div>
-          <div class="benefit-pill">
-            <span class="benefit-check">✓</span>
-            <span>Exclusive discount code for readers</span>
-          </div>
-        </div>
+        You're in. The next edition lands soon.
       </div>
     </div>
   </section>
@@ -1267,7 +1196,7 @@
       <div class="footer-top">
         <div class="footer-brand-col">
           <div class="footer-logo">Brazilian Beauty Index</div>
-          <p class="footer-desc">O portal de referência em beleza brasileira — hair care, skincare, tutoriais e o directório completo de marcas.</p>
+          <p class="footer-desc">The reference portal for Brazilian beauty — hair care, skincare, tutorials and the complete brand directory.</p>
           <div class="footer-social">
             <a href="https://instagram.com/brazilianbeautyindex" class="footer-social-link" aria-label="Instagram">IG</a>
             <a href="https://pinterest.com/brazilianbeautyindex" class="footer-social-link" aria-label="Pinterest">PT</a>
@@ -1276,24 +1205,24 @@
           </div>
         </div>
         <div>
-          <div class="footer-col-title">Editorias</div>
+          <div class="footer-col-title">Editorial</div>
           <ul class="footer-links">
             <li><a href="/hair-care">Hair Care</a></li>
             <li><a href="/skincare">Skincare</a></li>
             <li><a href="/tutorials">Tutorials</a></li>
             <li><a href="/hair">Your Hair</a></li>
-            <li><a href="/solutions">Solutions</a></li>
+            <li><a href="/solutions">For Salons</a></li>
             <li><a href="/reviews">Reviews</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Marcas</div>
+          <div class="footer-col-title">Brands</div>
           <ul class="footer-links">
-            <li><a href="/brands/brae">Braé</a></li>
+            <li><a href="/brands/brae">Bra&eacute;</a></li>
             <li><a href="/brands/cadiveu">Cadiveu</a></li>
             <li><a href="/brands/inoar">INOAR</a></li>
             <li><a href="/brands/honma-tokyo">Honma Tokyo</a></li>
-            <li><a href="/brands">Ver todas →</a></li>
+            <li><a href="/brands">See all &#8594;</a></li>
           </ul>
         </div>
         <div>
@@ -1301,25 +1230,25 @@
           <ul class="footer-links">
             <li><a href="/partners">Partners</a></li>
             <li><a href="/partners/registar-marca">Register Your Brand</a></li>
-            <li><a href="/anunciar">Anunciar</a></li>
+            <li><a href="/anunciar">Advertise</a></li>
             <li><a href="/media-kit">Media Kit</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Contacto</div>
+          <div class="footer-col-title">Contact</div>
           <ul class="footer-links">
-            <li><a href="/sobre">Sobre Nós</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/sobre">About</a></li>
+            <li><a href="/contacto">Contact</a></li>
             <li><a href="/newsletter">Newsletter</a></li>
             <li><a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Brazilian Beauty Index. Todos os direitos reservados.</span>
+        <span class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</span>
         <div class="footer-legal">
-          <a href="/privacidade">Privacidade</a>
-          <a href="/termos">Termos</a>
+          <a href="/privacidade">Privacy</a>
+          <a href="/termos">Terms</a>
           <a href="/cookies">Cookies</a>
         </div>
       </div>
@@ -1424,10 +1353,13 @@
         posts: [],
         async init() {
           const all = await getPosts();
-          const hair = all.filter(p => p.category === 'hair' || p.category === 'hair-care');
+          const hair = all.filter(p => {
+            const c = (p.category || '').toLowerCase();
+            return c.includes('hair') || c === 'treatments';
+          });
           this.posts = hair.slice(0, 3);
           if (this.posts.length < 3) {
-            this.posts = all.slice(0, 3); // fallback to latest
+            this.posts = all.slice(0, 3);
           }
         }
       };
