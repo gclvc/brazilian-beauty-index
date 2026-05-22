@@ -946,6 +946,7 @@
       .footer-links a { font-size: 13px; }
     }
   </style>
+  <link rel="stylesheet" href="/ads/ads.css">
 </head>
 
 <body x-data="{ mobileOpen: false }">
@@ -959,7 +960,7 @@
         <li><a href="/produtos">Ingredients</a></li>
         <li><a href="/brands">Brands</a></li>
         <li><a href="/solutions">For Salons</a></li>
-        <li><a href="/hair">Your Hair</a></li>
+        <li><a href="/tools/">Tools</a></li>
       </ul>
       <div class="nav-right">
         <a href="/busca" class="nav-search" aria-label="Search">
@@ -1007,7 +1008,12 @@
   <div class="edition-marker">
     <span>Vol. I · May 2026</span>
     <span class="edition-line"></span>
-    <span>107 Articles</span>
+    <span>108 Articles</span>
+  </div>
+
+  <!-- ── LEADERBOARD AD SLOT ────────────────────────────────── -->
+  <div style="padding:0 24px 32px;">
+    <div data-bbi-ad="leaderboard"></div>
   </div>
 
   <!-- ── THE EDIT (dynamic) ─────────────────────────────────── -->
@@ -1092,6 +1098,11 @@
       </article>
     </div>
   </section>
+
+  <!-- ── NATIVE AD SLOT (between Edit and Feature Band) ─────── -->
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px 56px;">
+    <div data-bbi-ad="native"></div>
+  </div>
 
   <!-- ── GREEN FEATURE BAND (hair posts[0]) ─────────────────── -->
   <section class="feature-band" x-data="hairPosts()">
@@ -1189,20 +1200,132 @@
     </div>
   </section>
 
-  <!-- ── NEWSLETTER ─────────────────────────────────────────── -->
-  <section class="newsletter" id="newsletter">
+  <!-- ── NEWSLETTER (2-step with preference capture) ────────── -->
+  <section class="newsletter" id="newsletter" x-data="newsletterApp()">
     <div class="container">
-      <h2 class="newsletter-headline">Stay ahead of the edit.</h2>
-      <p class="newsletter-sub">Weekly guides, product reviews and salon intel — direct to your inbox.</p>
-      <form class="newsletter-form" id="newsletterForm" novalidate>
-        <input type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required>
-        <button type="submit" class="btn-subscribe-gold">Subscribe</button>
-      </form>
-      <div class="newsletter-success" id="newsletterSuccess">
-        You're in. The next edition lands soon.
+      <!-- Step 1: email -->
+      <div x-show="step === 'email'">
+        <h2 class="newsletter-headline">Stay ahead of the edit.</h2>
+        <p class="newsletter-sub">Weekly guides, product reviews and salon intel — curated to what actually interests you.</p>
+        <form class="newsletter-form" @submit.prevent="submitEmail()" novalidate>
+          <input type="email" placeholder="Your email address" autocomplete="email" required x-model="email">
+          <button type="submit" class="btn-subscribe-gold" :disabled="loading">
+            <span x-text="loading ? 'Adding…' : 'Subscribe'"></span>
+          </button>
+        </form>
+        <p style="margin-top:14px;font-size:11px;color:rgba(17,17,17,.4);letter-spacing:.04em;">No spam. Unsubscribe in one click.</p>
       </div>
+
+      <!-- Step 2: who you are + interests -->
+      <div x-show="step === 'prefs'" x-cloak style="text-align:left;max-width:540px;margin:0 auto;">
+        <p class="newsletter-sub" style="text-align:center;margin-bottom:8px;color:#0D3224;font-weight:500;">
+          You're in. One last thing — so we can curate.
+        </p>
+        <h2 class="newsletter-headline" style="font-size:32px;text-align:center;margin-bottom:32px;">What brings you here?</h2>
+
+        <div class="pref-grid">
+          <template x-for="s in segments" :key="s.id">
+            <button type="button" class="pref-pill" :class="{selected: segment===s.id}" @click="segment = s.id">
+              <span class="pref-pill-title" x-text="s.label"></span>
+              <span class="pref-pill-sub" x-text="s.sub"></span>
+            </button>
+          </template>
+        </div>
+
+        <p class="newsletter-sub" style="margin:32px 0 14px;text-align:center;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:rgba(17,17,17,.45);">And what should we send you?</p>
+        <div class="interest-grid">
+          <template x-for="i in interests" :key="i.id">
+            <button type="button" class="interest-chip" :class="{selected: selectedInterests.includes(i.id)}" @click="toggleInterest(i.id)">
+              <span x-text="i.label"></span>
+            </button>
+          </template>
+        </div>
+
+        <div style="text-align:center;margin-top:28px;">
+          <button class="btn-subscribe-gold" @click="submitPrefs()" :disabled="!segment || selectedInterests.length === 0 || loading">
+            <span x-text="loading ? 'Saving…' : 'Save & continue'"></span>
+          </button>
+          <p style="margin-top:12px;font-size:11px;color:rgba(17,17,17,.4);">
+            <a href="#" @click.prevent="skipPrefs()" style="color:rgba(17,17,17,.5);border-bottom:1px solid;">Skip for now</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3: done -->
+      <div x-show="step === 'done'" x-cloak style="text-align:center;">
+        <h2 class="newsletter-headline" style="font-size:32px;">Welcome aboard.</h2>
+        <p class="newsletter-sub" style="margin-top:12px;">Your first curated edition lands in your inbox within 24 hours.</p>
+      </div>
+
+      <div x-show="error" x-cloak style="margin-top:18px;text-align:center;color:#C4563A;font-size:13px;" x-text="error"></div>
     </div>
   </section>
+
+  <style>
+    .pref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .pref-pill {
+      background: var(--white);
+      border: 1px solid var(--border-2);
+      border-radius: 3px;
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .18s, background .18s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 64px;
+      font-family: inherit;
+    }
+    .pref-pill:hover { border-color: var(--green); }
+    .pref-pill.selected {
+      border-color: var(--green);
+      background: var(--green);
+      color: var(--white);
+    }
+    .pref-pill-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+    .pref-pill-sub {
+      font-size: 11.5px;
+      opacity: .65;
+    }
+    .interest-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .interest-chip {
+      background: var(--white);
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: border-color .18s, background .18s;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      font-family: inherit;
+      color: var(--text);
+    }
+    .interest-chip:hover { border-color: var(--green); }
+    .interest-chip.selected {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+    @media (max-width: 540px) {
+      .pref-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer class="footer">
@@ -1378,6 +1501,92 @@
         }
       };
     }
+
+    // ── Newsletter onboarding (2-step preference capture) ────
+    function newsletterApp() {
+      return {
+        step: 'email',
+        email: '',
+        segment: null,
+        selectedInterests: [],
+        loading: false,
+        error: '',
+        segments: [
+          { id: 'consumer',     label: 'I want to learn',  sub: 'Discovering Brazilian beauty' },
+          { id: 'professional', label: 'Salon professional', sub: 'Stylist, colourist, salon owner' },
+          { id: 'distributor',  label: 'Trade / distributor', sub: 'Importing or wholesaling' },
+          { id: 'media',        label: 'Beauty media / PR',  sub: 'Editor, journalist, agency' },
+        ],
+        interests: [
+          { id: 'hair',        label: 'Hair care' },
+          { id: 'skin',        label: 'Skincare' },
+          { id: 'makeup',      label: 'Makeup' },
+          { id: 'body',        label: 'Body & wellness' },
+          { id: 'nails',       label: 'Nails' },
+          { id: 'trends',      label: 'Trends & culture' },
+          { id: 'ingredients', label: 'Ingredients & science' },
+          { id: 'brands',      label: 'Brand stories' },
+        ],
+
+        toggleInterest(id) {
+          const i = this.selectedInterests.indexOf(id);
+          if (i >= 0) this.selectedInterests.splice(i, 1);
+          else this.selectedInterests.push(id);
+        },
+
+        async submitEmail() {
+          if (!this.email || !this.email.includes('@')) return;
+          this.loading = true;
+          this.error = '';
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: this.email, source: 'homepage' }),
+            });
+            if (!res.ok && res.status !== 409) throw new Error('Subscribe failed');
+            try { localStorage.setItem('bbi_email', this.email); } catch(_) {}
+            if (window.dataLayer) window.dataLayer.push({ event: 'newsletter_signup', email_hash: btoa(this.email).slice(0,8) });
+            this.step = 'prefs';
+          } catch(e) {
+            this.error = 'Could not subscribe — try again.';
+          }
+          this.loading = false;
+        },
+
+        async submitPrefs() {
+          if (!this.segment || this.selectedInterests.length === 0) return;
+          this.loading = true;
+          try {
+            await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: this.email,
+                segment: this.segment,
+                interests: this.selectedInterests,
+                source: 'homepage-prefs',
+              }),
+            });
+            if (window.dataLayer) window.dataLayer.push({
+              event: 'newsletter_prefs_saved',
+              segment: this.segment,
+              interests: this.selectedInterests,
+            });
+            this.step = 'done';
+          } catch(e) {
+            this.error = 'Saved your email — but preferences failed. We\'ll ask again later.';
+            this.step = 'done';
+          }
+          this.loading = false;
+        },
+
+        skipPrefs() {
+          this.step = 'done';
+        },
+      };
+    }
   </script>
+  <script src="/ads/ads.js" defer></script>
 </body>
 </html>

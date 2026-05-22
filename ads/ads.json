@@ -1,0 +1,126 @@
+{
+  "_comment": "House ads + future paid advertisers. Each ad has slots it can appear in. The renderer rotates based on weight.",
+  "advertisers": [
+    {
+      "id": "knc-house",
+      "name": "Keratin & Care",
+      "type": "house",
+      "weight": 30,
+      "creatives": {
+        "leaderboard": {
+          "image": "https://cdn.shopify.com/s/files/1/0777/2153/4761/files/logo.svg?v=1688062191",
+          "headline": "Brazilian professional hair care, shipped from London",
+          "sub": "10+ brands · 344 SKUs · Free UK delivery over £75",
+          "cta": "Shop the store",
+          "url": "https://keratinandcare.com?utm_source=bbi&utm_medium=banner&utm_campaign=knc-house-lb",
+          "bg": "#7e1e51",
+          "text": "#FFFFFF",
+          "accent": "#F5EFE9"
+        },
+        "rectangle": {
+          "headline": "The professional store for Brazilian beauty",
+          "sub": "Braé · Cadiveu · Honma · Salvatore",
+          "cta": "Shop now →",
+          "url": "https://keratinandcare.com?utm_source=bbi&utm_medium=banner&utm_campaign=knc-house-rect",
+          "bg": "#7e1e51",
+          "text": "#FFFFFF",
+          "accent": "#C9962A"
+        },
+        "native": {
+          "label": "From our store",
+          "headline": "344 SKUs of Brazilian hair care, in stock now",
+          "sub": "Same-day dispatch from our London warehouse. Free delivery over £75 across the UK and Europe.",
+          "cta": "Browse the catalogue",
+          "url": "https://keratinandcare.com?utm_source=bbi&utm_medium=native&utm_campaign=knc-house",
+          "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80"
+        }
+      }
+    },
+    {
+      "id": "bm-house",
+      "name": "BM Supplier",
+      "type": "house",
+      "weight": 30,
+      "creatives": {
+        "leaderboard": {
+          "headline": "Importer of 10 Brazilian beauty brands across Europe",
+          "sub": "Salons, distributors and pharmacies — get the trade catalogue",
+          "cta": "View the catalogue",
+          "url": "https://bmsupplier.co.uk?utm_source=bbi&utm_medium=banner&utm_campaign=bm-house-lb",
+          "bg": "#0D3224",
+          "text": "#FFFFFF",
+          "accent": "#C9962A"
+        },
+        "rectangle": {
+          "headline": "Wholesale Brazilian hair care",
+          "sub": "Trusted by 200+ salons across UK and EU",
+          "cta": "Open a trade account",
+          "url": "https://bmsupplier.co.uk?utm_source=bbi&utm_medium=banner&utm_campaign=bm-house-rect",
+          "bg": "#0D3224",
+          "text": "#FFFFFF",
+          "accent": "#C9962A"
+        },
+        "native": {
+          "label": "Trade",
+          "headline": "Open a wholesale account in 48 hours",
+          "sub": "BM Supplier is the official UK importer for Braé, Cadiveu, Honma Tokyo, Salvatore and Piur. Trade pricing, 48-hour onboarding, EU-wide delivery.",
+          "cta": "Apply for trade access",
+          "url": "https://bmsupplier.co.uk?utm_source=bbi&utm_medium=native&utm_campaign=bm-house",
+          "image": "https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?w=800&q=80"
+        }
+      }
+    },
+    {
+      "id": "brae-house",
+      "name": "Braé Hair Care",
+      "type": "house",
+      "weight": 20,
+      "creatives": {
+        "leaderboard": {
+          "headline": "Find your Braé routine in 60 seconds",
+          "sub": "Personalised hair quiz — keratin, blonde repair, bond protection",
+          "cta": "Take the quiz",
+          "url": "https://quiz.braehaircare.co.uk?utm_source=bbi&utm_medium=banner&utm_campaign=brae-quiz-lb",
+          "bg": "#0E0F0C",
+          "text": "#FFFFFF",
+          "accent": "#D4A856"
+        },
+        "rectangle": {
+          "headline": "Which Braé is right for your hair?",
+          "sub": "Take our 60-second quiz",
+          "cta": "Start →",
+          "url": "https://quiz.braehaircare.co.uk?utm_source=bbi&utm_medium=banner&utm_campaign=brae-quiz-rect",
+          "bg": "#0E0F0C",
+          "text": "#FFFFFF",
+          "accent": "#D4A856"
+        }
+      }
+    },
+    {
+      "id": "advertise-bbi",
+      "name": "Advertise on BBI",
+      "type": "house",
+      "weight": 20,
+      "creatives": {
+        "leaderboard": {
+          "headline": "Advertise here",
+          "sub": "Reach 50k+ readers of Brazilian beauty content every month",
+          "cta": "View media kit",
+          "url": "/advertise/",
+          "bg": "#F8F6F2",
+          "text": "#111111",
+          "accent": "#0D3224"
+        },
+        "rectangle": {
+          "headline": "Your brand belongs here",
+          "sub": "From £299/month — talk to us",
+          "cta": "Media kit →",
+          "url": "/advertise/",
+          "bg": "#F8F6F2",
+          "text": "#111111",
+          "accent": "#0D3224"
+        }
+      }
+    }
+  ]
+}

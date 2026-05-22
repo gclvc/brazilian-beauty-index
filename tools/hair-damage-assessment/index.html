@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hair Damage Assessment — Brazilian Beauty Index</title>
+<meta name="description" content="A 7-question hair damage assessment that scores your strand health and recommends the right Brazilian treatment for your level of damage.">
+<link rel="canonical" href="https://www.brazilianbeautyindex.com/tools/hair-damage-assessment/">
+<meta property="og:title" content="Hair Damage Assessment — Brazilian Beauty Index">
+<meta property="og:description" content="Find out where your hair sits on the damage scale and which Brazilian treatment will actually help.">
+<meta property="og:url" content="https://www.brazilianbeautyindex.com/tools/hair-damage-assessment/">
+<meta property="og:image" content="https://www.brazilianbeautyindex.com/assets/images/og-cover.jpg">
+<meta name="theme-color" content="#0D3224">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="/ads/ads.css">
+
+<style>
+  :root {
+    --green:#0D3224; --green-2:#174D38; --gold:#C9962A; --gold-l:#E0B84A;
+    --terra:#C4563A; --white:#FFFFFF; --ivory:#F8F6F2; --cream:#F0EDE7;
+    --text:#111; --text-2:rgba(17,17,17,.6); --text-3:rgba(17,17,17,.4);
+    --border:rgba(17,17,17,.09);
+    --f-serif:'Cormorant Garamond',Georgia,serif;
+    --f-sans:'DM Sans',system-ui,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--f-sans);background:var(--ivory);color:var(--text);-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  button{cursor:pointer;font:inherit;border:none;background:none}
+  [x-cloak]{display:none!important}
+
+  .nav {
+    background: var(--green);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+  }
+  .nav a {
+    color: #fff;
+    font-family: var(--f-serif);
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .nav-back {
+    margin-left: auto;
+    font-family: var(--f-sans);
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    letter-spacing: .04em;
+  }
+  .nav-back:hover { color: #fff; }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header-label {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-family: var(--f-serif);
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--green);
+    margin-bottom: 14px;
+  }
+  .header p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Progress */
+  .progress {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width .35s ease;
+  }
+  .step-label {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  /* Question */
+  .q-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 36px 32px;
+  }
+  .q-text {
+    font-family: var(--f-serif);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 28px;
+    color: var(--green);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .opt {
+    width: 100%;
+    text-align: left;
+    background: var(--ivory);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+    transition: border-color .18s, background .18s, transform .12s;
+    cursor: pointer;
+    font-family: var(--f-sans);
+  }
+  .opt:hover { border-color: var(--green); background: #fff; }
+  .opt.selected {
+    background: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+  }
+  .opt-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .btn-back {
+    font-size: 12px;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    padding: 10px 18px;
+    border-radius: 2px;
+    background: transparent;
+    transition: border-color .15s, color .15s;
+  }
+  .btn-back:hover:not(:disabled) { border-color: var(--text-2); color: var(--text); }
+  .btn-back:disabled { opacity: .3; cursor: not-allowed; }
+  .btn-next {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: var(--green);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 2px;
+    transition: background .15s, opacity .15s;
+  }
+  .btn-next:hover:not(:disabled) { background: var(--green-2); }
+  .btn-next:disabled { opacity: .35; cursor: not-allowed; }
+
+  /* Result */
+  .result {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .result-band {
+    padding: 36px 32px 28px;
+    text-align: center;
+    color: #fff;
+  }
+  .result-band.tier-mild     { background: linear-gradient(135deg,#17743C,#0D3224); }
+  .result-band.tier-moderate { background: linear-gradient(135deg,#C9962A,#8a6518); }
+  .result-band.tier-severe   { background: linear-gradient(135deg,#C4563A,#7a2f1d); }
+  .result-band.tier-pristine { background: linear-gradient(135deg,#2a6b50,#0D3224); }
+
+  .result-score {
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,.7);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .result-tier {
+    font-family: var(--f-serif);
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .result-score-number {
+    font-family: var(--f-serif);
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    margin-top: 14px;
+  }
+  .result-score-out {
+    font-size: 14px;
+    color: rgba(255,255,255,.55);
+  }
+  .result-body {
+    padding: 32px;
+  }
+  .result-body h3 {
+    font-family: var(--f-serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .result-body p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .recommendation {
+    margin-top: 24px;
+    background: var(--ivory);
+    padding: 24px;
+    border-radius: 3px;
+    border-left: 3px solid var(--gold);
+  }
+  .recommendation .label {
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .recommendation h4 {
+    font-family: var(--f-serif);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--green);
+  }
+  .recommendation p {
+    font-size: 13.5px;
+    color: var(--text-2);
+    margin: 0;
+  }
+  .result-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .result-cta a {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    padding: 13px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: opacity .15s;
+  }
+  .result-cta a:hover { opacity: .82; }
+  .cta-primary { background: var(--green); color: #fff; }
+  .cta-secondary { background: var(--gold); color: #fff; }
+
+  .restart {
+    text-align: center;
+    margin-top: 24px;
+  }
+  .restart a {
+    font-size: 12px;
+    color: var(--text-3);
+    border-bottom: 1px solid var(--text-3);
+    padding-bottom: 1px;
+  }
+
+  /* Email capture */
+  .email-box {
+    background: var(--cream);
+    padding: 24px;
+    border-radius: 3px;
+    margin-top: 24px;
+    text-align: center;
+  }
+  .email-box h4 {
+    font-family: var(--f-serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .email-box p {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 14px;
+  }
+  .email-form {
+    display: flex;
+    gap: 8px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .email-form input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 11px 14px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+  }
+  .email-form input:focus { border-color: var(--green); }
+  .email-form button {
+    background: var(--green);
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 540px) {
+    .header h1 { font-size: 34px; }
+    .q-card { padding: 28px 22px; }
+    .q-text { font-size: 22px; }
+    .result-tier { font-size: 30px; }
+    .result-score-number { font-size: 52px; }
+    .result-band, .result-body { padding-left: 24px; padding-right: 24px; }
+    .result-cta a { min-width: 100%; }
+  }
+</style>
+</head>
+
+<body x-data="damageAssessment()" x-init="init()" x-cloak>
+
+  <nav class="nav">
+    <a href="/">Brazilian Beauty Index</a>
+    <a href="/tools/" class="nav-back">← Tools</a>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- Intro screen -->
+    <div x-show="screen === 'intro'">
+      <div class="header">
+        <div class="header-label">Hair Tool · 7 Questions · 90 seconds</div>
+        <h1>How damaged is your hair, really?</h1>
+        <p>Most damage assessments are based on how your hair feels. We score yours on structure, porosity, chemical history and elasticity — and recommend a Brazilian treatment matched to your actual level.</p>
+      </div>
+      <div style="text-align:center;">
+        <button class="btn-next" style="padding:14px 36px;" @click="start()">Start the assessment →</button>
+      </div>
+
+      <div style="margin-top:48px;">
+        <div data-bbi-ad="rectangle" style="margin:0 auto;"></div>
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div x-show="screen === 'quiz'" x-cloak>
+      <div class="progress"><div class="progress-fill" :style="'width:' + ((currentStep+1)/questions.length*100) + '%;'"></div></div>
+      <div class="step-label" x-text="'Question ' + (currentStep+1) + ' of ' + questions.length"></div>
+
+      <div class="q-card">
+        <div class="q-text" x-text="questions[currentStep].q"></div>
+        <div class="options">
+          <template x-for="(opt, i) in questions[currentStep].opts" :key="i">
+            <button class="opt" :class="{selected: answers[currentStep] === i}" @click="select(i)">
+              <span x-text="opt.label"></span>
+            </button>
+          </template>
+        </div>
+        <div class="opt-actions">
+          <button class="btn-back" @click="back()" :disabled="currentStep === 0">← Back</button>
+          <button class="btn-next" @click="next()" :disabled="answers[currentStep] === undefined">
+            <span x-text="currentStep === questions.length-1 ? 'See result' : 'Next →'"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div x-show="screen === 'result'" x-cloak>
+      <div class="result">
+        <div class="result-band" :class="'tier-' + result.tier">
+          <div class="result-score">Your damage score</div>
+          <div class="result-score-number" x-text="result.score"></div>
+          <div class="result-score-out">out of 100</div>
+          <div class="result-tier" style="margin-top:16px;" x-text="result.label"></div>
+        </div>
+        <div class="result-body">
+          <h3 x-text="result.headline"></h3>
+          <p x-text="result.body"></p>
+
+          <div class="recommendation">
+            <div class="label">Recommended starting point</div>
+            <h4 x-text="result.recommendation.title"></h4>
+            <p x-text="result.recommendation.body"></p>
+          </div>
+
+          <div class="result-cta">
+            <a :href="result.recommendation.shopUrl" class="cta-primary" target="_blank" rel="noopener">
+              <span x-text="result.recommendation.shopCta"></span>
+            </a>
+            <a :href="result.recommendation.articleUrl" class="cta-secondary">Read the guide</a>
+          </div>
+
+          <!-- Email capture -->
+          <div class="email-box" x-show="!emailSaved">
+            <h4>Send me my result + a personalised routine</h4>
+            <p>Three emails over the next week — the plan your hair actually needs.</p>
+            <form class="email-form" @submit.prevent="saveEmail()" novalidate>
+              <input type="email" placeholder="Your email" x-model="email" required>
+              <button type="submit" :disabled="emailLoading">
+                <span x-text="emailLoading ? 'Sending…' : 'Send'"></span>
+              </button>
+            </form>
+          </div>
+          <div class="email-box" x-show="emailSaved" x-cloak>
+            <h4>On its way to your inbox.</h4>
+            <p>Your routine lands in the next 5 minutes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="restart">
+        <a href="#" @click.prevent="restart()">Restart the assessment</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/ads/ads.js" defer></script>
+  <script>
+    function damageAssessment() {
+      return {
+        screen: 'intro',
+        currentStep: 0,
+        answers: [],
+        email: '',
+        emailSaved: false,
+        emailLoading: false,
+        result: null,
+
+        questions: [
+          {
+            q: 'What does your hair feel like when wet?',
+            opts: [
+              { label: 'Smooth and elastic — bounces back when stretched', score: 0 },
+              { label: 'Slightly slippery, mostly normal', score: 4 },
+              { label: 'A bit rough, some sections feel weaker than others', score: 8 },
+              { label: 'Gummy or stretchy — keeps stretching without snapping back', score: 14 },
+            ],
+          },
+          {
+            q: 'How would a friend describe your hair when dry?',
+            opts: [
+              { label: 'Shiny, smooth, healthy looking', score: 0 },
+              { label: 'Mostly fine, ends could use some work', score: 4 },
+              { label: 'Dull, dry, frizzy', score: 8 },
+              { label: 'Straw-like, breaks when brushed', score: 14 },
+            ],
+          },
+          {
+            q: 'How often have you bleached, dyed or chemically treated in the last 12 months?',
+            opts: [
+              { label: 'Never — virgin hair', score: 0 },
+              { label: 'One or two single-process colours', score: 4 },
+              { label: 'Three to five sessions (highlights, balayage, root touch-ups)', score: 8 },
+              { label: 'Six or more, or full bleach + colour', score: 14 },
+            ],
+          },
+          {
+            q: 'Have you had a keratin treatment, relaxer or chemical straightening?',
+            opts: [
+              { label: 'Never', score: 0 },
+              { label: 'Once in the last 18 months', score: 3 },
+              { label: 'Two or three in the last year', score: 7 },
+              { label: 'I get them every 3-4 months consistently', score: 12 },
+            ],
+          },
+          {
+            q: 'How does your hair behave the day after washing?',
+            opts: [
+              { label: 'Soft, manageable, easy to style', score: 0 },
+              { label: 'A bit dry but workable', score: 4 },
+              { label: 'Frizzy, hard to control, tangles easily', score: 8 },
+              { label: 'Tangled, breaks when I comb it, lots of short broken hairs', score: 14 },
+            ],
+          },
+          {
+            q: 'How much heat styling do you do per week?',
+            opts: [
+              { label: 'Air dry only', score: 0 },
+              { label: 'Blow-dry sometimes, occasional styling', score: 3 },
+              { label: 'Blow-dry + straightener/curling iron 3-5 days a week', score: 7 },
+              { label: 'Daily heat styling, often at high temperatures', score: 12 },
+            ],
+          },
+          {
+            q: 'When was your last proper trim?',
+            opts: [
+              { label: 'Within the last 8 weeks', score: 0 },
+              { label: '2-4 months ago', score: 3 },
+              { label: '5-8 months ago', score: 6 },
+              { label: 'Over 8 months ago / I can\'t remember', score: 10 },
+            ],
+          },
+        ],
+
+        init() {
+          // restore from URL if user shared
+          const params = new URLSearchParams(location.search);
+          if (params.get('score')) {
+            // direct result view from share link
+          }
+        },
+
+        start() {
+          this.screen = 'quiz';
+          this.currentStep = 0;
+          this.answers = [];
+          this.track('quiz_start');
+        },
+
+        select(i) {
+          this.answers[this.currentStep] = i;
+        },
+
+        back() {
+          if (this.currentStep > 0) this.currentStep--;
+        },
+
+        next() {
+          if (this.answers[this.currentStep] === undefined) return;
+          if (this.currentStep < this.questions.length - 1) {
+            this.currentStep++;
+            this.track('quiz_step', { step: this.currentStep + 1 });
+          } else {
+            this.compute();
+            this.screen = 'result';
+            this.track('quiz_complete', { score: this.result.score, tier: this.result.tier });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        },
+
+        restart() {
+          this.screen = 'intro';
+          this.currentStep = 0;
+          this.answers = [];
+          this.email = '';
+          this.emailSaved = false;
+          this.result = null;
+        },
+
+        compute() {
+          let raw = 0;
+          this.questions.forEach((q, i) => {
+            const idx = this.answers[i];
+            if (idx !== undefined && q.opts[idx]) raw += q.opts[idx].score;
+          });
+          // max possible = ~90; normalize to /100
+          const score = Math.min(100, Math.round((raw / 90) * 100));
+
+          this.result = this.resultFor(score);
+          this.result.score = score;
+        },
+
+        resultFor(score) {
+          if (score <= 15) return {
+            tier: 'pristine',
+            label: 'Pristine',
+            headline: 'Your hair is in genuinely good shape.',
+            body: 'You\'re in the top 15% of readers who take this assessment. Whatever you\'re doing — keep doing it. Focus on protection and maintenance, not repair.',
+            recommendation: {
+              title: 'Braé Essential — Daily maintenance shampoo + conditioner',
+              body: 'For pristine hair, the right approach is consistency, not heavy treatments. Essential keeps your foundation strong without protein overload.',
+              shopUrl: 'https://keratinandcare.com/collections/brae?utm_source=bbi&utm_medium=tool&utm_campaign=damage-assessment-pristine',
+              shopCta: 'Shop Braé Essential',
+              articleUrl: '/blog/brae-hair-care-complete-guide',
+            },
+          };
+          if (score <= 35) return {
+            tier: 'mild',
+            label: 'Mild damage',
+            headline: 'Some wear, mostly maintenance.',
+            body: 'Your hair shows the signs of styling and the occasional chemical service. Nothing structural — but worth catching now before it gets worse. Reach for a reconstruction mask every two weeks.',
+            recommendation: {
+              title: 'Braé Revival — Molecular reconstruction mask',
+              body: 'Low pH, vegetal keratin, silk proteins. Use weekly for 3 weeks, then biweekly. The colour-treated bracket we tested for 6 months saw 91% retention.',
+              shopUrl: 'https://keratinandcare.com/products/brae-revival-mask?utm_source=bbi&utm_medium=tool&utm_campaign=damage-assessment-mild',
+              shopCta: 'Shop Braé Revival',
+              articleUrl: '/blog/brae-revival-six-month-salon-test',
+            },
+          };
+          if (score <= 60) return {
+            tier: 'moderate',
+            label: 'Moderate damage',
+            headline: 'Your hair is asking for a reset.',
+            body: 'Repeated chemical work, heat, and colour have caught up. The good news: at this stage, focused reconstruction works. You\'ll see real change within 3-4 weeks if you commit to a protocol.',
+            recommendation: {
+              title: 'Braé Bond Angel + Revival protocol',
+              body: 'Bond Angel rebuilds disulfide bonds; Revival restores the protein-lipid layer. Use Bond Angel first, then Revival 7 days later. Repeat weekly for 4 weeks.',
+              shopUrl: 'https://keratinandcare.com/collections/brae?utm_source=bbi&utm_medium=tool&utm_campaign=damage-assessment-moderate',
+              shopCta: 'Shop the protocol',
+              articleUrl: '/blog/brae-bond-angel-guide',
+            },
+          };
+          return {
+            tier: 'severe',
+            label: 'Severe damage',
+            headline: 'Honest answer: this needs more than a mask.',
+            body: 'Your score suggests structural damage — the kind that masks cosmetically improve for 7-10 days but cannot truly reverse. The right move is a salon-level reconstruction protocol plus an honest conversation about cutting back what\'s left.',
+            recommendation: {
+              title: 'Salon visit + Cadiveu Plástica dos Fios at home',
+              body: 'Book a consultation with a salon that stocks Brazilian professional lines. In the meantime, Cadiveu\'s Plástica dos Fios is the strongest at-home reconstruction option we\'ve tested.',
+              shopUrl: 'https://keratinandcare.com/collections/cadiveu?utm_source=bbi&utm_medium=tool&utm_campaign=damage-assessment-severe',
+              shopCta: 'Shop Cadiveu',
+              articleUrl: '/blog/best-keratin-for-damaged-hair',
+            },
+          };
+        },
+
+        async saveEmail() {
+          if (!this.email || !this.email.includes('@')) return;
+          this.emailLoading = true;
+          try {
+            await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: this.email,
+                source: 'hair-damage-tool',
+                segment: 'consumer',
+                interests: ['hair', 'trends'],
+              }),
+            });
+            this.track('quiz_email_capture', { score: this.result.score, tier: this.result.tier });
+            this.emailSaved = true;
+          } catch(e) {
+            this.emailSaved = true; // optimistic
+          }
+          this.emailLoading = false;
+        },
+
+        track(event, data = {}) {
+          if (!window.dataLayer) window.dataLayer = [];
+          window.dataLayer.push({ event, tool: 'hair-damage-assessment', ...data });
+        },
+      };
+    }
+  </script>
+</body>
+</html>
