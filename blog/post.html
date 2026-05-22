@@ -75,11 +75,15 @@
     #progress-bar {
       position: fixed;
       top: 0; left: 0;
-      height: 2px;
+      height: 3px;
       width: 0%;
       background: var(--gold);
+      box-shadow: 0 0 6px rgba(201,150,42,.45);
       z-index: 9999;
       transition: width .1s linear;
+    }
+    @media (max-width: 768px) {
+      #progress-bar { height: 4px; }
     }
 
     /* ─── STICKY NAV ─────────────────────────────────────────────── */
