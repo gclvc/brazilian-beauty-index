@@ -23,7 +23,6 @@
     { "source": "/produtos",                 "destination": "/blog/",          "permanent": false },
     { "source": "/produtos/:path*",          "destination": "/blog/",          "permanent": false },
     { "source": "/partners/registar-marca",  "destination": "/partners/",      "permanent": false },
-    { "source": "/brands",                   "destination": "/brands/",        "permanent": true  },
     { "source": "/brands/brae",              "destination": "/blog/brae-hair-care-complete-guide",    "permanent": false },
     { "source": "/brands/cadiveu",           "destination": "/blog/cadiveu-professional-guide",        "permanent": false },
     { "source": "/brands/honma-tokyo",       "destination": "/blog/honma-tokyo-brand-guide",            "permanent": false },
