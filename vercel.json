@@ -37,7 +37,8 @@
   "rewrites": [
     { "source": "/blog/posts.json", "destination": "/blog/posts.json" },
     { "source": "/blog/:slug",      "destination": "/blog/post?slug=:slug" },
-    { "source": "/hair/:slug",      "destination": "/blog/post?slug=:slug" }
+    { "source": "/hair/:slug",      "destination": "/blog/post?slug=:slug" },
+    { "source": "/quiz",            "destination": "/quiz/index.html" }
   ],
   "headers": [
     {

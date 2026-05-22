@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Brazilian Keratin Treatment Is Right for You? — Brazilian Beauty Index</title>
+  <meta name="description" content="Take our 5-question quiz to discover which Brazilian keratin treatment suits your hair type, concerns and lifestyle.">
+  <meta property="og:title" content="Which Brazilian Keratin Treatment Is Right for You?">
+  <meta property="og:description" content="Take our 5-question quiz to discover which Brazilian keratin treatment suits your hair type, concerns and lifestyle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://brazilianbeautyindex.com/quiz">
+  <link rel="canonical" href="https://brazilianbeautyindex.com/quiz">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Design tokens ─── */
+    :root {
+      --green:   #0D3224;
+      --gold:    #C9962A;
+      --terra:   #C4563A;
+      --white:   #FFFFFF;
+      --ivory:   #F9F7F4;
+      --text:    #111111;
+      --text-2:  rgba(17,17,17,.58);
+      --border:  rgba(17,17,17,.08);
+      --gold-bg: rgba(201,150,42,.08);
+      --green-bg:rgba(13,50,36,.06);
+      --shadow:  0 2px 16px rgba(0,0,0,.06);
+      --shadow-md:0 4px 32px rgba(0,0,0,.10);
+      --radius:  12px;
+      --radius-sm:8px;
+      --transition: 220ms cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background: var(--ivory);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Progress bar ─── */
+    #progress-bar-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--border);
+      z-index: 100;
+    }
+    #progress-bar {
+      height: 100%;
+      background: var(--gold);
+      transition: width 400ms cubic-bezier(.4,0,.2,1);
+      will-change: width;
+    }
+
+    /* ─── Site header ─── */
+    .site-header {
+      position: fixed;
+      top: 3px; left: 0; right: 0;
+      height: 56px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+    }
+    .site-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: .02em;
+    }
+    .site-logo span { color: var(--gold); }
+
+    /* ─── Main layout ─── */
+    .quiz-shell {
+      min-height: 100vh;
+      padding-top: 80px;
+      padding-bottom: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .quiz-container {
+      width: 100%;
+      max-width: 640px;
+      padding: 0 16px;
+    }
+
+    /* ─── Screens ─── */
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 320ms ease, transform 320ms ease;
+    }
+    .screen.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Landing screen ─── */
+    .landing-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .landing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .landing-title em { font-style: italic; }
+    .landing-body {
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 32px;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+    .landing-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .landing-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-2);
+    }
+    .landing-meta-item svg { color: var(--gold); flex-shrink: 0; }
+    .landing-divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin-bottom: 36px;
+    }
+
+    /* ─── Buttons ─── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      width: 100%;
+      max-width: 320px;
+      letter-spacing: .01em;
+    }
+    .btn-primary:hover, .btn-primary:focus-visible {
+      background: #0f3d2b;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(13,50,36,.2);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      width: 100%;
+      letter-spacing: .01em;
+    }
+    .btn-gold:hover, .btn-gold:focus-visible {
+      background: #b8861f;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(201,150,42,.3);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+      width: 100%;
+      letter-spacing: .01em;
+    }
+    .btn-ghost:hover, .btn-ghost:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--gold-bg);
+    }
+
+    /* ─── Question screen ─── */
+    .question-header {
+      padding: 28px 0 24px;
+    }
+    .question-progress-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-2);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .question-progress-bar-wrap {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .question-progress-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 99px;
+      transition: width 400ms cubic-bezier(.4,0,.2,1);
+    }
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 5vw, 34px);
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+
+    /* ─── Answer cards ─── */
+    .answers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 440px) {
+      .answers-grid { grid-template-columns: 1fr; }
+    }
+
+    .answer-card {
+      position: relative;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
+      text-align: left;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: var(--shadow);
+    }
+    .answer-card:hover, .answer-card:focus-visible {
+      border-color: var(--gold);
+      background: var(--gold-bg);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      outline: none;
+    }
+    .answer-card.selected {
+      border-color: var(--gold);
+      background: var(--gold-bg);
+    }
+    .answer-card.selected .answer-label { color: var(--gold); }
+    .answer-check {
+      position: absolute;
+      top: 12px; right: 12px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition), transform var(--transition);
+      transform: scale(0.6);
+    }
+    .answer-card.selected .answer-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .answer-check svg { display: block; }
+
+    .answer-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      transition: color var(--transition);
+    }
+    .answer-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 8px 0;
+      margin-top: 20px;
+      transition: color var(--transition);
+    }
+    .back-btn:hover { color: var(--green); }
+
+    /* ─── Result screen ─── */
+    .result-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      margin-top: 28px;
+    }
+    .result-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .result-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .result-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .result-product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .result-description {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+    .result-divider {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 20px 0;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .result-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 1px;
+      transition: color var(--transition), border-color var(--transition);
+      width: fit-content;
+    }
+    .result-secondary-link:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ─── Share / Restart row ─── */
+    .result-footer-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .result-footer-row .btn-ghost { flex: 1; }
+
+    /* ─── Newsletter capture ─── */
+    .newsletter-block {
+      background: var(--green);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 32px;
+    }
+    .newsletter-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .newsletter-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .newsletter-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,.4); }
+    .newsletter-input:focus { border-color: var(--gold); }
+    .newsletter-btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .newsletter-btn:hover { background: #b8861f; }
+    .newsletter-success {
+      display: none;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    .newsletter-success.show { display: block; }
+    .newsletter-privacy {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* ─── Landing card wrapper ─── */
+    .landing-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px 36px;
+      margin-top: 20px;
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 480px) {
+      .landing-card { padding: 28px 20px 24px; border-radius: var(--radius); }
+    }
+
+    /* ─── Transition animation ─── */
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-in {
+      animation: fadeSlideIn 320ms cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    /* ─── Accessibility ─── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    /* ─── Footer ─── */
+    .quiz-footer {
+      text-align: center;
+      padding: 24px 16px 0;
+      font-size: 12px;
+      color: var(--text-2);
+    }
+    .quiz-footer a { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .quiz-footer a:hover { color: var(--gold); border-color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed progress bar -->
+  <div id="progress-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Quiz progress">
+    <div id="progress-bar" style="width:0%"></div>
+  </div>
+
+  <!-- Site header -->
+  <header class="site-header">
+    <a href="https://brazilianbeautyindex.com" class="site-logo">Brazilian <span>Beauty</span> Index</a>
+  </header>
+
+  <!-- Quiz shell -->
+  <main class="quiz-shell" id="quiz-root">
+    <div class="quiz-container">
+
+      <!-- ══════════════════════════════════
+           SCREEN: Landing
+      ══════════════════════════════════ -->
+      <div class="screen active" id="screen-landing" role="region" aria-label="Quiz introduction">
+        <div class="landing-card anim-in">
+          <p class="landing-eyebrow">Hair Quiz · 5 Questions · 2 minutes</p>
+          <h1 class="landing-title">Which Brazilian Keratin Treatment Is <em>Right for You?</em></h1>
+          <div class="landing-divider"></div>
+          <p class="landing-body">Not every keratin treatment is the same. Answer five quick questions about your hair type, concerns and lifestyle — we'll match you to the exact formula your hair needs.</p>
+          <div class="landing-meta">
+            <span class="landing-meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v4l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              2 minutes
+            </span>
+            <span class="landing-meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 7c0 4-5 7-5 7S3 11 3 7a5 5 0 0110 0z" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="7" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              4 personalised results
+            </span>
+            <span class="landing-meta-item">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 13l4-4m0 0l4-4m-4 4l-4-4m8 4l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Expert-backed recommendations
+            </span>
+          </div>
+          <button class="btn-primary" id="btn-start" onclick="quiz.start()">
+            Find My Treatment
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════
+           SCREEN: Question
+      ══════════════════════════════════ -->
+      <div class="screen" id="screen-question" role="region" aria-label="Quiz question">
+        <div class="question-header">
+          <p class="question-progress-text" id="question-progress-text">Question 1 of 5</p>
+          <div class="question-progress-bar-wrap">
+            <div class="question-progress-bar-fill" id="question-progress-fill" style="width:0%"></div>
+          </div>
+          <h2 class="question-text" id="question-text"></h2>
+        </div>
+        <div class="answers-grid" id="answers-grid" role="list"></div>
+        <button class="back-btn" id="btn-back" onclick="quiz.back()" aria-label="Go back to previous question">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+      </div>
+
+      <!-- ══════════════════════════════════
+           SCREEN: Result
+      ══════════════════════════════════ -->
+      <div class="screen" id="screen-result" role="region" aria-label="Your quiz result">
+        <p class="result-eyebrow">Your personalised match</p>
+        <h2 class="result-title" id="result-title"></h2>
+        <div class="result-card">
+          <div class="result-card-badge" id="result-badge">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="result-badge-text">Best Match</span>
+          </div>
+          <h3 class="result-product-name" id="result-product-name"></h3>
+          <div class="result-divider"></div>
+          <p class="result-description" id="result-description"></p>
+        </div>
+
+        <div class="result-actions">
+          <a class="btn-gold" id="result-cta-primary" href="#" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2h2l2.4 7.4L9 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/></svg>
+            <span id="result-cta-primary-text">Shop Now at Keratin and Care</span>
+          </a>
+          <a class="result-secondary-link" id="result-cta-secondary" href="#">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M8 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="result-cta-secondary-text">Read our guide</span>
+          </a>
+        </div>
+
+        <!-- Share + Restart -->
+        <div class="result-footer-row">
+          <button class="btn-ghost" id="btn-share" onclick="quiz.share()">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="12" cy="3" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="8" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="13" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 7.1l5-2.8M5.5 9l5 2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Share result
+          </button>
+          <button class="btn-ghost" onclick="quiz.restart()">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8a6 6 0 106-6H5M5 2v4H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Retake quiz
+          </button>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-block">
+          <h3 class="newsletter-label">Get personalised Brazilian beauty tips</h3>
+          <p class="newsletter-sub">Expert guides, treatment reviews and exclusive offers — delivered to your inbox.</p>
+          <form class="newsletter-form" id="newsletter-form" onsubmit="quiz.subscribeNewsletter(event)">
+            <input
+              type="email"
+              class="newsletter-input"
+              id="newsletter-email"
+              placeholder="Your email address"
+              required
+              autocomplete="email"
+              aria-label="Email address for newsletter"
+            >
+            <button type="submit" class="newsletter-btn">Subscribe — it's free</button>
+          </form>
+          <p class="newsletter-success" id="newsletter-success" role="status">
+            You're in. Watch your inbox for your first guide.
+          </p>
+          <p class="newsletter-privacy">No spam. Unsubscribe anytime. We respect your privacy.</p>
+        </div>
+      </div>
+
+    </div><!-- /quiz-container -->
+
+    <!-- Footer -->
+    <footer class="quiz-footer">
+      <a href="https://brazilianbeautyindex.com">brazilianbeautyindex.com</a> &nbsp;·&nbsp;
+      <a href="https://brazilianbeautyindex.com/privacy">Privacy</a>
+    </footer>
+  </main>
+
+  <script>
+  // ═══════════════════════════════════════════════════════════
+  //  QUIZ DATA
+  // ═══════════════════════════════════════════════════════════
+  const QUESTIONS = [
+    {
+      id: 'q1',
+      text: 'How would you describe your hair texture?',
+      answers: [
+        { label: 'A', text: 'Fine and straight — gets flat easily', value: 'A' },
+        { label: 'B', text: 'Wavy or slightly frizzy',              value: 'B' },
+        { label: 'C', text: 'Curly or coily',                       value: 'C' },
+        { label: 'D', text: 'Thick and coarse',                     value: 'D' },
+      ]
+    },
+    {
+      id: 'q2',
+      text: 'What\'s your main hair concern?',
+      answers: [
+        { label: 'A', text: 'Frizz control and smoothness', value: 'A' },
+        { label: 'B', text: 'Damage and breakage repair',   value: 'B' },
+        { label: 'C', text: 'Colour protection',            value: 'C' },
+        { label: 'D', text: 'Volume and definition',        value: 'D' },
+      ]
+    },
+    {
+      id: 'q3',
+      text: 'How often do you wash your hair?',
+      answers: [
+        { label: 'A', text: 'Daily',                    value: 'A' },
+        { label: 'B', text: 'Every 2–3 days',           value: 'B' },
+        { label: 'C', text: 'Twice a week',             value: 'C' },
+        { label: 'D', text: 'Once a week or less',      value: 'D' },
+      ]
+    },
+    {
+      id: 'q4',
+      text: 'What result matters most to you?',
+      answers: [
+        { label: 'A', text: 'Silky straight, low maintenance',                  value: 'A' },
+        { label: 'B', text: 'Natural-looking smoothness, keeping my wave',      value: 'B' },
+        { label: 'C', text: 'Restored health and shine',                        value: 'C' },
+        { label: 'D', text: 'Long-lasting results (5+ months)',                 value: 'D' },
+      ]
+    },
+    {
+      id: 'q5',
+      text: 'How do you feel about salon time?',
+      answers: [
+        { label: 'A', text: 'Quick is better — 90 minutes max',         value: 'A' },
+        { label: 'B', text: 'Happy to spend 2–3 hours for great results', value: 'B' },
+        { label: 'C', text: 'Don\'t mind, just want expert advice',     value: 'C' },
+        { label: 'D', text: 'I want to try an at-home treatment',       value: 'D' },
+      ]
+    }
+  ];
+
+  const RESULTS = {
+    A: {
+      title:       'Your Match: Piur Professional Nano Keratin',
+      productName: 'Piur Professional Nano Keratin',
+      badge:       'Fine Hair Specialist',
+      description: 'Designed specifically for fine hair, Piur\'s Nano Keratin uses smaller protein molecules that penetrate without weighing hair down. Results are natural, smooth and long-lasting — perfect for your hair profile.',
+      ctaPrimary:  {
+        text: 'Shop Piur at Keratin and Care',
+        href: 'https://keratinandcare.com/collections/piur?utm_source=bbi-quiz&utm_medium=quiz&utm_campaign=hair-type-quiz'
+      },
+      ctaSecondary: {
+        text: 'Read our Piur guide',
+        href: '/blog/piur-professional-nano-keratin'
+      }
+    },
+    B: {
+      title:       'Your Match: Cadiveu Plástica dos Fios',
+      productName: 'Cadiveu Plástica dos Fios',
+      badge:       'Original Hair Botox',
+      description: 'The original hair botox. Plástica dos Fios restores damaged fibres and adds intense hydration without straightening — preserving your natural texture while eliminating frizz.',
+      ctaPrimary:  {
+        text: 'Shop Cadiveu at Keratin and Care',
+        href: 'https://keratinandcare.com/collections/cadiveu?utm_source=bbi-quiz&utm_medium=quiz&utm_campaign=hair-type-quiz'
+      },
+      ctaSecondary: {
+        text: 'Read our Cadiveu guide',
+        href: '/blog/cadiveu-plastica-dos-fios-guide'
+      }
+    },
+    C: {
+      title:       'Your Match: Braé Revival',
+      productName: 'Braé Revival',
+      badge:       'Reconstruction Specialist',
+      description: 'For hair that needs more than smoothing — Revival uses molecular reconstruction to rebuild hair from within. Perfect for colour-treated or chemically damaged hair seeking genuine structural repair.',
+      ctaPrimary:  {
+        text: 'Shop Braé at Keratin and Care',
+        href: 'https://keratinandcare.com/collections/brae?utm_source=bbi-quiz&utm_medium=quiz&utm_campaign=hair-type-quiz'
+      },
+      ctaSecondary: {
+        text: 'Read our Braé guide',
+        href: '/blog/brae-revival-reconstruction'
+      }
+    },
+    D: {
+      title:       'Your Match: Cadiveu Brasil Cacau',
+      productName: 'Cadiveu Brasil Cacau',
+      badge:       'Gold Standard Keratin',
+      description: 'The gold standard of Brazilian keratin. Brasil Cacau\'s cacao and keratin formula delivers dramatic smoothing that lasts 3–5 months — ideal for coarser hair types that need serious frizz control.',
+      ctaPrimary:  {
+        text: 'Shop Cadiveu at Keratin and Care',
+        href: 'https://keratinandcare.com/collections/cadiveu?utm_source=bbi-quiz&utm_medium=quiz&utm_campaign=hair-type-quiz'
+      },
+      ctaSecondary: {
+        text: 'Read our Cadiveu guide',
+        href: '/blog/cadiveu-brasil-cacau-complete-guide'
+      }
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════
+  //  QUIZ CONTROLLER
+  // ═══════════════════════════════════════════════════════════
+  const quiz = (() => {
+    const STORAGE_KEY = 'bbi_keratin_quiz_v1';
+
+    // State
+    let state = {
+      step:            'landing',  // landing | question | result
+      currentQuestion: 0,
+      answers:         {},         // { q1: 'A', q2: 'B', ... }
+      segment:         null,
+      utmSource:       '',
+      utmMedium:       '',
+      utmCampaign:     '',
+    };
+
+    // Screens
+    const screens = {
+      landing:  document.getElementById('screen-landing'),
+      question: document.getElementById('screen-question'),
+      result:   document.getElementById('screen-result'),
+    };
+
+    // ── Helpers ──────────────────────────────────────────────
+
+    function persist() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch(e) {}
+    }
+
+    function restore() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const saved = JSON.parse(raw);
+          // Only restore if quiz was in progress (not landing)
+          if (saved.step && saved.step !== 'landing') {
+            state = Object.assign(state, saved);
+            return true;
+          }
+        }
+      } catch(e) {}
+      return false;
+    }
+
+    function captureUTMs() {
+      const p = new URLSearchParams(window.location.search);
+      state.utmSource   = p.get('utm_source')   || '';
+      state.utmMedium   = p.get('utm_medium')   || '';
+      state.utmCampaign = p.get('utm_campaign') || '';
+    }
+
+    function updateProgressBar(pct) {
+      const bar = document.getElementById('progress-bar');
+      bar.style.width = pct + '%';
+      bar.closest('[role=progressbar]').setAttribute('aria-valuenow', pct);
+    }
+
+    function showScreen(name) {
+      Object.keys(screens).forEach(k => {
+        const el = screens[k];
+        el.classList.remove('active');
+      });
+      const target = screens[name];
+      // Force reflow so animation replays
+      target.classList.remove('anim-in');
+      void target.offsetWidth;
+      target.classList.add('active', 'anim-in');
+    }
+
+    function computeSegment() {
+      const counts = { A: 0, B: 0, C: 0, D: 0 };
+      Object.values(state.answers).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+      // Highest count wins; tie → first by A→D
+      let winner = 'A';
+      let max = -1;
+      ['A', 'B', 'C', 'D'].forEach(k => {
+        if (counts[k] > max) { max = counts[k]; winner = k; }
+      });
+      return winner;
+    }
+
+    function track(event, extra) {
+      try {
+        const dl = window.dataLayer = window.dataLayer || [];
+        dl.push(Object.assign({ event }, extra || {}));
+      } catch(e) {}
+    }
+
+    // ── Render question ───────────────────────────────────────
+
+    function renderQuestion() {
+      const q   = QUESTIONS[state.currentQuestion];
+      const idx = state.currentQuestion;
+      const total = QUESTIONS.length;
+      const pct = Math.round((idx / total) * 100);
+
+      // Progress
+      document.getElementById('question-progress-text').textContent =
+        'Question ' + (idx + 1) + ' of ' + total;
+      document.getElementById('question-progress-fill').style.width = pct + '%';
+      updateProgressBar(pct);
+
+      // Question text
+      document.getElementById('question-text').textContent = q.text;
+
+      // Back button visibility
+      document.getElementById('btn-back').style.display = idx === 0 ? 'none' : 'inline-flex';
+
+      // Answers
+      const grid = document.getElementById('answers-grid');
+      grid.innerHTML = '';
+
+      q.answers.forEach(ans => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-card' + (state.answers[q.id] === ans.value ? ' selected' : '');
+        btn.setAttribute('role', 'listitem');
+        btn.setAttribute('aria-pressed', state.answers[q.id] === ans.value ? 'true' : 'false');
+        btn.setAttribute('tabindex', '0');
+        btn.innerHTML = `
+          <span class="answer-label">${ans.label}</span>
+          <span class="answer-text">${ans.text}</span>
+          <span class="answer-check" aria-hidden="true">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        `;
+        btn.addEventListener('click', () => selectAnswer(q.id, ans.value));
+        btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectAnswer(q.id, ans.value); } });
+        grid.appendChild(btn);
+      });
+
+      showScreen('question');
+      track('quiz_step', { step: idx + 1, question_id: q.id });
+    }
+
+    function renderResult() {
+      const r = RESULTS[state.segment];
+      updateProgressBar(100);
+
+      document.getElementById('result-title').textContent = r.title;
+      document.getElementById('result-product-name').textContent = r.productName;
+      document.getElementById('result-badge-text').textContent = r.badge;
+      document.getElementById('result-description').textContent = r.description;
+
+      const cta1 = document.getElementById('result-cta-primary');
+      cta1.textContent = '';
+      cta1.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2h2l2.4 7.4L9 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="14" r="1" fill="currentColor"/><circle cx="12" cy="14" r="1" fill="currentColor"/></svg>
+        ${r.ctaPrimary.text}
+      `;
+      cta1.href = r.ctaPrimary.href;
+
+      const cta2 = document.getElementById('result-cta-secondary');
+      cta2.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M8 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ${r.ctaSecondary.text}
+      `;
+      cta2.href = r.ctaSecondary.href;
+
+      // CTA tracking
+      cta1.addEventListener('click', () => {
+        track('initiate_checkout', { segment: state.segment });
+      }, { once: true });
+
+      showScreen('result');
+      track('quiz_complete', { segment: state.segment });
+    }
+
+    // ── Public API ────────────────────────────────────────────
+
+    function init() {
+      captureUTMs();
+      const hadSession = restore();
+
+      track('quiz_view');
+
+      if (hadSession) {
+        if (state.step === 'question') {
+          renderQuestion();
+        } else if (state.step === 'result') {
+          renderResult();
+        }
+      } else {
+        showScreen('landing');
+      }
+    }
+
+    function start() {
+      state.step = 'question';
+      state.currentQuestion = 0;
+      state.answers = {};
+      state.segment = null;
+      persist();
+      track('quiz_start');
+      renderQuestion();
+    }
+
+    function selectAnswer(questionId, value) {
+      // Mark selection visually immediately
+      document.querySelectorAll('.answer-card').forEach(c => {
+        c.classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      const cards = document.querySelectorAll('.answer-card');
+      // Find clicked card (matching text rendered)
+      const q = QUESTIONS[state.currentQuestion];
+      const ansIdx = q.answers.findIndex(a => a.value === value);
+      if (cards[ansIdx]) {
+        cards[ansIdx].classList.add('selected');
+        cards[ansIdx].setAttribute('aria-pressed', 'true');
+      }
+
+      state.answers[questionId] = value;
+      track('quiz_answer', { step: state.currentQuestion + 1, question_id: questionId, answer: value });
+
+      // Auto-advance after 400ms
+      setTimeout(() => {
+        state.currentQuestion++;
+        if (state.currentQuestion >= QUESTIONS.length) {
+          // Compute result
+          state.segment = computeSegment();
+          state.step = 'result';
+          persist();
+          renderResult();
+        } else {
+          state.step = 'question';
+          persist();
+          renderQuestion();
+        }
+      }, 400);
+    }
+
+    function back() {
+      if (state.currentQuestion <= 0) return;
+      state.currentQuestion--;
+      state.step = 'question';
+      persist();
+      renderQuestion();
+    }
+
+    function restart() {
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+      state = {
+        step: 'landing',
+        currentQuestion: 0,
+        answers: {},
+        segment: null,
+        utmSource: state.utmSource,
+        utmMedium: state.utmMedium,
+        utmCampaign: state.utmCampaign,
+      };
+      updateProgressBar(0);
+      // Reset newsletter form
+      const form = document.getElementById('newsletter-form');
+      if (form) form.style.display = '';
+      const success = document.getElementById('newsletter-success');
+      if (success) success.classList.remove('show');
+      document.getElementById('newsletter-email').value = '';
+      showScreen('landing');
+      track('quiz_restart');
+    }
+
+    async function share() {
+      const result = RESULTS[state.segment];
+      const shareData = {
+        title: 'My Brazilian Keratin Match',
+        text:  result
+          ? 'I just found my perfect Brazilian keratin treatment: ' + result.productName + '. Find yours:'
+          : 'Find your perfect Brazilian keratin treatment:',
+        url: 'https://brazilianbeautyindex.com/quiz'
+      };
+      try {
+        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+          track('quiz_share', { method: 'native', segment: state.segment });
+        } else {
+          // Fallback: copy to clipboard
+          await navigator.clipboard.writeText(shareData.url);
+          const btn = document.getElementById('btn-share');
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Link copied!';
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+          track('quiz_share', { method: 'clipboard', segment: state.segment });
+        }
+      } catch(e) {}
+    }
+
+    async function subscribeNewsletter(event) {
+      event.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      const btn = event.target.querySelector('button[type=submit]');
+      btn.textContent = 'Subscribing…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            segment: state.segment,
+            source: 'keratin-quiz',
+            utm_source: state.utmSource,
+            utm_medium: state.utmMedium,
+            utm_campaign: state.utmCampaign,
+          })
+        });
+        // Show success regardless of API response (graceful degradation)
+        document.getElementById('newsletter-form').style.display = 'none';
+        document.getElementById('newsletter-success').classList.add('show');
+        track('newsletter_subscribe', { segment: state.segment, source: 'quiz-result' });
+      } catch(e) {
+        // API unreachable — still show success (don't punish the user)
+        document.getElementById('newsletter-form').style.display = 'none';
+        document.getElementById('newsletter-success').classList.add('show');
+      }
+    }
+
+    return { init, start, back, restart, share, subscribeNewsletter };
+  })();
+
+  // ── Boot ──────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => quiz.init());
+  </script>
+
+</body>
+</html>
