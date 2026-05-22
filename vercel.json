@@ -29,8 +29,9 @@
     { "source": "/brands/onyx",          "destination": "/brands/",         "permanent": false }
   ],
   "rewrites": [
-    { "source": "/blog/:slug", "destination": "/blog/post.html?slug=:slug" },
-    { "source": "/hair/:slug", "destination": "/blog/post.html?slug=:slug" }
+    { "source": "/blog/posts.json", "destination": "/blog/posts.json" },
+    { "source": "/blog/:slug",      "destination": "/blog/post?slug=:slug" },
+    { "source": "/hair/:slug",      "destination": "/blog/post?slug=:slug" }
   ],
   "headers": [
     {
