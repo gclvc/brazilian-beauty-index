@@ -547,8 +547,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "5-biggest-keratin-treatment-mistakes-salo"
+    "status": "done",
+    "slug": "5-biggest-keratin-treatment-mistakes-salo",
+    "generated_at": "2026-05-21T23:56:08.893Z"
   },
   {
     "id": 54,
@@ -557,8 +558,9 @@
     "category": "ingredients",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "15-brazilian-beauty-ingredients-outperfor"
+    "status": "done",
+    "slug": "15-brazilian-beauty-ingredients-outperfor",
+    "generated_at": "2026-05-21T23:56:55.751Z"
   },
   {
     "id": 55,
@@ -567,8 +569,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "brae-hair-care-review-every-product-line"
+    "status": "done",
+    "slug": "brae-hair-care-review-every-product-line",
+    "generated_at": "2026-05-21T23:57:59.473Z"
   },
   {
     "id": 56,
@@ -577,8 +580,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "complete-brazilian-beauty-glossary-40-ter"
+    "status": "done",
+    "slug": "complete-brazilian-beauty-glossary-40-ter",
+    "generated_at": "2026-05-21T23:58:55.090Z"
   },
   {
     "id": 57,
@@ -587,8 +591,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "build-brazilian-hair-care-menu-salon-pric"
+    "status": "done",
+    "slug": "build-brazilian-hair-care-menu-salon-pric",
+    "generated_at": "2026-05-21T23:59:53.168Z"
   },
   {
     "id": 58,
@@ -597,8 +602,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "best-brazilian-keratin-curly-hair-6-treat"
+    "status": "done",
+    "slug": "best-brazilian-keratin-curly-hair-6-treat",
+    "generated_at": "2026-05-22T00:00:44.171Z"
   },
   {
     "id": 59,
