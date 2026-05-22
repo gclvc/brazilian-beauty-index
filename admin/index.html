@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BBI Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<style>
+:root {
+  --green:  #0D3224;
+  --green2: #174D38;
+  --gold:   #C9962A;
+  --ivory:  #F8F6F2;
+  --cream:  #F0EDE7;
+  --text:   #111111;
+  --text2:  rgba(17,17,17,.55);
+  --text3:  rgba(17,17,17,.35);
+  --border: rgba(17,17,17,.09);
+  --red:    #C0392B;
+  --f-s:    'Cormorant Garamond',Georgia,serif;
+  --f-b:    'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:var(--f-b);background:var(--ivory);color:var(--text);-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font:inherit;border:none;background:none}
+input,textarea,select{font:inherit}
+
+/* ── LOGIN ── */
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--green)}
+.login-card{background:#fff;border-radius:8px;padding:48px 40px;width:360px;text-align:center}
+.login-card h1{font-family:var(--f-s);font-size:28px;font-weight:300;color:var(--green);margin-bottom:6px}
+.login-card p{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);margin-bottom:32px}
+.login-input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:4px;font-size:14px;background:var(--ivory);outline:none;transition:border-color .15s}
+.login-input:focus{border-color:var(--green)}
+.login-btn{margin-top:14px;width:100%;padding:11px;background:var(--green);color:#fff;border-radius:4px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:opacity .15s}
+.login-btn:hover{opacity:.82}
+.login-err{margin-top:10px;font-size:12px;color:var(--red)}
+
+/* ── SHELL ── */
+.shell{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{width:220px;flex-shrink:0;background:var(--green);display:flex;flex-direction:column;padding:24px 0}
+.sidebar-logo{padding:0 20px 28px;font-family:var(--f-s);font-size:20px;font-weight:600;color:#fff;letter-spacing:.02em}
+.sidebar-logo span{display:block;font-size:10px;font-family:var(--f-b);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,.65);cursor:pointer;transition:color .15s,background .15s;border-left:2px solid transparent}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-item.active{color:#fff;border-left-color:var(--gold);background:rgba(255,255,255,.08)}
+.nav-icon{width:16px;text-align:center;opacity:.7}
+.sidebar-sep{height:1px;background:rgba(255,255,255,.08);margin:12px 20px}
+.sidebar-footer{margin-top:auto;padding:16px 20px}
+.sidebar-footer a{font-size:11px;color:rgba(255,255,255,.4);transition:color .15s}
+.sidebar-footer a:hover{color:rgba(255,255,255,.8)}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:16px;background:#fff;flex-shrink:0}
+.topbar-title{font-family:var(--f-s);font-size:20px;font-weight:400;flex:1}
+.topbar-badge{font-size:11px;background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:3px 10px;color:var(--text2)}
+.btn{padding:7px 16px;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:opacity .15s,background .15s}
+.btn:hover{opacity:.82}
+.btn-primary{background:var(--green);color:#fff}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--text2);opacity:1}
+.btn-danger{background:var(--red);color:#fff}
+.content{flex:1;overflow-y:auto;padding:28px}
+
+/* ── STATS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:20px 22px}
+.stat-num{font-family:var(--f-s);font-size:36px;font-weight:300;color:var(--green);line-height:1}
+.stat-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-top:6px}
+.stat-sub{font-size:12px;color:var(--text2);margin-top:4px}
+
+/* ── FILTERS ── */
+.filters{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.search-wrap{position:relative;flex:1;min-width:220px}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px}
+.search-input{width:100%;padding:8px 12px 8px 32px;border:1px solid var(--border);border-radius:4px;font-size:13px;background:#fff;outline:none;transition:border-color .15s}
+.search-input:focus{border-color:var(--green)}
+.filter-select{padding:8px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px;background:#fff;outline:none;color:var(--text2);cursor:pointer}
+
+/* ── TABLE ── */
+.table-wrap{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.table{width:100%;border-collapse:collapse}
+.table th{padding:10px 16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-align:left;border-bottom:1px solid var(--border);background:var(--ivory);font-weight:500}
+.table td{padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle}
+.table tr:last-child td{border-bottom:none}
+.table tr:hover td{background:var(--ivory)}
+.table-title{font-weight:500;color:var(--text);max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.table-slug{font-size:11px;color:var(--text3);font-family:monospace;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500;letter-spacing:.04em}
+.tag-green{background:#e8f0ec;color:var(--green)}
+.tag-gold{background:#f9f0dc;color:#8a6518}
+.tag-gray{background:var(--cream);color:var(--text2)}
+.tag-red{background:#fde8e8;color:var(--red)}
+.img-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.img-dot.ok{background:#27ae60}
+.img-dot.generic{background:var(--gold)}
+.img-dot.none{background:#ccc}
+.row-actions{display:flex;gap:8px;opacity:0;transition:opacity .15s}
+.table tr:hover .row-actions{opacity:1}
+.action-btn{padding:4px 10px;border-radius:3px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:background .15s}
+.action-edit{background:var(--green);color:#fff}
+.action-view{background:var(--cream);color:var(--text2);border:1px solid var(--border)}
+
+/* ── EDITOR ── */
+.editor-wrap{max-width:900px}
+.editor-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text2);margin-bottom:20px;cursor:pointer;transition:color .15s}
+.editor-back:hover{color:var(--text)}
+.editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+.editor-main{background:#fff;border:1px solid var(--border);border-radius:6px;padding:24px}
+.editor-side{display:flex;flex-direction:column;gap:16px}
+.editor-side-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:18px}
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.field-label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;font-weight:500}
+.field-input{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:4px;font-size:13px;background:var(--ivory);outline:none;transition:border-color .15s;color:var(--text)}
+.field-input:focus{border-color:var(--green);background:#fff}
+.field-textarea{resize:vertical;min-height:80px;line-height:1.5}
+.field-content{min-height:300px;font-family:monospace;font-size:12px;line-height:1.6}
+.field-hint{font-size:11px;color:var(--text3);margin-top:4px}
+.editor-actions{display:flex;gap:10px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border)}
+.img-preview{width:100%;height:140px;object-fit:cover;border-radius:4px;display:block;margin-top:8px;background:var(--cream)}
+.save-status{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px}
+.save-status.ok{color:#27ae60}
+.save-status.err{color:var(--red)}
+
+/* ── TOPICS ── */
+.topics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.topic-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.topic-card:hover{border-color:var(--green)}
+.topic-card.done{opacity:.5}
+.topic-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.topic-meta{font-size:11px;color:var(--text3)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:12px 20px;border-radius:6px;font-size:13px;font-weight:500;z-index:9999;transition:opacity .3s,transform .3s;box-shadow:0 4px 24px rgba(0,0,0,.18)}
+.toast.hide{opacity:0;transform:translateY(8px);pointer-events:none}
+.toast.err{background:var(--red)}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:60px 20px;color:var(--text3)}
+.empty-icon{font-size:40px;margin-bottom:12px;opacity:.4}
+
+@media(max-width:900px){
+  .sidebar{width:180px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .editor-grid{grid-template-columns:1fr}
+  .topics-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body x-data="adminApp()" x-init="init()">
+
+<!-- TOAST -->
+<div class="toast" :class="{hide:!toast.show, err:toast.type==='err'}" x-text="toast.msg"></div>
+
+<!-- LOGIN -->
+<div class="login" x-show="!authed" x-cloak>
+  <div class="login-card">
+    <h1>Brazilian Beauty Index</h1>
+    <p>Admin Panel</p>
+    <input class="login-input" type="password" placeholder="Password" x-model="loginPwd"
+      @keydown.enter="login()" autocomplete="current-password">
+    <button class="login-btn" @click="login()">Enter</button>
+    <p class="login-err" x-show="loginErr" x-text="loginErr"></p>
+  </div>
+</div>
+
+<!-- SHELL -->
+<div class="shell" x-show="authed" x-cloak>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      BBI
+      <span>Admin Panel</span>
+    </div>
+    <div class="nav-item" :class="{active:view==='dashboard'}" @click="view='dashboard'">
+      <span class="nav-icon">◈</span> Dashboard
+    </div>
+    <div class="nav-item" :class="{active:view==='articles'||view==='editor'}" @click="view='articles'; editing=null">
+      <span class="nav-icon">▤</span> Articles
+      <span style="margin-left:auto;font-size:11px;opacity:.5" x-text="posts.length"></span>
+    </div>
+    <div class="nav-item" :class="{active:view==='topics'}" @click="view='topics'">
+      <span class="nav-icon">◎</span> Topics
+      <span style="margin-left:auto;font-size:11px;opacity:.5" x-text="todoTopics.length + ' todo'"></span>
+    </div>
+    <div class="nav-item" :class="{active:view==='images'}" @click="view='images'">
+      <span class="nav-icon">⬡</span> Images
+    </div>
+    <div class="sidebar-sep"></div>
+    <a class="nav-item" href="https://brazilianbeautyindex.com" target="_blank">
+      <span class="nav-icon">↗</span> View Site
+    </a>
+    <a class="nav-item" href="https://github.com/gclvc/brazilian-beauty-index/actions" target="_blank">
+      <span class="nav-icon">⚙</span> GitHub Actions
+    </a>
+    <div class="sidebar-footer">
+      <a href="#" @click.prevent="logout()">Sign out</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" x-text="viewTitle()"></div>
+      <span class="topbar-badge" x-text="today()"></span>
+      <button class="btn btn-primary" x-show="view==='articles'" @click="newArticle()">+ New Article</button>
+      <button class="btn btn-primary" x-show="view==='editor'" @click="saveArticle()" :disabled="saving">
+        <span x-text="saving ? 'Saving…' : 'Save & Publish'"></span>
+      </button>
+    </div>
+
+    <div class="content" x-show="loading" style="display:flex;align-items:center;justify-content:center;color:var(--text3)">
+      Loading…
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="content" x-show="!loading && view==='dashboard'">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" x-text="posts.length"></div>
+          <div class="stat-label">Articles live</div>
+          <div class="stat-sub">on brazilianbeautyindex.com</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" x-text="topics.filter(t=>t.status==='todo').length"></div>
+          <div class="stat-label">Topics pending</div>
+          <div class="stat-sub">in editorial calendar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" x-text="posts.filter(p=>p.unsplash_id).length"></div>
+          <div class="stat-label">Unique images</div>
+          <div class="stat-sub">from Unsplash API</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" x-text="posts.filter(p=>p.featured_image && p.featured_image.includes('keratinandcare')).length"></div>
+          <div class="stat-label">Product photos</div>
+          <div class="stat-sub">from K&amp;C store</div>
+        </div>
+      </div>
+
+      <!-- Recent articles -->
+      <div style="margin-bottom:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Recently Published</div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Image</th></tr></thead>
+          <tbody>
+            <template x-for="p in posts.slice(0,8)" :key="p.slug">
+              <tr @click="editPost(p)" style="cursor:pointer">
+                <td>
+                  <div class="table-title" x-text="p.title"></div>
+                  <div class="table-slug" x-text="p.slug"></div>
+                </td>
+                <td><span class="tag tag-green" x-text="p.category || '—'"></span></td>
+                <td style="color:var(--text2);font-size:12px" x-text="p.date || '—'"></td>
+                <td>
+                  <span class="img-dot" :class="imgClass(p)"></span>
+                  <span style="font-size:11px;color:var(--text3);margin-left:5px" x-text="imgLabel(p)"></span>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Automation status -->
+      <div style="margin:24px 0 12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Automation</div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:18px 22px;font-size:13px;line-height:1.7;color:var(--text2)">
+        <b style="color:var(--text)">GitHub Actions</b> — publishes 2 new articles every Wednesday and Friday at 10:00 UTC<br>
+        <a href="https://github.com/gclvc/brazilian-beauty-index/actions" target="_blank" style="color:var(--green);font-size:12px">→ View workflow runs</a>
+      </div>
+    </div>
+
+    <!-- ARTICLES LIST -->
+    <div class="content" x-show="!loading && view==='articles'">
+      <div class="filters">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input class="search-input" type="text" placeholder="Search by title or slug…" x-model="search">
+        </div>
+        <select class="filter-select" x-model="filterCat">
+          <option value="">All categories</option>
+          <template x-for="c in categories" :key="c"><option :value="c" x-text="c"></option></template>
+        </select>
+        <select class="filter-select" x-model="filterImg">
+          <option value="">All images</option>
+          <option value="unique">Unique (Unsplash API)</option>
+          <option value="product">Product (K&C)</option>
+          <option value="generic">Generic (needs update)</option>
+        </select>
+        <span style="font-size:12px;color:var(--text3)" x-text="filteredPosts.length + ' articles'"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Title / Slug</th><th>Category</th><th>Date</th><th>Image</th><th></th></tr></thead>
+          <tbody>
+            <template x-for="p in filteredPosts" :key="p.slug">
+              <tr>
+                <td>
+                  <div class="table-title" x-text="p.title"></div>
+                  <div class="table-slug" x-text="p.slug"></div>
+                </td>
+                <td><span class="tag tag-green" x-text="p.category || '—'"></span></td>
+                <td style="color:var(--text2);font-size:12px" x-text="p.date || '—'"></td>
+                <td>
+                  <span class="img-dot" :class="imgClass(p)"></span>
+                  <span style="font-size:11px;color:var(--text3);margin-left:5px" x-text="imgLabel(p)"></span>
+                </td>
+                <td>
+                  <div class="row-actions">
+                    <button class="action-btn action-edit" @click="editPost(p)">Edit</button>
+                    <a class="action-btn action-view" :href="'https://brazilianbeautyindex.com/blog/'+p.slug" target="_blank">View ↗</a>
+                  </div>
+                </td>
+              </tr>
+            </template>
+            <tr x-show="filteredPosts.length===0">
+              <td colspan="5" style="text-align:center;padding:40px;color:var(--text3)">No articles found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="content" x-show="!loading && view==='editor'">
+      <div class="editor-back" @click="view='articles'; editing=null">← Back to articles</div>
+      <div class="editor-wrap" x-show="editing">
+        <div class="editor-grid">
+          <!-- Left: main content -->
+          <div>
+            <div class="editor-main">
+              <div class="field">
+                <label class="field-label">Title</label>
+                <input class="field-input" type="text" x-model="editing.title">
+              </div>
+              <div class="field">
+                <label class="field-label">Excerpt</label>
+                <textarea class="field-input field-textarea" rows="3" x-model="editing.excerpt"></textarea>
+              </div>
+              <div class="field">
+                <label class="field-label">Content (HTML)</label>
+                <textarea class="field-input field-textarea field-content" rows="20" x-model="editing.content"></textarea>
+                <p class="field-hint">HTML. Use &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;&lt;li&gt;, &lt;strong&gt; etc.</p>
+              </div>
+            </div>
+            <div class="editor-actions">
+              <button class="btn btn-primary" @click="saveArticle()" :disabled="saving">
+                <span x-text="saving ? 'Saving…' : 'Save & Publish'"></span>
+              </button>
+              <button class="btn btn-ghost" @click="view='articles'; editing=null">Cancel</button>
+              <span class="save-status" :class="{ok:saveStatus==='saved',err:saveStatus==='error'}" x-show="saveStatus">
+                <span x-text="saveStatus==='saved' ? '✓ Saved and published' : '✗ Save failed — check GitHub token'"></span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Right: meta -->
+          <div class="editor-side">
+            <div class="editor-side-card">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px">Article Info</div>
+              <div class="field">
+                <label class="field-label">Slug</label>
+                <input class="field-input" type="text" x-model="editing.slug">
+              </div>
+              <div class="field">
+                <label class="field-label">Category</label>
+                <select class="field-input" x-model="editing.category">
+                  <option value="">Select…</option>
+                  <template x-for="c in categories" :key="c"><option :value="c" x-text="c"></option></template>
+                  <option value="Hair Care">Hair Care</option>
+                  <option value="Ingredients">Ingredients</option>
+                  <option value="Distribution">Distribution</option>
+                  <option value="Brands">Brands</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="field-label">Date</label>
+                <input class="field-input" type="date" x-model="editing.date">
+              </div>
+              <div class="field">
+                <label class="field-label">Author</label>
+                <input class="field-input" type="text" x-model="editing.author">
+              </div>
+            </div>
+
+            <div class="editor-side-card">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px">Image</div>
+              <div class="field">
+                <label class="field-label">Image URL</label>
+                <input class="field-input" type="url" x-model="editing.featured_image" placeholder="https://…">
+              </div>
+              <img class="img-preview" x-show="editing.featured_image" :src="editing.featured_image" :alt="editing.title" @error="$el.style.display='none'" @load="$el.style.display='block'">
+              <div class="field" style="margin-top:10px">
+                <label class="field-label">Photo credit</label>
+                <input class="field-input" type="text" x-model="editing.image_credit" placeholder="Photo by … on Unsplash">
+              </div>
+            </div>
+
+            <div class="editor-side-card">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px">SEO</div>
+              <div class="field">
+                <label class="field-label">SEO Title</label>
+                <input class="field-input" type="text" x-model="editing.seo_title">
+                <p class="field-hint" x-text="(editing.seo_title||'').length + '/65 chars'"></p>
+              </div>
+              <div class="field">
+                <label class="field-label">SEO Description</label>
+                <textarea class="field-input field-textarea" rows="3" x-model="editing.seo_description"></textarea>
+                <p class="field-hint" x-text="(editing.seo_description||'').length + '/160 chars'"></p>
+              </div>
+            </div>
+
+            <div class="editor-side-card">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px">GitHub Token</div>
+              <div class="field">
+                <input class="field-input" type="password" x-model="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+                <p class="field-hint">Fine-grained token with Contents write on this repo. Stored only in session.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOPICS -->
+    <div class="content" x-show="!loading && view==='topics'">
+      <div class="filters" style="margin-bottom:20px">
+        <select class="filter-select" x-model="filterTopicStatus">
+          <option value="">All</option>
+          <option value="todo">To write</option>
+          <option value="done">Done</option>
+        </select>
+        <span style="font-size:12px;color:var(--text3)" x-text="filteredTopics.length + ' topics'"></span>
+      </div>
+      <div class="topics-grid">
+        <template x-for="t in filteredTopics" :key="t.slug||t.title">
+          <div class="topic-card" :class="{done:t.status==='done'}" @click="t.status==='todo' && startFromTopic(t)">
+            <div class="topic-title" x-text="t.title || t.slug"></div>
+            <div class="topic-meta">
+              <span class="tag" :class="t.status==='done'?'tag-green':'tag-gold'" x-text="t.status==='done'?'Published':'To write'"></span>
+              <span style="margin-left:8px" x-text="t.tier ? 'Tier '+t.tier : ''"></span>
+            </div>
+            <div class="topic-meta" style="margin-top:4px;font-size:11px;color:var(--text3)" x-show="t.notes" x-text="t.notes"></div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- IMAGES -->
+    <div class="content" x-show="!loading && view==='images'">
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-card">
+          <div class="stat-num" x-text="posts.filter(p=>p.unsplash_id).length"></div>
+          <div class="stat-label" style="display:flex;align-items:center;gap:6px"><span class="img-dot ok"></span> Unique Unsplash</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" x-text="posts.filter(p=>p.featured_image&&p.featured_image.includes('keratinandcare')).length"></div>
+          <div class="stat-label" style="display:flex;align-items:center;gap:6px"><span class="img-dot" style="background:var(--green)"></span> K&amp;C Product Photo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" x-text="genericPosts.length"></div>
+          <div class="stat-label" style="display:flex;align-items:center;gap:6px"><span class="img-dot generic"></span> Generic (needs update)</div>
+        </div>
+      </div>
+
+      <div x-show="genericPosts.length > 0">
+        <div style="margin-bottom:12px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)">Posts needing unique images</div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Article</th><th>Category</th><th>Current Image</th><th></th></tr></thead>
+            <tbody>
+              <template x-for="p in genericPosts" :key="p.slug">
+                <tr>
+                  <td>
+                    <div class="table-title" x-text="p.title"></div>
+                    <div class="table-slug" x-text="p.slug"></div>
+                  </td>
+                  <td><span class="tag tag-gray" x-text="p.category||'—'"></span></td>
+                  <td style="font-size:11px;color:var(--text3)">Generic fallback</td>
+                  <td><button class="action-btn action-edit" @click="editPost(p)">Fix image</button></td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div x-show="genericPosts.length === 0" class="empty">
+        <div class="empty-icon">✓</div>
+        <p>All posts have unique images</p>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /shell -->
+
+<script>
+const ADMIN_PWD    = 'bbi2026';
+const POSTS_URL    = 'https://www.brazilianbeautyindex.com/blog/posts.json';
+const TOPICS_URL   = 'https://www.brazilianbeautyindex.com/topics.json';
+const GH_REPO      = 'gclvc/brazilian-beauty-index';
+const GH_FILE_PATH = 'blog/posts.json';
+
+const GENERIC_URLS = new Set([
+  'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
+  'https://images.unsplash.com/photo-1607621932846-f1754289c7af?w=800&q=80',
+  'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80',
+  'https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800&q=80',
+  'https://images.unsplash.com/photo-1519415387722-a68073d80f5a?w=800&q=80',
+  'https://images.unsplash.com/photo-1580618864194-1e02b09c8543?w=800&q=80',
+  'https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?w=800&q=80',
+]);
+
+function adminApp() {
+  return {
+    authed: false, loginPwd: '', loginErr: '',
+    loading: false, view: 'dashboard',
+    posts: [], topics: [], editing: null,
+    search: '', filterCat: '', filterImg: '', filterTopicStatus: '',
+    saving: false, saveStatus: '', ghToken: sessionStorage.getItem('ghToken')||'',
+    toast: { show: false, msg: '', type: 'ok' },
+
+    async init() {
+      const saved = sessionStorage.getItem('bbiAdmin');
+      if (saved === 'yes') { this.authed = true; await this.load(); }
+    },
+
+    async login() {
+      if (this.loginPwd === ADMIN_PWD) {
+        this.authed = true;
+        sessionStorage.setItem('bbiAdmin','yes');
+        this.loginErr = '';
+        await this.load();
+      } else {
+        this.loginErr = 'Incorrect password';
+        this.loginPwd = '';
+      }
+    },
+
+    logout() {
+      sessionStorage.removeItem('bbiAdmin');
+      this.authed = false; this.loginPwd = '';
+    },
+
+    async load() {
+      this.loading = true;
+      try {
+        const [pr, tr] = await Promise.all([
+          fetch(POSTS_URL+'?_='+Date.now()).then(r=>r.json()),
+          fetch(TOPICS_URL+'?_='+Date.now()).then(r=>r.json()).catch(()=>[]),
+        ]);
+        this.posts  = pr;
+        this.topics = tr;
+      } catch(e) { this.showToast('Failed to load data', 'err'); }
+      this.loading = false;
+    },
+
+    get categories() {
+      return [...new Set(this.posts.map(p=>p.category).filter(Boolean))].sort();
+    },
+
+    get filteredPosts() {
+      let p = this.posts;
+      if (this.search) {
+        const q = this.search.toLowerCase();
+        p = p.filter(x => (x.title||'').toLowerCase().includes(q) || (x.slug||'').includes(q));
+      }
+      if (this.filterCat) p = p.filter(x => x.category === this.filterCat);
+      if (this.filterImg === 'unique')  p = p.filter(x => x.unsplash_id);
+      if (this.filterImg === 'product') p = p.filter(x => x.featured_image && x.featured_image.includes('keratinandcare'));
+      if (this.filterImg === 'generic') p = p.filter(x => this.isGeneric(x));
+      return p;
+    },
+
+    get todoTopics() { return this.topics.filter(t=>t.status==='todo'); },
+
+    get filteredTopics() {
+      if (this.filterTopicStatus === 'todo') return this.topics.filter(t=>t.status==='todo');
+      if (this.filterTopicStatus === 'done') return this.topics.filter(t=>t.status==='done');
+      return this.topics;
+    },
+
+    get genericPosts() { return this.posts.filter(p => this.isGeneric(p)); },
+
+    isGeneric(p) {
+      if (!p.featured_image) return true;
+      if (GENERIC_URLS.has(p.featured_image)) return true;
+      if (p.unsplash_id) return false;
+      if (p.featured_image.includes('keratinandcare')) return false;
+      return false;
+    },
+
+    imgClass(p) {
+      if (!p.featured_image || this.isGeneric(p)) return 'none';
+      if (p.unsplash_id) return 'ok';
+      if (p.featured_image.includes('keratinandcare')) return 'ok';
+      return 'generic';
+    },
+
+    imgLabel(p) {
+      if (!p.featured_image) return 'None';
+      if (this.isGeneric(p)) return 'Generic';
+      if (p.unsplash_id) return p.image_credit ? p.image_credit.replace('Photo by ','').replace(' on Unsplash','') : 'Unsplash';
+      if (p.featured_image.includes('keratinandcare')) return 'K&C product';
+      return 'Custom';
+    },
+
+    editPost(p) {
+      this.editing = JSON.parse(JSON.stringify(p));
+      if (!this.editing.date) this.editing.date = new Date().toISOString().slice(0,10);
+      this.view = 'editor';
+      this.saveStatus = '';
+    },
+
+    newArticle() {
+      this.editing = {
+        slug: '', title: '', excerpt: '', content: '',
+        category: 'Hair Care', date: new Date().toISOString().slice(0,10),
+        author: 'BBI Editorial', seo_title: '', seo_description: '',
+        featured_image: '', image_credit: '', tags: [], tier: 3,
+      };
+      this.view = 'editor';
+      this.saveStatus = '';
+    },
+
+    startFromTopic(t) {
+      this.newArticle();
+      this.editing.slug  = t.slug || '';
+      this.editing.title = t.title || '';
+    },
+
+    async saveArticle() {
+      if (!this.ghToken) { this.showToast('Enter your GitHub token in the sidebar', 'err'); return; }
+      if (!this.editing.slug) { this.showToast('Slug is required', 'err'); return; }
+      sessionStorage.setItem('ghToken', this.ghToken);
+
+      this.saving = true;
+      this.saveStatus = '';
+
+      // Update or insert
+      const idx = this.posts.findIndex(p => p.slug === this.editing.slug);
+      if (idx >= 0) this.posts[idx] = { ...this.editing };
+      else this.posts.unshift({ ...this.editing });
+
+      // Get current file SHA from GitHub
+      try {
+        const shaRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE_PATH}`, {
+          headers: { Authorization: `Bearer ${this.ghToken}`, Accept: 'application/vnd.github.v3+json' },
+        });
+        if (!shaRes.ok) throw new Error('Could not get file SHA — check token permissions');
+        const { sha } = await shaRes.json();
+
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(this.posts, null, 2))));
+        const commitMsg = idx >= 0
+          ? `content: update '${this.editing.slug}'`
+          : `content: add '${this.editing.slug}'`;
+
+        const saveRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE_PATH}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${this.ghToken}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: commitMsg, content, sha }),
+        });
+        if (!saveRes.ok) {
+          const err = await saveRes.json();
+          throw new Error(err.message || 'GitHub API error');
+        }
+
+        this.saveStatus = 'saved';
+        this.showToast('Saved — Vercel deploying now (≈20s)');
+      } catch(e) {
+        this.saveStatus = 'error';
+        this.showToast(e.message, 'err');
+      }
+      this.saving = false;
+    },
+
+    showToast(msg, type='ok') {
+      this.toast = { show: true, msg, type };
+      setTimeout(() => this.toast.show = false, 4000);
+    },
+
+    viewTitle() {
+      if (this.view === 'dashboard') return 'Dashboard';
+      if (this.view === 'articles')  return 'Articles';
+      if (this.view === 'editor')    return this.editing?.title || 'New Article';
+      if (this.view === 'topics')    return 'Editorial Calendar';
+      if (this.view === 'images')    return 'Image Status';
+      return '';
+    },
+
+    today() {
+      return new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    },
+  };
+}
+</script>
+</body>
+</html>
