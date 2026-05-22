@@ -32,7 +32,8 @@
     { "source": "/brands/tanino",            "destination": "/blog/tanino-therapy-complete-guide",      "permanent": false },
     { "source": "/brands/robson-peluquero",  "destination": "/blog/robson-peluquero-brand-guide",      "permanent": false },
     { "source": "/brands/lavi",              "destination": "/blog/lavi-hair-care-guide",               "permanent": false },
-    { "source": "/brands/onyx",              "destination": "/brands/",                                  "permanent": false }
+    { "source": "/brands/onyx",              "destination": "/brands/",                                  "permanent": false },
+    { "source": "/blog/brae-blue-gold-review", "destination": "/blog/salvatore-blue-gold-review",         "permanent": true  }
   ],
   "rewrites": [
     { "source": "/blog/posts.json", "destination": "/blog/posts.json" },
