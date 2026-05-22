@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Braé Hair Care: The Complete Guide to All Products and Lines",
-    "keyword": "braé hair care",
+    "title": "Bra\u00e9 Hair Care: The Complete Guide to All Products and Lines",
+    "keyword": "bra\u00e9 hair care",
     "category": "hair",
     "tier": 1,
     "priority": 1,
@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "title": "Braé Blonde Repair: The Complete Product Line Review",
+    "title": "Bra\u00e9 Blonde Repair: The Complete Product Line Review",
     "keyword": "brae blonde repair",
     "category": "hair",
     "tier": 1,
@@ -22,7 +22,7 @@
   },
   {
     "id": 3,
-    "title": "Braé Revival: Deep Reconstruction for Chemically Damaged Hair",
+    "title": "Bra\u00e9 Revival: Deep Reconstruction for Chemically Damaged Hair",
     "keyword": "brae revival keratin",
     "category": "hair",
     "tier": 1,
@@ -33,33 +33,36 @@
   },
   {
     "id": 4,
-    "title": "Braé Bond Angel: How Molecular Bonding Changes the Game for Salons",
+    "title": "Bra\u00e9 Bond Angel: How Molecular Bonding Changes the Game for Salons",
     "keyword": "brae bond angel",
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "brae-bond-angel-guide"
+    "status": "done",
+    "slug": "brae-bond-angel-guide",
+    "generated_at": "2026-05-22T00:25:25.553Z"
   },
   {
     "id": 5,
-    "title": "Braé Divine: The Luxury Hair Oil and Mask Line Explained",
+    "title": "Bra\u00e9 Divine: The Luxury Hair Oil and Mask Line Explained",
     "keyword": "brae divine hair oil",
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "brae-divine-luxury-line"
+    "status": "done",
+    "slug": "brae-divine-luxury-line",
+    "error": "Expected ',' or '}' after property value in JSON at position 3016 (line 1 column 3017)"
   },
   {
     "id": 6,
-    "title": "Braé Wanna Be Blond: Lightening, Toning and Blonde Maintenance",
+    "title": "Bra\u00e9 Wanna Be Blond: Lightening, Toning and Blonde Maintenance",
     "keyword": "brae wanna be blond",
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "brae-wanna-be-blond"
+    "status": "done",
+    "slug": "brae-wanna-be-blond",
+    "generated_at": "2026-05-22T00:27:05.645Z"
   },
   {
     "id": 7,
@@ -83,7 +86,7 @@
   },
   {
     "id": 9,
-    "title": "Cadiveu Plástica dos Fios: The Hair Botox That Changed Salons",
+    "title": "Cadiveu Pl\u00e1stica dos Fios: The Hair Botox That Changed Salons",
     "keyword": "cadiveu plastica dos fios",
     "category": "hair",
     "tier": 1,
@@ -98,8 +101,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "brasil-cacau-eco-keratin-review"
+    "status": "done",
+    "slug": "brasil-cacau-eco-keratin-review",
+    "generated_at": "2026-05-22T00:28:00.137Z"
   },
   {
     "id": 11,
@@ -129,8 +133,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "honma-h-brush-platinum-review"
+    "status": "done",
+    "slug": "honma-h-brush-platinum-review",
+    "generated_at": "2026-05-22T00:28:50.982Z"
   },
   {
     "id": 14,
@@ -139,8 +144,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "honma-coffee-premium-guide"
+    "status": "done",
+    "slug": "honma-coffee-premium-guide",
+    "generated_at": "2026-05-22T00:29:43.393Z"
   },
   {
     "id": 15,
@@ -160,8 +166,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "salvatore-blue-gold-review"
+    "status": "done",
+    "slug": "salvatore-blue-gold-review",
+    "generated_at": "2026-05-22T00:30:32.635Z"
   },
   {
     "id": 17,
@@ -181,8 +188,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "robson-peluquero-brand-guide"
+    "status": "done",
+    "slug": "robson-peluquero-brand-guide",
+    "generated_at": "2026-05-22T00:31:22.858Z"
   },
   {
     "id": 19,
@@ -202,8 +210,9 @@
     "category": "hair",
     "tier": 1,
     "priority": 2,
-    "status": "pending",
-    "slug": "lavi-hair-care-guide"
+    "status": "done",
+    "slug": "lavi-hair-care-guide",
+    "generated_at": "2026-05-22T00:32:16.167Z"
   },
   {
     "id": 21,
@@ -263,8 +272,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "professional-hair-smoothing-guide"
+    "status": "done",
+    "slug": "professional-hair-smoothing-guide",
+    "generated_at": "2026-05-22T00:33:13.980Z"
   },
   {
     "id": 27,
@@ -284,8 +294,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "anti-frizz-hair-treatments-brazilian"
+    "status": "done",
+    "slug": "anti-frizz-hair-treatments-brazilian",
+    "generated_at": "2026-05-22T00:34:04.702Z"
   },
   {
     "id": 29,
@@ -294,8 +305,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "progressive-hair-treatment-explained"
+    "status": "done",
+    "slug": "progressive-hair-treatment-explained",
+    "generated_at": "2026-05-22T00:34:51.984Z"
   },
   {
     "id": 30,
@@ -320,8 +332,8 @@
   },
   {
     "id": 32,
-    "title": "Cadiveu vs Braé: Which Brazilian Keratin Brand Is Right for Your Salon?",
-    "keyword": "braé vs cadiveu",
+    "title": "Cadiveu vs Bra\u00e9: Which Brazilian Keratin Brand Is Right for Your Salon?",
+    "keyword": "bra\u00e9 vs cadiveu",
     "category": "hair",
     "tier": 3,
     "priority": 1,
@@ -331,7 +343,7 @@
   },
   {
     "id": 33,
-    "title": "Cadiveu Brasil Cacau vs Plástica dos Fios: Which One to Choose?",
+    "title": "Cadiveu Brasil Cacau vs Pl\u00e1stica dos Fios: Which One to Choose?",
     "keyword": "cadiveu brasil cacau vs plastica dos fios",
     "category": "hair",
     "tier": 3,
@@ -353,13 +365,14 @@
   },
   {
     "id": 35,
-    "title": "Braé vs Honma Tokyo: A Honest Salon Comparison",
-    "keyword": "braé vs honma tokyo",
+    "title": "Bra\u00e9 vs Honma Tokyo: A Honest Salon Comparison",
+    "keyword": "bra\u00e9 vs honma tokyo",
     "category": "hair",
     "tier": 3,
     "priority": 2,
-    "status": "pending",
-    "slug": "brae-vs-honma-tokyo"
+    "status": "done",
+    "slug": "brae-vs-honma-tokyo",
+    "generated_at": "2026-05-22T00:35:35.402Z"
   },
   {
     "id": 36,
@@ -400,8 +413,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 2,
-    "status": "pending",
-    "slug": "keratin-treatment-fine-hair"
+    "status": "done",
+    "slug": "keratin-treatment-fine-hair",
+    "generated_at": "2026-05-22T00:36:28.556Z"
   },
   {
     "id": 40,
@@ -432,8 +446,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 2,
-    "status": "pending",
-    "slug": "keratin-after-color-guide"
+    "status": "done",
+    "slug": "keratin-after-color-guide",
+    "generated_at": "2026-05-22T00:37:21.229Z"
   },
   {
     "id": 43,
@@ -448,7 +463,7 @@
   },
   {
     "id": 44,
-    "title": "Açaí Oil for Hair: Benefits, Products and How to Use It",
+    "title": "A\u00e7a\u00ed Oil for Hair: Benefits, Products and How to Use It",
     "keyword": "acai oil for hair benefits",
     "category": "ingredients",
     "tier": 3,
@@ -463,18 +478,20 @@
     "category": "ingredients",
     "tier": 3,
     "priority": 2,
-    "status": "pending",
-    "slug": "buriti-oil-hair-benefits"
+    "status": "done",
+    "slug": "buriti-oil-hair-benefits",
+    "generated_at": "2026-05-22T00:38:11.607Z"
   },
   {
     "id": 46,
-    "title": "Cupuaçu Butter in Hair Care: Why Brazilian Stylists Love This Ingredient",
+    "title": "Cupua\u00e7u Butter in Hair Care: Why Brazilian Stylists Love This Ingredient",
     "keyword": "cupuacu butter hair",
     "category": "ingredients",
     "tier": 3,
     "priority": 2,
-    "status": "pending",
-    "slug": "cupuacu-butter-hair-care"
+    "status": "done",
+    "slug": "cupuacu-butter-hair-care",
+    "generated_at": "2026-05-22T00:38:59.606Z"
   },
   {
     "id": 47,
@@ -564,14 +581,14 @@
   },
   {
     "id": 55,
-    "title": "Braé Hair Care Review: We Tested Every Product Line for 60 Days",
-    "keyword": "braé hair care review",
+    "title": "Bra\u00e9 Hair Care Review: We Tested Every Product Line for 60 Days",
+    "keyword": "bra\u00e9 hair care review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
     "status": "done",
     "slug": "brae-hair-care-review-every-product-line",
-    "generated_at": "2026-05-21T23:57:47.653Z"
+    "generated_at": "2026-05-21T23:57:59.473Z"
   },
   {
     "id": 56,
@@ -582,7 +599,7 @@
     "priority": 1,
     "status": "done",
     "slug": "complete-brazilian-beauty-glossary-40-ter",
-    "generated_at": "2026-05-21T23:58:39.985Z"
+    "generated_at": "2026-05-21T23:58:55.090Z"
   },
   {
     "id": 57,
@@ -593,7 +610,7 @@
     "priority": 1,
     "status": "done",
     "slug": "build-brazilian-hair-care-menu-salon-pric",
-    "generated_at": "2026-05-21T23:59:31.460Z"
+    "generated_at": "2026-05-22T00:00:04.641Z"
   },
   {
     "id": 58,
@@ -604,7 +621,7 @@
     "priority": 1,
     "status": "done",
     "slug": "best-brazilian-keratin-curly-hair-6-treat",
-    "generated_at": "2026-05-22T00:00:21.792Z"
+    "generated_at": "2026-05-22T00:01:07.981Z"
   },
   {
     "id": 59,
@@ -615,7 +632,7 @@
     "priority": 1,
     "status": "done",
     "slug": "7-reasons-brazilian-hair-treatments-last",
-    "generated_at": "2026-05-22T00:01:11.121Z"
+    "generated_at": "2026-05-22T00:02:01.100Z"
   },
   {
     "id": 60,
@@ -626,7 +643,7 @@
     "priority": 1,
     "status": "done",
     "slug": "cadiveu-brasil-cacau-review-30-day-salon",
-    "generated_at": "2026-05-22T00:02:04.395Z"
+    "generated_at": "2026-05-22T00:02:52.882Z"
   },
   {
     "id": 61,
@@ -637,7 +654,7 @@
     "priority": 1,
     "status": "done",
     "slug": "hair-porosity-keratin-which-brazilian-tre",
-    "generated_at": "2026-05-22T00:02:56.574Z"
+    "generated_at": "2026-05-22T00:03:43.443Z"
   },
   {
     "id": 62,
@@ -648,7 +665,7 @@
     "priority": 1,
     "status": "done",
     "slug": "truth-about-formaldehyde-free-keratin-wha",
-    "generated_at": "2026-05-22T00:03:47.933Z"
+    "generated_at": "2026-05-22T00:04:32.555Z"
   },
   {
     "id": 63,
@@ -659,18 +676,18 @@
     "priority": 1,
     "status": "done",
     "slug": "how-brazilian-salons-differ-from-european",
-    "generated_at": "2026-05-22T00:04:38.871Z"
+    "error": "Expected ',' or '}' after property value in JSON at position 6591 (line 1 column 6592)"
   },
   {
     "id": 64,
-    "title": "Braé Blonde Repair vs Cadiveu Plastica dos Fios: For Coloured Hair",
-    "keyword": "braé blonde repair vs cadiveu",
+    "title": "Bra\u00e9 Blonde Repair vs Cadiveu Plastica dos Fios: For Coloured Hair",
+    "keyword": "bra\u00e9 blonde repair vs cadiveu",
     "category": "hair",
     "tier": 3,
     "priority": 1,
     "status": "done",
     "slug": "brae-blonde-repair-vs-cadiveu-plastica-co",
-    "generated_at": "2026-05-22T00:05:29.890Z"
+    "generated_at": "2026-05-22T00:06:10.255Z"
   },
   {
     "id": 65,
@@ -681,7 +698,7 @@
     "priority": 1,
     "status": "done",
     "slug": "8-brazilian-hair-masks-cost-less-salon-vi",
-    "generated_at": "2026-05-22T00:06:27.279Z"
+    "generated_at": "2026-05-22T00:07:04.658Z"
   },
   {
     "id": 66,
@@ -692,7 +709,7 @@
     "priority": 1,
     "status": "done",
     "slug": "honma-h-brush-vs-cadiveu-brasil-cacau-pro",
-    "generated_at": "2026-05-22T00:07:19.008Z"
+    "generated_at": "2026-05-22T00:07:52.587Z"
   },
   {
     "id": 67,
@@ -703,7 +720,7 @@
     "priority": 1,
     "status": "done",
     "slug": "what-is-tannin-keratin-organic-smoothing",
-    "generated_at": "2026-05-22T00:08:08.440Z"
+    "generated_at": "2026-05-22T00:08:44.827Z"
   },
   {
     "id": 68,
@@ -714,7 +731,7 @@
     "priority": 1,
     "status": "done",
     "slug": "how-to-choose-keratin-botox-tannin-each-c",
-    "generated_at": "2026-05-22T00:09:09.081Z"
+    "generated_at": "2026-05-22T00:09:44.844Z"
   },
   {
     "id": 69,
@@ -725,7 +742,7 @@
     "priority": 1,
     "status": "done",
     "slug": "brazilian-salon-guide-cpnp-eu-cosmetics-l",
-    "generated_at": "2026-05-22T00:09:59.252Z"
+    "generated_at": "2026-05-22T00:10:33.186Z"
   },
   {
     "id": 70,
@@ -736,7 +753,7 @@
     "priority": 1,
     "status": "done",
     "slug": "10-brazilian-hair-care-brands-worth-knowi",
-    "generated_at": "2026-05-22T00:10:59.495Z"
+    "generated_at": "2026-05-22T00:11:25.391Z"
   },
   {
     "id": 71,
@@ -747,7 +764,7 @@
     "priority": 1,
     "status": "done",
     "slug": "why-keratin-results-dont-last-6-reasons-f",
-    "generated_at": "2026-05-22T00:11:49.364Z"
+    "generated_at": "2026-05-22T00:12:21.108Z"
   },
   {
     "id": 72,
@@ -758,7 +775,7 @@
     "priority": 1,
     "status": "done",
     "slug": "salvatore-taninoterapy-vs-tanino-therapy",
-    "generated_at": "2026-05-22T00:12:35.104Z"
+    "generated_at": "2026-05-22T00:13:10.261Z"
   },
   {
     "id": 73,
@@ -769,18 +786,18 @@
     "priority": 1,
     "status": "done",
     "slug": "best-shampoos-after-keratin-treatment-no",
-    "generated_at": "2026-05-22T00:13:31.536Z"
+    "generated_at": "2026-05-22T00:14:03.429Z"
   },
   {
     "id": 74,
-    "title": "Braé Bond Angel: Is It Worth the Price? An Honest Salon Review",
-    "keyword": "braé bond angel review",
+    "title": "Bra\u00e9 Bond Angel: Is It Worth the Price? An Honest Salon Review",
+    "keyword": "bra\u00e9 bond angel review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
     "status": "done",
     "slug": "brae-bond-angel-worth-price-honest-salon",
-    "generated_at": "2026-05-22T00:14:21.634Z"
+    "generated_at": "2026-05-22T00:14:54.164Z"
   },
   {
     "id": 75,
@@ -789,8 +806,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "brazilian-hair-care-london-where-to-buy"
+    "status": "done",
+    "slug": "brazilian-hair-care-london-where-to-buy",
+    "generated_at": "2026-05-22T00:15:42.895Z"
   },
   {
     "id": 76,
@@ -799,8 +817,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "brazilian-hair-care-portugal-distributor"
+    "status": "done",
+    "slug": "brazilian-hair-care-portugal-distributor",
+    "generated_at": "2026-05-22T00:16:35.191Z"
   },
   {
     "id": 77,
@@ -809,8 +828,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "5-brazilian-hair-oils-replace-10-products"
+    "status": "done",
+    "slug": "5-brazilian-hair-oils-replace-10-products",
+    "generated_at": "2026-05-22T00:17:30.364Z"
   },
   {
     "id": 78,
@@ -819,8 +839,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "science-behind-brazilian-keratin-molecula"
+    "status": "done",
+    "slug": "science-behind-brazilian-keratin-molecula",
+    "generated_at": "2026-05-22T00:18:24.435Z"
   },
   {
     "id": 79,
@@ -829,8 +850,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 1,
-    "status": "pending",
-    "slug": "before-and-after-first-brazilian-keratin"
+    "status": "done",
+    "slug": "before-and-after-first-brazilian-keratin",
+    "generated_at": "2026-05-22T00:19:17.195Z"
   },
   {
     "id": 80,
@@ -839,8 +861,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "pending",
-    "slug": "piur-nano-keratin-vs-traditional-what-dif"
+    "status": "done",
+    "slug": "piur-nano-keratin-vs-traditional-what-dif",
+    "generated_at": "2026-05-22T00:20:10.205Z"
   },
   {
     "id": 81,
@@ -849,9 +872,10 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
+    "status": "done",
     "slug": "brazilian-keratin-complete-guide-pillar",
-    "is_pillar": true
+    "is_pillar": true,
+    "generated_at": "2026-05-22T00:21:06.990Z"
   },
   {
     "id": 82,
@@ -860,8 +884,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "hair-botox-complete-guide"
+    "status": "done",
+    "slug": "hair-botox-complete-guide",
+    "generated_at": "2026-05-22T00:39:51.341Z"
   },
   {
     "id": 83,
@@ -870,8 +895,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "frizz-control-brazilian-approach"
+    "status": "done",
+    "slug": "frizz-control-brazilian-approach",
+    "generated_at": "2026-05-22T00:40:41.980Z"
   },
   {
     "id": 84,
@@ -880,18 +906,20 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "brazilian-hair-products-uk-buyers-guide"
+    "status": "done",
+    "slug": "brazilian-hair-products-uk-buyers-guide",
+    "generated_at": "2026-05-22T00:41:29.184Z"
   },
   {
     "id": 85,
-    "title": "Braé Blue Gold vs Cadiveu Brasil Cacau: Which Keratin to Choose?",
+    "title": "Bra\u00e9 Blue Gold vs Cadiveu Brasil Cacau: Which Keratin to Choose?",
     "keyword": "brae blue gold vs cadiveu brasil cacau",
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "brae-blue-gold-vs-cadiveu-brasil-cacau"
+    "status": "done",
+    "slug": "brae-blue-gold-vs-cadiveu-brasil-cacau",
+    "generated_at": "2026-05-22T00:51:52.499Z"
   },
   {
     "id": 86,
@@ -900,8 +928,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "brazilian-keratin-vs-japanese-straightening"
+    "status": "done",
+    "slug": "brazilian-keratin-vs-japanese-straightening",
+    "generated_at": "2026-05-22T00:52:41.749Z"
   },
   {
     "id": 87,
@@ -910,8 +939,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "professional-vs-drugstore-keratin"
+    "status": "done",
+    "slug": "professional-vs-drugstore-keratin",
+    "generated_at": "2026-05-22T00:53:29.308Z"
   },
   {
     "id": 88,
@@ -920,8 +950,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "salvatore-taninoterapy-vs-cadiveu"
+    "status": "done",
+    "slug": "salvatore-taninoterapy-vs-cadiveu",
+    "generated_at": "2026-05-22T00:54:22.268Z"
   },
   {
     "id": 89,
@@ -930,8 +961,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "how-to-wash-hair-after-keratin"
+    "status": "done",
+    "slug": "how-to-wash-hair-after-keratin",
+    "generated_at": "2026-05-22T00:55:11.359Z"
   },
   {
     "id": 90,
@@ -940,8 +972,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "how-to-style-hair-after-smoothing"
+    "status": "done",
+    "slug": "how-to-style-hair-after-smoothing",
+    "generated_at": "2026-05-22T00:56:08.216Z"
   },
   {
     "id": 91,
@@ -950,28 +983,31 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "brazilian-blowout-wavy-hair-routine"
+    "status": "done",
+    "slug": "brazilian-blowout-wavy-hair-routine",
+    "generated_at": "2026-05-22T00:57:01.242Z"
   },
   {
     "id": 92,
-    "title": "How to Use Braé Revival at Home: Complete Application Guide",
+    "title": "How to Use Bra\u00e9 Revival at Home: Complete Application Guide",
     "keyword": "brae revival at home",
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "how-to-use-brae-revival-at-home"
+    "status": "done",
+    "slug": "how-to-use-brae-revival-at-home",
+    "generated_at": "2026-05-22T00:21:57.289Z"
   },
   {
     "id": 93,
-    "title": "Braé Blue Gold Review: 6 Months of Real Salon Testing",
+    "title": "Bra\u00e9 Blue Gold Review: 6 Months of Real Salon Testing",
     "keyword": "brae blue gold review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "brae-blue-gold-review"
+    "status": "done",
+    "slug": "brae-blue-gold-review",
+    "generated_at": "2026-05-22T00:22:55.173Z"
   },
   {
     "id": 94,
@@ -980,18 +1016,20 @@
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "piur-professional-review"
+    "status": "done",
+    "slug": "piur-professional-review",
+    "generated_at": "2026-05-22T00:23:41.867Z"
   },
   {
     "id": 95,
-    "title": "Braé Revival Honest Review: Does Molecular Reconstruction Really Work?",
+    "title": "Bra\u00e9 Revival Honest Review: Does Molecular Reconstruction Really Work?",
     "keyword": "brae revival review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
-    "status": "pending",
-    "slug": "brae-revival-honest-review"
+    "status": "done",
+    "slug": "brae-revival-honest-review",
+    "generated_at": "2026-05-22T00:24:35.676Z"
   },
   {
     "id": 96,
@@ -1000,8 +1038,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "best-brazilian-shampoos-curly-hair"
+    "status": "done",
+    "slug": "best-brazilian-shampoos-curly-hair",
+    "generated_at": "2026-05-22T00:42:34.020Z"
   },
   {
     "id": 97,
@@ -1010,18 +1049,20 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "best-brazilian-hair-masks-damaged"
+    "status": "done",
+    "slug": "best-brazilian-hair-masks-damaged",
+    "generated_at": "2026-05-22T00:43:25.821Z"
   },
   {
     "id": 98,
-    "title": "Best Brazilian Haircare Under £40: Budget Picks That Perform",
+    "title": "Best Brazilian Haircare Under \u00a340: Budget Picks That Perform",
     "keyword": "brazilian haircare budget uk",
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "best-brazilian-haircare-budget"
+    "status": "done",
+    "slug": "best-brazilian-haircare-budget",
+    "generated_at": "2026-05-22T00:44:15.653Z"
   },
   {
     "id": 99,
@@ -1030,8 +1071,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "best-brazilian-heat-protectants"
+    "status": "done",
+    "slug": "best-brazilian-heat-protectants",
+    "error": "Expected ',' or '}' after property value in JSON at position 4187 (line 1 column 4188)"
   },
   {
     "id": 100,
@@ -1040,8 +1082,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "formaldehyde-brazilian-keratin-safe-uk"
+    "status": "done",
+    "slug": "formaldehyde-brazilian-keratin-safe-uk",
+    "error": "Expected ',' or '}' after property value in JSON at position 1693 (line 1 column 1694)"
   },
   {
     "id": 101,
@@ -1050,8 +1093,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "ph-hair-products-brazilian-brands"
+    "status": "done",
+    "slug": "ph-hair-products-brazilian-brands",
+    "generated_at": "2026-05-22T00:57:53.009Z"
   },
   {
     "id": 102,
@@ -1060,8 +1104,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "why-brazilian-haircare-is-different"
+    "status": "done",
+    "slug": "why-brazilian-haircare-is-different",
+    "generated_at": "2026-05-22T00:46:45.531Z"
   },
   {
     "id": 103,
@@ -1070,8 +1115,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "hair-botox-ingredients-decoded"
+    "status": "done",
+    "slug": "hair-botox-ingredients-decoded",
+    "generated_at": "2026-05-22T00:58:52.369Z"
   },
   {
     "id": 104,
@@ -1080,8 +1126,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "protect-keratin-summer"
+    "status": "done",
+    "slug": "protect-keratin-summer",
+    "error": "Expected ',' or '}' after property value in JSON at position 4788 (line 1 column 4789)"
   },
   {
     "id": 105,
@@ -1090,8 +1137,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "keratin-treatment-before-wedding"
+    "status": "done",
+    "slug": "keratin-treatment-before-wedding",
+    "generated_at": "2026-05-22T00:47:31.662Z"
   },
   {
     "id": 106,
@@ -1100,8 +1148,9 @@
     "category": "hair",
     "tier": 3,
     "priority": 3,
-    "status": "pending",
-    "slug": "keratin-after-summer-repair"
+    "status": "done",
+    "slug": "keratin-after-summer-repair",
+    "generated_at": "2026-05-22T01:00:27.595Z"
   },
   {
     "id": 107,
@@ -1110,8 +1159,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "black-friday-brazilian-haircare"
+    "status": "done",
+    "slug": "black-friday-brazilian-haircare",
+    "generated_at": "2026-05-22T00:48:26.981Z"
   },
   {
     "id": 108,
@@ -1120,8 +1170,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "brazilian-curly-hair-method"
+    "status": "done",
+    "slug": "brazilian-curly-hair-method",
+    "generated_at": "2026-05-22T00:49:20.864Z"
   },
   {
     "id": 109,
@@ -1130,8 +1181,9 @@
     "category": "hair",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "brazilian-products-type-3-4-curls"
+    "status": "done",
+    "slug": "brazilian-products-type-3-4-curls",
+    "generated_at": "2026-05-22T00:50:12.351Z"
   },
   {
     "id": 110,
@@ -1140,7 +1192,8 @@
     "category": "distribution",
     "tier": 2,
     "priority": 2,
-    "status": "pending",
-    "slug": "brazilian-beauty-uk-importer-guide"
+    "status": "done",
+    "slug": "brazilian-beauty-uk-importer-guide",
+    "generated_at": "2026-05-22T00:51:04.678Z"
   }
 ]
