@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Partner With Us — Brazilian Beauty Index</title>
+  <meta name="description" content="Register your Brazilian beauty brand on Brazilian Beauty Index. Get featured in editorial articles, reviews and our professional audience newsletter.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--g:#0D3224;--gold:#C9962A;--white:#fff;--ivory:#F9F7F4;--text:#111;--text-2:rgba(17,17,17,.55);--border:rgba(17,17,17,.1);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',system-ui,sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--f-sans);background:#fff;color:var(--text);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    nav{background:var(--g);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--f-serif);font-size:18px;color:#fff;font-weight:400}.logo em{color:var(--gold);font-style:italic}
+    .hero{background:var(--g);padding:72px 32px 56px;text-align:center}
+    .hero .label{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+    .hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(36px,5vw,56px);color:#fff;line-height:1.15}
+    .hero h1 em{color:var(--gold);font-style:italic}
+    .hero p{font-size:15px;color:rgba(255,255,255,.55);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto}
+    .body{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px;margin:0 auto;padding:72px 32px;align-items:start}
+    .info h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(28px,3.5vw,40px);margin-bottom:16px}
+    .info p{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:16px}
+    .perks{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+    .perk{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--text-2)}
+    .perk::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:2px}
+    .form-box{background:var(--ivory);padding:40px;border:1px solid var(--border)}
+    .form-box h3{font-family:var(--f-serif);font-weight:300;font-size:24px;margin-bottom:6px}
+    .form-box p{font-size:13px;color:var(--text-2);margin-bottom:28px}
+    .field{margin-bottom:16px}
+    .field label{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(17,17,17,.4);display:block;margin-bottom:6px}
+    .field input,.field select,.field textarea{width:100%;border:none;border-bottom:1.5px solid var(--border);background:transparent;padding:10px 0;font-size:14px;font-family:var(--f-sans);color:var(--text);outline:none;transition:border-color .2s}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--g)}
+    .field textarea{resize:vertical;min-height:80px}
+    .submit{width:100%;padding:15px;background:var(--g);color:#fff;border:none;cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-family:var(--f-sans);transition:background .2s;margin-top:8px}
+    .submit:hover{background:#174D38}
+    .success{text-align:center;padding:48px 0;display:none}
+    .success h4{font-family:var(--f-serif);font-weight:300;font-size:24px;margin-bottom:8px}
+    footer{background:#0A2419;padding:28px 32px;text-align:center}
+    footer p{font-size:11px;color:rgba(255,255,255,.3)}
+    @media(max-width:768px){.body{grid-template-columns:1fr;gap:40px;padding:48px 24px}}
+  </style>
+</head>
+<body>
+<nav><a href="/" class="logo">Brazilian<em>Beauty</em>Index</a><a href="/blog/" style="font-size:12px;color:rgba(255,255,255,.6)">Editorial →</a></nav>
+<div class="hero">
+  <span class="label">Brand Partnerships</span>
+  <h1>Get Your Brand <em>Featured</em></h1>
+  <p>Register your Brazilian beauty brand and appear in our editorial articles, reviews and newsletters reaching professionals across the UK and EU.</p>
+</div>
+<div class="body">
+  <div class="info">
+    <h2>Why Partner With Brazilian Beauty Index?</h2>
+    <p>We're the definitive English-language reference for Brazilian beauty — read by salon professionals, distributors and buyers across the UK and Europe.</p>
+    <div class="perks">
+      <div class="perk">Dedicated brand profile in our Brand Index</div>
+      <div class="perk">Featured in editorial articles and product guides</div>
+      <div class="perk">Exclusive reader discount code for your products</div>
+      <div class="perk">Links back to your official website and stockists</div>
+      <div class="perk">Newsletter mentions to our subscriber list</div>
+      <div class="perk">Google-indexed article content about your brand</div>
+    </div>
+  </div>
+  <div class="form-box">
+    <h3>Register Your Brand</h3>
+    <p>Tell us about your brand and we'll be in touch within 48 hours.</p>
+    <form id="brandForm" onsubmit="submitForm(event)">
+      <div class="field"><label>Brand Name *</label><input type="text" name="brand_name" required placeholder="e.g. Cadiveu Professional"></div>
+      <div class="field"><label>Website</label><input type="url" name="website" placeholder="https://yoursite.com"></div>
+      <div class="field"><label>Contact Email *</label><input type="email" name="email" required placeholder="hello@yoursite.com"></div>
+      <div class="field"><label>Category *</label>
+        <select name="category" required>
+          <option value="">Select…</option>
+          <option>Hair Care</option><option>Skincare</option><option>Makeup</option>
+          <option>Nails</option><option>Body Care</option><option>Wellness</option>
+        </select>
+      </div>
+      <div class="field"><label>Markets</label><input type="text" name="markets" placeholder="UK, EU, Global…"></div>
+      <div class="field"><label>Message</label><textarea name="message" placeholder="Tell us about your brand…"></textarea></div>
+      <button type="submit" class="submit">Submit Brand Registration →</button>
+      <p style="font-size:10px;color:rgba(17,17,17,.3);text-align:center;margin-top:10px">We respond within 48 hours</p>
+    </form>
+    <div class="success" id="success">
+      <div style="font-size:40px;margin-bottom:16px">🌿</div>
+      <h4>Registration received!</h4>
+      <p style="font-size:14px;color:var(--text-2)">We'll review your brand and be in touch within 48 hours.</p>
+    </div>
+  </div>
+</div>
+<footer><p>© 2026 Brazilian Beauty Index · brazilianbeautyindex.com</p></footer>
+<script>
+async function submitForm(e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  try {
+    const r = await fetch('/api/brand-register', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+    if ((await r.json()).ok) {
+      document.getElementById('brandForm').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    }
+  } catch(err) { alert('Error submitting. Email us at partners@brazilianbeautyindex.com'); }
+}
+</script>
+</body></html>
