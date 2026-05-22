@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Bra\u00e9 Hair Care: The Complete Guide to All Products and Lines",
-    "keyword": "bra\u00e9 hair care",
+    "title": "Braé Hair Care: The Complete Guide to All Products and Lines",
+    "keyword": "braé hair care",
     "category": "hair",
     "tier": 1,
     "priority": 1,
@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "title": "Bra\u00e9 Blonde Repair: The Complete Product Line Review",
+    "title": "Braé Blonde Repair: The Complete Product Line Review",
     "keyword": "brae blonde repair",
     "category": "hair",
     "tier": 1,
@@ -22,7 +22,7 @@
   },
   {
     "id": 3,
-    "title": "Bra\u00e9 Revival: Deep Reconstruction for Chemically Damaged Hair",
+    "title": "Braé Revival: Deep Reconstruction for Chemically Damaged Hair",
     "keyword": "brae revival keratin",
     "category": "hair",
     "tier": 1,
@@ -33,7 +33,7 @@
   },
   {
     "id": 4,
-    "title": "Bra\u00e9 Bond Angel: How Molecular Bonding Changes the Game for Salons",
+    "title": "Braé Bond Angel: How Molecular Bonding Changes the Game for Salons",
     "keyword": "brae bond angel",
     "category": "hair",
     "tier": 1,
@@ -44,7 +44,7 @@
   },
   {
     "id": 5,
-    "title": "Bra\u00e9 Divine: The Luxury Hair Oil and Mask Line Explained",
+    "title": "Braé Divine: The Luxury Hair Oil and Mask Line Explained",
     "keyword": "brae divine hair oil",
     "category": "hair",
     "tier": 1,
@@ -55,7 +55,7 @@
   },
   {
     "id": 6,
-    "title": "Bra\u00e9 Wanna Be Blond: Lightening, Toning and Blonde Maintenance",
+    "title": "Braé Wanna Be Blond: Lightening, Toning and Blonde Maintenance",
     "keyword": "brae wanna be blond",
     "category": "hair",
     "tier": 1,
@@ -86,7 +86,7 @@
   },
   {
     "id": 9,
-    "title": "Cadiveu Pl\u00e1stica dos Fios: The Hair Botox That Changed Salons",
+    "title": "Cadiveu Plástica dos Fios: The Hair Botox That Changed Salons",
     "keyword": "cadiveu plastica dos fios",
     "category": "hair",
     "tier": 1,
@@ -332,8 +332,8 @@
   },
   {
     "id": 32,
-    "title": "Cadiveu vs Bra\u00e9: Which Brazilian Keratin Brand Is Right for Your Salon?",
-    "keyword": "bra\u00e9 vs cadiveu",
+    "title": "Cadiveu vs Braé: Which Brazilian Keratin Brand Is Right for Your Salon?",
+    "keyword": "braé vs cadiveu",
     "category": "hair",
     "tier": 3,
     "priority": 1,
@@ -343,7 +343,7 @@
   },
   {
     "id": 33,
-    "title": "Cadiveu Brasil Cacau vs Pl\u00e1stica dos Fios: Which One to Choose?",
+    "title": "Cadiveu Brasil Cacau vs Plástica dos Fios: Which One to Choose?",
     "keyword": "cadiveu brasil cacau vs plastica dos fios",
     "category": "hair",
     "tier": 3,
@@ -365,8 +365,8 @@
   },
   {
     "id": 35,
-    "title": "Bra\u00e9 vs Honma Tokyo: A Honest Salon Comparison",
-    "keyword": "bra\u00e9 vs honma tokyo",
+    "title": "Braé vs Honma Tokyo: A Honest Salon Comparison",
+    "keyword": "braé vs honma tokyo",
     "category": "hair",
     "tier": 3,
     "priority": 2,
@@ -457,13 +457,13 @@
     "category": "hair",
     "tier": 3,
     "priority": 1,
-    "status": "error",
+    "status": "done",
     "slug": "best-keratin-blonde-hair",
-    "error": "Expected ',' or '}' after property value in JSON at position 5984 (line 1 column 5985)"
+    "generated_at": "2026-05-22T10:02:10.428Z"
   },
   {
     "id": 44,
-    "title": "A\u00e7a\u00ed Oil for Hair: Benefits, Products and How to Use It",
+    "title": "Açaí Oil for Hair: Benefits, Products and How to Use It",
     "keyword": "acai oil for hair benefits",
     "category": "ingredients",
     "tier": 3,
@@ -484,7 +484,7 @@
   },
   {
     "id": 46,
-    "title": "Cupua\u00e7u Butter in Hair Care: Why Brazilian Stylists Love This Ingredient",
+    "title": "Cupuaçu Butter in Hair Care: Why Brazilian Stylists Love This Ingredient",
     "keyword": "cupuacu butter hair",
     "category": "ingredients",
     "tier": 3,
@@ -581,8 +581,8 @@
   },
   {
     "id": 55,
-    "title": "Bra\u00e9 Hair Care Review: We Tested Every Product Line for 60 Days",
-    "keyword": "bra\u00e9 hair care review",
+    "title": "Braé Hair Care Review: We Tested Every Product Line for 60 Days",
+    "keyword": "braé hair care review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
@@ -680,8 +680,8 @@
   },
   {
     "id": 64,
-    "title": "Bra\u00e9 Blonde Repair vs Cadiveu Plastica dos Fios: For Coloured Hair",
-    "keyword": "bra\u00e9 blonde repair vs cadiveu",
+    "title": "Braé Blonde Repair vs Cadiveu Plastica dos Fios: For Coloured Hair",
+    "keyword": "braé blonde repair vs cadiveu",
     "category": "hair",
     "tier": 3,
     "priority": 1,
@@ -790,8 +790,8 @@
   },
   {
     "id": 74,
-    "title": "Bra\u00e9 Bond Angel: Is It Worth the Price? An Honest Salon Review",
-    "keyword": "bra\u00e9 bond angel review",
+    "title": "Braé Bond Angel: Is It Worth the Price? An Honest Salon Review",
+    "keyword": "braé bond angel review",
     "category": "hair",
     "tier": 1,
     "priority": 1,
@@ -912,7 +912,7 @@
   },
   {
     "id": 85,
-    "title": "Bra\u00e9 Blue Gold vs Cadiveu Brasil Cacau: Which Keratin to Choose?",
+    "title": "Braé Blue Gold vs Cadiveu Brasil Cacau: Which Keratin to Choose?",
     "keyword": "brae blue gold vs cadiveu brasil cacau",
     "category": "hair",
     "tier": 3,
@@ -989,7 +989,7 @@
   },
   {
     "id": 92,
-    "title": "How to Use Bra\u00e9 Revival at Home: Complete Application Guide",
+    "title": "How to Use Braé Revival at Home: Complete Application Guide",
     "keyword": "brae revival at home",
     "category": "hair",
     "tier": 1,
@@ -1000,7 +1000,7 @@
   },
   {
     "id": 93,
-    "title": "Bra\u00e9 Blue Gold Review: 6 Months of Real Salon Testing",
+    "title": "Braé Blue Gold Review: 6 Months of Real Salon Testing",
     "keyword": "brae blue gold review",
     "category": "hair",
     "tier": 1,
@@ -1022,7 +1022,7 @@
   },
   {
     "id": 95,
-    "title": "Bra\u00e9 Revival Honest Review: Does Molecular Reconstruction Really Work?",
+    "title": "Braé Revival Honest Review: Does Molecular Reconstruction Really Work?",
     "keyword": "brae revival review",
     "category": "hair",
     "tier": 1,
@@ -1055,7 +1055,7 @@
   },
   {
     "id": 98,
-    "title": "Best Brazilian Haircare Under \u00a340: Budget Picks That Perform",
+    "title": "Best Brazilian Haircare Under £40: Budget Picks That Perform",
     "keyword": "brazilian haircare budget uk",
     "category": "hair",
     "tier": 2,
