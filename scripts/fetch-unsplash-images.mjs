@@ -140,6 +140,9 @@ function needsNewImage(post) {
   if (!post.featured_image) return true;
   // Replace if it's one of the known generic/repeated static URLs
   if (GENERIC_UNSPLASH.has(post.featured_image)) return true;
+  // Replace catalog PDF pages (text-heavy scans, not clean hero images).
+  // Kept in needsNewImage so future catalog-backed posts get auto-replaced.
+  if (post.featured_image.startsWith('/assets/brands/')) return true;
   return false;
 }
 
