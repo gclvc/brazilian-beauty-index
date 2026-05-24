@@ -1005,10 +1005,10 @@
   </section>
 
   <!-- ── EDITION MARKER ─────────────────────────────────────── -->
-  <div class="edition-marker">
+  <div class="edition-marker" x-data="articleCounter()">
     <span>Vol. I · May 2026</span>
     <span class="edition-line"></span>
-    <span>108 Articles</span>
+    <span><span x-text="count"></span> Articles</span>
   </div>
 
   <!-- ── LEADERBOARD AD SLOT ────────────────────────────────── -->
@@ -1400,42 +1400,50 @@
   <script>
     // ── sticky nav shadow ──────────────────────────────────────
     const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
-    }, { passive: true });
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+      }, { passive: true });
+    }
 
     // ── mobile hamburger ───────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     let menuOpen = false;
 
-    hamburger.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle('open', menuOpen);
-      document.body.style.overflow = menuOpen ? 'hidden' : '';
-      const spans = hamburger.querySelectorAll('span');
-      if (menuOpen) {
-        spans[0].style.transform = 'rotate(45deg) translate(4px, 4.5px)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'rotate(-45deg) translate(4px, -4.5px)';
-      } else {
-        spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-      }
-    });
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+        const spans = hamburger.querySelectorAll('span');
+        if (menuOpen) {
+          spans[0].style.transform = 'rotate(45deg) translate(4px, 4.5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(4px, -4.5px)';
+        } else {
+          spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        }
+      });
+    }
 
-    // ── newsletter form ────────────────────────────────────────
+    // ── newsletter form (legacy — only if these IDs exist) ────
     const form = document.getElementById('newsletterForm');
     const successMsg = document.getElementById('newsletterSuccess');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('emailInput').value.trim();
-      if (!email || !email.includes('@')) return;
-      // store locally, no real API yet
-      try { localStorage.setItem('bbi_subscriber', email); } catch(err) {}
-      form.style.display = 'none';
-      successMsg.style.display = 'block';
-    });
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('emailInput');
+        if (!emailInput) return;
+        const email = emailInput.value.trim();
+        if (!email || !email.includes('@')) return;
+        // store locally, no real API yet
+        try { localStorage.setItem('bbi_subscriber', email); } catch(err) {}
+        form.style.display = 'none';
+        if (successMsg) successMsg.style.display = 'block';
+      });
+    }
 
     // ── GSAP scroll reveals ────────────────────────────────────
     gsap.registerPlugin(ScrollTrigger);
@@ -1471,6 +1479,16 @@
           const posts = await getPosts();
           this.featured = posts[0] || null;
           this.stack = posts.slice(1, 4);
+        }
+      };
+    }
+
+    function articleCounter() {
+      return {
+        count: '—',
+        async init() {
+          const posts = await getPosts();
+          this.count = posts.length;
         }
       };
     }
