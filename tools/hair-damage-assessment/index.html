@@ -437,6 +437,13 @@
             <a :href="result.recommendation.articleUrl" class="cta-secondary">Read the guide</a>
           </div>
 
+          <!-- Alternate path for professionals -->
+          <div style="margin-top:24px;padding:20px;background:#F8F6F2;border-left:3px solid #0D3224;font-family:'DM Sans',sans-serif;">
+            <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7d7d7d;margin:0 0 8px;">Are you a salon professional?</p>
+            <p style="font-size:14px;line-height:1.5;color:#333;margin:0 0 12px;">Stocking these products for your salon? Get trade-tier pricing and certified training.</p>
+            <a :href="'https://pro.keratinandcare.com/?utm_source=bbi&utm_medium=tool-alt&utm_campaign=damage-assessment-' + result.tier" target="_blank" rel="noopener" style="display:inline-block;color:#0D3224;font-size:12px;font-weight:500;letter-spacing:.05em;text-decoration:none;border-bottom:1px solid #0D3224;padding-bottom:2px;">Apply for a professional account &#8594;</a>
+          </div>
+
           <!-- Email capture -->
           <div class="email-box" x-show="!emailSaved">
             <h4>Send me my result + a personalised routine</h4>

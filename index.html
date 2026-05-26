@@ -1200,6 +1200,42 @@
     </div>
   </section>
 
+  <!-- ── TOOLS & ROUTING (lead capture + segment-aware) ─────── -->
+  <section style="padding:80px 24px;background:var(--ivory);border-top:1px solid var(--border);">
+    <div class="container" style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <span class="label">Tools &amp; resources</span>
+        <h2 style="font-family:var(--f-serif);font-size:42px;line-height:1.1;color:var(--green);margin:12px 0 16px;font-weight:400;">Find what fits your hair, your salon, your business.</h2>
+        <p style="max-width:600px;margin:0 auto;font-size:15px;line-height:1.6;color:var(--text-2);">Three paths into the BBI ecosystem — pick the one that matches what you do.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="tools-grid">
+        <a href="/tools/hair-damage-assessment/" style="display:block;text-decoration:none;background:#fff;padding:36px 28px;border:1px solid var(--border);transition:border-color .2s;" onmouseover="this.style.borderColor='#C9962A'" onmouseout="this.style.borderColor='rgba(17,17,17,.08)'">
+          <span style="display:inline-block;padding:4px 10px;background:rgba(13,50,36,.08);color:var(--green);font-family:var(--f-sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;">For you</span>
+          <h3 style="font-family:var(--f-serif);font-size:28px;line-height:1.15;color:var(--green);margin:0 0 12px;font-weight:400;">Hair Damage Assessment</h3>
+          <p style="font-size:14px;line-height:1.55;color:var(--text-2);margin:0 0 20px;">8 questions about your hair history — porosity, chemistry, breakage. We map your damage profile and prescribe the right Brazilian protocol.</p>
+          <span style="display:inline-block;font-family:var(--f-sans);font-size:12px;font-weight:500;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:2px;">Start the assessment &#8594;</span>
+        </a>
+        <a href="https://pro.keratinandcare.com/?utm_source=bbi&utm_medium=tools-section&utm_campaign=salon-pro" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:var(--green);color:#fff;padding:36px 28px;border:1px solid var(--green);transition:opacity .2s;" onmouseover="this.style.opacity='.92'" onmouseout="this.style.opacity='1'">
+          <span style="display:inline-block;padding:4px 10px;background:rgba(255,255,255,.15);color:#fff;font-family:var(--f-sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;">For salons</span>
+          <h3 style="font-family:var(--f-serif);font-size:28px;line-height:1.15;color:#fff;margin:0 0 12px;font-weight:400;">Open a trade account</h3>
+          <p style="font-size:14px;line-height:1.55;color:rgba(255,255,255,.82);margin:0 0 20px;">Salon owners and certified stylists — get professional pricing, line training and access to the full Brazilian catalogue. 48-hour approval.</p>
+          <span style="display:inline-block;font-family:var(--f-sans);font-size:12px;font-weight:500;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;">Apply as a pro &#8594;</span>
+        </a>
+        <a href="https://www.bmsupplier.co.uk/partner/?utm_source=bbi&utm_medium=tools-section&utm_campaign=distributor" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:#fff;padding:36px 28px;border:1px solid var(--border);transition:border-color .2s;" onmouseover="this.style.borderColor='#C9962A'" onmouseout="this.style.borderColor='rgba(17,17,17,.08)'">
+          <span style="display:inline-block;padding:4px 10px;background:rgba(201,150,42,.12);color:var(--gold);font-family:var(--f-sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px;">For distributors</span>
+          <h3 style="font-family:var(--f-serif);font-size:28px;line-height:1.15;color:var(--green);margin:0 0 12px;font-weight:400;">Become a distributor</h3>
+          <p style="font-size:14px;line-height:1.55;color:var(--text-2);margin:0 0 20px;">Importing Brazilian beauty into the UK or EU? BM Supplier handles CPNP registration, warehousing and trade-tier pricing across 10+ brands.</p>
+          <span style="display:inline-block;font-family:var(--f-sans);font-size:12px;font-weight:500;color:var(--green);border-bottom:1px solid var(--green);padding-bottom:2px;">Apply for trade &#8594;</span>
+        </a>
+      </div>
+    </div>
+    <style>
+      @media (max-width: 768px) {
+        .tools-grid { grid-template-columns: 1fr !important; }
+      }
+    </style>
+  </section>
+
   <!-- ── NEWSLETTER (2-step with preference capture) ────────── -->
   <section class="newsletter" id="newsletter" x-data="newsletterApp()">
     <div class="container">
@@ -1363,16 +1399,25 @@
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Partners</div>
+          <div class="footer-col-title">Shop</div>
           <ul class="footer-links">
-            <li><a href="/partners">Partners</a></li>
-            <li><a href="/partners/registar-marca">Register Your Brand</a></li>
-            <li><a href="/anunciar">Advertise</a></li>
-            <li><a href="/media-kit">Media Kit</a></li>
+            <li><a href="https://keratinandcare.com/?utm_source=bbi&utm_medium=footer&utm_campaign=shop" target="_blank" rel="noopener">Keratin &amp; Care (UK/EU)</a></li>
+            <li><a href="https://braehaircare.co.uk/?utm_source=bbi&utm_medium=footer&utm_campaign=shop" target="_blank" rel="noopener">Bra&eacute; UK</a></li>
+            <li><a href="/brands">Browse brands</a></li>
+            <li><a href="/reviews">Product reviews</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Contact</div>
+          <div class="footer-col-title">For trade</div>
+          <ul class="footer-links">
+            <li><a href="https://pro.keratinandcare.com/?utm_source=bbi&utm_medium=footer&utm_campaign=salons" target="_blank" rel="noopener">Salon trade account</a></li>
+            <li><a href="https://www.bmsupplier.co.uk/partner/?utm_source=bbi&utm_medium=footer&utm_campaign=distributors" target="_blank" rel="noopener">Become a distributor</a></li>
+            <li><a href="/solutions">Salon resources</a></li>
+            <li><a href="/anunciar">Advertise on BBI</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Index</div>
           <ul class="footer-links">
             <li><a href="/sobre">About</a></li>
             <li><a href="/contacto">Contact</a></li>
