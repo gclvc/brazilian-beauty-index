@@ -1606,5 +1606,84 @@
     }
   </script>
   <script src="/ads/ads.js" defer></script>
+
+  <!-- ── EXIT-INTENT POPUP ─────────────────────────────────────── -->
+  <div id="exitIntentOverlay" style="display:none;position:fixed;inset:0;background:rgba(13,50,36,.85);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;max-width:480px;width:100%;padding:40px;border-radius:2px;text-align:center;position:relative;">
+      <button id="exitIntentClose" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;color:#888;cursor:pointer;line-height:1;padding:4px 8px;">×</button>
+      <span style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#C9962A;">Before you go</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.15;color:#0D3224;margin:12px 0 16px;font-weight:400;">Get our weekly edit on Brazilian beauty</h2>
+      <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:#333;margin:0 0 24px;">Reviews, ingredient deep-dives, salon-grade protocols and the brands worth knowing — straight to your inbox.</p>
+      <form id="exitIntentForm" style="display:flex;flex-direction:column;gap:12px;">
+        <input type="email" id="exitIntentEmail" placeholder="your@email.com" required style="padding:14px 16px;border:1px solid #ddd;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+        <button type="submit" style="background:#0D3224;color:#fff;border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;">Subscribe →</button>
+      </form>
+      <p id="exitIntentSuccess" style="display:none;color:#0D3224;margin-top:16px;font-size:14px;">Thanks — we'll be in touch.</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Exit-intent: only fire once per session, only on desktop (mouseleave doesn't work on mobile)
+      if (sessionStorage.getItem('bbi_exit_shown')) return;
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+
+      const overlay = document.getElementById('exitIntentOverlay');
+      const closeBtn = document.getElementById('exitIntentClose');
+      const form = document.getElementById('exitIntentForm');
+      const emailInput = document.getElementById('exitIntentEmail');
+      const success = document.getElementById('exitIntentSuccess');
+
+      function showPopup() {
+        overlay.style.display = 'flex';
+        sessionStorage.setItem('bbi_exit_shown', '1');
+        if (window.dataLayer) window.dataLayer.push({ event: 'exit_intent_shown' });
+      }
+      function hidePopup() {
+        overlay.style.display = 'none';
+      }
+
+      // Trigger on mouseleave near top of viewport (exit-intent)
+      let triggered = false;
+      document.addEventListener('mouseleave', (e) => {
+        if (triggered) return;
+        if (e.clientY < 10) {
+          triggered = true;
+          setTimeout(showPopup, 200);
+        }
+      });
+
+      // Backup trigger: after 60s on page
+      setTimeout(() => {
+        if (!triggered && !sessionStorage.getItem('bbi_exit_shown')) {
+          triggered = true;
+          showPopup();
+        }
+      }, 60000);
+
+      closeBtn?.addEventListener('click', hidePopup);
+      overlay?.addEventListener('click', (e) => { if (e.target === overlay) hidePopup(); });
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        if (!email.includes('@')) return;
+        try {
+          await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: 'exit-intent' })
+          });
+          form.style.display = 'none';
+          success.style.display = 'block';
+          if (window.dataLayer) window.dataLayer.push({ event: 'exit_intent_subscribed' });
+          setTimeout(hidePopup, 2000);
+        } catch(err) {
+          success.textContent = 'Something went wrong. Please try again.';
+          success.style.display = 'block';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
