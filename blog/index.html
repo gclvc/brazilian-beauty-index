@@ -554,24 +554,28 @@
         @click="setTag('hair-care')">Hair Care</button>
       <button
         class="tag-pill"
-        :class="{ active: activeTag === 'skincare' }"
-        @click="setTag('skincare')">Skincare</button>
+        :class="{ active: activeTag === 'brands' }"
+        @click="setTag('brands')">Brands</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'how-to' }"
+        @click="setTag('how-to')">How-To</button>
       <button
         class="tag-pill"
         :class="{ active: activeTag === 'ingredients' }"
         @click="setTag('ingredients')">Ingredients</button>
       <button
         class="tag-pill"
+        :class="{ active: activeTag === 'reviews' }"
+        @click="setTag('reviews')">Reviews</button>
+      <button
+        class="tag-pill"
+        :class="{ active: activeTag === 'procedures' }"
+        @click="setTag('procedures')">Procedures</button>
+      <button
+        class="tag-pill"
         :class="{ active: activeTag === 'distribution' }"
         @click="setTag('distribution')">Distribution</button>
-      <button
-        class="tag-pill"
-        :class="{ active: activeTag === 'makeup' }"
-        @click="setTag('makeup')">Makeup</button>
-      <button
-        class="tag-pill"
-        :class="{ active: activeTag === 'nails' }"
-        @click="setTag('nails')">Nails</button>
     </div>
 
     <!-- MAIN CONTENT AREA -->
@@ -706,7 +710,13 @@
 
         get filteredPosts() {
           if (this.activeTag === 'all') return this.posts;
-          return this.posts.filter(p => p.category === this.activeTag);
+          // Slugify both sides so "Hair Care" in posts.json matches "hair-care" from pill click.
+          // Defensive against future category casing drift.
+          var slugify = function (s) {
+            return String(s || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          };
+          var target = slugify(this.activeTag);
+          return this.posts.filter(p => slugify(p.category) === target);
         },
 
         get paginatedPosts() {

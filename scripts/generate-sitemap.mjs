@@ -44,8 +44,18 @@ const STATIC_PAGES = [
   { url: '/partners/',     priority: '0.7', freq: 'monthly' },
   { url: '/advertise/',    priority: '0.6', freq: 'monthly' },
   { url: '/about/',        priority: '0.6', freq: 'monthly' },
-  { url: '/privacy/',      priority: '0.3', freq: 'yearly'  },
-  { url: '/terms/',        priority: '0.3', freq: 'yearly'  },
+  // Author pages (E-E-A-T hub)
+  { url: '/authors/',                    priority: '0.6', freq: 'monthly' },
+  { url: '/authors/camila-ferreira/',    priority: '0.5', freq: 'monthly' },
+  { url: '/authors/sofia-almeida/',      priority: '0.5', freq: 'monthly' },
+  { url: '/authors/rachel-okonkwo/',     priority: '0.5', freq: 'monthly' },
+  { url: '/authors/tomas-costa/',        priority: '0.5', freq: 'monthly' },
+  // Legal / trust pages
+  { url: '/privacy/',              priority: '0.3', freq: 'yearly'  },
+  { url: '/terms/',                priority: '0.3', freq: 'yearly'  },
+  { url: '/cookies/',              priority: '0.3', freq: 'yearly'  },
+  { url: '/correction-policy/',    priority: '0.3', freq: 'yearly'  },
+  { url: '/editorial-standards/',  priority: '0.4', freq: 'yearly'  },
 ];
 
 // ── Tier → priority map ───────────────────────────────────────────────────────
