@@ -18,8 +18,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Preload posts.json to accelerate hero render (LCP optimization) -->
+  <link rel="preload" href="/blog/posts.json" as="fetch" type="application/json" crossorigin>
+
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"Brazilian Beauty Index","url":"https://www.brazilianbeautyindex.com","description":"The definitive portal for Brazilian beauty — hair care, skincare, tutorials and brands.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.brazilianbeautyindex.com/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+  {"@context":"https://schema.org","@type":"WebSite","name":"Brazilian Beauty Index","url":"https://www.brazilianbeautyindex.com","description":"The definitive portal for Brazilian beauty — hair care, skincare, tutorials and brands.","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.brazilianbeautyindex.com/blog/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
   </script>
 
   <style>
@@ -39,6 +42,31 @@
     ul { list-style: none; }
     button { cursor: pointer; border: none; background: none; font: inherit; }
 
+    /* ─── A11Y: skip to content + visible focus ───────────────── */
+    .skip-to-content {
+      position: absolute; top: -100px; left: 16px; z-index: 99999;
+      background: #0D3224; color: #fff;
+      padding: 12px 20px; font-family: var(--f-sans); font-size: 13px;
+      font-weight: 500; letter-spacing: .05em; text-decoration: none;
+      transition: top .2s;
+    }
+    .skip-to-content:focus { top: 16px; outline: 2px solid #C9962A; outline-offset: 2px; }
+    *:focus-visible {
+      outline: 2px solid #C9962A;
+      outline-offset: 2px;
+    }
+    *:focus:not(:focus-visible) { outline: none; }
+
+    /* ─── A11Y: respect prefers-reduced-motion ───────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     /* ─── TOKENS ───────────────────────────────────────────────── */
     :root {
       --white: #FFFFFF;
@@ -47,6 +75,7 @@
       --green: #0D3224;
       --green-2: #174D38;
       --gold: #C9962A;
+      --gold-dark: #8A6518; /* WCAG AA compliant on white (4.71:1) for small text */
       --terra: #C4563A;
       --text: #111111;
       --text-2: rgba(17,17,17,.58);
@@ -950,6 +979,7 @@
 </head>
 
 <body x-data="{ mobileOpen: false }">
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
 
   <!-- ── MAIN NAV ────────────────────────────────────────────── -->
   <nav class="main-nav" id="mainNav">
@@ -988,9 +1018,10 @@
   </div>
 
   <!-- ── HERO (full-bleed, dynamic from posts.json) ──────────── -->
+  <main id="main-content">
   <section class="hero" x-data="heroSection()">
     <div class="hero-bg">
-      <img x-show="featured && featured.featured_image" :src="featured?.featured_image" :alt="featured?.title" loading="eager">
+      <img x-show="featured && featured.featured_image" :src="featured?.featured_image" :alt="featured?.title" loading="eager" fetchpriority="high" width="1920" height="1080">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content" x-show="featured">
@@ -1247,7 +1278,8 @@
           By subscribing, you agree to our <a href="/privacy/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a> and <a href="/cookies/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Cookie Policy</a>.
         </p>
         <form class="newsletter-form" @submit.prevent="submitEmail()" novalidate>
-          <input type="email" placeholder="Your email address" autocomplete="email" required x-model="email">
+          <label for="newsletter-email" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Your email address</label>
+          <input id="newsletter-email" type="email" placeholder="Your email address" autocomplete="email" required x-model="email" aria-label="Your email address">
           <button type="submit" class="btn-subscribe-gold" :disabled="loading">
             <span x-text="loading ? 'Adding…' : 'Subscribe'"></span>
           </button>
@@ -1367,6 +1399,8 @@
   </style>
 
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
@@ -1446,8 +1480,8 @@
 
   <!-- ── SCRIPTS ────────────────────────────────────────────── -->
   <script src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <script>
     // ── sticky nav shadow ──────────────────────────────────────
@@ -1497,23 +1531,28 @@
       });
     }
 
-    // ── GSAP scroll reveals ────────────────────────────────────
-    gsap.registerPlugin(ScrollTrigger);
-
-    const revealEls = document.querySelectorAll('.reveal');
-    revealEls.forEach(el => {
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 0.65,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          once: true
-        }
+    // ── GSAP scroll reveals (wait for deferred GSAP to load) ─────
+    function initScrollReveals() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        // Fallback: instantly show all reveal elements if GSAP failed
+        document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+        return;
+      }
+      // Skip animations if user prefers reduced motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+        return;
+      }
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll('.reveal').forEach(el => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        });
       });
-    });
+    }
+    if (document.readyState === 'complete') initScrollReveals();
+    else window.addEventListener('load', initScrollReveals);
 
     // ── Dynamic article sections ──────────────────────────────
     let _postsCache = null;
@@ -1670,7 +1709,8 @@
         By subscribing, you agree to our <a href="/privacy/" style="color:#0D3224;text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a> and <a href="/cookies/" style="color:#0D3224;text-decoration:underline;text-underline-offset:2px;">Cookie Policy</a>.
       </p>
       <form id="exitIntentForm" style="display:flex;flex-direction:column;gap:12px;">
-        <input type="email" id="exitIntentEmail" placeholder="your@email.com" required style="padding:14px 16px;border:1px solid #ddd;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+        <label for="exitIntentEmail" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Your email address</label>
+        <input type="email" id="exitIntentEmail" placeholder="your@email.com" required aria-label="Your email address" style="padding:14px 16px;border:1px solid #ddd;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
         <button type="submit" style="background:#0D3224;color:#fff;border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;">Subscribe →</button>
       </form>
       <p id="exitIntentSuccess" style="display:none;color:#0D3224;margin-top:16px;font-size:14px;">Thanks — we'll be in touch.</p>
