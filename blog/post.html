@@ -33,6 +33,7 @@
   <script id="ld-article" type="application/ld+json">{"@context":"https://schema.org"}</script>
   <script id="ld-breadcrumb" type="application/ld+json">{"@context":"https://schema.org"}</script>
   <script id="ld-faq" type="application/ld+json">{"@context":"https://schema.org"}</script>
+  <script id="ld-review" type="application/ld+json">{"@context":"https://schema.org"}</script>
 
   <style>
     /* ─── TOKENS ─────────────────────────────────────────────────── */
@@ -904,6 +905,13 @@
                    style="color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:1px;"></a>
               </span>
             </div>
+            <div class="article-meta article-method" x-show="post.methodology_disclosed" x-cloak style="margin-top:10px;color:rgba(255,255,255,.55);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:.7;">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+              <span>Methodology disclosed</span>
+            </div>
           </div>
         </header>
 
@@ -1284,6 +1292,58 @@
               var ldFaq = document.getElementById('ld-faq');
               if (ldFaq) ldFaq.textContent = JSON.stringify(faqSchema);
             }
+          }
+
+          // Review / ItemList — emitted when the post discloses methodology
+          if (p.methodology_disclosed) {
+            var slug = p.slug || '';
+            var isComparison = /(\bvs\b|\bvs-|compared|comparison|showdown)/i.test(slug);
+            var isList = /^(best-|top-)/i.test(slug);
+            var reviewLd = null;
+
+            if (isComparison) {
+              // ItemList — comparison of items
+              var items = (p.tags || []).slice(0, 8).map(function (t, i) {
+                return { '@type': 'ListItem', position: i + 1, name: t };
+              });
+              reviewLd = {
+                '@context': 'https://schema.org',
+                '@type':    'ItemList',
+                name:        p.title,
+                description: p.seo_description || p.excerpt || '',
+                itemListElement: items.length ? items : [
+                  { '@type': 'ListItem', position: 1, name: p.title }
+                ]
+              };
+            } else if (isList) {
+              // ItemList — ranked round-up
+              reviewLd = {
+                '@context': 'https://schema.org',
+                '@type':    'ItemList',
+                name:        p.title,
+                description: p.seo_description || p.excerpt || '',
+                itemListOrder: 'https://schema.org/ItemListOrderDescending'
+              };
+            } else {
+              // Single-product Review
+              reviewLd = {
+                '@context': 'https://schema.org',
+                '@type':    'Review',
+                itemReviewed: { '@type': 'Product', name: (p.keyword || p.title) },
+                author:      authorPerson || { '@type': 'Organization', name: 'BBI Editorial' },
+                datePublished: p.date || '',
+                publisher: {
+                  '@type': 'Organization',
+                  name:    'Brazilian Beauty Index',
+                  url:     base
+                },
+                reviewBody: p.excerpt || p.seo_description || '',
+                url:         url
+              };
+            }
+
+            var ldRev = document.getElementById('ld-review');
+            if (ldRev && reviewLd) ldRev.textContent = JSON.stringify(reviewLd);
           }
         },
 
