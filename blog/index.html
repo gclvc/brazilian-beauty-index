@@ -670,6 +670,13 @@
         perPage: 6,
 
         async init() {
+          // Read filter from URL params so deep-links from post breadcrumbs land on the filtered grid
+          try {
+            const params = new URLSearchParams(location.search);
+            const initialTag = params.get('category') || params.get('tag') || params.get('brand');
+            if (initialTag) this.activeTag = initialTag;
+          } catch {}
+
           try {
             const res = await fetch('/blog/posts.json');
             if (res.ok) {
