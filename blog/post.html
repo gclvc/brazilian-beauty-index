@@ -814,6 +814,7 @@
     <a href="/brands/">Brands</a>
     <a href="/blog/">Editorial</a>
     <a href="/distribution/">Distribution</a>
+    <a href="/authors/">Editors</a>
     <a href="/distribution/" style="color:var(--gold);font-weight:600;">Partner With Us</a>
   </div>
 
@@ -880,11 +881,28 @@
             <span class="article-category-badge" x-text="categoryLabel(post.category)"></span>
             <h1 class="article-h1" x-text="post.title"></h1>
             <div class="article-meta">
-              <span x-text="post.author || 'BBI Editorial'"></span>
+              <span>
+                By
+                <a :href="authorUrl(post.author)"
+                   x-text="post.author || 'BBI Editorial'"
+                   style="color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:1px;"></a>
+              </span>
               <span class="meta-dot" aria-hidden="true"></span>
               <span x-text="formatDate(post.date)"></span>
               <span class="meta-dot" aria-hidden="true"></span>
               <span x-text="readTime(post.content) + ' min read'"></span>
+            </div>
+            <div class="article-meta article-reviewed" x-show="post.medical_reviewer" x-cloak style="margin-top:10px;color:rgba(255,255,255,.55);">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:.7;">
+                <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" fill="currentColor" opacity=".4"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <span>
+                Medically reviewed by
+                <a :href="authorUrl(post.medical_reviewer)"
+                   x-text="post.medical_reviewer"
+                   style="color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:1px;"></a>
+              </span>
             </div>
           </div>
         </header>
@@ -1202,12 +1220,13 @@
           var catLabel = this.categoryLabel(p.category);
 
           // Article
+          var authorPerson = this._personLd(p.author);
           var article = {
             '@context': 'https://schema.org',
             '@type':    'Article',
             headline:   p.title,
             description: p.seo_description || p.excerpt || '',
-            author: { '@type': 'Organization', name: 'BBI Editorial' },
+            author: authorPerson || { '@type': 'Organization', name: 'BBI Editorial' },
             publisher: {
               '@type': 'Organization',
               name:    'Brazilian Beauty Index',
@@ -1219,6 +1238,14 @@
             url:            url,
             mainEntityOfPage: { '@type': 'WebPage', '@id': url }
           };
+
+          // reviewedBy — medical reviewer Person
+          if (p.medical_reviewer) {
+            var reviewerPerson = this._personLd(p.medical_reviewer);
+            if (reviewerPerson) {
+              article.reviewedBy = reviewerPerson;
+            }
+          }
 
           // BreadcrumbList
           var breadcrumb = {
@@ -1330,6 +1357,50 @@
           if (!content) return 1;
           var words = content.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length;
           return Math.max(1, Math.ceil(words / 200));
+        },
+
+        /* ── AUTHOR REGISTRY — keep in sync with /authors/ pages ── */
+        _authors: {
+          'Camila Ferreira': {
+            slug: 'camila-ferreira',
+            jobTitle: 'Senior Editor — Hair Care and Brazilian Smoothing',
+            sameAs: ['https://www.linkedin.com/in/camila-ferreira-bbi']
+          },
+          'Sofia Almeida': {
+            slug: 'sofia-almeida',
+            jobTitle: 'Beauty Writer — Reviews and How-To',
+            sameAs: ['https://www.linkedin.com/in/sofia-almeida-bbi']
+          },
+          'Dr. Rachel Okonkwo, MSc Trichology': {
+            slug: 'rachel-okonkwo',
+            jobTitle: 'Trichologist and Medical Reviewer',
+            sameAs: ['https://www.linkedin.com/in/dr-rachel-okonkwo-bbi']
+          },
+          'Tomás Costa': {
+            slug: 'tomas-costa',
+            jobTitle: 'Trade Editor — Distribution and Ingredients',
+            sameAs: ['https://www.linkedin.com/in/tomas-costa-bbi']
+          }
+        },
+
+        authorUrl(name) {
+          if (!name) return '/authors/';
+          var entry = this._authors[name];
+          return entry ? '/authors/' + entry.slug + '/' : '/authors/';
+        },
+
+        _personLd(name) {
+          if (!name) return null;
+          var entry = this._authors[name];
+          if (!entry) return null;
+          var base = 'https://www.brazilianbeautyindex.com';
+          return {
+            '@type': 'Person',
+            name: name,
+            url: base + '/authors/' + entry.slug + '/',
+            jobTitle: entry.jobTitle,
+            sameAs: entry.sameAs
+          };
         }
       };
     }
