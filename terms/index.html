@@ -1,19 +1,204 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Terms of Use — Brazilian Beauty Index</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}
-nav{background:#0D3224;padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff}
-.logo em{color:#C9962A;font-style:italic}
-.body{max-width:720px;margin:80px auto;padding:0 24px}
-h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:36px;margin-bottom:24px}
-p{font-size:15px;color:rgba(17,17,17,.58);line-height:1.8;margin-bottom:16px}
-a{color:#0D3224;text-decoration:underline}
-footer{background:#0A2419;padding:28px;text-align:center;margin-top:80px}
-footer p{font-size:11px;color:rgba(255,255,255,.3)}</style>
-</head><body>
-<nav><a href="/" class="logo">Brazilian<em>Beauty</em>Index</a></nav>
-<div class="body"><h2>Terms of Use</h2><p>By accessing Brazilian Beauty Index, you agree to use the content for personal, informational purposes only. All editorial content is the intellectual property of Brazilian Beauty Index. Product reviews reflect the genuine experience of our editorial team. We may receive compensation for sponsored content, which is always clearly labelled. Questions: <a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a></p></div>
-<footer><p>© 2026 Brazilian Beauty Index</p></footer>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Terms of Use — Brazilian Beauty Index</title>
+  <meta name="description" content="The terms that govern your use of brazilianbeautyindex.com — editorial scope, intellectual property, affiliate disclosure, liability, and governing law.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://www.brazilianbeautyindex.com/terms/">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--green:#0D3224;--gold:#C9962A;--white:#FFFFFF;--ivory:#F8F6F2;--text:#111111;--text-2:rgba(17,17,17,.68);--text-3:rgba(17,17,17,.5);--border:rgba(17,17,17,.08);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',system-ui,sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--f-sans);color:var(--text);background:var(--ivory);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
+    a{color:var(--green);text-decoration:underline;text-underline-offset:2px}
+    a:hover{color:var(--gold)}
+    .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+    nav{background:var(--green);padding:16px 32px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:var(--f-serif);font-size:18px;color:#fff;font-weight:400;text-decoration:none}
+    .nav-logo em{font-style:italic;color:var(--gold)}
+    .nav-back{font-size:12px;color:rgba(255,255,255,.6);text-decoration:none}
+    .nav-back:hover{color:var(--gold)}
+    .hero{background:var(--green);padding:72px 32px 56px;text-align:center}
+    .hero .label{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+    .hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(36px,5vw,52px);color:#fff;line-height:1.15;margin-bottom:14px}
+    .hero h1 em{color:var(--gold);font-style:italic}
+    .hero .updated{font-size:13px;color:rgba(255,255,255,.55);margin-top:18px}
+    .content{padding:72px 24px 96px;background:var(--white)}
+    .intro{font-size:17px;color:var(--text-2);line-height:1.75;margin-bottom:40px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+    h2{font-family:var(--f-serif);font-weight:400;font-size:26px;color:var(--green);margin:48px 0 14px;line-height:1.3}
+    h2:first-of-type{margin-top:0}
+    h3{font-family:var(--f-sans);font-weight:600;font-size:15px;color:var(--text);margin:24px 0 10px;letter-spacing:.01em}
+    p{font-size:15px;color:var(--text-2);line-height:1.75;margin-bottom:14px}
+    ul,ol{margin:8px 0 18px 22px;color:var(--text-2);font-size:15px;line-height:1.75}
+    li{margin-bottom:8px}
+    li strong{color:var(--text);font-weight:600}
+    .info-box{background:var(--ivory);border-left:3px solid var(--gold);padding:18px 22px;margin:24px 0;font-size:14px;color:var(--text-2)}
+    .info-box strong{color:var(--text)}
+    .toc{background:var(--ivory);border:1px solid var(--border);padding:20px 24px;margin-bottom:40px;border-radius:2px}
+    .toc-title{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;font-weight:600}
+    .toc ol{margin:0 0 0 18px;font-size:14px}
+    .toc li{margin-bottom:4px}
+    footer{background:#0A2419;padding:36px 24px;text-align:center}
+    .footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+    .footer-links a{font-size:12px;color:rgba(255,255,255,.55);text-decoration:none}
+    .footer-links a:hover{color:var(--gold)}
+    footer p{font-size:11px;color:rgba(255,255,255,.3);margin:0}
+    @media(max-width:600px){
+      .hero{padding:56px 20px 44px}
+      .content{padding:48px 18px 72px}
+      h2{font-size:22px}
+      nav{padding:14px 18px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Brazilian<em>Beauty</em>Index</a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<header class="hero">
+  <span class="label">Legal</span>
+  <h1>Terms <em>of Use</em></h1>
+  <p class="updated">Last updated: 27 May 2026</p>
+</header>
+
+<main class="content">
+<div class="wrap">
+
+<p class="intro">These terms set out the basis on which you can use brazilianbeautyindex.com. By browsing the site, signing up for the newsletter or interacting with any tool we offer, you accept these terms. If you do not agree with them, please stop using the site.</p>
+
+<div class="toc" aria-label="Table of contents">
+  <div class="toc-title">On this page</div>
+  <ol>
+    <li><a href="#about">About this site</a></li>
+    <li><a href="#editorial">Editorial independence</a></li>
+    <li><a href="#affiliate">Affiliate and commercial disclosure</a></li>
+    <li><a href="#use">Permitted use of the site</a></li>
+    <li><a href="#ugc">User-submitted information</a></li>
+    <li><a href="#ip">Intellectual property</a></li>
+    <li><a href="#third-party">Third-party links and brands</a></li>
+    <li><a href="#disclaimers">Disclaimers — medical, cosmetic, ASA</a></li>
+    <li><a href="#liability">Limitation of liability</a></li>
+    <li><a href="#indemnity">Indemnity</a></li>
+    <li><a href="#changes">Changes to the site or these terms</a></li>
+    <li><a href="#law">Governing law and jurisdiction</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</div>
+
+<h2 id="about">1. About this site</h2>
+<p>Brazilian Beauty Index ("BBI", "we", "us", "our") is an English-language editorial reference for Brazilian beauty — hair care, skincare, makeup, nails, body, wellness — covering products, techniques and the brands behind them. The site is published by:</p>
+<div class="info-box">
+  <strong>BM Supplier Ltd</strong> — UK importer and distributor of Brazilian professional beauty brands.<br>
+  Registered in England &amp; Wales.<br>
+  Address: [Operator address — TBD], United Kingdom.<br>
+  Contact: <a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a>
+</div>
+<p>BBI does not sell products directly. Where a brand or product is reviewed, you may be linked to a sister retail site (Keratin &amp; Care, Braé UK, KAC Pro) or to a third-party retailer. See <a href="#affiliate">Affiliate and commercial disclosure</a>.</p>
+
+<h2 id="editorial">2. Editorial independence</h2>
+<p>BBI is operated by a company that also distributes several of the brands we write about. That relationship is real and we will not pretend otherwise. To keep the editorial useful, we apply the following rules:</p>
+<ul>
+  <li>Reviews, comparisons and guides are written by editorial staff, not by brand marketing teams.</li>
+  <li>We criticise products from our own portfolio when criticism is warranted, and we recommend products from competing portfolios when the product is better.</li>
+  <li>Sponsored content is labelled at the top of the article and in the URL.</li>
+  <li>Our full approach is documented in <a href="/editorial-standards">Editorial Standards</a> and <a href="/correction-policy">Correction Policy</a>.</li>
+</ul>
+
+<h2 id="affiliate">3. Affiliate and commercial disclosure</h2>
+<p>Some links on this site are commercial. Specifically:</p>
+<ul>
+  <li><strong>Sister-site links.</strong> Links to keratinandcare.com, braehaircare.co.uk, pro.keratinandcare.com and bmsupplier.co.uk are owned by the same operator as BBI. If you buy something after clicking one of those links, the operator earns the full retail margin.</li>
+  <li><strong>Third-party affiliate links.</strong> A small number of outbound links to Amazon, Boots, LookFantastic and similar retailers may be affiliate links. If you buy through them, BBI may receive a commission at no extra cost to you. Affiliate links are marked where used.</li>
+  <li><strong>Banner advertising.</strong> Display ads on the site rotate through a mix of house ads (our sister sites) and, in future, paid third-party brand placements. Paid placements will always be visually distinguishable from editorial content.</li>
+</ul>
+<p>Commercial relationships do not change our reviews. See section 2.</p>
+
+<h2 id="use">4. Permitted use of the site</h2>
+<p>You can browse, read, share links to and quote short extracts from the site for personal, non-commercial use. You may not:</p>
+<ul>
+  <li>copy, scrape, mirror or republish substantial portions of the site without our written permission;</li>
+  <li>use the site to train large language models or other AI systems without a licence;</li>
+  <li>use any automated system that places an unreasonable load on the infrastructure;</li>
+  <li>attempt to interfere with the site's security, availability or integrity;</li>
+  <li>impersonate BBI, its staff, or any brand we cover;</li>
+  <li>use the site for anything unlawful, defamatory, harassing or in breach of someone else's rights.</li>
+</ul>
+
+<h2 id="ugc">5. User-submitted information</h2>
+<p>When you sign up for the newsletter, take a quiz, send a correction request or use any contact form, you submit personal data and sometimes opinions. By doing so:</p>
+<ul>
+  <li>you confirm the information is accurate to the best of your knowledge;</li>
+  <li>you grant us a non-exclusive, royalty-free licence to use that information to provide the service (for example, to send you the newsletter or reply to your message);</li>
+  <li>if you send us feedback or product opinions we may quote, we may quote you in editorial content in anonymised form unless you have explicitly given consent for attribution.</li>
+</ul>
+<p>How we handle personal data is set out in the <a href="/privacy">Privacy Policy</a>.</p>
+
+<h2 id="ip">6. Intellectual property</h2>
+<p>All editorial text, original photography, page layouts, infographics, code and the "Brazilian Beauty Index" name and logo are owned by BM Supplier Ltd or licensed to it. They are protected by UK and international copyright and trademark law.</p>
+<p>Brand names, product names, logos and packaging shown on the site remain the property of their respective owners. They are used for editorial reference, comparison and commentary under the fair dealing exceptions in sections 30 and 30A of the Copyright, Designs and Patents Act 1988. Where catalogue PDF page reproductions are shown, they appear as commentary or journalism with attribution to the brand.</p>
+<p>Photography sourced from Unsplash and similar libraries is credited inline as required by the relevant licence.</p>
+<p>If you believe content on the site infringes your intellectual property, please email <a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a> with details and we will respond promptly.</p>
+
+<h2 id="third-party">7. Third-party links and brands</h2>
+<p>The site links out to retailers, brand sites, professional bodies, regulatory pages and academic sources. We do not control those sites and we are not responsible for their content, practices or privacy policies. A link is not an endorsement of everything that site says or sells.</p>
+
+<h2 id="disclaimers">8. Disclaimers — medical, cosmetic, ASA</h2>
+<ul>
+  <li><strong>Not medical advice.</strong> Articles about hair loss, scalp conditions, sensitive skin or any health-related topic are general information. They are not a substitute for advice from a qualified doctor, dermatologist, trichologist or pharmacist. If you have a health concern, see a clinician.</li>
+  <li><strong>Cosmetic results vary.</strong> Hair and skin respond differently from one person to another. Anything we describe about a product's effect is based on the test conditions, the reviewer's hair type, and general manufacturer claims. Your result may differ.</li>
+  <li><strong>UK advertising standards.</strong> Where we mention regulated claims (e.g. "anti-ageing", "repair"), we try to follow the CAP Code and ASA guidance. If you think a claim we have repeated is misleading, please flag it through the <a href="/correction-policy">Correction Policy</a>.</li>
+  <li><strong>Brand availability.</strong> Some brands covered on BBI are not legally sold in the UK or EU because they contain ingredients restricted under EU Regulation 1223/2009. We label these clearly and do not link to retailers selling them into restricted markets.</li>
+</ul>
+
+<h2 id="liability">9. Limitation of liability</h2>
+<p>We work hard to keep the site accurate and available. To the fullest extent permitted by law:</p>
+<ul>
+  <li>the site and its content are provided "as is", without warranties of any kind, express or implied;</li>
+  <li>we do not warrant that the site will be uninterrupted, error-free or free of viruses;</li>
+  <li>we are not liable for indirect, consequential or special losses, loss of profits, loss of business or loss of data arising from your use of the site;</li>
+  <li>our total liability to you for any claim arising out of or in connection with the site is limited to £100.</li>
+</ul>
+<p>Nothing in these terms excludes our liability for death or personal injury caused by negligence, for fraud, or for anything else that cannot be excluded under UK law.</p>
+
+<h2 id="indemnity">10. Indemnity</h2>
+<p>You agree to indemnify and hold BM Supplier Ltd, its directors, employees and contractors harmless from any claim, damage or cost (including reasonable legal fees) arising from your misuse of the site, your breach of these terms, or your infringement of any third-party right through your use of the site.</p>
+
+<h2 id="changes">11. Changes to the site or these terms</h2>
+<p>We may add, remove or alter content, features, URLs and these terms at any time. Material changes to these terms will be flagged at the top of this page for at least 30 days. The "Last updated" date will reflect the most recent revision. Continued use of the site after a change means you accept the updated terms.</p>
+
+<h2 id="law">12. Governing law and jurisdiction</h2>
+<p>These terms are governed by the laws of England &amp; Wales. Any dispute that cannot be resolved by correspondence will be subject to the exclusive jurisdiction of the courts of England &amp; Wales — except that, if you are a consumer resident outside England &amp; Wales, you keep the protection of any mandatory consumer law in your country of residence.</p>
+
+<h2 id="contact">13. Contact</h2>
+<div class="info-box">
+  Editorial and general queries: <a href="mailto:hello@brazilianbeautyindex.com">hello@brazilianbeautyindex.com</a><br>
+  Corrections: <a href="mailto:correction@brazilianbeautyindex.com">correction@brazilianbeautyindex.com</a><br>
+  Privacy: <a href="mailto:privacy@brazilianbeautyindex.com">privacy@brazilianbeautyindex.com</a><br>
+  Post: BM Supplier Ltd, [Operator address — TBD], United Kingdom.
+</div>
+
+<p style="font-size:13px;color:var(--text-3);margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">These terms were last reviewed on 27 May 2026. Version 2.0.</p>
+
+</div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/cookies">Cookies</a>
+    <a href="/terms">Terms</a>
+    <a href="/editorial-standards">Editorial standards</a>
+    <a href="/correction-policy">Corrections</a>
+  </div>
+  <p>&copy; 2026 Brazilian Beauty Index — operated by BM Supplier Ltd, United Kingdom.</p>
+</footer>
+
+</body>
+</html>

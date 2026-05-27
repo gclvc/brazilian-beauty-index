@@ -15,8 +15,11 @@
   <url><loc>https://www.brazilianbeautyindex.com/partners/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.brazilianbeautyindex.com/advertise/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.brazilianbeautyindex.com/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.brazilianbeautyindex.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://www.brazilianbeautyindex.com/terms/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.brazilianbeautyindex.com/privacy/</loc><lastmod>2026-05-27</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.brazilianbeautyindex.com/terms/</loc><lastmod>2026-05-27</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.brazilianbeautyindex.com/cookies/</loc><lastmod>2026-05-27</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.brazilianbeautyindex.com/correction-policy/</loc><lastmod>2026-05-27</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.brazilianbeautyindex.com/editorial-standards/</loc><lastmod>2026-05-27</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://www.brazilianbeautyindex.com/blog/brazilian-beauty-ingredients-encyclopedia-nz</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.brazilianbeautyindex.com/blog/brazilian-beauty-2026-trends</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.brazilianbeautyindex.com/blog/brazilian-hair-care-london-2026</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
