@@ -958,6 +958,9 @@
           <div class="newsletter-section" aria-label="Newsletter signup">
             <h3>Stay ahead of Brazilian beauty</h3>
             <p>Weekly intelligence on brands, ingredients, regulations and distribution — direct to your inbox.</p>
+            <p style="font-size:11.5px;line-height:1.55;color:rgba(17,17,17,.55);margin:-4px 0 14px;">
+              By subscribing, you agree to our <a href="/privacy/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a> and <a href="/cookies/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Cookie Policy</a>.
+            </p>
             <div x-show="!newsletterDone">
               <form class="newsletter-form" @submit.prevent="subscribeNewsletter()">
                 <input
@@ -1003,6 +1006,7 @@
         <a href="/distribution/">Distribution</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
+        <a href="#" data-bbi-consent-trigger aria-label="Open cookie preferences">Cookie preferences</a>
       </nav>
       <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
     </div>
@@ -1330,6 +1334,9 @@
       };
     }
   </script>
+
+  <!-- ── COOKIE CONSENT (GDPR / UK PECR) ────────────────────────── -->
+  <script src="/assets/cookie-consent.js" defer></script>
 
 </body>
 </html>

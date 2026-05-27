@@ -1243,6 +1243,9 @@
       <div x-show="step === 'email'">
         <h2 class="newsletter-headline">Stay ahead of the edit.</h2>
         <p class="newsletter-sub">Weekly guides, product reviews and salon intel — curated to what actually interests you.</p>
+        <p class="newsletter-sub" style="font-size:11.5px;color:rgba(17,17,17,.55);max-width:520px;margin:6px auto 14px;">
+          By subscribing, you agree to our <a href="/privacy/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a> and <a href="/cookies/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Cookie Policy</a>.
+        </p>
         <form class="newsletter-form" @submit.prevent="submitEmail()" novalidate>
           <input type="email" placeholder="Your email address" autocomplete="email" required x-model="email">
           <button type="submit" class="btn-subscribe-gold" :disabled="loading">
@@ -1432,6 +1435,7 @@
           <a href="/privacidade">Privacy</a>
           <a href="/termos">Terms</a>
           <a href="/cookies">Cookies</a>
+          <a href="#" data-bbi-consent-trigger aria-label="Open cookie preferences">Cookie preferences</a>
         </div>
       </div>
     </div>
@@ -1658,7 +1662,10 @@
       <button id="exitIntentClose" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;color:#888;cursor:pointer;line-height:1;padding:4px 8px;">×</button>
       <span style="font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#C9962A;">Before you go</span>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;line-height:1.15;color:#0D3224;margin:12px 0 16px;font-weight:400;">Get our weekly edit on Brazilian beauty</h2>
-      <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:#333;margin:0 0 24px;">Reviews, ingredient deep-dives, salon-grade protocols and the brands worth knowing — straight to your inbox.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;color:#333;margin:0 0 16px;">Reviews, ingredient deep-dives, salon-grade protocols and the brands worth knowing — straight to your inbox.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:11.5px;line-height:1.55;color:#666;margin:0 0 18px;">
+        By subscribing, you agree to our <a href="/privacy/" style="color:#0D3224;text-decoration:underline;text-underline-offset:2px;">Privacy Policy</a> and <a href="/cookies/" style="color:#0D3224;text-decoration:underline;text-underline-offset:2px;">Cookie Policy</a>.
+      </p>
       <form id="exitIntentForm" style="display:flex;flex-direction:column;gap:12px;">
         <input type="email" id="exitIntentEmail" placeholder="your@email.com" required style="padding:14px 16px;border:1px solid #ddd;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
         <button type="submit" style="background:#0D3224;color:#fff;border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;cursor:pointer;">Subscribe →</button>
@@ -1730,5 +1737,8 @@
       });
     })();
   </script>
+
+  <!-- ── COOKIE CONSENT (GDPR / UK PECR) ────────────────────────── -->
+  <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
