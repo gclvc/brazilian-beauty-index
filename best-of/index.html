@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best of Brazilian Beauty — Ranked Editorial Lists | Brazilian Beauty Index</title>
+  <meta name="description" content="The Best of Brazilian Beauty: editorially ranked, salon-tested lists of the keratin treatments, masks, shampoos, and heat protectants worth your money in 2026.">
+  <link rel="canonical" href="https://www.brazilianbeautyindex.com/best-of/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Best of Brazilian Beauty — Ranked Editorial Lists">
+  <meta property="og:description" content="Salon-tested, ranked guides to the best Brazilian beauty products in 2026.">
+  <meta property="og:url" content="https://www.brazilianbeautyindex.com/best-of/">
+  <meta property="og:site_name" content="Brazilian Beauty Index">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0D3224">
+
+  <!-- Preload posts.json -->
+  <link rel="preload" href="/blog/posts.json" as="fetch" type="application/json" crossorigin>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <!-- JSON-LD: CollectionPage + ItemList -->
+  <script id="ld-collection" type="application/ld+json">{"@context":"https://schema.org"}</script>
+  <script id="ld-breadcrumb" type="application/ld+json">{"@context":"https://schema.org"}</script>
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────────── */
+    :root {
+      --green:    #0D3224;
+      --green-2:  #174D38;
+      --gold:     #C9962A;
+      --gold-l:   #E0B84A;
+      --gold-dark:#8A6518;
+      --terra:    #C4563A;
+      --white:    #FFFFFF;
+      --ivory:    #F8F6F2;
+      --cream:    #F2EEE8;
+      --text:     #111111;
+      --text-2:   rgba(17,17,17,.58);
+      --text-3:   rgba(17,17,17,.35);
+      --border:   rgba(17,17,17,.08);
+      --border-2: rgba(17,17,17,.15);
+      --f-serif:  'Cormorant Garamond', Georgia, serif;
+      --f-sans:   'DM Sans', system-ui, sans-serif;
+      --max:      1200px;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--f-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--ivory);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    [x-cloak] { display: none !important; }
+
+    /* ─── A11Y ───────────────────────────────────────────────────── */
+    .skip-to-content {
+      position: absolute; top: -100px; left: 16px; z-index: 99999;
+      background: var(--green); color: var(--white);
+      padding: 12px 20px; font-size: 13px;
+      font-weight: 500; letter-spacing: .05em;
+      transition: top .2s;
+    }
+    .skip-to-content:focus { top: 16px; outline: 2px solid var(--gold); outline-offset: 2px; }
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    *:focus:not(:focus-visible) { outline: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ─── STICKY NAV ─────────────────────────────────────────────── */
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .main-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.07); }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-family: var(--f-serif);
+      font-size: 19px;
+      color: var(--green);
+      letter-spacing: -.01em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a { font-size: 13px; color: var(--text); transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+    .btn-subscribe {
+      background: var(--green);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 8px 16px;
+      border-radius: 3px;
+    }
+    .btn-subscribe:hover { background: var(--green-2); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 56px; left: 0; right: 0; bottom: 0;
+      background: var(--white);
+      z-index: 300;
+      padding: 32px 24px;
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; }
+    .mobile-menu a {
+      font-family: var(--f-serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ─── BREADCRUMB ─────────────────────────────────────────────── */
+    .breadcrumb-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+    .breadcrumb-bar .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .02em;
+    }
+    .breadcrumb a { color: var(--text-3); }
+    .breadcrumb a:hover { color: var(--green); }
+    .breadcrumb-sep { color: var(--border-2); }
+    .breadcrumb-current { color: var(--text-2); }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      background: var(--green);
+      color: var(--white);
+      padding: 84px 24px 76px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,150,42,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-family: var(--f-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-l);
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-family: var(--f-serif);
+      font-size: clamp(38px, 6.5vw, 76px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-l);
+      font-weight: 400;
+    }
+    .hero p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.78);
+      max-width: 640px;
+      margin-bottom: 16px;
+    }
+    .hero p a {
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,.4);
+      padding-bottom: 1px;
+      transition: border-color .2s;
+    }
+    .hero p a:hover { border-color: var(--gold-l); }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 32px;
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-meta-num {
+      font-family: var(--f-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--gold-l);
+      line-height: 1;
+    }
+    .hero-meta-label {
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* ─── GRID ───────────────────────────────────────────────────── */
+    .grid-section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px 24px 100px;
+    }
+    .grid-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+    .grid-heading {
+      font-family: var(--f-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      color: var(--green);
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      margin-bottom: 14px;
+    }
+    .grid-lede {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-2);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 36px;
+    }
+    .filter-chip {
+      background: var(--white);
+      border: 1px solid var(--border-2);
+      color: var(--text-2);
+      font-family: var(--f-sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .filter-chip:hover { border-color: var(--green); color: var(--green); }
+    .filter-chip.active {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+      position: relative;
+    }
+    .feature-card:hover {
+      box-shadow: 0 14px 42px rgba(0,0,0,.10);
+      transform: translateY(-4px);
+    }
+    .feature-card-bar {
+      height: 4px;
+      flex-shrink: 0;
+    }
+    .bar-hair-care    { background: var(--green); }
+    .bar-skincare     { background: var(--green-2); }
+    .bar-ingredients  { background: var(--gold); }
+    .bar-distribution { background: var(--terra); }
+    .bar-makeup       { background: #9B4F8E; }
+    .bar-nails        { background: #C84B6E; }
+    .bar-brands       { background: var(--gold-dark); }
+    .bar-reviews      { background: var(--terra); }
+    .bar-default      { background: var(--green); }
+
+    .feature-card-img {
+      aspect-ratio: 3 / 2;
+      background: var(--cream);
+      overflow: hidden;
+      position: relative;
+    }
+    .feature-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .feature-card:hover .feature-card-img img { transform: scale(1.04); }
+    .feature-card-rank {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(13,50,36,.92);
+      color: var(--gold-l);
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 400;
+      padding: 6px 14px;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+    }
+    .feature-card-body {
+      padding: 22px 22px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-card-cat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 10px;
+    }
+    .feature-card-title {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -.005em;
+    }
+    .feature-card-excerpt {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin-bottom: 18px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .feature-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .02em;
+    }
+    .feature-card-meta-dot {
+      width: 2px; height: 2px;
+      border-radius: 50%;
+      background: var(--text-3);
+    }
+    .feature-card-cta {
+      margin-top: 16px;
+      font-family: var(--f-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(13,50,36,.2);
+      padding-bottom: 4px;
+      align-self: flex-start;
+      transition: border-color .2s;
+    }
+    .feature-card:hover .feature-card-cta { border-color: var(--green); }
+    .feature-card-cta svg { width: 12px; height: 12px; }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-2);
+      font-size: 15px;
+    }
+
+    /* ─── METHODOLOGY STRIP ──────────────────────────────────────── */
+    .method-strip {
+      background: var(--cream);
+      padding: 56px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .method-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .method-item-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+    }
+    .method-item-title {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1.25;
+      margin-bottom: 8px;
+      letter-spacing: -.005em;
+    }
+    .method-item-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-2);
+    }
+    .method-item-text a {
+      color: var(--green);
+      border-bottom: 1px solid rgba(13,50,36,.3);
+      transition: border-color .2s;
+    }
+    .method-item-text a:hover { border-color: var(--green); }
+
+    /* ─── LOADING ────────────────────────────────────────────────── */
+    .loading-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 2.5px solid var(--border-2);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin .65s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--green);
+      padding: 48px 24px 36px;
+      margin-top: 0;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: var(--f-serif);
+      font-size: 19px;
+      color: var(--white);
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      justify-content: center;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,.35); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .method-inner { grid-template-columns: 1fr; gap: 24px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links, .btn-subscribe { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero { padding: 64px 20px 56px; }
+      .hero-meta { gap: 18px 24px; }
+      .hero-meta-num { font-size: 24px; }
+      .grid-section { padding: 52px 20px 72px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 18px; }
+      .method-strip { padding: 44px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <a href="/">Home</a>
+    <a href="/hair/">Hair</a>
+    <a href="/skin/">Skin</a>
+    <a href="/brands/">Brands</a>
+    <a href="/blog/">Editorial</a>
+    <a href="/best-of/">Best of</a>
+    <a href="/distribution/">Distribution</a>
+    <a href="/authors/">Editors</a>
+  </div>
+
+  <!-- Sticky nav -->
+  <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Brazilian Beauty Index</a>
+      <div class="nav-links" role="list">
+        <a href="/hair/" role="listitem">Hair</a>
+        <a href="/skin/" role="listitem">Skin</a>
+        <a href="/brands/" role="listitem">Brands</a>
+        <a href="/blog/" role="listitem">Editorial</a>
+        <a href="/best-of/" role="listitem" style="color:var(--green);font-weight:500;">Best of</a>
+        <a href="/distribution/" role="listitem">Distribution</a>
+      </div>
+      <div class="nav-right">
+        <a href="/distribution/" class="btn-subscribe">Partner With Us</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span class="breadcrumb-current" aria-current="page">Best of Brazilian Beauty</span>
+      </nav>
+    </div>
+  </div>
+
+  <main id="main-content" role="main" x-data="bestOfApp()" x-init="init()">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Editorial Index</p>
+        <h1>The Best of <em>Brazilian Beauty</em></h1>
+        <p>
+          Ranked, salon-tested editorial guides — every product on every list earned its place through stylist interviews,
+          re-order data from our partner salons, and a strict no-pay-for-placement rule.
+          Read our <a href="/editorial-standards/">editorial standards</a> to see exactly how we build a Best-Of list.
+        </p>
+
+        <div class="hero-meta" x-show="!loading" x-cloak>
+          <div class="hero-meta-item">
+            <span class="hero-meta-num" x-text="bestOfPosts.length"></span>
+            <span class="hero-meta-label">Ranked guides</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-num" x-text="totalProducts"></span>
+            <span class="hero-meta-label">Products ranked</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-num">14</span>
+            <span class="hero-meta-label">Partner salons</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-num">£0</span>
+            <span class="hero-meta-label">Paid placements</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Loading -->
+    <div class="loading-wrap" x-show="loading" x-cloak>
+      <div class="spinner" role="status" aria-label="Loading guides"></div>
+    </div>
+
+    <!-- Grid -->
+    <section class="grid-section" x-show="!loading" x-cloak>
+      <p class="grid-eyebrow">Browse the lists</p>
+      <h2 class="grid-heading">Every Best-Of, ranked.</h2>
+      <p class="grid-lede">
+        From keratin treatments for damaged hair to the shampoos worth using after a smoothing service —
+        each guide is updated as products are reformulated or pulled from the UK and EU market.
+      </p>
+
+      <div class="filter-row" role="group" aria-label="Filter by category">
+        <button class="filter-chip"
+                :class="{ active: activeFilter === 'all' }"
+                @click="activeFilter = 'all'">
+          All <span x-text="'(' + bestOfPosts.length + ')'" style="opacity:.6"></span>
+        </button>
+        <template x-for="cat in categories" :key="cat.key">
+          <button class="filter-chip"
+                  :class="{ active: activeFilter === cat.key }"
+                  @click="activeFilter = cat.key">
+            <span x-text="cat.label"></span>
+            <span x-text="'(' + cat.count + ')'" style="opacity:.6"></span>
+          </button>
+        </template>
+      </div>
+
+      <div class="feature-grid">
+        <template x-for="(p, i) in filteredPosts" :key="p.slug">
+          <a :href="'/blog/' + p.slug + '/'" class="feature-card">
+            <div class="feature-card-bar" :class="barClass(p.category)"></div>
+            <div class="feature-card-img" x-show="p.featured_image">
+              <img :src="p.featured_image" :alt="p.title" loading="lazy" width="600" height="400">
+              <span class="feature-card-rank" x-text="'No. ' + (i + 1)"></span>
+            </div>
+            <div class="feature-card-body">
+              <p class="feature-card-cat" x-text="categoryLabel(p.category)"></p>
+              <h3 class="feature-card-title" x-text="p.title"></h3>
+              <p class="feature-card-excerpt" x-text="p.excerpt"></p>
+              <div class="feature-card-meta">
+                <span x-text="p.author || 'BBI Editorial'"></span>
+                <span class="feature-card-meta-dot" aria-hidden="true"></span>
+                <span x-text="formatDate(p.date)"></span>
+              </div>
+              <span class="feature-card-cta">
+                Read the ranking
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        </template>
+
+        <template x-if="filteredPosts.length === 0">
+          <div class="empty-state">No guides in this category yet — try another filter.</div>
+        </template>
+      </div>
+    </section>
+
+    <!-- Methodology strip -->
+    <section class="method-strip" aria-label="How we build a Best-Of">
+      <div class="method-inner">
+        <div>
+          <p class="method-item-eyebrow">Step 01</p>
+          <h3 class="method-item-title">Stylist interviews</h3>
+          <p class="method-item-text">We talk to working stylists across our 14 partner salons in the UK, EU and Portugal — what they actually reorder, not what brands send them.</p>
+        </div>
+        <div>
+          <p class="method-item-eyebrow">Step 02</p>
+          <h3 class="method-item-title">Re-order data</h3>
+          <p class="method-item-text">Cross-checked against SKU-level reorder velocity from partner-salon orders. Anything that doesn't repeat falls off the list.</p>
+        </div>
+        <div>
+          <p class="method-item-eyebrow">Step 03</p>
+          <h3 class="method-item-title">Full disclosure</h3>
+          <p class="method-item-text">No payment for placement, ever. Affiliate links are flagged on every list. <a href="/editorial-standards/">Read the policy.</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (matches homepage tokens) -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/brands/">Brands</a>
+        <a href="/blog/">Editorial</a>
+        <a href="/best-of/">Best of</a>
+        <a href="/distribution/">Distribution</a>
+        <a href="/editorial-standards/">Editorial standards</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="#" data-bbi-consent-trigger aria-label="Open cookie preferences">Cookie preferences</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── Mobile nav ─── */
+    (function () {
+      var btn  = document.getElementById('hamburger-btn');
+      var menu = document.getElementById('mobile-menu');
+      var open = false;
+      btn.addEventListener('click', function () {
+        open = !open;
+        menu.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+    }());
+
+    /* ─── Nav shadow ─── */
+    (function () {
+      var nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+      }, { passive: true });
+    }());
+
+    /* ─── Alpine ─── */
+    function bestOfApp() {
+      return {
+        loading: true,
+        all: [],
+        bestOfPosts: [],
+        activeFilter: 'all',
+        totalProducts: 0,
+
+        async init() {
+          try {
+            var res = await fetch('/blog/posts.json');
+            if (res.ok) this.all = await res.json();
+          } catch (_) {}
+
+          // Filter to Best-Of posts:
+          // - slug starts with 'best-' OR
+          // - slug starts with 'top-' AND contains a digit OR
+          // - title contains 'Best' (case-insensitive) OR
+          // - explicit is_best_of: true flag
+          var rx = /best/i;
+          this.bestOfPosts = (this.all || []).filter(function (p) {
+            var s = (p.slug || '').toLowerCase();
+            if (p.is_best_of === true) return true;
+            if (/^best-/.test(s)) return true;
+            if (/^top-/.test(s) && /\d/.test(s)) return true;
+            if (rx.test(p.title || '')) return true;
+            return false;
+          });
+
+          // Sort newest first
+          this.bestOfPosts.sort(function (a, b) {
+            return (b.date || '').localeCompare(a.date || '');
+          });
+
+          // Estimate products ranked: count #N./N. headings across all posts
+          var prodCount = 0;
+          this.bestOfPosts.forEach(function (p) {
+            var rx = /<(h[23])(?:\s[^>]*)?>\s*(?:#\s*)?\d{1,2}\s*[.\)\-:]/gi;
+            var matches = (p.content || '').match(rx);
+            prodCount += matches ? matches.length : 0;
+          });
+          this.totalProducts = prodCount || this.bestOfPosts.length * 5;
+
+          this.loading = false;
+
+          // Inject JSON-LD
+          this._injectJsonLd();
+        },
+
+        get categories() {
+          var counts = {};
+          this.bestOfPosts.forEach(function (p) {
+            var k = p.category || 'Editorial';
+            counts[k] = (counts[k] || 0) + 1;
+          });
+          var self = this;
+          return Object.keys(counts).map(function (k) {
+            return { key: k, label: self.categoryLabel(k), count: counts[k] };
+          }).sort(function (a, b) { return b.count - a.count; });
+        },
+
+        get filteredPosts() {
+          if (this.activeFilter === 'all') return this.bestOfPosts;
+          var f = this.activeFilter;
+          return this.bestOfPosts.filter(function (p) { return p.category === f; });
+        },
+
+        categoryLabel(cat) {
+          if (!cat) return 'Editorial';
+          var map = {
+            'hair-care':    'Hair Care',
+            'skincare':     'Skincare',
+            'ingredients':  'Ingredients',
+            'distribution': 'Distribution',
+            'makeup':       'Makeup',
+            'nails':        'Nails',
+            'tutorials':    'Tutorials',
+            'news':         'News',
+            'reviews':      'Reviews',
+            'how-to':       'How-To',
+            'procedures':   'Procedures',
+            'brands':       'Brands'
+          };
+          var key = cat.toLowerCase().replace(/\s+/g, '-');
+          return map[key] || cat;
+        },
+
+        barClass(cat) {
+          if (!cat) return 'bar-default';
+          var key = cat.toLowerCase().replace(/\s+/g, '-');
+          var map = {
+            'hair-care':    'bar-hair-care',
+            'skincare':     'bar-skincare',
+            'ingredients':  'bar-ingredients',
+            'distribution': 'bar-distribution',
+            'makeup':       'bar-makeup',
+            'nails':        'bar-nails',
+            'brands':       'bar-brands',
+            'reviews':      'bar-reviews'
+          };
+          return map[key] || 'bar-default';
+        },
+
+        formatDate(str) {
+          if (!str) return '';
+          var d = new Date(str);
+          if (isNaN(d.getTime())) return '';
+          return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        },
+
+        _injectJsonLd() {
+          var base = 'https://www.brazilianbeautyindex.com';
+          var items = this.bestOfPosts.map(function (p, i) {
+            return {
+              '@type': 'ListItem',
+              position: i + 1,
+              url: base + '/blog/' + p.slug + '/',
+              name: p.title
+            };
+          });
+          var collection = {
+            '@context': 'https://schema.org',
+            '@type':    'CollectionPage',
+            name:        'Best of Brazilian Beauty',
+            description: 'Editorially ranked, salon-tested lists of the best Brazilian beauty products.',
+            url:         base + '/best-of/',
+            mainEntity:  {
+              '@type': 'ItemList',
+              numberOfItems: items.length,
+              itemListElement: items
+            }
+          };
+          var breadcrumb = {
+            '@context': 'https://schema.org',
+            '@type':    'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: base + '/' },
+              { '@type': 'ListItem', position: 2, name: 'Best of Brazilian Beauty', item: base + '/best-of/' }
+            ]
+          };
+          var col = document.getElementById('ld-collection');
+          var bc  = document.getElementById('ld-breadcrumb');
+          if (col) col.textContent = JSON.stringify(collection);
+          if (bc)  bc.textContent  = JSON.stringify(breadcrumb);
+        }
+      };
+    }
+  </script>
+
+  <script src="/assets/cookie-consent.js" defer></script>
+</body>
+</html>

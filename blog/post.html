@@ -72,6 +72,103 @@
     ul, ol { list-style: none; }
     button { cursor: pointer; border: none; background: none; font: inherit; }
 
+    /* ─── A11Y: skip to content + visible focus ───────────────── */
+    .skip-to-content {
+      position: absolute; top: -100px; left: 16px; z-index: 99999;
+      background: var(--green); color: var(--white);
+      padding: 12px 20px; font-family: var(--f-sans); font-size: 13px;
+      font-weight: 500; letter-spacing: .05em; text-decoration: none;
+      transition: top .2s;
+    }
+    .skip-to-content:focus { top: 16px; outline: 2px solid var(--gold); outline-offset: 2px; }
+    *:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    *:focus:not(:focus-visible) { outline: none; }
+
+    /* ─── A11Y: respect prefers-reduced-motion ───────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ─── MID-ARTICLE INJECTED CTA (post-load) ───────────────── */
+    .mid-cta {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 22px 26px;
+      margin: 40px 0;
+    }
+    .mid-cta h3 {
+      font-family: var(--f-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--green);
+      margin: 0 0 8px;
+      line-height: 1.25;
+      letter-spacing: -.01em;
+    }
+    .mid-cta p {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin: 0 0 14px;
+    }
+    .mid-cta a.mid-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: var(--white);
+      font-family: var(--f-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .mid-cta a.mid-cta-btn:hover { background: var(--green-2); }
+
+    /* ─── AFFILIATE DISCLOSURE ───────────────────────────────── */
+    .affiliate-disclosure {
+      font-family: var(--f-sans);
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-2);
+      background: rgba(13,50,36,.03);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 14px;
+      margin: 24px 0 28px;
+    }
+    .affiliate-disclosure a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ─── POST TRUST FOOTER ──────────────────────────────────── */
+    .post-trust-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 10px;
+      margin: 18px 0 0;
+      font-size: 11px;
+      color: var(--text-2);
+      letter-spacing: .02em;
+    }
+    .post-trust-footer a {
+      color: var(--text-2);
+      transition: color .2s;
+    }
+    .post-trust-footer a:hover { color: var(--green); }
+    .post-trust-footer .sep { color: var(--text-3); }
+
     /* ─── READING PROGRESS BAR ───────────────────────────────────── */
     #progress-bar {
       position: fixed;
@@ -431,6 +528,96 @@
       font-size: 16px;
       color: var(--text-2);
       line-height: 1.75;
+    }
+
+    /* ─── BEST-OF RANK CARDS ─────────────────────────────────────── */
+    .rank-card {
+      position: relative;
+      background: var(--cream);
+      border-left: 4px solid #8A6518;
+      border-radius: 0 6px 6px 0;
+      padding: 32px;
+      margin: 36px 0;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .rank-card:hover {
+      box-shadow: 0 10px 36px rgba(0,0,0,.10);
+      transform: translateY(-2px);
+    }
+    .rank-card .rank-num {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 64px;
+      font-weight: 400;
+      line-height: 1;
+      color: #8A6518;
+      letter-spacing: -.02em;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .rank-card .rank-title {
+      font-family: var(--f-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--green);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      margin: 0 0 18px;
+    }
+    .rank-card .rank-body p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text);
+      margin: 0 0 16px;
+    }
+    .rank-card .rank-body p:last-child { margin-bottom: 0; }
+    .rank-card .rank-pick {
+      background: rgba(13,50,36,.05);
+      border-left: 2px solid var(--green);
+      padding: 12px 16px;
+      margin: 0 0 18px;
+      border-radius: 0 4px 4px 0;
+    }
+    .rank-card .rank-pick-label {
+      font-family: var(--f-sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .rank-card .rank-pick-text {
+      font-family: var(--f-serif);
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--green);
+      margin: 0;
+    }
+    .btn-rank-buy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: var(--white) !important;
+      font-family: var(--f-sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      padding: 11px 22px;
+      border-radius: 4px;
+      text-decoration: none !important;
+      transition: background .2s;
+      margin-top: 4px;
+    }
+    .btn-rank-buy:hover { background: var(--green-2); }
+    @media (max-width: 640px) {
+      .rank-card { padding: 22px 20px; }
+      .rank-card .rank-num { font-size: 52px; }
+      .rank-card .rank-title { font-size: 22px; }
+      .rank-card .rank-body p { font-size: 16px; }
     }
 
     /* ─── INLINE LINK BOX ────────────────────────────────────────── */
@@ -804,6 +991,9 @@
 </head>
 
 <body>
+  <!-- Skip to content (A11Y) -->
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
   <!-- Reading progress bar -->
   <div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
 
@@ -848,7 +1038,7 @@
     </div>
 
     <!-- 404 STATE -->
-    <div class="state-wrap" x-show="!loading && notFound" x-cloak role="main">
+    <div class="state-wrap" x-show="!loading && notFound" x-cloak role="main" id="main-content">
       <h1 class="not-found-heading">Article not found</h1>
       <p class="not-found-sub">The article you are looking for does not exist or has been moved.</p>
       <a href="/blog/" class="back-link">
@@ -859,7 +1049,7 @@
 
     <!-- ARTICLE STATE -->
     <template x-if="!loading && !notFound && post">
-      <main role="main">
+      <main id="main-content" role="main">
 
         <!-- Breadcrumb -->
         <div class="breadcrumb-bar">
@@ -956,6 +1146,15 @@
                 <span x-text="copied ? 'Copied!' : 'Copy link'"></span>
               </button>
             </div>
+
+            <!-- Trust footer (editorial transparency) -->
+            <nav class="post-trust-footer" aria-label="Editorial policies">
+              <a href="/editorial-standards/">Editorial standards</a>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="/correction-policy/">Correction policy</a>
+              <span class="sep" aria-hidden="true">·</span>
+              <a href="/privacy/">Privacy</a>
+            </nav>
 
           </div><!-- /article-body -->
 
@@ -1161,42 +1360,141 @@
           }
         },
 
-        /* ── processed content: add internal links ── */
+        /* ── processed content: add internal links + mid-article CTA ── */
         processedContent() {
           if (!this.post || !this.post.content) return '';
           var html = this.post.content;
+          var slug = this.post.slug || '';
+          // UTM string applied to every auto-injected anchor — fixes the silent
+          // attribution leak flagged in the v2 re-audit.
+          var utm  = 'utm_source=bbi&utm_medium=auto-link&utm_campaign=' + encodeURIComponent(slug);
+          var withUtm = function (base) {
+            return base + (base.indexOf('?') === -1 ? '?' : '&') + utm;
+          };
 
           // Braé → braehaircare.co.uk (first occurrence, case-insensitive)
           html = this._linkFirst(html, /Bra[eé]\b/i, function (m) {
-            return '<a href="https://braehaircare.co.uk" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://braehaircare.co.uk') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
           // Cadiveu → bmsupplier.co.uk/brands/cadiveu
           html = this._linkFirst(html, /Cadiveu/i, function (m) {
-            return '<a href="https://bmsupplier.co.uk/brands/cadiveu" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://bmsupplier.co.uk/brands/cadiveu') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
           // Honma → bmsupplier
           html = this._linkFirst(html, /Honma/i, function (m) {
-            return '<a href="https://bmsupplier.co.uk/brands/honma" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://bmsupplier.co.uk/brands/honma') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
           // Salvatore → bmsupplier
           html = this._linkFirst(html, /Salvatore/i, function (m) {
-            return '<a href="https://bmsupplier.co.uk/brands/salvatore" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://bmsupplier.co.uk/brands/salvatore') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
           // "keratin" → keratinandcare.com (first mention not already linked)
           html = this._linkFirst(html, /\bkeratin\b/i, function (m) {
-            return '<a href="https://keratinandcare.com" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://keratinandcare.com') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
           // "professional" → pro.keratinandcare.com (first mention)
           html = this._linkFirst(html, /\bprofessional\b/i, function (m) {
-            return '<a href="https://pro.keratinandcare.com" target="_blank" rel="noopener">' + m + '</a>';
+            return '<a href="' + withUtm('https://pro.keratinandcare.com') + '" target="_blank" rel="noopener">' + m + '</a>';
           });
 
+          // ── Best-Of rank cards ───────────────────────────────────
+          // Detects Best-Of posts and wraps each ranked H2/H3 section
+          // (e.g. "1. Cadiveu Brasil Cacau") in a rank-card with a
+          // UTM-tagged buy button auto-routed by brand mention.
+          if (this._isBestOf(this.post, slug)) {
+            html = this._renderRankCards(html, slug);
+          }
+
+          // ── Mid-article CTA injection ────────────────────────────
+          // Picks the closing </p> nearest the character-count midpoint
+          // and inserts a category-targeted CTA after it.
+          html = this._injectMidCta(html, this.post.category, slug);
+
+          // ── Affiliate disclosure (template-level default) ────────
+          // Prepended when the post flags affiliate links OR the slug matches
+          // a commercial review/list pattern.
+          var commercial = /(review|best-|top-|vs-|\bvs\b|compare|comparison)/i.test(slug);
+          if (this.post.has_affiliate_links || commercial) {
+            html = '<div class="affiliate-disclosure">'
+                 + 'This article contains commercial links to retailers we partner with. '
+                 + 'We may earn a commission on purchases, which never affects which products '
+                 + 'we cover or how we rate them. '
+                 + '<a href="/editorial-standards/">See our editorial standards.</a>'
+                 + '</div>' + html;
+          }
+
           return html;
+        },
+
+        /* ── helper: rotate mid-article CTA by category ── */
+        pickMidCta(category, slug) {
+          var cat = (category || '').toLowerCase();
+          var utm = 'utm_source=bbi&utm_medium=mid-article-cta&utm_campaign=' + encodeURIComponent(slug || '');
+          var build = function (base) {
+            return base + (base.indexOf('?') === -1 ? '?' : '&') + utm;
+          };
+          var cta;
+
+          if (cat === 'distribution' || cat === 'trade') {
+            cta = {
+              h: 'Bringing Brazilian beauty to your salon or store?',
+              p: 'BM Supplier is the UK distributor we partner with — wholesale pricing, trade-only catalogues, and full regulatory paperwork.',
+              btn: 'See partner programme',
+              href: build('https://bmsupplier.co.uk/partner')
+            };
+          } else if (cat === 'brands' || cat === 'procedures' || cat === 'brae' || cat === 'salons') {
+            cta = {
+              h: 'Want the professional Braé range?',
+              p: 'Braé Hair Care is our UK editorial partner for Brazilian salon-grade systems — full range, UK fulfilment, full ingredient transparency.',
+              btn: 'Visit Braé Hair Care',
+              href: build('https://braehaircare.co.uk')
+            };
+          } else {
+            // hair-care / reviews / how-to / tutorials / skincare / makeup / default
+            cta = {
+              h: 'Shop the products we cover.',
+              p: 'Keratin & Care stocks the editorial picks we test — keratin treatments, masks, leave-ins, and Brazilian originals. UK-stocked, retail pricing.',
+              btn: 'Shop Keratin & Care',
+              href: build('https://keratinandcare.com')
+            };
+          }
+
+          return '<aside class="mid-cta" aria-label="Editorial recommendation">'
+               +   '<h3>' + cta.h + '</h3>'
+               +   '<p>' + cta.p + '</p>'
+               +   '<a class="mid-cta-btn" href="' + cta.href + '" target="_blank" rel="noopener">'
+               +     cta.btn
+               +     ' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>'
+               +   '</a>'
+               + '</aside>';
+        },
+
+        /* ── helper: insert CTA after </p> nearest content midpoint ── */
+        _injectMidCta(html, category, slug) {
+          if (!html) return html;
+          var ctaHtml = this.pickMidCta(category, slug);
+          var midpoint = Math.floor(html.length / 2);
+          // Find every </p> position
+          var re = /<\/p>/gi;
+          var positions = [];
+          var m;
+          while ((m = re.exec(html)) !== null) {
+            positions.push(m.index + m[0].length);
+          }
+          if (positions.length < 3) return html; // article too short — skip
+          // pick the </p> closest to midpoint
+          var best = positions[0];
+          var bestDist = Math.abs(best - midpoint);
+          for (var i = 1; i < positions.length; i++) {
+            var d = Math.abs(positions[i] - midpoint);
+            if (d < bestDist) { best = positions[i]; bestDist = d; }
+          }
+          return html.slice(0, best) + ctaHtml + html.slice(best);
         },
 
         /* ── helper: link first text occurrence outside existing tags ── */
@@ -1210,6 +1508,79 @@
               return text.replace(regex, function (m) { return replacer(m); });
             }
             return text;
+          });
+        },
+
+        /* ── helper: detect Best-Of posts ── */
+        _isBestOf(post, slug) {
+          if (!post) return false;
+          if (post.is_best_of === true) return true;
+          var s = (slug || '').toLowerCase();
+          if (/^best-/.test(s)) return true;
+          if (/top-/.test(s) && /\d/.test(s)) return true;
+          return false;
+        },
+
+        /* ── helper: rank-card transformation ── */
+        _renderRankCards(html, slug) {
+          if (!html) return html;
+          var self = this;
+          // Match a heading whose text starts with #N, N., or N) — followed by
+          // everything up to (but not including) the next H2/H3 or end of string.
+          // Captures: [1] tag (h2|h3), [2] rank digit, [3] separator char, [4] rest of heading text, [5] body until next heading.
+          var rankRe = /<(h[23])(?:\s[^>]*)?>\s*(?:#\s*)?(\d{1,2})\s*([.\)\-:]|—|–)\s*([^<]+?)<\/\1>([\s\S]*?)(?=<h[23]\b|$)/gi;
+
+          return html.replace(rankRe, function (full, tag, num, sep, headingTextRaw, bodyRaw) {
+            var headingText = headingTextRaw.trim();
+            // Plain text of the body (no tags) for brand routing
+            var bodyText = bodyRaw.replace(/<[^>]+>/g, ' ');
+            var lookIn   = headingText + ' ' + bodyText;
+
+            // Extract the first <p>...</p> as the "Why we picked it" rationale.
+            var firstPMatch = bodyRaw.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+            var pickHtml = '';
+            var bodyRemainder = bodyRaw;
+            if (firstPMatch) {
+              var rationaleInner = firstPMatch[1].trim();
+              pickHtml =
+                '<div class="rank-pick">' +
+                  '<span class="rank-pick-label">Why we picked it</span>' +
+                  '<p class="rank-pick-text">' + rationaleInner + '</p>' +
+                '</div>';
+              // Remove that first <p> from body so it isn't duplicated.
+              bodyRemainder = bodyRaw.replace(firstPMatch[0], '');
+            }
+
+            // Buy-button routing — Braé wins if mentioned in heading or body.
+            // Note: \b doesn't behave with é, so use a non-letter / start-of-string lookbehind via split test.
+            var buyHref;
+            if (/(?:^|[^A-Za-z])Bra[eé](?![A-Za-z])/i.test(lookIn)) {
+              buyHref = 'https://braehaircare.co.uk/';
+            } else {
+              buyHref = 'https://keratinandcare.com/';
+            }
+            var utm =
+              'utm_source=bbi' +
+              '&utm_medium=rank-card' +
+              '&utm_campaign=' + encodeURIComponent(slug || '') +
+              '&utm_content=rank-' + num;
+            buyHref += (buyHref.indexOf('?') === -1 ? '?' : '&') + utm;
+
+            var buyBtn =
+              '<a class="btn-rank-buy" href="' + buyHref + '" target="_blank" rel="noopener sponsored" ' +
+              'data-rank="' + num + '">Where to buy ' +
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>' +
+              '</a>';
+
+            return (
+              '<section class="rank-card" aria-label="Rank ' + num + ': ' + headingText.replace(/"/g, '&quot;') + '">' +
+                '<span class="rank-num" aria-hidden="true">#' + num + '</span>' +
+                '<' + tag + ' class="rank-title">' + headingText + '</' + tag + '>' +
+                pickHtml +
+                '<div class="rank-body">' + bodyRemainder + '</div>' +
+                buyBtn +
+              '</section>'
+            );
           });
         },
 
@@ -1245,7 +1616,7 @@
               logo:    { '@type': 'ImageObject', url: base + '/assets/images/logo.png' }
             },
             datePublished:  p.date || '',
-            dateModified:   p.updated || p.date || '',
+            dateModified:   p.updated_at || p.updated || p.date || '',
             url:            url,
             mainEntityOfPage: { '@type': 'WebPage', '@id': url }
           };
@@ -1275,25 +1646,40 @@
           if (ldArt)  ldArt.textContent  = JSON.stringify(article);
           if (ldBc)   ldBc.textContent   = JSON.stringify(breadcrumb);
 
-          // FAQPage — detect <h2> containing FAQ or Question
-          if (p.content && /(<h2[^>]*>[^<]*(?:FAQ|Question|Frequently)[^<]*<\/h2>)/i.test(p.content)) {
-            var faqItems = [];
-            var qPattern = /<h[23][^>]*>([^<]+)<\/h[23]>\s*<p>([^<]+(?:<[^/][^>]*>[^<]*<\/[^>]+>[^<]*)*)<\/p>/g;
-            var match;
-            while ((match = qPattern.exec(p.content)) !== null) {
-              faqItems.push({
-                '@type': 'Question',
-                name:    match[1].replace(/<[^>]+>/g, '').trim(),
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text:    match[2].replace(/<[^>]+>/g, '').trim()
-                }
-              });
-            }
-            if (faqItems.length > 0) {
-              var faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems };
-              var ldFaq = document.getElementById('ld-faq');
-              if (ldFaq) ldFaq.textContent = JSON.stringify(faqSchema);
+          // FAQPage — robust detection.
+          // Question-style headings (ending in "?") are the reliable signal. The old
+          // gate only fired when an <h2> literally said "FAQ", so 107 of 109 FAQ-format
+          // posts emitted no schema (flagged in the v2 SEO-content audit).
+          if (p.content) {
+            var content = p.content;
+            // Count headings whose text ends with a question mark
+            var qHeadings = (content.match(/<h[23][^>]*>[^<]*\?\s*<\/h[23]>/gi) || []).length;
+            var slugFaq   = /faq|questions/i.test(p.slug || '');
+            var labelFaq  = /<h[23][^>]*>[^<]*(?:FAQ|Frequently Asked)[^<]*<\/h[23]>/i.test(content);
+
+            if (slugFaq || labelFaq || qHeadings >= 3) {
+              var faqItems = [];
+              // Capture each question heading + everything up to the next heading as the answer.
+              var qPattern = /<h[23][^>]*>([^<]*\?)\s*<\/h[23]>([\s\S]*?)(?=<h[23][^>]*>|$)/gi;
+              var match;
+              while ((match = qPattern.exec(content)) !== null) {
+                var q = match[1].replace(/<[^>]+>/g, '').trim();
+                var a = match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (q.length < 3 || a.length < 3) continue;
+                if (a.length > 600) a = a.slice(0, 597).replace(/\s+\S*$/, '') + '…';
+                faqItems.push({
+                  '@type': 'Question',
+                  name:    q,
+                  acceptedAnswer: { '@type': 'Answer', text: a }
+                });
+              }
+              // Cap at 30 — Google ignores beyond a point and huge schema bloats the page
+              if (faqItems.length > 30) faqItems = faqItems.slice(0, 30);
+              if (faqItems.length >= 2) {
+                var faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems };
+                var ldFaq = document.getElementById('ld-faq');
+                if (ldFaq) ldFaq.textContent = JSON.stringify(faqSchema);
+              }
             }
           }
 

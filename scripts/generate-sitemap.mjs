@@ -31,6 +31,7 @@ const SITE_URL = 'https://www.brazilianbeautyindex.com';
 const STATIC_PAGES = [
   { url: '/',              priority: '1.0', freq: 'daily'   },
   { url: '/blog/',         priority: '0.9', freq: 'daily'   },
+  { url: '/best-of/',      priority: '0.9', freq: 'weekly'  },
   { url: '/brands/',       priority: '0.8', freq: 'weekly'  },
   { url: '/hair/',         priority: '0.8', freq: 'weekly'  },
   { url: '/skin/',         priority: '0.7', freq: 'weekly'  },

@@ -2,96 +2,289 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Brand Index — Brazilian Beauty Index</title>
-  <meta name="description" content="Brazilian beauty brand guides — Braé, Cadiveu, Honma Tokyo, Salvatore, Piur and more. Complete reviews and professional information.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Archive — Brazilian Beauty Index</title>
+  <meta name="description" content="Every major Brazilian beauty brand, indexed. Braé, Cadiveu, Honma Tokyo, Salvatore, Inoar, Embelleze, Lola Cosmetics, Skala — guides, reviews and protocols.">
   <link rel="canonical" href="https://www.brazilianbeautyindex.com/brands/">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Brand Archive — Brazilian Beauty Index">
+  <meta property="og:description" content="Every major Brazilian beauty brand, indexed.">
+  <meta property="og:url" content="https://www.brazilianbeautyindex.com/brands/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0D3224">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/blog/posts.json" as="fetch" type="application/json" crossorigin>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Brand Archive — Brazilian Beauty Index",
+    "url": "https://www.brazilianbeautyindex.com/brands/",
+    "description": "Every major Brazilian beauty brand, indexed. Guides, reviews and protocols.",
+    "isPartOf": { "@type": "WebSite", "name": "Brazilian Beauty Index", "url": "https://www.brazilianbeautyindex.com" }
+  }
+  </script>
+
   <style>
-    :root{--g:#0D3224;--gold:#C9962A;--ivory:#F9F7F4;--text:#111;--text-2:rgba(17,17,17,.55);--border:rgba(17,17,17,.08);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',system-ui,sans-serif}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--f-sans);background:#fff;color:var(--text);-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    nav{background:var(--g);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-    .logo{font-family:var(--f-serif);font-size:18px;color:#fff;font-weight:400}
-    .logo em{color:var(--gold);font-style:italic}
-    .nav-links{display:flex;gap:24px}
-    .nav-links a{font-size:12px;color:rgba(255,255,255,.7);transition:color .2s}
-    .nav-links a:hover{color:#fff}
-    .hero{background:var(--g);padding:64px 32px 48px;text-align:center}
-    .hero .label{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
-    .hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(36px,5vw,56px);color:#fff;line-height:1.15}
-    .hero h1 em{color:var(--gold);font-style:italic}
-    .hero p{font-size:15px;color:rgba(255,255,255,.55);margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto}
-    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:60px 0}
-    .card{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:transform .2s,border-color .2s}
-    .card:hover{transform:translateY(-3px);border-color:rgba(13,50,36,.2)}
-    .card-img{height:200px;background:linear-gradient(135deg,var(--g),#174D38,var(--gold));position:relative}
-    .card-img img{width:100%;height:100%;object-fit:cover}
-    .card-body{padding:20px}
-    .card-cat{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
-    .card-title{font-family:var(--f-serif);font-weight:300;font-size:19px;line-height:1.3;margin-bottom:8px}
-    .card-excerpt{font-size:13px;color:var(--text-2);line-height:1.65;margin-bottom:14px}
-    .card-meta{font-size:10px;color:rgba(17,17,17,.3)}
-    .loading{text-align:center;padding:80px;font-size:14px;color:var(--text-2)}
-    .empty{text-align:center;padding:80px;font-family:var(--f-serif);font-size:24px;font-weight:300;color:var(--text-2)}
-    footer{background:#0A2419;padding:32px;text-align:center}
-    footer p{font-size:12px;color:rgba(255,255,255,.3)}
-    @media(max-width:768px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+    :root {
+      --g: #0D3224;
+      --g2: #174D38;
+      --g3: #0A2419;
+      --gold: #C9962A;
+      --gold-l: #E0B84A;
+      --terra: #D4603A;
+      --cream: #FAF8F2;
+      --cream-2: #F0EDE4;
+      --text: #1A1A1A;
+      --text-2: rgba(26,26,26,.62);
+      --text-3: rgba(26,26,26,.38);
+      --border: rgba(26,26,26,.08);
+      --f-serif: 'Playfair Display', Georgia, serif;
+      --f-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--f-sans); color: var(--text); background: var(--cream); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .skip-to-content { position: absolute; top: -100px; left: 16px; z-index: 99999; background: #0D3224; color: #fff; padding: 12px 20px; font-size: 13px; font-weight: 500; transition: top .2s; }
+    .skip-to-content:focus { top: 16px; outline: 2px solid #C9962A; }
+    *:focus-visible { outline: 2px solid #C9962A; outline-offset: 2px; }
+    *:focus:not(:focus-visible) { outline: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: 66px; background: var(--g); z-index: 100; display: flex; align-items: center; padding: 0 32px; gap: 32px; }
+    .nav-logo { font-family: var(--f-serif); font-size: 18px; font-weight: 700; color: #fff; white-space: nowrap; flex-shrink: 0; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); letter-spacing: .02em; transition: color .2s; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; }
+    .btn-nav { background: var(--gold); color: #fff !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: background .2s !important; white-space: nowrap; }
+    .btn-nav:hover { background: var(--gold-l) !important; color: var(--g) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+    .mmenu { display: none; position: fixed; inset: 0; background: var(--g3); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+    .mmenu.open { display: flex; }
+    .mmenu a { font-family: var(--f-serif); font-size: 26px; color: #fff; opacity: .85; }
+    .mmenu-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
+
+    .crumbs { margin-top: 66px; padding: 14px 32px 0; max-width: 1200px; margin-left: auto; margin-right: auto; font-size: 12px; color: var(--text-3); }
+    .crumbs a { color: var(--text-2); }
+    .crumbs a:hover { color: var(--g); }
+    .crumbs .sep { margin: 0 6px; opacity: .5; }
+
+    .hero { padding: 40px 32px 56px; max-width: 1200px; margin: 0 auto; }
+    .hero-label { font-size: 11px; font-weight: 600; letter-spacing: .22em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .hero h1 { font-family: var(--f-serif); font-size: clamp(40px, 6vw, 68px); font-weight: 700; line-height: 1.05; margin-bottom: 18px; letter-spacing: -.01em; }
+    .hero h1 em { font-style: italic; color: var(--g); font-weight: 600; }
+    .hero p { font-family: var(--f-serif); font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: var(--text-2); max-width: 760px; line-height: 1.4; font-weight: 400; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px 72px; }
+
+    .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+    .brand-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 14px;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+      position: relative; overflow: hidden; min-height: 240px;
+    }
+    .brand-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-3px); border-color: rgba(13,50,36,.18); }
+    .brand-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--g); }
+    .brand-card.gold::before { background: var(--gold); }
+    .brand-card.terra::before { background: var(--terra); }
+    .brand-card.g2::before { background: var(--g2); }
+    .brand-eyebrow { display: flex; align-items: center; justify-content: space-between; }
+    .brand-cat { font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .brand-count { font-size: 11px; color: var(--text-3); font-weight: 500; background: var(--cream-2); padding: 4px 10px; border-radius: 100px; }
+    .brand-name { font-family: var(--f-serif); font-size: 26px; font-weight: 700; color: var(--text); line-height: 1.15; margin-top: 4px; }
+    .brand-tag { font-size: 13.5px; color: var(--text-2); line-height: 1.55; flex: 1; }
+    .brand-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .brand-meta span { font-size: 11px; color: var(--text-3); background: var(--cream-2); padding: 4px 10px; border-radius: 100px; }
+    .brand-link { font-size: 13px; font-weight: 600; color: var(--g); display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; }
+    .brand-link::after { content: '\\2192'; transition: transform .2s; }
+    .brand-card:hover .brand-link::after { transform: translateX(3px); }
+
+    .section-divider { font-family: var(--f-serif); font-size: 14px; font-style: italic; color: var(--text-3); margin: 56px 0 18px; text-align: center; position: relative; }
+    .section-divider::before, .section-divider::after { content: ''; position: absolute; top: 50%; width: calc(50% - 80px); height: 1px; background: var(--border); }
+    .section-divider::before { left: 0; }
+    .section-divider::after { right: 0; }
+
+    .other-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .other-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; transition: border-color .2s, transform .2s; }
+    .other-card:hover { border-color: var(--g); transform: translateY(-2px); }
+    .other-card strong { font-family: var(--f-serif); font-size: 16px; font-weight: 600; color: var(--text); display: block; margin-bottom: 4px; }
+    .other-card span { font-size: 12px; color: var(--text-3); }
+
+    .footer { background: var(--g); padding: 48px 32px; color: rgba(255,255,255,.65); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+    .footer-brand { font-family: var(--f-serif); font-size: 20px; font-weight: 700; color: #fff; }
+    .footer-brand span { color: var(--gold); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,.55); }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.35); }
+
+    @media (max-width: 1024px) {
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+      .other-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav { padding: 0 20px; gap: 0; }
+      .hero { padding: 28px 20px 36px; }
+      .wrap { padding: 0 20px 56px; }
+      .crumbs { padding: 14px 20px 0; }
+      .brand-grid { grid-template-columns: 1fr; }
+      .other-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
-<body x-data="catPage()" x-cloak>
-<nav>
-  <a href="/" class="logo">Brazilian<em>Beauty</em>Index</a>
-  <div class="nav-links">
-    <a href="/hair/">Hair</a><a href="/skin/">Skin</a>
-    <a href="/brands/">Brands</a><a href="/blog/">Editorial</a>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div class="mmenu" id="mmenu">
+    <button class="mmenu-close" onclick="closeMmenu()" aria-label="Close">&#x2715;</button>
+    <a href="/hair/">Hair</a>
+    <a href="/skin/">Skin</a>
+    <a href="/brands/" aria-current="page">Brands</a>
+    <a href="/blog/">Editorial</a>
     <a href="/distribution/">Distribution</a>
   </div>
-</nav>
-<div class="hero">
-  <span class="label">Brand Index</span>
-  <h1>Brazilian Beauty <em>Brands</em></h1>
-  <p>Comprehensive guides to every major Brazilian professional beauty brand — from Braé to Cadiveu, Honma Tokyo and beyond.</p>
-</div>
-<div class="wrap">
-  <div x-show="loading" class="loading">Loading articles…</div>
-  <div x-show="!loading && posts.length === 0" class="empty">No articles yet — check back soon.</div>
-  <div class="grid" x-show="!loading && posts.length > 0">
-    <template x-for="p in posts" :key="p.slug">
-      <a :href="'/blog/' + p.slug" class="card">
-        <div class="card-img">
-          <img x-show="p.featured_image" :src="p.featured_image" :alt="p.title" loading="lazy" style="display:none" @load="$el.style.display='block'">
-        </div>
-        <div class="card-body">
-          <span class="card-cat" x-text="p.category?.replace('-',' ').toUpperCase() || 'Brand Index'"></span>
-          <div class="card-title" x-text="p.title"></div>
-          <div class="card-excerpt" x-text="p.excerpt?.slice(0,100) + '...'"></div>
-          <div class="card-meta" x-text="p.author + ' · ' + p.date"></div>
-        </div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">Brazilian <span>Beauty</span> Index</a>
+    <ul class="nav-links">
+      <li><a href="/hair/">Hair</a></li>
+      <li><a href="/skin/">Skin</a></li>
+      <li><a href="/brands/" aria-current="page">Brands</a></li>
+      <li><a href="/blog/">Editorial</a></li>
+      <li><a href="/distribution/">Distribution</a></li>
+      <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
+    </ul>
+    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <span>Brands</span>
+  </nav>
+
+  <header class="hero">
+    <span class="hero-label">Brand Archive</span>
+    <h1>Brazilian <em>Beauty Brands</em></h1>
+    <p>Every major house, indexed. Guides, reviews, salon protocols and shopping intel — from the houses that built Brazilian smoothing to the supermarket classics quietly conquering Europe.</p>
+  </header>
+
+  <main class="wrap" id="main-content" x-data="brandsIndex()" x-init="init()">
+    <div class="brand-grid">
+      <template x-for="b in featured" :key="b.slug">
+        <a :href="'/brands/' + b.slug" class="brand-card" :class="b.accent || ''">
+          <div class="brand-eyebrow">
+            <span class="brand-cat">House</span>
+            <span class="brand-count" x-show="b.count" x-text="b.count + (b.count === 1 ? ' article' : ' articles')"></span>
+          </div>
+          <div class="brand-name" x-text="b.name"></div>
+          <p class="brand-tag" x-text="b.tagline"></p>
+          <div class="brand-meta">
+            <span x-show="b.founded">Founded <span x-text="b.founded"></span></span>
+            <span x-show="b.hq" x-text="b.hq"></span>
+          </div>
+          <span class="brand-link">Open archive</span>
+        </a>
+      </template>
+    </div>
+
+    <p class="section-divider">More on the Index</p>
+
+    <div class="other-grid">
+      <a href="/blog/piur-professional-nano-keratin" class="other-card">
+        <strong>Piur Professional</strong>
+        <span>Nano-keratin technology</span>
       </a>
-    </template>
-  </div>
-</div>
-<footer><p>© 2026 Brazilian Beauty Index · brazilianbeautyindex.com</p></footer>
-<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
-<script>
-function catPage() {
-  return {
-    loading: true,
-    posts: [],
-    async init() {
-      const r = await fetch('/blog/posts.json');
-      const all = await r.json();
-      const cat = 'all';
-      this.posts = cat === 'all'
-        ? all
-        : all.filter(p => p.category === cat || p.tags?.includes(cat));
-      this.loading = false;
+      <a href="/blog/tanino-therapy-complete-guide" class="other-card">
+        <strong>Tanino Therapy</strong>
+        <span>Salvatore protocol guide</span>
+      </a>
+      <a href="/blog/robson-peluquero-brand-guide" class="other-card">
+        <strong>Robson Peluquero</strong>
+        <span>Premium curly hair line</span>
+      </a>
+      <a href="/blog/lavi-hair-care-guide" class="other-card">
+        <strong>Lavi Hair Care</strong>
+        <span>Boutique smoothing brand</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/brands/">Brands</a></li>
+        <li><a href="/blog/">Editorial</a></li>
+        <li><a href="/distribution/">Distribution</a></li>
+        <li><a href="/advertise/">Advertise</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openMmenu() { document.getElementById('mmenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMmenu() { document.getElementById('mmenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+    function brandsIndex() {
+      return {
+        featured: [
+          { slug: 'honma-tokyo',    name: 'Honma Tokyo',          tagline: 'Japanese-style precision smoothing, born in Brazil. The brand that turned keratin into a salon discipline.', founded: 2008, hq: 'São Paulo',     accent: '',      count: 0, match: ['honma-tokyo','honma tokyo','honma'] },
+          { slug: 'cadiveu',        name: 'Cadiveu Professional', tagline: 'The Brasil Cacau pioneers — the house that took Brazilian smoothing global.',                                  founded: 2006, hq: 'São Paulo',     accent: 'gold',  count: 0, match: ['cadiveu'] },
+          { slug: 'brae',           name: 'Braé Hair Care',       tagline: 'Salon-grade home care with a clean-formula spine. Essential, Revival, Bond Angel, Divine.',                  founded: 2017, hq: 'Cotia, SP',     accent: '',      count: 0, match: ['brae','braé'] },
+          { slug: 'salvatore',      name: 'Salvatore',            tagline: 'Tanino Therapy specialists. Three decades of formaldehyde-free smoothing and salon education.',              founded: 1989, hq: 'Limeira, SP',   accent: 'terra', count: 0, match: ['salvatore','tanino-therapy','tanino'] },
+          { slug: 'inoar',          name: 'Inoar',                tagline: 'G-Hair smoothing originators. Mass-market Brazilian keratin built on global distribution.',                  founded: 2002, hq: 'São Paulo',     accent: 'g2',    count: 0, match: ['inoar','g-hair'] },
+          { slug: 'embelleze',      name: 'Embelleze',            tagline: 'Novex and the supermarket classics. The brand that put Brazilian hair care on every aisle.',                 founded: 1985, hq: 'Rio de Janeiro', accent: 'gold',  count: 0, match: ['embelleze','novex'] },
+          { slug: 'lola-cosmetics', name: 'Lola Cosmetics',       tagline: 'Curl-friendly, vegan, irreverent. The clean-formula house with a cult following on TikTok.',                  founded: 2008, hq: 'São Paulo',     accent: 'terra', count: 0, match: ['lola-cosmetics','lola cosmetics','lola'] },
+          { slug: 'skala',          name: 'Skala',                tagline: 'Affordable Brazilian classics. The R$10 bond mask that quietly conquered the world.',                         founded: 1979, hq: 'Pouso Alegre',  accent: 'g2',    count: 0, match: ['skala'] }
+        ],
+
+        async init() {
+          try {
+            const res = await fetch('/blog/posts.json');
+            if (!res.ok) return;
+            const all = await res.json();
+            const slugify = s => String(s || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+            this.featured = this.featured.map(b => {
+              const needles = b.match.map(s => s.toLowerCase());
+              const count = all.filter(p => {
+                const explicit = (p.brand && needles.includes(String(p.brand).toLowerCase()));
+                const tagHit = (p.tags || []).some(t => {
+                  const tl = String(t).toLowerCase();
+                  return needles.includes(tl) || needles.includes(slugify(tl));
+                });
+                const slugHit = needles.some(n => p.slug && p.slug.includes(n));
+                const titleHit = needles.some(n => p.title && p.title.toLowerCase().includes(n));
+                return explicit || tagHit || slugHit || titleHit;
+              }).length;
+              return { ...b, count };
+            });
+          } catch {}
+        }
+      };
     }
-  };
-}
-</script>
+  </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     :root {
       --g: #0D3224;
@@ -29,6 +29,31 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── A11Y: skip to content + visible focus ───────────────── */
+    .skip-to-content {
+      position: absolute; top: -100px; left: 16px; z-index: 99999;
+      background: #0D3224; color: #fff;
+      padding: 12px 20px; font-family: var(--f-sans); font-size: 13px;
+      font-weight: 500; letter-spacing: .05em; text-decoration: none;
+      transition: top .2s;
+    }
+    .skip-to-content:focus { top: 16px; outline: 2px solid #C9962A; outline-offset: 2px; }
+    *:focus-visible {
+      outline: 2px solid #C9962A;
+      outline-offset: 2px;
+    }
+    *:focus:not(:focus-visible) { outline: none; }
+
+    /* ─── A11Y: respect prefers-reduced-motion ───────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
 
     html { scroll-behavior: smooth; }
 
@@ -506,6 +531,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
 
   <!-- MOBILE MENU OVERLAY -->
   <div class="mmenu" id="mmenu">
@@ -543,37 +569,53 @@
 
   <!-- TAG FILTER -->
   <div class="tag-bar" x-data="blogApp()" id="blog-app-root">
-    <div class="tag-inner">
+    <div class="tag-inner" role="tablist" aria-label="Filter articles by category">
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'all' ? 'true' : 'false'"
         :class="{ active: activeTag === 'all' }"
         @click="setTag('all')">All</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'hair-care' ? 'true' : 'false'"
         :class="{ active: activeTag === 'hair-care' }"
         @click="setTag('hair-care')">Hair Care</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'brands' ? 'true' : 'false'"
         :class="{ active: activeTag === 'brands' }"
         @click="setTag('brands')">Brands</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'how-to' ? 'true' : 'false'"
         :class="{ active: activeTag === 'how-to' }"
         @click="setTag('how-to')">How-To</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'ingredients' ? 'true' : 'false'"
         :class="{ active: activeTag === 'ingredients' }"
         @click="setTag('ingredients')">Ingredients</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'reviews' ? 'true' : 'false'"
         :class="{ active: activeTag === 'reviews' }"
         @click="setTag('reviews')">Reviews</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'procedures' ? 'true' : 'false'"
         :class="{ active: activeTag === 'procedures' }"
         @click="setTag('procedures')">Procedures</button>
       <button
         class="tag-pill"
+        role="tab"
+        :aria-selected="activeTag === 'distribution' ? 'true' : 'false'"
         :class="{ active: activeTag === 'distribution' }"
         @click="setTag('distribution')">Distribution</button>
     </div>
@@ -585,7 +627,7 @@
   </div>
 
   <!-- ARTICLE GRID (Alpine scope extends from root) -->
-  <main class="main" x-data x-bind="$store ? {} : {}" id="blog-grid-host">
+  <main class="main" x-data x-bind="$store ? {} : {}" id="main-content">
     <div x-data="blogApp()">
 
       <!-- Loading skeletons -->
@@ -693,14 +735,35 @@
             this.posts = this._demoData();
           }
           this.loading = false;
-          this.$nextTick(() => {
+          this.$nextTick(() => this._animateCards());
+        },
+
+        _animateCards() {
+          // Skip animation entirely if user prefers reduced motion
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.post-card').forEach(el => {
+              el.style.opacity = 1; el.style.transform = 'none';
+            });
+            return;
+          }
+          // Wait for deferred GSAP if it hasn't loaded yet
+          const run = () => {
+            const cards = document.querySelectorAll('.post-card');
+            if (typeof gsap === 'undefined') {
+              // GSAP failed entirely — just show cards
+              cards.forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+              return;
+            }
             gsap.fromTo('.post-card', { opacity: 0, y: 20 }, {
               opacity: 1, y: 0,
               duration: 0.5,
               stagger: 0.07,
               ease: 'power2.out'
             });
-          });
+          };
+          if (typeof gsap !== 'undefined') run();
+          else if (document.readyState === 'complete') run();
+          else window.addEventListener('load', run, { once: true });
         },
 
         setTag(tag) {

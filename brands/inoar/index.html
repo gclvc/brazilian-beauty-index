@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-default="Inoar — Brazilian Beauty Index">Inoar — Brazilian Beauty Index</title>
+  <meta name="description" data-default="G-Hair smoothing originators. Mass-market Brazilian keratin built on global distribution. Every Inoar guide on Brazilian Beauty Index." content="G-Hair smoothing originators. Mass-market Brazilian keratin built on global distribution. Every Inoar guide on Brazilian Beauty Index.">
+  <link rel="canonical" data-canonical-base="https://www.brazilianbeautyindex.com/brands/" href="https://www.brazilianbeautyindex.com/brands/inoar">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Inoar — Brazilian Beauty Index">
+  <meta property="og:description" content="Every Inoar guide, review and protocol on Brazilian Beauty Index.">
+  <meta property="og:url" content="https://www.brazilianbeautyindex.com/brands/inoar">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0D3224">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/blog/posts.json" as="fetch" type="application/json" crossorigin>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --g: #0D3224;
+      --g2: #174D38;
+      --g3: #0A2419;
+      --gold: #C9962A;
+      --gold-l: #E0B84A;
+      --terra: #D4603A;
+      --cream: #FAF8F2;
+      --cream-2: #F0EDE4;
+      --text: #1A1A1A;
+      --text-2: rgba(26,26,26,.62);
+      --text-3: rgba(26,26,26,.38);
+      --border: rgba(26,26,26,.08);
+      --f-serif: 'Playfair Display', Georgia, serif;
+      --f-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--f-sans);
+      color: var(--text);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    [x-cloak] { display: none !important; }
+
+    .skip-to-content { position: absolute; top: -100px; left: 16px; z-index: 99999; background: #0D3224; color: #fff; padding: 12px 20px; font-size: 13px; font-weight: 500; transition: top .2s; }
+    .skip-to-content:focus { top: 16px; outline: 2px solid #C9962A; }
+    *:focus-visible { outline: 2px solid #C9962A; outline-offset: 2px; }
+    *:focus:not(:focus-visible) { outline: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: 66px; background: var(--g); z-index: 100; display: flex; align-items: center; padding: 0 32px; gap: 32px; }
+    .nav-logo { font-family: var(--f-serif); font-size: 18px; font-weight: 700; color: #fff; white-space: nowrap; flex-shrink: 0; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.75); letter-spacing: .02em; transition: color .2s; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; }
+    .btn-nav { background: var(--gold); color: #fff !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; font-size: 13px !important; transition: background .2s !important; white-space: nowrap; }
+    .btn-nav:hover { background: var(--gold-l) !important; color: var(--g) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+    .mmenu { display: none; position: fixed; inset: 0; background: var(--g3); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+    .mmenu.open { display: flex; }
+    .mmenu a { font-family: var(--f-serif); font-size: 26px; color: #fff; opacity: .85; }
+    .mmenu-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
+
+    /* Breadcrumbs */
+    .crumbs { margin-top: 66px; padding: 14px 32px 0; max-width: 1200px; margin-left: auto; margin-right: auto; font-size: 12px; color: var(--text-3); }
+    .crumbs a { color: var(--text-2); }
+    .crumbs a:hover { color: var(--g); }
+    .crumbs .sep { margin: 0 6px; opacity: .5; }
+
+    /* HERO */
+    .brand-hero { padding: 36px 32px 44px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .hero-label { font-size: 11px; font-weight: 600; letter-spacing: .22em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .hero-title { font-family: var(--f-serif); font-size: clamp(40px, 6vw, 68px); font-weight: 700; color: var(--text); line-height: 1.05; margin-bottom: 18px; letter-spacing: -.01em; }
+    .hero-title em { font-style: italic; color: var(--g); font-weight: 600; }
+    .hero-tagline { font-family: var(--f-serif); font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: var(--text-2); max-width: 720px; line-height: 1.4; margin-bottom: 24px; font-weight: 400; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: #fff; border: 1px solid var(--border); border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text-2); }
+    .chip strong { color: var(--g); font-weight: 600; }
+
+    /* LAYOUT */
+    .layout { max-width: 1200px; margin: 0 auto; padding: 48px 32px 72px; display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+
+    /* MAIN */
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--f-serif); font-size: 28px; font-weight: 600; color: var(--text); margin-bottom: 28px; line-height: 1.2; }
+    .section-title em { font-style: italic; color: var(--g); }
+    .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+    .post-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .25s, transform .25s; color: inherit; }
+    .post-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .card-img { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--cream-2); flex-shrink: 0; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .post-card:hover .card-img img { transform: scale(1.04); }
+    .card-top-bar { height: 3px; background: var(--g); }
+    .card-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+    .card-category { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .card-title { font-family: var(--f-serif); font-size: 17px; font-weight: 700; line-height: 1.35; color: var(--text); margin-bottom: 10px; }
+    .card-excerpt { font-size: 13px; line-height: 1.6; color: var(--text-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; margin-bottom: 14px; }
+    .card-meta { font-size: 11px; color: var(--text-3); display: flex; gap: 6px; }
+    .card-meta span + span::before { content: '·'; margin-right: 6px; }
+
+    /* Empty / loading */
+    .skeleton-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .skeleton-bar { height: 3px; background: #e0e0e0; }
+    .skeleton-body { padding: 18px; }
+    .skeleton-line { height: 12px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: pulse 1.5s infinite; border-radius: 4px; margin-bottom: 10px; }
+    .skeleton-line.w-60 { width: 60%; } .skeleton-line.w-80 { width: 80%; } .skeleton-line.w-90 { width: 90%; } .skeleton-line.w-40 { width: 40%; }
+    @keyframes pulse { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .empty-state { padding: 60px 24px; background: #fff; border: 1px dashed var(--border); border-radius: 12px; text-align: center; color: var(--text-2); }
+    .empty-state h3 { font-family: var(--f-serif); font-weight: 600; font-size: 22px; color: var(--text); margin-bottom: 8px; }
+    .empty-state p { font-size: 14px; }
+    .empty-state a { color: var(--g); font-weight: 600; border-bottom: 1px solid var(--g); }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 20px; }
+    .side-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .side-card h3 { font-family: var(--f-serif); font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .side-card p { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 14px; }
+    .side-card .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; font-size: 12px; color: var(--text-3); }
+    .side-cta { display: block; background: var(--g); color: #fff !important; text-align: center; padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; letter-spacing: .02em; transition: background .2s; }
+    .side-cta:hover { background: var(--g2); }
+    .side-cta.gold { background: var(--gold); }
+    .side-cta.gold:hover { background: var(--gold-l); color: var(--g) !important; }
+    .side-disclosure { margin-top: 10px; font-size: 10px; color: var(--text-3); line-height: 1.5; }
+    .side-list { list-style: none; padding: 0; margin: 0; }
+    .side-list li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .side-list li:last-child { border-bottom: none; }
+    .side-list a { color: var(--text); transition: color .2s; }
+    .side-list a:hover { color: var(--g); }
+    .side-list a[aria-current="true"] { color: var(--g); font-weight: 600; }
+
+    /* FOOTER */
+    .footer { background: var(--g); padding: 48px 32px; color: rgba(255,255,255,.65); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+    .footer-brand { font-family: var(--f-serif); font-size: 20px; font-weight: 700; color: #fff; }
+    .footer-brand span { color: var(--gold); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,.55); }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.35); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; gap: 32px; padding: 32px 20px 56px; }
+      .sidebar { position: static; }
+      .brand-hero { padding: 28px 20px 36px; }
+      .crumbs { padding: 14px 20px 0; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav { padding: 0 20px; gap: 0; }
+      .posts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-brand="inoar">
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <div class="mmenu" id="mmenu">
+    <button class="mmenu-close" onclick="closeMmenu()" aria-label="Close">&#x2715;</button>
+    <a href="/hair/">Hair</a>
+    <a href="/skin/">Skin</a>
+    <a href="/brands/" aria-current="page">Brands</a>
+    <a href="/blog/">Editorial</a>
+    <a href="/distribution/">Distribution</a>
+  </div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">Brazilian <span>Beauty</span> Index</a>
+    <ul class="nav-links">
+      <li><a href="/hair/">Hair</a></li>
+      <li><a href="/skin/">Skin</a></li>
+      <li><a href="/brands/" aria-current="page">Brands</a></li>
+      <li><a href="/blog/">Editorial</a></li>
+      <li><a href="/distribution/">Distribution</a></li>
+      <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
+    </ul>
+    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div x-data="brandArchive()" x-init="init()" x-cloak>
+    <!-- BREADCRUMBS -->
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span class="sep">/</span>
+      <a href="/brands/">Brands</a><span class="sep">/</span>
+      <span x-text="meta.name"></span>
+    </nav>
+
+    <!-- HERO -->
+    <header class="brand-hero">
+      <span class="hero-label" x-text="meta.label || 'Brand Archive'"></span>
+      <h1 class="hero-title" x-html="meta.titleHtml || meta.name"></h1>
+      <p class="hero-tagline" x-text="meta.tagline"></p>
+      <div class="hero-chips">
+        <span class="chip" x-show="meta.founded"><strong x-text="meta.founded"></strong>&nbsp;founded</span>
+        <span class="chip" x-show="meta.hq">HQ&nbsp;<strong x-text="meta.hq"></strong></span>
+        <span class="chip" x-show="meta.country"><strong x-text="meta.country"></strong></span>
+        <span class="chip" x-show="posts.length"><strong x-text="posts.length"></strong>&nbsp;<span x-text="posts.length === 1 ? 'article' : 'articles'"></span></span>
+      </div>
+    </header>
+
+    <main class="layout" id="main-content">
+      <!-- ARTICLE COLUMN -->
+      <section>
+        <div class="section-label">Latest from this brand</div>
+        <h2 class="section-title">Every <em x-text="meta.name"></em> guide on the Index</h2>
+
+        <!-- Loading -->
+        <div class="posts-grid" x-show="loading">
+          <template x-for="i in 4" :key="i">
+            <div class="skeleton-card">
+              <div class="skeleton-bar"></div>
+              <div class="skeleton-body">
+                <div class="skeleton-line w-40" style="margin-bottom: 14px;"></div>
+                <div class="skeleton-line w-90" style="height: 20px; margin-bottom: 8px;"></div>
+                <div class="skeleton-line w-80" style="height: 16px; margin-bottom: 8px;"></div>
+                <div class="skeleton-line w-60" style="margin-top: 16px;"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Posts -->
+        <div class="posts-grid" x-show="!loading && posts.length > 0">
+          <template x-for="post in posts" :key="post.slug">
+            <a :href="'/blog/' + post.slug" class="post-card">
+              <div class="card-img" x-show="post.featured_image">
+                <img :src="post.featured_image" :alt="post.title" loading="lazy">
+              </div>
+              <div class="card-top-bar"></div>
+              <div class="card-body">
+                <p class="card-category" x-text="post.category_label || post.category"></p>
+                <h3 class="card-title" x-text="post.title"></h3>
+                <p class="card-excerpt" x-text="post.excerpt"></p>
+                <div class="card-meta">
+                  <span x-text="post.author"></span>
+                  <span x-text="formatDate(post.date)"></span>
+                </div>
+              </div>
+            </a>
+          </template>
+        </div>
+
+        <!-- Empty -->
+        <div class="empty-state" x-show="!loading && posts.length === 0">
+          <h3>Coverage in progress</h3>
+          <p>We are working on <span x-text="meta.name"></span> guides right now. In the meantime, browse our <a href="/blog/">complete editorial archive</a> or jump to one of our <a href="/brands/">other brand archives</a>.</p>
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Where to buy</h3>
+          <p>
+            <span x-text="meta.name"></span> ships across the UK and EU through our distribution partner.
+          </p>
+          <a class="side-cta gold" :href="shopUrl" target="_blank" rel="sponsored noopener">
+            Shop <span x-text="meta.name"></span> &rarr;
+          </a>
+          <p class="side-disclosure">Affiliate link. We may earn a commission on purchases — never paid for editorial coverage.</p>
+        </div>
+
+        <div class="side-card">
+          <h3>Other brands</h3>
+          <ul class="side-list">
+            <li><a href="/brands/honma-tokyo">Honma Tokyo</a></li>
+            <li><a href="/brands/cadiveu">Cadiveu</a></li>
+            <li><a href="/brands/brae">Braé</a></li>
+            <li><a href="/brands/salvatore">Salvatore</a></li>
+            <li><a href="/brands/inoar">Inoar</a></li>
+            <li><a href="/brands/embelleze">Embelleze</a></li>
+            <li><a href="/brands/lola-cosmetics">Lola Cosmetics</a></li>
+            <li><a href="/brands/skala">Skala</a></li>
+            <li><a href="/brands/" style="font-weight:600;color:var(--g);">All brands &rarr;</a></li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Brazilian <span>Beauty</span> Index</div>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/brands/">Brands</a></li>
+        <li><a href="/blog/">Editorial</a></li>
+        <li><a href="/distribution/">Distribution</a></li>
+        <li><a href="/advertise/">Advertise</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Brazilian Beauty Index. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openMmenu() { document.getElementById('mmenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMmenu() { document.getElementById('mmenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+    // Brand registry — single source of truth for the directory + per-page hero
+    const BRAND_REGISTRY = {
+      'honma-tokyo':    { name: 'Honma Tokyo',           founded: 2008, hq: 'São Paulo',     country: 'Brazil', tagline: 'Japanese-style precision smoothing, born in Brazil — the brand that turned keratin into a salon discipline.', match: ['honma-tokyo','honma tokyo','honma'] },
+      'cadiveu':        { name: 'Cadiveu Professional',  founded: 2006, hq: 'São Paulo',     country: 'Brazil', tagline: 'The Brasil Cacau pioneers — the house that took Brazilian smoothing global.', match: ['cadiveu'] },
+      'brae':           { name: 'Braé Hair Care',        founded: 2017, hq: 'Cotia, SP',     country: 'Brazil', tagline: 'Salon-grade home care with a clean-formula spine — Essential, Revival, Bond Angel, Divine.', match: ['brae','braé'] },
+      'salvatore':      { name: 'Salvatore',             founded: 1989, hq: 'Limeira, SP',   country: 'Brazil', tagline: 'Tanino Therapy specialists. Three decades of formaldehyde-free smoothing and salon education.', match: ['salvatore','tanino-therapy','tanino'] },
+      'inoar':          { name: 'Inoar',                 founded: 2002, hq: 'São Paulo',     country: 'Brazil', tagline: 'G-Hair smoothing originators. Mass-market Brazilian keratin built on global distribution.', match: ['inoar','g-hair'] },
+      'embelleze':      { name: 'Embelleze',             founded: 1985, hq: 'Rio de Janeiro', country: 'Brazil', tagline: 'Novex and the supermarket classics. The brand that put Brazilian hair care on every aisle.', match: ['embelleze','novex'] },
+      'lola-cosmetics': { name: 'Lola Cosmetics',        founded: 2008, hq: 'São Paulo',     country: 'Brazil', tagline: 'Curl-friendly, vegan, irreverent. The clean-formula house with a cult following on TikTok.', match: ['lola-cosmetics','lola cosmetics','lola'] },
+      'skala':          { name: 'Skala',                 founded: 1979, hq: 'Pouso Alegre',  country: 'Brazil', tagline: 'Affordable Brazilian classics. The R$10 bond mask that quietly conquered the world.', match: ['skala'] }
+    };
+
+    function brandArchive() {
+      return {
+        loading: true,
+        posts: [],
+        slug: '',
+        meta: { name: '', tagline: '', founded: '', hq: '', country: '', match: [] },
+        shopUrl: '',
+
+        async init() {
+          const params = new URLSearchParams(location.search);
+          this.slug = (params.get('brand') || document.body.dataset.brand || 'honma-tokyo').toLowerCase();
+          this.meta = BRAND_REGISTRY[this.slug] || { name: this.slug, tagline: '', match: [this.slug] };
+
+          // Italic accent on last word of brand name (visual rhythm matching homepage hero)
+          const parts = (this.meta.name || '').split(' ');
+          if (parts.length >= 2) {
+            const last = parts.pop();
+            this.meta.titleHtml = parts.join(' ') + ' <em>' + last + '</em>';
+          } else {
+            this.meta.titleHtml = this.meta.name;
+          }
+          this.meta.label = 'Brand Archive';
+
+          this.shopUrl = 'https://www.keratinandcare.com/search?q=' + encodeURIComponent(this.meta.name)
+            + '&utm_source=bbi&utm_medium=brand-archive&utm_campaign=' + this.slug + '-shop';
+
+          // Document head
+          document.title = this.meta.name + ' — Brazilian Beauty Index';
+          const desc = document.querySelector('meta[name="description"]');
+          if (desc) desc.setAttribute('content', this.meta.tagline + ' Every ' + this.meta.name + ' guide on Brazilian Beauty Index.');
+          const canonical = document.querySelector('link[rel="canonical"]');
+          if (canonical) canonical.setAttribute('href', 'https://www.brazilianbeautyindex.com/brands/' + this.slug);
+          const ogTitle = document.querySelector('meta[property="og:title"]');
+          if (ogTitle) ogTitle.setAttribute('content', this.meta.name + ' — Brazilian Beauty Index');
+          const ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) ogUrl.setAttribute('content', 'https://www.brazilianbeautyindex.com/brands/' + this.slug);
+
+          // Mark current brand in sidebar
+          document.querySelectorAll('.side-list a[href="/brands/' + this.slug + '"]').forEach(a => a.setAttribute('aria-current', 'true'));
+
+          // Fetch + filter
+          try {
+            const res = await fetch('/blog/posts.json');
+            const all = res.ok ? await res.json() : [];
+            const needles = (this.meta.match || [this.slug]).map(s => String(s).toLowerCase());
+            const slugify = s => String(s || '').toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+            this.posts = all.filter(p => {
+              const explicit = (p.brand && needles.includes(String(p.brand).toLowerCase()));
+              const tagHit = (p.tags || []).some(t => {
+                const tl = String(t).toLowerCase();
+                return needles.includes(tl) || needles.includes(slugify(tl));
+              });
+              const slugHit = needles.some(n => p.slug && p.slug.includes(n));
+              const titleHit = needles.some(n => p.title && p.title.toLowerCase().includes(n));
+              return explicit || tagHit || slugHit || titleHit;
+            }).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+            // Inject CollectionPage + ItemList JSON-LD with the actual filtered set
+            this._injectJsonLd();
+          } catch (e) {
+            this.posts = [];
+          }
+
+          this.loading = false;
+        },
+
+        _injectJsonLd() {
+          const list = {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": this.meta.name + ' — Brand Archive',
+            "url": 'https://www.brazilianbeautyindex.com/brands/' + this.slug,
+            "description": this.meta.tagline,
+            "isPartOf": { "@type": "WebSite", "name": "Brazilian Beauty Index", "url": "https://www.brazilianbeautyindex.com" },
+            "about": {
+              "@type": "Brand",
+              "name": this.meta.name,
+              "foundingDate": this.meta.founded ? String(this.meta.founded) : undefined,
+              "foundingLocation": this.meta.hq ? this.meta.hq + ', ' + this.meta.country : undefined
+            },
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": this.posts.slice(0, 20).map((p, i) => ({
+                "@type": "ListItem",
+                "position": i + 1,
+                "url": 'https://www.brazilianbeautyindex.com/blog/' + p.slug,
+                "name": p.title
+              }))
+            }
+          };
+          const tag = document.createElement('script');
+          tag.type = 'application/ld+json';
+          tag.textContent = JSON.stringify(list);
+          document.head.appendChild(tag);
+
+          // Breadcrumb JSON-LD
+          const crumbs = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home",   "item": "https://www.brazilianbeautyindex.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Brands", "item": "https://www.brazilianbeautyindex.com/brands/" },
+              { "@type": "ListItem", "position": 3, "name": this.meta.name, "item": 'https://www.brazilianbeautyindex.com/brands/' + this.slug }
+            ]
+          };
+          const tag2 = document.createElement('script');
+          tag2.type = 'application/ld+json';
+          tag2.textContent = JSON.stringify(crumbs);
+          document.head.appendChild(tag2);
+        },
+
+        formatDate(dateStr) {
+          if (!dateStr) return '';
+          const d = new Date(dateStr);
+          if (isNaN(d)) return '';
+          return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+      };
+    }
+  </script>
+</body>
+</html>
