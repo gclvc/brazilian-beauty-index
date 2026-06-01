@@ -246,10 +246,12 @@
       display: none;
       flex-direction: column;
       gap: 5px;
-      width: 24px;
-      height: 24px;
+      width: 44px;
+      height: 44px;
+      margin-right: -10px;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
     .nav-hamburger span {
       display: block;
@@ -839,7 +841,7 @@
       flex: 1;
       min-width: 200px;
       font-family: var(--f-sans);
-      font-size: 14px;
+      font-size: 16px;
       color: var(--text);
       background: var(--white);
       border: 1px solid var(--border-2);
@@ -1249,7 +1251,9 @@
         isOpen = !isOpen;
         menu.classList.toggle('open', isOpen);
         btn.setAttribute('aria-expanded', isOpen);
+        btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
         document.body.style.overflow = isOpen ? 'hidden' : '';
+        if (isOpen) { var first = menu.querySelector('a'); if (first) first.focus(); }
       }
 
       btn.addEventListener('click', toggle);
@@ -1257,6 +1261,11 @@
       // close on outside click
       document.addEventListener('click', function (e) {
         if (isOpen && !menu.contains(e.target) && !btn.contains(e.target)) toggle();
+      });
+
+      // Escape closes the menu and returns focus to the trigger
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) { toggle(); btn.focus(); }
       });
     }());
 

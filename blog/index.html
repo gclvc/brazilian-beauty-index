@@ -128,11 +128,15 @@
       display: none;
       flex-direction: column;
       gap: 5px;
+      align-items: center;
+      justify-content: center;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
+      width: 44px;
+      height: 44px;
       margin-left: auto;
+      margin-right: -10px;
     }
 
     .hamburger span {
@@ -534,8 +538,8 @@
   <a href="#main-content" class="skip-to-content">Skip to content</a>
 
   <!-- MOBILE MENU OVERLAY -->
-  <div class="mmenu" id="mmenu">
-    <button class="mmenu-close" onclick="closeMmenu()">&#x2715;</button>
+  <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="Site menu">
+    <button class="mmenu-close" onclick="closeMmenu()" aria-label="Close menu">&#x2715;</button>
     <a href="/hair/">Hair</a>
     <a href="/skin/">Skin</a>
     <a href="/brands/">Brands</a>
@@ -555,7 +559,7 @@
       <li><a href="/distribution/">Distribution</a></li>
       <li><a href="/distribution/" class="btn-nav">Partner With Us</a></li>
     </ul>
-    <button class="hamburger" onclick="openMmenu()" aria-label="Open menu">
+    <button class="hamburger" id="hamburger" onclick="openMmenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -700,11 +704,19 @@
     function openMmenu() {
       document.getElementById('mmenu').classList.add('open');
       document.body.style.overflow = 'hidden';
+      var h = document.getElementById('hamburger');
+      if (h) { h.setAttribute('aria-expanded', 'true'); h.setAttribute('aria-label', 'Close menu'); }
+      var first = document.querySelector('#mmenu a'); if (first) first.focus();
     }
     function closeMmenu() {
       document.getElementById('mmenu').classList.remove('open');
       document.body.style.overflow = '';
+      var h = document.getElementById('hamburger');
+      if (h) { h.setAttribute('aria-expanded', 'false'); h.setAttribute('aria-label', 'Open menu'); h.focus(); }
     }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.getElementById('mmenu').classList.contains('open')) closeMmenu();
+    });
 
     // Alpine component
     function blogApp() {
